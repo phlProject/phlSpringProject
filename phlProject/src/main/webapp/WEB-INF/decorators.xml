@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorators">  
+
+	<!-- decorator 적용하지 않을 패턴 -->
+    <excludes>
+        <pattern>/*.json</pattern>
+    </excludes>
+    
+  <!-- 사용자(메인) -->
+  <decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout.jsp">
+		<pattern>/mainIndex.do</pattern> 
+		<pattern>/*</pattern>
+  </decorator>
+
+</decorators>
