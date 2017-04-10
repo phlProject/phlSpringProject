@@ -6,11 +6,10 @@ function fn_insertMemRegist(){
 		return;
 	}
 	
-	alert("환영합니다. 회원 가입이 완료되었습니다.");
-	
 	// 회원 등록
-	ComSubmit('memRegistForm','/a0000006/mem/insertMemRegist.do');
+	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');
 	
+	alert("환영합니다. 회원 가입이 완료되었습니다.");
 	
 }
 

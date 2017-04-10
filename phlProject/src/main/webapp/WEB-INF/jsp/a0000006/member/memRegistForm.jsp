@@ -8,8 +8,8 @@
 </head>
 
 <body>
-	<div id="content" align="center">123444
-		<form id="memRegistForm" name="memRegistForm">
+	<div id="content" align="center">
+		<form id="memRegist_Form" name="memRegist_Form">
 			<input type="hidden" id="usableId_yn" value="N">
 			<table>
 				<tr>
