@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<div id="content" align="center">123
+	<div id="content" align="center">123444
 		<form id="memRegistForm" name="memRegistForm">
 			<input type="hidden" id="usableId_yn" value="N">
 			<table>
