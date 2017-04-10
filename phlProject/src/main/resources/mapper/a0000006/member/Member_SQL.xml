@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="a0000006/member">
+    
+    <!-- 로그인(ID,PW CHECK) -->
+    <select id="idPwCheck" parameterType="hashmap" resultType="hashmap">
+    	SELECT MEM_PW
+    	FROM BSNS_MEMBER
+    	WHERE 1=1
+    	  AND USE_YN = 'Y'
+    	  AND MEM_ID = #{mem_id}
+    	  AND BSNS_CODE = #{BSNS_CODE}
+    </select>
+    
+    <!-- 로그인 정보 -->
+    <select id="loginInfo" parameterType="hashmap" resultType="hashmap">
+    	SELECT MEM_ID
+    	 	  ,MEM_NM
+    	 	  ,MEM_NICKNM
+    	 	  ,MEM_GRADE
+    	FROM BSNS_MEMBER
+    	WHERE 1=1
+    	  AND USE_YN = 'Y'
+    	  AND MEM_ID = #{mem_id}
+    	  AND MEM_PW = #{mem_pw}
+    	  AND BSNS_CODE = #{BSNS_CODE}
+    </select>
+    
+    <!-- 마이페이지 -->
+    <select id="memMyPage" parameterType="hashmap" resultType="hashmap">
+    	SELECT 
+    		  BSNS_CODE
+    		  ,MEM_SN
+    		  ,MEM_ID
+    	 	  ,MEM_PW
+    	 	  ,MEM_NM
+    	 	  ,MEM_NICKNM
+    	 	  ,MEM_GRADE
+    	 	  ,(SELECT DETAIL_CODE_NM
+    	 	      FROM BSNS_CMMN_CODE
+    	 	     WHERE 1=1
+    	 	       AND USE_YN = 'Y'
+    	 	       AND CMMN_CODE = MEM_GRADE
+    	 	       AND BSNS_CODE = #{BSNS_CODE}
+    	 	  ) AS MEM_GRADE_NM
+    	 	  ,MEM_EMAIL
+    	 	  ,MEM_PHONE
+    	FROM BSNS_MEMBER
+    	WHERE 1=1
+    	  AND USE_YN = 'Y'
+    	  AND MEM_ID = #{SESSION_ID}
+    	  AND BSNS_CODE = #{BSNS_CODE}
+    </select>
+    
+    <!-- 회원가입 -->
+    <insert id="insertMemRegist" parameterType="hashmap">
+    	<![CDATA[
+    	INSERT INTO BSNS_MEMBER(
+    		  BSNS_CODE
+    		, MEM_ID
+    		, MEM_PW
+    		, MEM_NM
+    		, MEM_EMAIL
+    		, MEM_NICKNM
+    		, MEM_GRADE
+    		, MEM_PHONE
+    		, REG_DT
+    		, REG_ID
+    	)VALUES(
+    		  #{BSNS_CODE}
+    		, #{mem_id}
+    		, #{mem_pw}
+    		, #{mem_nm}
+    		, #{mem_email}
+    		, #{mem_nicknm}
+    		, #{mem_grade}
+    		, #{mem_phone}
+    		, now()
+    		, #{mem_id}
+    	)
+    	]]>
+    </insert>   
+    
+    <!-- 아이디 중복체크  -->
+	<select id="idDupChk" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM BSNS_MEMBER
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+    	  AND MEM_ID = #{mem_id}
+		  AND BSNS_CODE = #{BSNS_CODE}
+	</select>
+    
+    <!-- 회원리스트 -->
+    <select id="selectMemList" parameterType="hashmap" resultType="hashmap">
+        SELECT  BSNS_CODE
+        	  , MEM_SN
+        	  , MEM_ID		
+			  , MEM_PW		
+			  , MEM_NM		
+			  , MEM_EMAIL	
+			  , MEM_NICKNM	
+			  , MEM_GRADE	
+			  , MEM_PHONE	
+			  , USE_YN		  
+        FROM BSNS_MEMBER
+    </select>
+</mapper>
+
