@@ -9,8 +9,7 @@
 		max = container.children().length;		
 		events();
 		
-		interval = setInterval(next, 3000); //3초 후 슬라이드 이미지 변경
-		
+		/*interval = setInterval(next, 3000); //3초 후 슬라이드 이미지 변경*/		
 	}
 	function events(){
 		jQuery("button.prev").on("click", prev);
@@ -30,10 +29,10 @@
 	
 	}
 	function animate(){
-		var moveX = current * 1100;
+		var moveX = current * 1046;
 		TweenMax.to( container, 0.8, { marginLeft:-moveX, ease:Expo.easeOut } );
 		
-		clearInterval( interval );	
+		//clearInterval( interval );
 	}
 	
 	function keydown( e ){

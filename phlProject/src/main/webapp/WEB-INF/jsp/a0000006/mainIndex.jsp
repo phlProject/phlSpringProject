@@ -19,11 +19,11 @@
 	<div id="slide" class="slide">
 		<button class="prev" type="button"><img src="/img/left.png" alt=""></button>
 			<ul>
-				<li><img src="/img/image.jpg" alt=""></li>
-	            <li><img src="http://placehold.it/1100x450" alt=""></li>
-	            <li><img src="http://placehold.it/1100x450" alt=""></li>
-	            <li><img src="http://placehold.it/1100x450" alt=""></li>
-	            <li><img src="http://placehold.it/1100x450" alt=""></li>
+				<li><img src="/img/image1.jpg" alt=""></li>
+	            <li><img src="/img/image2.jpg" alt=""></li>
+	            <li><img src="/img/image3.jpg" alt=""></li>
+	            <li><img src="/img/image4.jpg" alt=""></li>
+	            <li><img src="/img/image5.jpg" alt=""></li>
 			</ul>
 		<button class="next" type="button"><img src="/img/right.png" alt=""></button>
 	</div>
