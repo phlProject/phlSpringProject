@@ -120,3 +120,12 @@ section.buttons > label {
    text-align: center;
    
 }
+
+
+
+/* 로그인 */
+#loginform { margin-top:15%; width:35%; height: 280px; font-size:15px; font-weight:bold; border:1px solid #ddd; border-radius: 7px;}
+#loginform p { background:#5e7b38; color:#fff; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; border-radius: 7px 7px 0 0;}
+#loginform input { margin-top: 20px; width: 220px; height: 35px; border:1px solid #ddd; margin-right: 20px; }
+#loginform a { color:#fff; background: #3a4a63;  padding:15px 90px; margin-left:22px; }
+#loginform img { vertical-align: middle; padding-left:10px;}
