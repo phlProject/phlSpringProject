@@ -25,7 +25,7 @@ public class PhlCommController {
 	@RequestMapping(value="/a0000006/mem/selectCommCode.do")
 	public ModelAndView selectCommCode(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView();
-         
+        System.out.println("test");
         List<Map<String,Object>> commList = phlCommService.selectCommCode(commandMap.getMap());
         mv.addObject("commList", commList);
         return mv;
