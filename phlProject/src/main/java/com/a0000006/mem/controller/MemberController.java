@@ -83,11 +83,16 @@ public class MemberController {
 	public ModelAndView memMyPage(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/member/memMyPage");
 	
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
-		
+		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+	    commandMap.put("CL_CODE", "G01");
+	    commandMap.put("NOT_DETAIL_CODE", "'998','999'");
+	    
+	    List<Map<String,Object>> commList = phlCommService.selectCommCode(commandMap.getMap());
+	    
 		List<Map<String,Object>> myPageInfo = memberService.memMyPage(commandMap.getMap());
 		
+		mv.addObject("commList", commList);
 		mv.addObject("myPageInfo", myPageInfo.get(0)); 
 		
 		return mv;
@@ -134,6 +139,30 @@ public class MemberController {
 		return mv;
 	}
 	
+	/* 마이페이지 수정 */
+	@RequestMapping(value="/a0000006/mem/updateMemRegist.do")
+	public ModelAndView updateMemRegist(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+		
+		memberService.updateMemRegist(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	/* 회원탈퇴 */
+	@RequestMapping(value="/a0000006/mem/deleteMemRegist.do")
+	public ModelAndView deleteMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+		
+		memberService.deleteMemRegist(commandMap.getMap());
+		
+		/* 로그인정보만 세션제거 */
+        session.removeAttribute("loginInfo");
+        session.removeAttribute("session_id");
+		
+        return mv;
+	}
+	
 	/* 아이디 중복체크 */
 	@RequestMapping(value="/a0000006/mem/idDupChk.do")
 	public ModelAndView idDupChk(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
@@ -163,9 +192,5 @@ public class MemberController {
         mv.addObject("list", list);
         return mv;
     }
-	
-	
-
-	
 	
 }

@@ -17,6 +17,12 @@ public interface MemberService {
 	/* 회원 등록 */
 	void insertMemRegist(Map<String, Object> map) throws Exception;
 
+	/* 마이페이지 수정 */
+	void updateMemRegist(Map<String, Object> map) throws Exception;
+	
+	/* 회원탈퇴 */
+	void deleteMemRegist(Map<String, Object> map) throws Exception;
+	
 	/* 아이디 중복체크 */
 	public int idDupChk(Map<String, Object> map) throws Exception;
 	

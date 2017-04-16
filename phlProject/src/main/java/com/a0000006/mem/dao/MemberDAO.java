@@ -33,6 +33,16 @@ public class MemberDAO extends AbstractDAO {
 	    insert("a0000006/member.insertMemRegist", map);
 	}
 	
+	/* 마이페이지 수정 */
+	public void updateMemRegist(Map<String, Object> map) throws Exception{
+	    update("a0000006/member.updateMemRegist", map);
+	}
+	
+	/* 회원탈퇴 */
+	public void deleteMemRegist(Map<String, Object> map) throws Exception{
+	    update("a0000006/member.deleteMemRegist", map);
+	}
+	
 	/* 아이디 중복체크 */
     public int idDupChk(Map<String, Object> map) throws Exception{
         return (Integer) selectOne("a0000006/member.idDupChk", map);

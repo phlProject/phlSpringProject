@@ -6,12 +6,31 @@ function fn_insertMemRegist(){
 		return;
 	}
 	
-	// 회원 등록
-	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');
-	
 	alert("환영합니다. 회원 가입이 완료되었습니다.");
 	
+	// 회원 등록
+	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');
 }
+
+// 마이페이지 수정
+function fn_updateMemRegist(){
+	
+	ComSubmit('memMypage_Form','/a0000006/mem/updateMemRegist.do');
+	
+	alert("수정 되었습니다.");
+}
+
+// 회원 탈퇴
+function fn_deleteMemRegist(){
+	
+	if(confirm("회원 탈퇴 하시겠습니까?")){
+		
+		ComSubmit('memMypage_Form','/a0000006/mem/deleteMemRegist.do');
+		
+		alert("탈퇴 처리 되었습니다.");
+	}
+}
+
 
 // 유효성 검사
 function fn_validation(){

@@ -42,6 +42,18 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.insertMemRegist(map);
 	}
 	
+	/* 마이페이지 수정 */
+	@Override
+	public void updateMemRegist(Map<String, Object> map) throws Exception {
+		memberDAO.updateMemRegist(map);
+	}
+	
+	/* 회원탈퇴 */
+	@Override
+	public void deleteMemRegist(Map<String, Object> map) throws Exception {
+		memberDAO.deleteMemRegist(map);
+	}
+	
 	/* 아이디 중복체크 */
 	@Override
     public int idDupChk(Map<String, Object> map) throws Exception {

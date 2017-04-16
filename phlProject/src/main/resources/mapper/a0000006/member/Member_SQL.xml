@@ -82,12 +82,37 @@
     	]]>
     </insert>   
     
+    <!-- 마이페이지 수정 -->
+    <update id="updateMemRegist" parameterType="hashmap">
+    	UPDATE BSNS_MEMBER
+    	SET   MEM_PW	= #{mem_pw}
+    		, MEM_NM	= #{mem_nm}
+    		, MEM_EMAIL	= #{mem_email}
+    		, MEM_NICKNM= #{mem_nicknm}
+    		, MEM_GRADE	= #{mem_grade}
+    		, MEM_PHONE	= #{mem_phone}
+    		, MOD_DT	= now()
+    		, MOD_ID	= #{mem_id}
+    	WHERE 1=1
+    	  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID    = #{mem_id}
+    	  AND MEM_SN    = #{mem_sn}
+    </update>
+    
+    <update id="deleteMemRegist" parameterType="hashmap">
+    	UPDATE BSNS_MEMBER
+    	SET USE_YN = 'N'
+    	WHERE 1=1
+    	  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID    = #{mem_id}
+    	  AND MEM_SN    = #{mem_sn}
+    </update>
+    
     <!-- 아이디 중복체크  -->
 	<select id="idDupChk" parameterType="hashmap" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM BSNS_MEMBER
 		WHERE 1=1
-		  AND USE_YN = 'Y'
     	  AND MEM_ID = #{mem_id}
 		  AND BSNS_CODE = #{BSNS_CODE}
 	</select>
