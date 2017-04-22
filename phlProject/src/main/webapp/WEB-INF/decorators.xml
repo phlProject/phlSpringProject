@@ -3,14 +3,26 @@
 <decorators defaultdir="/decorators">  
 
 	<!-- decorator 적용하지 않을 패턴 -->
-    <excludes>
-        <pattern>/*.json</pattern>
-    </excludes>
+	<excludes>
+		<pattern>/*.json</pattern>
+	</excludes>
     
-  <!-- 사용자(메인) -->
-  <decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout.jsp">
-		<pattern>/mainIndex.do</pattern> 
-		<pattern>/*</pattern>
-  </decorator>
+	<!-- basic decorator ( Header + body + footer ) -->
+	<decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
+		<pattern>/</pattern>
+	</decorator>
 
+	<!-- basic decorator + Left ( Header + left + body + footer )-->
+	<decorator name="basicDeco" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
+		<pattern>/*/mem*</pattern>
+	</decorator>
+	
+	<!-- Header -->
+	<decorator name="header" page="/WEB-INF/jsp/a0000006/layout/header.jsp"/>
+	<!-- Left -->
+	<decorator name="left" page="/WEB-INF/jsp/a0000006/layout/left.jsp"/>
+	<!-- footer -->
+	<decorator name="footer" page="/WEB-INF/jsp/a0000006/layout/footer.jsp"/>
+	
+	
 </decorators>
