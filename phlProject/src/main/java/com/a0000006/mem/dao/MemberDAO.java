@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.phl.common.CommandMap;
 import com.phl.dao.AbstractDAO;
 
 @Repository("memberDAO")
@@ -24,8 +25,8 @@ public class MemberDAO extends AbstractDAO {
 	
 	/* 마이페이지 */
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> memMyPage(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("a0000006/member.memMyPage", map);
+    public List<CommandMap> memMyPage(Map<String, Object> map) throws Exception{
+        return (List<CommandMap>)selectList("a0000006/member.memMyPage", map);
     }
 	
 	/* 회원 등록 */

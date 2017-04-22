@@ -88,9 +88,9 @@ public class MemberController {
 	    commandMap.put("CL_CODE", "G01");
 	    commandMap.put("NOT_DETAIL_CODE", "'998','999'");
 	    
-	    List<Map<String,Object>> commList = phlCommService.selectCommCode(commandMap.getMap());
+	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
 	    
-		List<Map<String,Object>> myPageInfo = memberService.memMyPage(commandMap.getMap());
+		List<CommandMap> myPageInfo = memberService.memMyPage(commandMap.getMap());
 		
 		mv.addObject("commList", commList);
 		mv.addObject("myPageInfo", myPageInfo.get(0)); 
@@ -120,7 +120,7 @@ public class MemberController {
 	    commandMap.put("NOT_DETAIL_CODE", "'998','999'");
 	    
 	    
-	    List<Map<String,Object>> commList = phlCommService.selectCommCode(commandMap.getMap());
+	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
 	    
 	    mv.addObject("commList", commList);
 	    
@@ -130,11 +130,13 @@ public class MemberController {
 	/* 회원 등록 */
 	@RequestMapping(value="/a0000006/mem/insertMemRegist.do")
 	public ModelAndView insertMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+		ModelAndView mv = new ModelAndView("jsonView");
 		
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 
-		memberService.insertMemRegist(commandMap.getMap());
+		String result = memberService.insertMemRegist(commandMap.getMap());
+		
+		mv.addObject("result", result);  		
 		
 		return mv;
 	}

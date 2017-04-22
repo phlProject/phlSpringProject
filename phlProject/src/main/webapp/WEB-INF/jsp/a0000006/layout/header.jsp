@@ -44,7 +44,7 @@
 							<li><a href="#">오시는 길</a></li>
 						</ul>
 					</li>
-					<li><a href="#">신청 및 문의</a>
+					<li><a href="/a0000006/apply/applyList.do">신청 및 문의</a>
 						<ul>
 							<li><a href="#">프로그램 신청</a></li>
 							<li><a href="#">소공연장</a></li>

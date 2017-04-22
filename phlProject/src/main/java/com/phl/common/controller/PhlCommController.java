@@ -26,7 +26,7 @@ public class PhlCommController {
 	public ModelAndView selectCommCode(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView();
         System.out.println("test");
-        List<Map<String,Object>> commList = phlCommService.selectCommCode(commandMap.getMap());
+        List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
         mv.addObject("commList", commList);
         return mv;
     }

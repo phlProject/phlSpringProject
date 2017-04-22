@@ -6,10 +6,23 @@ function fn_insertMemRegist(){
 		return;
 	}
 	
-	alert("환영합니다. 회원 가입이 완료되었습니다.");
+	/*alert("환영합니다. 회원 가입이 완료되었습니다.");
 	
 	// 회원 등록
-	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');
+	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');*/
+	
+	var postUrl = "/a0000006/mem/insertMemRegist.do";
+	$.post(postUrl, $("#memRegist_Form").serialize(), function(data){
+		if(data.result == "success" ){
+			alert("환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
+			ComSubmit('memRegist_Form','/a0000006/mem/memLoginForm.do');
+		} else{
+			alert("회원 가입에 실패하였습니다. 관리자에게 문의해주세요.");
+			return;
+		}
+	});
+
+	
 }
 
 // 마이페이지 수정
@@ -200,8 +213,4 @@ function fn_loginVal(){
 	}
 	
 	ComSubmit('loginActionForm','/a0000006/mem/loginAction.do');
-}
-
-function test(){
-	alert("test");
 }

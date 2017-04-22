@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.phl.common.CommandMap;
 import com.phl.common.dao.PhlCommDAO;
 
 @Service("phlCommService")
@@ -20,7 +21,7 @@ public class PhlCommServiceImpl implements PhlCommService {
 	
 	/* 공통코드 */
 	@Override
-    public List<Map<String, Object>> selectCommCode(Map<String, Object> map) throws Exception {
+    public List<CommandMap> selectCommCode(Map<String, Object> map) throws Exception {
         return phlCommDAO.selectCommCode(map);
     }
 }

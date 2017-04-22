@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.a0000006.mem.dao.MemberDAO;
+import com.phl.common.CommandMap;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -32,14 +33,20 @@ public class MemberServiceImpl implements MemberService {
 	
 	/* 마이페이지  */
 	@Override
-    public List<Map<String, Object>> memMyPage(Map<String, Object> map) throws Exception {
+    public List<CommandMap> memMyPage(Map<String, Object> map) throws Exception {
         return memberDAO.memMyPage(map);
     }
 	
 	/* 회원 등록 */
 	@Override
-	public void insertMemRegist(Map<String, Object> map) throws Exception {
-		memberDAO.insertMemRegist(map);
+	public String insertMemRegist(Map<String, Object> map) throws Exception {
+		try {
+			memberDAO.insertMemRegist(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 	
 	/* 마이페이지 수정 */

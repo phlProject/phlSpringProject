@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.phl.common.CommandMap;
 import com.phl.dao.AbstractDAO;
 
 @Repository("phlCommDAO")
@@ -12,7 +13,7 @@ public class PhlCommDAO extends AbstractDAO {
 
 	/* 공통코드 */
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> selectCommCode(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("phl/common.selectCommCode", map);
+    public List<CommandMap> selectCommCode(Map<String, Object> map) throws Exception{
+        return (List<CommandMap>)selectList("phl/common.selectCommCode", map);
     }
 }
