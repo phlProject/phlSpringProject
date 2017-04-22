@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="a0000006/apply">
+
+	<!-- 스케줄 목록 -->
+	<select id="applyList" parameterType="hashmap" resultType="hashmap">
+	
+		SELECT	BSNS_CODE
+				, SCHEDULE_SN
+				, SCHEDULE_CD
+				, SCHEDULE_DT
+				, ST_HOUR
+				, END_HOUR
+				, SUBJECT
+				, CONTENTS
+				, REG_DT
+				, REG_ID
+				, MOD_DT
+				, MOD_ID
+				
+		FROM	BSNS_SCHEDULE
+		WHERE	1=1
+				AND USE_YN = 'Y'
+				AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
+				AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
+		
+	</select>
+
+</mapper>
