@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<body>   
 	<jsp:forward page="/a0000006/mainIndex.do"/>
 </body>
 </html>
