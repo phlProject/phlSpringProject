@@ -6,11 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<<<<<<< HEAD
 <body>
-=======
 <body>   
->>>>>>> branch 'master' of https://github.com/phlProject/phlSpringProject.git
 	<jsp:forward page="/a0000006/mainIndex.do"/>
 </body>
 </html>
