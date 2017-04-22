@@ -1,0 +1,141 @@
+@CHARSET "UTF-8";
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+/* 초기화 */
+* { margin: 0; padding: 0; }
+html,body { height: 100%;}
+body { font-family: "Noto Sans KR", sans-serif; }
+li { list-style: none; } 
+a { text-decoration: none; }
+img { border: 0; }
+
+
+/* 헤더 */
+#header { position: relative;}
+.site-header { top: 0; width: 100%; z-index: 70; position: fixed; height: 59px; background: #726658; }
+.body_bg { width: 30%; top:0; position: absolute; }
+.container { max-width: 1550px; margin: 0 auto; position: relative;}
+.gap { width:100%; height: 59px; background: #fff; }
+#main_lnb ul { float: right; z-index: 3; }
+#main_lnb ul li { float: left; }
+#main_lnb ul li a { display: block; padding: 19px 17px; color: #fff; font-size: 14px; font-weight: bold; }
+#main_lnb ul li a:hover { background: #fff; color: #726658; }
+#main_lnb ul ul { display: none; position: absolute; background: #726658; }
+#main_lnb ul ul li { float: none; }
+#main_lnb ul ul li a { width: 150px; padding: 15px 10px; color: #fff; font-size: 14px; font-weight: bold;  }
+#main_lnb ul li a { display: block; padding: 19px 17px; color: #fff; font-size: 14px; font-weight: bold; }
+#main_lnb ul li:hover ul { display: block; }
+
+/*로고*/
+.img_logo { position: absolute; float: left; top: 0; z-index:100; }
+
+
+/* 콘텐츠 */
+#contentBody{ position: relative; min-height: 700px; }
+#content { width: 56% ; margin: 0 auto; overflow: hidden; padding-top: 59px; padding-bottom: 50px; position: relative; }
+
+#slide { width: 98%; }
+#underSlide { width: 99%; }
+
+#main_section { width: 75%; position:relative; float: left; }
+#main_aside { position:relative; float: right; padding-top: 68px; }
+
+
+
+/* 본문 */
+#main_section > article#main_article { margin-bottom: 10px; padding: 20px; /*border: 1px solid #dededf;*/ width: 100%; height: 250px; }
+#main_section > article#main_article h1 { color: #5b5b5b; padding-bottom: 10px;}      
+#main_section > article#main_article p { border: 1px solid #dededf; padding:10px; font-size: 13px; }
+#main_section > article#main_article2 { margin-bottom: 10px; padding: 20px; /*border: 1px solid #dededf;*/ width: 98.5%; height: 250px; }
+#main_section > article#main_article2 h1 { color: #5b5b5b; padding-bottom: 10px;}      
+#main_section > article#main_article2 p { border: 1px solid #dededf; padding:10px; font-size: 13px; }
+.sec_one { width:32%; float: left; margin-right: 10px; margin-top: 10px; }
+.sec_two { width:32%; float: left; margin-right: 10px; margin-top: 10px; }
+.sec_three { width:32%; float: left; margin-top: 10px; }
+
+/* 사이드 */
+/* 첫번째 탭 */
+#main_aside input:nth-of-type(1) { display: none; }
+#main_aside input:nth-of-type(1) ~ div:nth-of-type(1) { display: none; }
+#main_aside input:nth-of-type(1):checked ~ div:nth-of-type(1) { display: block; }
+
+/* 두번째 탭 */
+#main_aside input:nth-of-type(2) { display: none; }
+#main_aside input:nth-of-type(2) ~ div:nth-of-type(2) { display: none; }
+#main_aside input:nth-of-type(2):checked ~ div:nth-of-type(2) { display: block; }
+
+section.buttons { overflow: hidden; }
+section.buttons > label {
+   /* 수평 정렬 */
+   display: block; float: left;
+   
+   /* 크기 및 글자 위치 지정 */
+   width: 120px; height: 30px;
+   font-size: 14px;
+   line-height: 30px;
+   text-align: center;
+   
+   /* 테두리 지정 */
+   box-sizing: border-box;
+   border: 1px solid #5e7b38;
+   
+   /* 색상 지정 */
+   background: white;
+   color: #222;
+}
+#main_aside input:nth-of-type(1):checked ~ section.buttons > label:nth-of-type(1) { background: #5e7b38; color: white; }
+#main_aside input:nth-of-type(2):checked ~ section.buttons > label:nth-of-type(2) { background: #5e7b38; color: white; }
+
+
+/* 목록 */
+.item { overflow: hidden; padding: 10px; font-size: 13px; border: 1px solid #5e7b38; border-top: none; }
+.item a{ color: #222; }
+.thumbnail { float: left; }
+.description { float: left; margin-left: 10px; }
+.description > strong { display: block; width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+
+/*푸터*/
+#footer { position: relative;}
+#main_footer { 
+   /* 중앙 정렬 */
+   width: 100%; margin: 0 auto;
+   height:100px;
+   padding-top: 100px;
+   padding-bottom: 100px;
+   background: #616162;
+   /* position: absolute;
+   bottom: 0; */
+   /* 테두리 
+   box-sizing: border-box;
+   padding: 10px;
+   border: 1px solid black;
+   */
+   
+   
+   /* font */
+   color: #fff; 
+   font-size :13px;
+   font-weight: 200;
+   text-align: center;
+   
+}
+
+
+
+/* 회원가입 */
+#register { margin-top:5%; width: 50%; border: 1px solid #ddd; border-radius: 7px; height: 650px; }
+#register p { background:#5e7b38; color:#fff; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; border-radius: 7px 7px 0 0;}
+#register input,select{ width: 220px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:10px;}
+#register table { margin:20px; text-align: center; border-top:2px solid #e5e5e5; }
+#register th { width:140px; color:#505050; background:#f5f5f5; font-weight:500; font-size:12px; border-bottom:1px solid #e5e5e5; }
+#register td { width:250px; border-bottom:1px solid #e5e5e5; }
+#register a { color:#fff; background: #3a4a63;  padding:10px 80px; }
+
+
+/* 로그인 */
+#loginform { margin-top:15%; width:35%; height: 280px; font-size:15px; font-weight:bold; border:1px solid #ddd; border-radius: 7px;}
+#loginform p { background:#5e7b38; color:#fff; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; border-radius: 7px 7px 0 0;}
+#loginform input { margin-top: 20px; width: 220px; height: 35px; border:1px solid #ddd; margin-right: 20px; }
+#loginform a { color:#fff; background: #3a4a63;  padding:15px 90px; margin-left:22px; }
+#loginform img { vertical-align: middle; padding-left:10px;}

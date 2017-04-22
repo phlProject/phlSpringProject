@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="phl/common">
+	
+	<!-- 공통코드 -->
+    <select id="selectCommCode" parameterType="hashmap" resultType="hashmap">
+    	SELECT CMMN_CODE
+    	 	  ,CL_CODE
+    	 	  ,DETAIL_CODE
+    	 	  ,DETAIL_CODE_NM
+    	  FROM BSNS_CMMN_CODE
+    	 WHERE 1=1
+    	   AND USE_YN = 'Y'
+   		   AND BSNS_CODE = #{BSNS_CODE}
+   		   <if test="CL_CODE != null" >
+   		   	AND CL_CODE = #{CL_CODE}
+   		   </if>
+   		   <if test="NOT_DETAIL_CODE != null" >
+   		   	AND DETAIL_CODE NOT IN (${NOT_DETAIL_CODE})
+   		   </if>
+    </select>
+    
+</mapper>
