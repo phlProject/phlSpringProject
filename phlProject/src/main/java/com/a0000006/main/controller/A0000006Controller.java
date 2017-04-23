@@ -16,7 +16,7 @@ public class A0000006Controller {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@RequestMapping(value="/a0000006/mainIndex.do")
-	public ModelAndView memberList(Map<String,Object> commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	public ModelAndView mainIndex(Map<String,Object> commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
         
         // 교육나눔꿈두레 사업코드 (A0000006)
