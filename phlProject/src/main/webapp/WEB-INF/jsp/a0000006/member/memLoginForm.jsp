@@ -16,9 +16,8 @@
 			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="mem_pw" name="mem_pw" placeholder="PASSWORD"/>
 		</form>
 		<br/><br/>
-		<a href="javascript:fn_loginVal()" id="loginAction123	" >로그인</a> <br/><br/><br/>
+		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> <br/><br/><br/>
 		<!-- <a href="/a0000006/mainIndex.do" id="mainIndex">메인</a> <br/> -->
-		
 		<c:choose>
 			<c:when test="${resultValue=='ID_ERROR'}">* 존재하지 않는 아이디입니다. </c:when>
 			<c:when test="${resultValue=='PW_ERROR'}">* 비밀번호가 일치하지 않습니다. </c:when>

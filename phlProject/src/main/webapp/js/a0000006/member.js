@@ -1,6 +1,5 @@
 // 회원 등록
 function fn_insertMemRegist(){
-	
 	// 입력 유효성 검사
 	if(!fn_validation()){
 		return;
@@ -28,9 +27,16 @@ function fn_insertMemRegist(){
 // 마이페이지 수정
 function fn_updateMemRegist(){
 	
-	ComSubmit('memMypage_Form','/a0000006/mem/updateMemRegist.do');
-	
-	alert("수정 되었습니다.");
+	var postUrl = "/a0000006/mem/updateMemRegist.do";
+	$.post(postUrl, $("memMypage_Form").serialize(), function(data){
+		if(data.result == "success" ){
+			alert("수정되었습니다.");
+			ComSubmit('memMypage_Form','/a0000006/mem/memMyPage.do');
+		} else{
+			alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
+			return;
+		}
+	});
 }
 
 // 회원 탈퇴
@@ -38,9 +44,19 @@ function fn_deleteMemRegist(){
 	
 	if(confirm("회원 탈퇴 하시겠습니까?")){
 		
-		ComSubmit('memMypage_Form','/a0000006/mem/deleteMemRegist.do');
+		//ComSubmit('memMypage_Form','/a0000006/mem/deleteMemRegist.do');
 		
-		alert("탈퇴 처리 되었습니다.");
+		//alert("탈퇴 처리 되었습니다.");
+		var postUrl = "/a0000006/mem/deleteMemRegist.do";
+		$.post(postUrl, $("memMypage_Form").serialize(), function(data){
+			if(data.result == "success" ){
+				alert("탈퇴 처리 되었습니다.");
+				ComSubmit('memMypage_Form','/a0000006/mainIndex.do');
+			} else{
+				alert("탈퇴 처리에 실패하였습니다. 관리자에게 문의해주세요.");
+				return;
+			}
+		});
 	}
 }
 
@@ -122,9 +138,7 @@ function emailCheck() {
 		alert("이 메일형식이 올바르지 않습니다. 다시 작성해주세요.");
 		return false;
 	}
-	
 	return true;
-
 }
 
 // 아이디가 변경되었을 때 usableId_yn 값을 'N'으로 변경함으로써 아이디 중복검사를 다시 하게 함.
@@ -136,12 +150,10 @@ function changedId(){
     // \d : [0-9]와 같다.       {n,m} : n에서 m까지 글자수
     
 	var id = document.getElementById('mem_id');
-
 	if(!chk(/^[a-z][a-z\d]{3,11}$/, id, 
     		"첫글자는 영문 소문자여야 하고, 아이디는 4~12자여야합니다.")){
     	return false;
     }
-    	
     if(!chk(/[0-9]/, id, 
     		"반드시 숫자가 하나 이상 포함되어야 합니다.")){
     	return false;
@@ -213,4 +225,5 @@ function fn_loginVal(){
 	}
 	
 	ComSubmit('loginActionForm','/a0000006/mem/loginAction.do');
+	
 }

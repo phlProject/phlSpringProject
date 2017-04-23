@@ -51,14 +51,26 @@ public class MemberServiceImpl implements MemberService {
 	
 	/* 마이페이지 수정 */
 	@Override
-	public void updateMemRegist(Map<String, Object> map) throws Exception {
-		memberDAO.updateMemRegist(map);
+	public String updateMemRegist(Map<String, Object> map) throws Exception {
+		try {
+			memberDAO.updateMemRegist(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 	
 	/* 회원탈퇴 */
 	@Override
-	public void deleteMemRegist(Map<String, Object> map) throws Exception {
-		memberDAO.deleteMemRegist(map);
+	public String deleteMemRegist(Map<String, Object> map) throws Exception {
+		try {
+			memberDAO.deleteMemRegist(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 	
 	/* 아이디 중복체크 */

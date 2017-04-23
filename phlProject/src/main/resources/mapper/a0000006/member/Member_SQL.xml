@@ -84,6 +84,7 @@
     
     <!-- 마이페이지 수정 -->
     <update id="updateMemRegist" parameterType="hashmap">
+    	<![CDATA[
     	UPDATE BSNS_MEMBER
     	SET   MEM_PW	= #{mem_pw}
     		, MEM_NM	= #{mem_nm}
@@ -97,6 +98,7 @@
     	  AND BSNS_CODE = #{bsns_code}
     	  AND MEM_ID    = #{mem_id}
     	  AND MEM_SN    = #{mem_sn}
+		]]>
     </update>
     
     <update id="deleteMemRegist" parameterType="hashmap">

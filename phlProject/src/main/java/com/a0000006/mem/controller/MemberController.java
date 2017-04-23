@@ -131,7 +131,7 @@ public class MemberController {
 	@RequestMapping(value="/a0000006/mem/insertMemRegist.do")
 	public ModelAndView insertMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
-		
+		System.out.println("******" + commandMap.getMap());
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 
 		String result = memberService.insertMemRegist(commandMap.getMap());
@@ -143,20 +143,24 @@ public class MemberController {
 	
 	/* 마이페이지 수정 */
 	@RequestMapping(value="/a0000006/mem/updateMemRegist.do")
-	public ModelAndView updateMemRegist(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+	public ModelAndView updateMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
 		
-		memberService.updateMemRegist(commandMap.getMap());
+		String result = memberService.updateMemRegist(commandMap.getMap());
+		
+		mv.addObject("result", result);  		
 		
 		return mv;
 	}
 	
 	/* 회원탈퇴 */
 	@RequestMapping(value="/a0000006/mem/deleteMemRegist.do")
-	public ModelAndView deleteMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+	public ModelAndView deleteMemRegist(CommandMap commandMap, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
 		
-		memberService.deleteMemRegist(commandMap.getMap());
+		String result = memberService.deleteMemRegist(commandMap.getMap());
+		
+		mv.addObject("result", result);  
 		
 		/* 로그인정보만 세션제거 */
         session.removeAttribute("loginInfo");
