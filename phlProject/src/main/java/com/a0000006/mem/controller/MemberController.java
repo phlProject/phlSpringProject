@@ -131,7 +131,7 @@ public class MemberController {
 	@RequestMapping(value="/a0000006/mem/insertMemRegist.do")
 	public ModelAndView insertMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
-		System.out.println("******" + commandMap.getMap());
+
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 
 		String result = memberService.insertMemRegist(commandMap.getMap());
@@ -145,7 +145,7 @@ public class MemberController {
 	@RequestMapping(value="/a0000006/mem/updateMemRegist.do")
 	public ModelAndView updateMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
-		
+
 		String result = memberService.updateMemRegist(commandMap.getMap());
 		
 		mv.addObject("result", result);  		

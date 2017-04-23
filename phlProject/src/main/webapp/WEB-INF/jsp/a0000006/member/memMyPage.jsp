@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form id="memMypage_Form" name="memMypage_Form">
+
 	<div id="content" align="center">
+		<form id="memMypage_Form" name="memMypage_Form">
 		<table>
 			<tr>
 				<td>아이디 </td><td>
@@ -51,7 +52,8 @@
 		<a href="javascript:fn_updateMemRegist();" id="updateMemRegist">수정</a>
 		<a href="" id="mainIndex">메인</a>
 		<a href="javascript:fn_deleteMemRegist();" id="deleteMember">회원탈퇴</a>
+		</form>
 	</div>
-</form>
+
 </body>
 </html>

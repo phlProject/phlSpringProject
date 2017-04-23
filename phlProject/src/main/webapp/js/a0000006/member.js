@@ -26,9 +26,10 @@ function fn_insertMemRegist(){
 
 // 마이페이지 수정
 function fn_updateMemRegist(){
-	
+	/*ComSubmit('memMypage_Form','/a0000006/mem/updateMemRegist.do');*/
+
 	var postUrl = "/a0000006/mem/updateMemRegist.do";
-	$.post(postUrl, $("memMypage_Form").serialize(), function(data){
+	$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 		if(data.result == "success" ){
 			alert("수정되었습니다.");
 			ComSubmit('memMypage_Form','/a0000006/mem/memMyPage.do');
@@ -47,8 +48,9 @@ function fn_deleteMemRegist(){
 		//ComSubmit('memMypage_Form','/a0000006/mem/deleteMemRegist.do');
 		
 		//alert("탈퇴 처리 되었습니다.");
+		
 		var postUrl = "/a0000006/mem/deleteMemRegist.do";
-		$.post(postUrl, $("memMypage_Form").serialize(), function(data){
+		$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 			if(data.result == "success" ){
 				alert("탈퇴 처리 되었습니다.");
 				ComSubmit('memMypage_Form','/a0000006/mainIndex.do');
@@ -58,6 +60,8 @@ function fn_deleteMemRegist(){
 			}
 		});
 	}
+	
+	
 }
 
 
