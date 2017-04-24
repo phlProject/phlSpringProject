@@ -27,18 +27,18 @@ img { border: 0; }
 #main_lnb ul li:hover ul { display: block; }
 
 /*로고*/
-.img_logo { position: absolute; float: left; top: 0; z-index:100; }
+.img_logo { position: absolute; float: left; top: 0; z-index:100;  }
 
 
 /* 콘텐츠 */
 #contentBody{ position: relative; min-height: 700px; }
-#content { width: 56% ; margin: 0 auto; overflow: hidden; padding-top: 59px; padding-bottom: 50px; position: relative; }
+#content { width: 1100px; ; margin: 0 auto; overflow: hidden; padding-top: 59px; padding-bottom: 50px; position: relative; }
 
-#slide { width: 98%; }
+/* #slide { width: 98%; } */
 #underSlide { width: 99%; }
 
-#main_section { width: 75%; position:relative; float: left; }
-#main_aside { position:relative; float: right; padding-top: 68px; }
+#main_section { width: 800px; position:relative; float: left; }
+#main_aside { width: 240px; position:relative; float: right; padding-top: 68px; }
 
 
 
