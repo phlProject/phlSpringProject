@@ -3,17 +3,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>교육나눔 꿈두레</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div id="header">
 	<header id="masthead" class="site-header">
-		<div class="body_bg"><img src="/img/bg8.png" alt=""></div>
-		<div class="container">
-			<a href="/a0000006/mainIndex.do" class="img_logo"> <img src="/img/logo3.png" alt="" /></a>
-		
-			<nav id="main_lnb">
-				<ul class="menu_one">
+			<div id="logo"><a href="/a0000006/mainIndex.do"><img src="/img/logo5.png"></a></div>
+			<nav>
+				<ul>
 				<c:choose>
 				<c:when test="${not empty sessionScope.loginInfo}">
 					<li><a href="/a0000006/mem/memMyPage.do" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
@@ -25,6 +23,10 @@
 					<li><a href="/a0000006/mem/memRegistForm.do" id="memRegistForm">회원가입</a></li>
 				</c:otherwise>
 				</c:choose>
+				</ul>
+			</nav>
+			<div id="menu">
+				<ul>
 					<li><a href="/sample/go.do">활동</a>
 						<ul>
 							<li><a href="#">헝겊원숭이 연대</a></li>
@@ -42,7 +44,7 @@
 							<li><a href="#">기관탐방/대관 신청</a></li>
 							<li><a href="#">주요사업 담당 연락처</a></li>
 							<li><a href="#">오시는 길</a></li>
-						</ul>
+						</ul>		
 					</li>
 					<li><a href="/a0000006/apply/applyList.do">신청 및 문의</a>
 						<ul>
@@ -69,8 +71,7 @@
 						</ul>
 					</li>
 				</ul>
-			</nav>
-		</div>
+			</div>
 	</header><!-- #masthead -->
 </div>
 </body>

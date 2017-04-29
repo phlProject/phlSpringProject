@@ -10,158 +10,96 @@
 <script src="/js/controller.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+ <link rel='stylesheet' id='camera-css'  href='/css/camera.css' type='text/css' media='all'> 
+    <style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			color: #09f;
+		}
+		a:hover {
+			text-decoration: none;
+		}
+		#back_to_camera {
+			clear: both;
+			display: block;
+			height: 80px;
+			line-height: 40px;
+			padding: 20px;
+		}
+		.fluid_container {
+			margin: 0 auto;
+			max-width: 1100px;
+			width: 100%;
+			overflow: hidden;
+		}
+	</style>
+	<script type='text/javascript' src='/js/jquery.min.js'></script>
+    <script type='text/javascript' src='/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='/js/jquery.easing.1.3.js'></script> 
+    <script type='text/javascript' src='/js/camera.min.js'></script> 
+    
+    <script>
+		jQuery(function(){
+			
+			jQuery('#camera_wrap_1').camera({
+				thumbnails: true
+			});
+
+		});
+	</script>
 </head>
-<body>
-
-
-<div id="content">
-<!-- <div style="background-image:url(/img/bg.png); width:100%; height: 400px; "> </div>-->
-	<div id="slide" class="slide">
-		<button class="prev" type="button"><img src="/img/left.png" alt=""></button>
-			<ul>
-				<li><img src="/img/image1.jpg" alt=""></li>
-	            <li><img src="/img/image2.jpg" alt=""></li>
-	            <li><img src="/img/image3.jpg" alt=""></li>
-	            <li><img src="/img/image4.jpg" alt=""></li>
-	            <li><img src="/img/image5.jpg" alt=""></li>
-			</ul>
-		<button class="next" type="button"><img src="/img/right.png" alt=""></button>
-	</div>
-	<div id="underSlide">
-		<section id="main_section">
-			<article id="main_article">
-				<h1>공지사항</h1>
-				<div class="sec_one"><img src="http://placehold.it/255x150" /><p>공지1</p></div>
-				<div class="sec_two"><img src="http://placehold.it/255x150" /><p>공지2</p></div>
-				<div class="sec_three"><img src="http://placehold.it/255x150" /><p>공지3</p></div>
-			</article>
-			<article id="main_article2">
-				<h1>소식</h1>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-				when an unknown printer took a galley of type and scrambled it to make a type
-				specimen book. It has survived not only five centuries, but also the leap into
-				electronic typesetting, remaining essentially unchanged. It was popularised
-				in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-				and more recently with desktop publishing software like Aldus PageMaker including
-				versions of Lorem Ipsum.
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-				when an unknown printer took a galley of type and scrambled it to make a type
-				specimen book. It has survived not only five centuries, but also the leap into
-				electronic typesetting, remaining essentially unchanged. It was popularised
-				in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-				and more recently with desktop publishing software like Aldus PageMaker including
-				versions of Lorem Ipsum.
-				</p>
-			</article>
-			<article id="main_article">
-				<h1>후기</h1>
-				<div class="sec_one"><img src="http://placehold.it/255x150" /><p>후기1</p></div>
-				<div class="sec_two"><img src="http://placehold.it/255x150" /><p>후기2</p></div>
-				<div class="sec_three"><img src="http://placehold.it/255x150" /><p>후기3</p></div>
-			</article>
-		</section>		
-		<aside id="main_aside">
-			<input id="first" type="radio" name="tab" checked="checked" />
-			<input id="second" type="radio" name="tab" />
-			<section class="buttons">
-				<label for="first">First</label>
-				<label for="second">Second</label>
-			</section>
-			<div class="tab_item">
-				<ul>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>HTML5 Canvas</strong>
-								<p>2012-03-15</p> 
-							</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>HTML5 Audio</strong>
-								<p>2012-03-15</p> 
-							</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-						<div class="thumbnail">
-							<img src="http://placehold.it/45x45" />
-						</div>
-						<div class="description">
-							<strong>HTML5 Video</strong>
-							<p>2012-03-15</p> 
-						</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-						<div class="thumbnail">
-							<img src="http://placehold.it/45x45" />
-						</div>
-						<div class="description">
-							<strong>HTML5 Semantic Web</strong>
-						</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="tab_item">
-				<ul>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>CSS3 Transition</strong>
-							</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>CSS3 Animation</strong>
-							</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>CSS3 Border</strong>
-							</div>
-						</a>
-					</li>
-					<li class="item">
-						<a href="#">
-							<div class="thumbnail">
-								<img src="http://placehold.it/45x45" />
-							</div>
-							<div class="description">
-								<strong>CSS3 Box</strong>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</aside>		
-	</div>
-</div>
+<body>   
+	<div class="fluid_container">
+        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+            <div data-thumb="/img/slides/thumbs/bridge.jpg" data-src="/img/slides/bridge.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    Camera is a responsive/adaptive slideshow. <em>Try to resize the browser window</em>
+                </div>
+            </div>
+            <div data-thumb="/img/slides/thumbs/leaf.jpg" data-src="/img/slides/leaf.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    It uses a light version of jQuery mobile, <em>navigate the slides by swiping with your fingers</em>
+                </div>
+            </div>
+            <div data-thumb="/img/slides/thumbs/road.jpg" data-src="/img/slides/road.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    <em>It's completely free</em> (even if a donation is appreciated)
+                </div>
+            </div>
+            <div data-thumb="/img/slides/thumbs/sea.jpg" data-src="/img/slides/sea.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    Camera slideshow provides many options <em>to customize your project</em> as more as possible
+                </div>
+            </div>
+            <div data-thumb="/img/slides/thumbs/shelter.jpg" data-src="/img/slides/shelter.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    It supports captions, HTML elements and videos and <em>it's validated in HTML5</em> (<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.pixedelic.com%2Fplugins%2Fcamera%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0&amp;user-agent=W3C_Validator%2F1.2" target="_blank">have a look</a>)
+                </div>
+            </div>
+            <div data-thumb="/img/slides/thumbs/tree.jpg" data-src="/img/slides/tree.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    Different color skins and layouts available, <em>fullscreen ready too</em>
+                </div>
+            </div>
+        </div><!-- #camera_wrap_1 -->	
+      </div>
+	  <div id="main_content">
+		<h2>Content</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+        Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. 
+        Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
+      </div>
+      <div id="main_sidebar">
+        <h2>Sidebar</h2>
+        <ul>
+          <li><a href="#">Lorem</a></li>
+          <li><a href="#">Ipsum</a></li>
+          <li><a href="#">Dolor</a></li>
+        </ul>
+      </div>
 </body>
 </html>
