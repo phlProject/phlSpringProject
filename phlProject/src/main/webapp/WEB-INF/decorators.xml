@@ -13,9 +13,9 @@
 	</decorator>
 
 	<!-- basic decorator + Left ( Header + left + body + footer )-->
-	<decorator name="basicDeco" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
+	<!-- <decorator name="basicDeco" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
 		<pattern>/*/mem*</pattern>
-	</decorator>
+	</decorator> -->
 	
 	<!-- Header -->
 	<decorator name="header" page="/WEB-INF/jsp/a0000006/layout/header.jsp"/>
