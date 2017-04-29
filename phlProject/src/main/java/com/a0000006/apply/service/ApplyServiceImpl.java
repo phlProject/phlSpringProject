@@ -30,15 +30,18 @@ public class ApplyServiceImpl implements ApplyService{
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		int toYear = (Integer) map.get("toYear");
-		int toDay = (Integer) map.get("toDay");
+		int toYear = Integer.parseInt(map.get("toYear").toString());
+		int toMonth = Integer.parseInt(map.get("toMonth").toString());
+		int toDay = Integer.parseInt(map.get("toDay").toString());
 		
 		if(toYear == 0){
 			toYear = Integer.parseInt(sdf.format(d).substring(0, 4));
-			toDay = Integer.parseInt(sdf.format(d).substring(5, 7));
+			toMonth = Integer.parseInt(sdf.format(d).substring(5, 7));
+			toDay = Integer.parseInt(sdf.format(d).substring(8, 10));
 		}
 		
 		map.put("toYear", toYear);
+		map.put("toMonth", toMonth);
 		map.put("toDay", toDay);
 		
 		return applyDAO.applyList(map);

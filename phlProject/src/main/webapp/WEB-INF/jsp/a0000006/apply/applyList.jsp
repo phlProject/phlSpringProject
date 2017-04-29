@@ -19,6 +19,59 @@
 
 <div id="content">
 
+
+	<div style="float:right;">
+		<a href="javascript:insertForm();"><span>등록</span></a>
+	</div><br>
+	
+	<div style="">
+		<table>
+			<tr>
+				<th>스케줄 구분</th>
+				<th>일자</th>
+				<th>시작시간</th>
+				<th>끝시간</th>
+				<th>제목</th>
+				<th>내용</th>
+			</tr>		
+			<tr>
+				<td>
+					<!-- 프로그램 신청 소공연장 강연회 세미나실 밴드연습실 댄스연습실 -->
+					<select name="scheduleCd">
+						<option value="P01001">프로그램 신청</option>
+						<option value="">장소대관</option>
+						<option value=""></option>
+					</select>
+				</td>
+				<td>
+					<input type="text" name="inputDt" id="inputDt" class="text w90 datepicker" readonly="readonly">
+				</td>
+				<td>
+					<select>
+						<c:forEach begin="0" end="23" step="1" var="startHour">
+							<option value='<fmt:formatNumber pattern="00" value="${startHour}"/>'><fmt:formatNumber pattern="00" value="${startHour}"/></option>
+						</c:forEach>
+					</select>
+				</td>
+				<td>
+					<select>
+						<c:forEach begin="0" end="23" step="1" var="endHour">
+							<option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
+						</c:forEach>
+					</select>
+				</td>
+				<td>
+					<input type="text" name="subject">
+				</td>
+				<td>
+					<input type="text" name="content">
+				</td>
+				
+			</tr>
+			
+		</table>
+	</div>
+	
 	<!-- 월간 일정 -->
 	<div class="divWrap mt15" id="monthDiv">
 		<div class='btn-holder'>
@@ -47,7 +100,7 @@
 </form>
 
 <script type="text/javascript">
-/* 
+ 
 $.datepicker.setDefaults({
 	showOn: "both",
 	buttonImage: '<c:url value="/myFarm/images/icon_calendar.gif"/>',	
@@ -62,12 +115,12 @@ $.datepicker.setDefaults({
     showMonthAfterYear: false,
        changeYear: true,
     changeMonth: true
-}); */
+});
 
 var cList = new Array();
 var pageLoad = false;
 var calendar = new controller();
-	
+
 // 달력
 calendar.init();
 
@@ -322,6 +375,13 @@ function controller(target) {
 	};
 	
 }
+
+function insertForm(){
+
+	$("#insertForm").toggle();
+	
+}
+
 
 /* $(function(){
 	

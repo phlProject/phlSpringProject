@@ -72,9 +72,9 @@ public class ApplyController {
 		
 		
 		Map<String, Object> map = commandMap.getMap();
-		map.put("toYear", toYear);
+		/*map.put("toYear", toYear);
 		map.put("toMonth", toMonth);
-		map.put("toDay", toDay);
+		map.put("toDay", toDay);*/
 		
 		// 스케줄 목록
 		List<CommandMap> applyList = applyService.applyList(map);
