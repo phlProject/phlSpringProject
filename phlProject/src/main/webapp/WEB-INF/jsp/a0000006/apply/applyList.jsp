@@ -24,46 +24,48 @@
 		<a href="javascript:insertForm();"><span>등록</span></a>
 	</div><br>
 	
-	<div style="">
+	<div>
 		<table>
 			<tr>
 				<th>스케줄 구분</th>
-				<th>일자</th>
-				<th>시작시간</th>
-				<th>끝시간</th>
-				<th>제목</th>
-				<th>내용</th>
-			</tr>		
-			<tr>
 				<td>
 					<!-- 프로그램 신청 소공연장 강연회 세미나실 밴드연습실 댄스연습실 -->
 					<select name="scheduleCd">
-						<option value="P01001">프로그램 신청</option>
-						<option value="">장소대관</option>
-						<option value=""></option>
+						<option value="P01001">세미나실</option>
+						<option value="P01002">밴드연습실</option>
+						<option value="P01003">댄스연습실</option>
 					</select>
 				</td>
+				
+				<th>일자</th>
 				<td>
 					<input type="text" name="inputDt" id="inputDt" class="text w90 datepicker" readonly="readonly">
 				</td>
-				<td>
-					<select>
-						<c:forEach begin="0" end="23" step="1" var="startHour">
-							<option value='<fmt:formatNumber pattern="00" value="${startHour}"/>'><fmt:formatNumber pattern="00" value="${startHour}"/></option>
-						</c:forEach>
-					</select>
-				</td>
-				<td>
-					<select>
-						<c:forEach begin="0" end="23" step="1" var="endHour">
-							<option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
-						</c:forEach>
-					</select>
-				</td>
-				<td>
+				
+				<th>이용 시간</th>
+				<select>
+					<c:forEach begin="0" end="23" step="1" var="startHour">
+						<option value='<fmt:formatNumber pattern="00" value="${startHour}"/>'><fmt:formatNumber pattern="00" value="${startHour}"/></option>
+					</c:forEach>
+				</select>
+				 ~ 
+				<select>
+					<c:forEach begin="0" end="23" step="1" var="endHour">
+						<option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
+					</c:forEach>
+				</select>
+				
+				
+			</tr>		
+			<tr>
+				<th>제목</th>
+				<td colspan="5">
 					<input type="text" name="subject">
 				</td>
-				<td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="5">
 					<input type="text" name="content">
 				</td>
 				
@@ -101,7 +103,7 @@
 
 <script type="text/javascript">
  
-$.datepicker.setDefaults({
+/* $.datepicker.setDefaults({
 	showOn: "both",
 	buttonImage: '<c:url value="/myFarm/images/icon_calendar.gif"/>',	
     dateFormat: 'yy-mm-dd',
@@ -115,7 +117,7 @@ $.datepicker.setDefaults({
     showMonthAfterYear: false,
        changeYear: true,
     changeMonth: true
-});
+}); */
 
 var cList = new Array();
 var pageLoad = false;

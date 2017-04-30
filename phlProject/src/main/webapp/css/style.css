@@ -288,7 +288,8 @@ nav ul li:hover ul { display: block; }
 #calendar table td.this-month {cursor:pointer;}
 #calendar table td.holiday {/* background: #ddd; */ color:#333; font-weight:bold;}
 #calendar table td.sun {color: red; /* background: #ddd; */}
-#calendar table td.sat {color: blue; /* background: #ddd; */}
+#calendar table td.sat {color: blue
+; /* background: #ddd; */}
 #calendar table td.not-this-month {background: #fff; color: #999;}
 /* #calendar table thead td.sun {background: #ccc;}
 #calendar table thead td.sat {background: #ccc;} */

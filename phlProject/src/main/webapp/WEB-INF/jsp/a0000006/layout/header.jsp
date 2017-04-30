@@ -48,12 +48,9 @@
 					</li>
 					<li><a href="/a0000006/apply/applyList.do">신청 및 문의</a>
 						<ul>
-							<li><a href="#">프로그램 신청</a></li>
-							<li><a href="#">소공연장</a></li>
-							<li><a href="#">강연회</a></li>
-							<li><a href="#">세미나실</a></li>
-							<li><a href="#">밴드연습실</a></li>
-							<li><a href="#">댄스연습실</a></li>
+							<li><a href="/a0000006/apply/applyList.do">장소대관</a></li>
+							<li><a href="#">기관탐방</a></li>
+							<li><a href="#">문의</a></li>
 						</ul>
 					</li>
 					<li><a href="#">자료</a>

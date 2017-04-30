@@ -5,9 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script src="/js/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#indexForm").submit();
+});
+</script>
+
 </head>
 <body>
-<body>   
-	<jsp:forward page="/a0000006/mainIndex.do"/>
+<form id="indexForm" method="post" action="/a0000006/mainIndex.do">
+</form>   
 </body>
 </html>

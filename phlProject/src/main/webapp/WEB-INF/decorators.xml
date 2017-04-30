@@ -7,9 +7,18 @@
 		<pattern>/*.json</pattern>
 	</excludes>
     
+    <!-- main decorator ( Header + body + footer ) -->
+	<decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
+		<pattern>*/main*</pattern>
+	</decorator>
+	
 	<!-- basic decorator ( Header + body + footer ) -->
 	<decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>/</pattern>
+		<!-- <pattern>/</pattern> -->
+		<pattern>*/mem*</pattern>
+		<pattern>*/apply*</pattern>
+		<pattern>*/board*</pattern>
+		<!-- <pattern>*/send*</pattern> -->
 	</decorator>
 
 	<!-- basic decorator + Left ( Header + left + body + footer )-->
