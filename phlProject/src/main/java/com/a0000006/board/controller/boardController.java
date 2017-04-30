@@ -1,4 +1,4 @@
-package com.a0000006.board;
+package com.a0000006.board.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
