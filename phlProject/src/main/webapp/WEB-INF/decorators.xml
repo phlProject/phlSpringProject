@@ -8,17 +8,15 @@
 	</excludes>
     
     <!-- main decorator ( Header + body + footer ) -->
-	<decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>*/main*</pattern>
+	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
+		<pattern>*/main*</pattern>	<!-- MAIN -->
 	</decorator>
 	
-	<!-- basic decorator ( Header + body + footer ) -->
-	<decorator name="indexLayout" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<!-- <pattern>/</pattern> -->
-		<pattern>*/mem*</pattern>
-		<pattern>*/apply*</pattern>
-		<pattern>*/board*</pattern>
-		<!-- <pattern>*/send*</pattern> -->
+	<!-- basic decorator ( Header + LEFT + body + footer ) -->
+	<decorator name="indexLayoutHLBF" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
+		<pattern>*/mem*</pattern>	<!-- 회원정보 -->
+		<pattern>*/apply*</pattern>	<!-- 일정 -->
+		<pattern>*/board*</pattern> <!-- 게시판 -->
 	</decorator>
 
 	<!-- basic decorator + Left ( Header + left + body + footer )-->
