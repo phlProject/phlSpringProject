@@ -37,15 +37,26 @@
             $("#frm").submit();
         });
     });
+    
+    function fn_aa(){
+    	var postUrl = "/a0000006/board/insertboard.do";
+    	$.post(postUrl, $("#editor_form").serialize(), function(data){
+    		if(data.result == "success" ){
+    			ComSubmit('editor_form','/a0000006/board/boardList.do');
+    		} else{
+    			return;
+    		}
+    	});
+    }
 </script>
 </head>
 <body>
-<div id="content"><br><br><br><br><br><br><br><br><br><br><br><br>
-	<form id="frm" method="post" action="/send" style="text-align: center;">
-	    <textarea id="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30" name="editor"></textarea>
-	    <input id="savebutton" type="button" value="저장">
-	    <input onclick="location.href='navereditor';" type="button" value="취소">
+<div id="content">
+	<form id="editor_form">
+	        제목 :<input type="text" id="subject" name="subject"><br>
+	        내용 :<textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
 	</form>
+	<a href="javascript:fn_aa()" id="loginAction" >저장</a>
 </div>
 </body>
 </html>

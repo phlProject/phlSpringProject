@@ -9,14 +9,15 @@
 <script src="/js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#indexForm").submit();
-});
+	/* 서버 접속시   '/' 가 아닌    '/a0000006/mainIndex.do' 입력을 위해 */
+	$(document).ready(function(){
+		$("#indexForm").submit();
+	});
 </script>
 
 </head>
 <body>
-<form id="indexForm" method="post" action="/a0000006/mainIndex.do">
+	<form id="indexForm" method="post" action="/a0000006/mainIndex.do">
 </form>   
 </body>
 </html>
