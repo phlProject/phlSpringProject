@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="a0000006/board">
+	
+	<!-- 책소개 리스트 -->
+	<select id="selectbookList" parameterType="hashmap" resultType="hashmap">
+		SELECT BSNS_CODE
+			  ,BOARD_SN
+			  ,BOARD_GBN_CD
+			  ,SUBJECT
+			  ,CONTENTS
+			  ,HIT_COUNT
+			  ,LIKE_COUNT
+		FROM BSNS_MNG_BOARD
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+		  AND BSNS_CODE = #{BSNS_CODE}
+		  AND BOARD_GBN_CD = #{BOARD_GBN_CD}
+	</select>
+	
+	<!-- 책소개 등록 -->
+	<insert id="insertBook" parameterType="hashmap">
+		INSERT INTO BSNS_MNG_BOARD(
+			 BSNS_CODE
+			,BOARD_GBN_CD
+			,SUBJECT
+			,CONTENTS
+			,REG_DT
+			,REG_ID
+		)VALUES(
+			 #{BSNS_CODE}
+			,#{BOARD_GBN_CD}
+			,#{subject}
+			,#{editor}
+			,now()
+			,'aa'
+			<!-- ,#{SESSION_ID} -->
+		)
+	</insert>
+	
+	<!-- 책소개 상세 -->
+	<select id="selectbookView" parameterType="hashmap" resultType="hashmap">
+		SELECT BSNS_CODE
+			  ,BOARD_SN
+			  ,BOARD_GBN_CD
+			  ,SUBJECT
+			  ,CONTENTS
+			  ,HIT_COUNT
+			  ,LIKE_COUNT
+		FROM BSNS_MNG_BOARD
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+		  AND BSNS_CODE = #{BSNS_CODE}
+		  AND BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  AND BOARD_SN = #{BOARD_SN}
+	</select>
+</mapper>
