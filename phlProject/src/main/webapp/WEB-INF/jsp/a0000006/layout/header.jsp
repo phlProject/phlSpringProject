@@ -53,7 +53,7 @@
 							<li><a href="#">문의</a></li>
 						</ul>
 					</li>
-					<li><a href="#">자료</a>
+					<li><a href="/a0000006/board/bookList.do">자료</a>
 						<ul>
 							<li><a href="#">책소개</a></li>
 							<li><a href="#">간행물</a></li>

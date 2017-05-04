@@ -1,62 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/resources/editor/js/HuskyEZCreator.js"></script>
-	<script>
-    $(function(){
-        //전역변수선언
-        var editor_object = [];
-         
-        nhn.husky.EZCreator.createInIFrame({
-            oAppRef: editor_object,
-            elPlaceHolder: "editor",
-            sSkinURI: "/resources/editor/SmartEditor2Skin.html",
-            htParams : {
-                // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                bUseToolbar : true,            
-                // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                bUseVerticalResizer : true,    
-                // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                bUseModeChanger : true,
-            }
-        });
-         
-        //전송버튼 클릭이벤트
-        $("#savebutton").click(function(){
-            //id가 smarteditor인 textarea에 에디터에서 대입
-            editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
-             
-            // 이부분에 에디터 validation 검증
-             
-            //폼 submit
-            $("#frm").submit();
-        });
-    });
-    
-    function fn_aa(){
-    	var postUrl = "/a0000006/board/insertboard.do";
-    	$.post(postUrl, $("#editor_form").serialize(), function(data){
-    		if(data.result == "success" ){
-    			ComSubmit('editor_form','/a0000006/board/boardList.do');
-    		} else{
-    			return;
-    		}
-    	});
-    }
-</script>
+
 </head>
 <body>
-<div id="content">
-	<form id="editor_form">
-	        제목 :<input type="text" id="subject" name="subject"><br>
-	        내용 :<textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
-	</form>
-	<a href="javascript:fn_aa()" id="loginAction" >저장</a>
-</div>
+	<div id="content">
+		<form id="bookList_Form">
+			<table border="1">
+				<c:if test="${empty bookList}">
+					<tr>
+						<td>조회 된 내용이 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty bookList}">
+					<c:forEach items="${bookList}" var="row">
+					<tr>
+						<td rowspan = "2">책사진</td>
+						<td><a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
+					</tr>
+					<tr>
+						<td>${row.CONTENTS}</td>
+					</tr>
+					</c:forEach>
+				</c:if>
+			</table>
+		</form>
+		<a href="/a0000006/board/bookForm.do" id="bookForm">신규등록</a>
+	</div>
 </body>
 </html>
