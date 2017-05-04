@@ -17,8 +17,6 @@
 <input type="hidden" name="toDay" id="toDay" value="<fmt:formatDate value="${toDay}" pattern="dd" />"/>
 
 
-<div id="content">
-
 	<!-- 월간 일정 -->
 	<div class="divWrap mt15" id="monthDiv">
 		<div class='btn-holder'>
@@ -43,7 +41,6 @@
 		<table id="dailyTable"></table>
 	</div>
 
-</div>
 </form>
 
 <script type="text/javascript">

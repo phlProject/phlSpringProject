@@ -14,7 +14,10 @@
 	   	<div id="footer-2">
 	   	교육나눔꿈두레 소개 &nbsp; | &nbsp; 이용안내 &nbsp; | &nbsp; 찾아오시는길 &nbsp; | 개인정보처리방침 
 	   	</div>
-	   </footer>
+	  </footer>
+   </div>
+   <div id="footer-3">
+	   <p>	Copyrightⓒ 2017 교육나눔꿈두레  All rights reserved.</p>
    </div>
 </body>
 </html>

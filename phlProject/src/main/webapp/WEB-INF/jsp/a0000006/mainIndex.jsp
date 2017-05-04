@@ -31,7 +31,7 @@
 		}
 		.fluid_container {
 			margin: 0 auto;
-			max-width: 1100px;
+			max-width:1100px;
 			width: 100%;
 			overflow: hidden;
 		}
@@ -87,14 +87,21 @@
         </div><!-- #camera_wrap_1 -->	
       </div>
 	  <div id="main_content">
-		<h2>Content</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
-        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
-        Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. 
-        Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
+	  	<div class="content-1">	
+			<h3>Content</h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	        Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. 
+	        Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
+      	</div>
+      	<!-- <div class="content-2">	
+			<div class="box-cont"></div>
+			<div class="box-cont"></div>
+			<div class="box-cont"></div>
+      	</div> -->
       </div>
       <div id="main_sidebar">
-        <h2>Sidebar</h2>
+        <h3>Sidebar</h3>
         <ul>
           <li><a href="#">Lorem</a></li>
           <li><a href="#">Ipsum</a></li>
