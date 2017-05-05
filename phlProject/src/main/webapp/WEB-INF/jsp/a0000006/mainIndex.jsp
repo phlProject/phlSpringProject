@@ -36,7 +36,6 @@
 			overflow: hidden;
 		}
 	</style>
-	<script type='text/javascript' src='/js/jquery.min.js'></script>
     <script type='text/javascript' src='/js/jquery.mobile.customized.min.js'></script>
     <script type='text/javascript' src='/js/jquery.easing.1.3.js'></script> 
     <script type='text/javascript' src='/js/camera.min.js'></script> 

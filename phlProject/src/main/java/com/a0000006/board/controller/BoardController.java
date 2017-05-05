@@ -1,5 +1,6 @@
 package com.a0000006.board.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.board.service.BoardService;
 import com.phl.common.CommandMap;
+import com.phl.util.CmmnUtilFile;
 
 @Controller
 public class BoardController {
@@ -48,10 +52,29 @@ public class BoardController {
 		return mv;
 	}
 	
+	/* 파일 업로드 */
+	@RequestMapping(value="/a0000006/board/uploadFile.do")
+	public ModelAndView fileUpload(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		List<Map<String,Object>> savedFiles = new ArrayList<Map<String,Object>>();
+		
+		savedFiles = CmmnUtilFile.uploadFile(request);
+		System.out.println(savedFiles);
+		mv.addObject("savedFiles", savedFiles.get(0));
+		mv.addObject("result", "success");
+		
+		return mv;
+		
+	}
+	
 	/* 책소개 등록  */
 	@RequestMapping(value="/a0000006/board/insertBook.do")
 	public ModelAndView insertBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
 		ModelAndView mv = new ModelAndView("jsonView");
+		
 		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		commandMap.put("BOARD_GBN_CD", "B01001");

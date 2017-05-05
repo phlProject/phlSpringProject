@@ -29,6 +29,58 @@
         //전송버튼 클릭이벤트
         $("#fn_insertBook").click(function(){
             //id가 smarteditor인 textarea에 에디터에서 대입
+			
+            
+            if($("#uploadFile").val() != ""){
+            	//$("#upload_Form").attr({action:'/a0000006/board/uploadFile.do' ,method:'post'}).submit();
+            	
+            	/* var upload_Form = $("form[name='upload_Form']").serialize() ;
+
+            	$.ajax({
+            		url		: "/a0000006/board/uploadFile.do",
+            		type 	: "post",
+            		data    : upload_Form,
+            		enctype: "multipart/form-data",
+            		dataType : "json",
+            		success : function(data){
+            			if(data.result == "success"){
+							alert("성공");
+            			}else{
+							alert("실패");
+            			}
+            		}
+            	}); */
+            	
+            	var formData = new FormData($("#upload_Form")[0]);
+                $.ajax({
+                    type : 'post',
+                    url : "/a0000006/board/uploadFile.do",
+                    data : formData,
+                    enctype: "multipart/form-data",
+                    processData : false,
+                    contentType : false,
+                    success : function(data) {
+                        //alert(data.savedFiles.FL_NM);
+                        $("#fl_nm").val(data.savedFiles.FL_NM);
+                        $("#fl_path").val(data.savedFiles.FL_PATH);
+                        $("#origin_fl_nm").val(data.savedFiles.ORIGIN_FL_NM);
+                    },
+                    error : function(error) {
+                        alert("파일 업로드에 실패하였습니다.");
+                        console.log(error);
+                        console.log(error.status);
+                    }
+                });
+                  
+
+        
+            }
+            
+            
+            
+            
+            return;
+            
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
        		
             var postUrl = "/a0000006/board/insertBook.do";
@@ -42,16 +94,23 @@
         		}
         	});
         });
-    });
+    }); 
 
 	</script>
 </head>
 <body>
 <div id="content">
-	<form id="editor_Form" method="post" enctype="multipart/form-data">
-        제목      <input type="text" id="subject" name="subject" size="86"><br>
-	        메인사진 <input type="file" id="file" name="file"><br>
+	<form id="editor_Form">
+                  제목      <input type="text" id="subject" name="subject" size="86"><br>
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
+	    <input type="text" id="fl_nm" name="fl_nm">
+	    <input type="text" id="fl_path" name="fl_path">
+	    <input type="text" id="origin_fl_nm" name="origin_fl_nm">
+	    
+	</form>
+	
+	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
+		메인사진 <input type="file" id="uploadFile" name="uploadFile"><br>
 	</form>
 	<a href="#" id="fn_insertBook" >저장</a>
 </div>
