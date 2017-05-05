@@ -17,63 +17,6 @@
 <input type="hidden" name="toDay" id="toDay" value="<fmt:formatDate value="${toDay}" pattern="dd" />"/>
 
 
-<div id="content">
-
-
-	<div style="float:right;">
-		<a href="javascript:insertForm();"><span>등록</span></a>
-	</div><br>
-	
-	<div>
-		<table>
-			<tr>
-				<th>스케줄 구분</th>
-				<td>
-					<!-- 프로그램 신청 소공연장 강연회 세미나실 밴드연습실 댄스연습실 -->
-					<select name="scheduleCd">
-						<option value="P01001">세미나실</option>
-						<option value="P01002">밴드연습실</option>
-						<option value="P01003">댄스연습실</option>
-					</select>
-				</td>
-				
-				<th>일자</th>
-				<td>
-					<input type="text" name="inputDt" id="inputDt" class="text w90 datepicker" readonly="readonly">
-				</td>
-				
-				<th>이용 시간</th>
-				<select>
-					<c:forEach begin="0" end="23" step="1" var="startHour">
-						<option value='<fmt:formatNumber pattern="00" value="${startHour}"/>'><fmt:formatNumber pattern="00" value="${startHour}"/></option>
-					</c:forEach>
-				</select>
-				 ~ 
-				<select>
-					<c:forEach begin="0" end="23" step="1" var="endHour">
-						<option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
-					</c:forEach>
-				</select>
-				
-				
-			</tr>		
-			<tr>
-				<th>제목</th>
-				<td colspan="5">
-					<input type="text" name="subject">
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td colspan="5">
-					<input type="text" name="content">
-				</td>
-				
-			</tr>
-			
-		</table>
-	</div>
-	
 	<!-- 월간 일정 -->
 	<div class="divWrap mt15" id="monthDiv">
 		<div class='btn-holder'>
@@ -98,12 +41,11 @@
 		<table id="dailyTable"></table>
 	</div>
 
-</div>
 </form>
 
 <script type="text/javascript">
- 
-/* $.datepicker.setDefaults({
+/* 
+$.datepicker.setDefaults({
 	showOn: "both",
 	buttonImage: '<c:url value="/myFarm/images/icon_calendar.gif"/>',	
     dateFormat: 'yy-mm-dd',
@@ -122,7 +64,7 @@
 var cList = new Array();
 var pageLoad = false;
 var calendar = new controller();
-
+	
 // 달력
 calendar.init();
 
@@ -377,13 +319,6 @@ function controller(target) {
 	};
 	
 }
-
-function insertForm(){
-
-	$("#insertForm").toggle();
-	
-}
-
 
 /* $(function(){
 	

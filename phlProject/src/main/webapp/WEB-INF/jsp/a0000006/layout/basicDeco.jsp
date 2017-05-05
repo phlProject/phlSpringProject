@@ -13,12 +13,10 @@
 <deco:head />
 </head>
 <body>
+	<page:applyDecorator id="header" name="header"/>
 	<div id="container">
-		<page:applyDecorator id="header" name="header"/>
-	
-		<div id="contentBody">
+		<%-- <page:applyDecorator id="header" name="header"/> --%>	
 			<deco:body/>
-		</div>
 	</div>
 		<page:applyDecorator id="footer" name="footer"/>
 	
