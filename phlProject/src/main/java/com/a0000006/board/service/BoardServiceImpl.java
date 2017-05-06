@@ -24,6 +24,10 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.selectbookList(map);
     }
 	
+	public int selectbookListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.selectbookListCnt(map);
+    }
+	
 	/* 책소개 등록 */
 	@Override
 	public String insertBook(Map<String, Object> map) throws Exception {
@@ -34,6 +38,10 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 			return "fail";
 		}
+	}
+	
+	public void insertBookFl(Map<String, Object> map) throws Exception {
+		boardDAO.insertBookFl(map);
 	}
 	
 	/* 책소개 상세 */

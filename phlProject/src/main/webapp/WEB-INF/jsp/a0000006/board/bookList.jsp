@@ -14,17 +14,19 @@
 			<table border="1">
 				<c:if test="${empty bookList}">
 					<tr>
-						<td>조회 된 내용이 없습니다.</td>
+						<td width="150" height="200">&nbsp;</td>
+						<td width="700" height="200">조회 된 내용이 없습니다.</td>
 					</tr>
+					
 				</c:if>
 				<c:if test="${not empty bookList}">
 					<c:forEach items="${bookList}" var="row">
 					<tr>
-						<td rowspan = "2">책사진</td>
-						<td><a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
+						<td rowspan = "2" width="150" height="200"><img src="${row.FL_PATH}/${row.FL_NM}" width="150" height="200"></td>
+						<td width="700" height="30"><a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
 					</tr>
 					<tr>
-						<td>${row.CONTENTS}</td>
+						<td width="700" height="170">${row.CONTENTS}</td>
 					</tr>
 					</c:forEach>
 				</c:if>

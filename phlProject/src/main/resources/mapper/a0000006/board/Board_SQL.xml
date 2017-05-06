@@ -3,20 +3,41 @@
  
 <mapper namespace="a0000006/board">
 	
+	<select id="selectbookListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM BSNS_MNG_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{BSNS_CODE}
+		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+	</select>
+	
 	<!-- 책소개 리스트 -->
 	<select id="selectbookList" parameterType="hashmap" resultType="hashmap">
-		SELECT BSNS_CODE
-			  ,BOARD_SN
-			  ,BOARD_GBN_CD
-			  ,SUBJECT
-			  ,CONTENTS
-			  ,HIT_COUNT
-			  ,LIKE_COUNT
-		FROM BSNS_MNG_BOARD
+		SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENTS
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_MNG_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
-		  AND USE_YN = 'Y'
-		  AND BSNS_CODE = #{BSNS_CODE}
-		  AND BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{BSNS_CODE}
+		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
 	</select>
 	
 	<!-- 책소개 등록 -->
@@ -39,20 +60,49 @@
 		)
 	</insert>
 	
+	<insert id="insertBookFl"  parameterType="hashmap">
+		INSERT INTO BSNS_MNG_BOARD_FL(
+			 BSNS_CODE
+			,BOARD_SN
+			,ORIGIN_FL_NM
+			,FL_NM
+			,FL_PATH
+			,REG_DT
+			,REG_ID
+		)VALUES(
+			 #{BSNS_CODE}
+			,LAST_INSERT_ID()
+			,#{origin_fl_nm}
+			,#{fl_nm}
+			,#{fl_path}
+			,now()
+			,'aa'
+			<!-- ,#{SESSION_ID} -->
+		)
+	</insert>
+	
 	<!-- 책소개 상세 -->
 	<select id="selectbookView" parameterType="hashmap" resultType="hashmap">
-		SELECT BSNS_CODE
-			  ,BOARD_SN
-			  ,BOARD_GBN_CD
-			  ,SUBJECT
-			  ,CONTENTS
-			  ,HIT_COUNT
-			  ,LIKE_COUNT
-		FROM BSNS_MNG_BOARD
+	SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENTS
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_MNG_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
-		  AND USE_YN = 'Y'
-		  AND BSNS_CODE = #{BSNS_CODE}
-		  AND BOARD_GBN_CD = #{BOARD_GBN_CD}
-		  AND BOARD_SN = #{BOARD_SN}
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{BSNS_CODE}
+		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  AND BMB.BOARD_SN = #{BOARD_SN}
 	</select>
 </mapper>

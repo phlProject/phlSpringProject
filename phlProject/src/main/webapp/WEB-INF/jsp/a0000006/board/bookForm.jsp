@@ -28,42 +28,22 @@
          
         //전송버튼 클릭이벤트
         $("#fn_insertBook").click(function(){
-            //id가 smarteditor인 textarea에 에디터에서 대입
-			
             
+        	// 업로드 파일 있을 시 수행
             if($("#uploadFile").val() != ""){
-            	//$("#upload_Form").attr({action:'/a0000006/board/uploadFile.do' ,method:'post'}).submit();
-            	
-            	/* var upload_Form = $("form[name='upload_Form']").serialize() ;
-
-            	$.ajax({
-            		url		: "/a0000006/board/uploadFile.do",
-            		type 	: "post",
-            		data    : upload_Form,
-            		enctype: "multipart/form-data",
-            		dataType : "json",
-            		success : function(data){
-            			if(data.result == "success"){
-							alert("성공");
-            			}else{
-							alert("실패");
-            			}
-            		}
-            	}); */
-            	
             	var formData = new FormData($("#upload_Form")[0]);
                 $.ajax({
                     type : 'post',
-                    url : "/a0000006/board/uploadFile.do",
+                    url : "/phl/uploadFile.do",
                     data : formData,
                     enctype: "multipart/form-data",
+                    async: false,
                     processData : false,
                     contentType : false,
                     success : function(data) {
-                        //alert(data.savedFiles.FL_NM);
-                        $("#fl_nm").val(data.savedFiles.FL_NM);
-                        $("#fl_path").val(data.savedFiles.FL_PATH);
-                        $("#origin_fl_nm").val(data.savedFiles.ORIGIN_FL_NM);
+                        $("#fl_nm").val(data.fl_upload.FL_NM);
+                        $("#fl_path").val(data.fl_upload.FL_PATH);
+                        $("#origin_fl_nm").val(data.fl_upload.ORIGIN_FL_NM);
                     },
                     error : function(error) {
                         alert("파일 업로드에 실패하였습니다.");
@@ -71,16 +51,9 @@
                         console.log(error.status);
                     }
                 });
-                  
-
-        
             }
-            
-            
-            
-            
-            return;
-            
+        	
+            //id가 smarteditor인 textarea에 에디터에서 대입
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
        		
             var postUrl = "/a0000006/board/insertBook.do";
@@ -106,7 +79,6 @@
 	    <input type="text" id="fl_nm" name="fl_nm">
 	    <input type="text" id="fl_path" name="fl_path">
 	    <input type="text" id="origin_fl_nm" name="origin_fl_nm">
-	    
 	</form>
 	
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">

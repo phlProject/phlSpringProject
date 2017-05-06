@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="150" height="200">
 제목 : ${bookView.SUBJECT}<br>
 	 ${bookView.CONTENTS}
 	 <br>
-	 <a href="/a0000006/board/updateBook.do" id="updateBook">수정</a>
+	 <a href="/a0000006/board/bookFormU.do" id="updateBook">수정</a>
 	 <a href="/a0000006/board/bookList.do" id="bookList">목록</a>
 </body>
 </html>

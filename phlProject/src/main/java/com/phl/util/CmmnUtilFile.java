@@ -21,17 +21,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class CmmnUtilFile {
 
-	private static String fullName;			// 서버파일 full경로
-	private static String path;				// 서버파일경로
-	private static String rename;			// 서버파일명	
-	
-	private static String filePathBase;		// 기본파일경로 
-	
-	public CmmnUtilFile(){
-		fullName 	= "";
-		path 		= "";
-		rename 		= "";
-	}
+	private static String filePathBase;		// 서버파일 full경로
+	private static String filePathSub;		// 서버파일 Sub경로
 	
 	/**
 	 * 	파일 업로드(폴더 생성 및 파일 업로드)
@@ -45,6 +36,7 @@ public class CmmnUtilFile {
 		String charenc = "";		// 변환 파일명
 		String fileName = "";		// 원본 파일명
 		String filePath = "";		// 전체 파일 경로
+		String filePathS = "";	// Sub 파일 경로
 		String originalFileExtension = null;
 		MultipartFile multipartFile = null;
 		
@@ -54,6 +46,7 @@ public class CmmnUtilFile {
 			setFilePathBase();
 			
 			filePath = filePathBase;
+			filePathS = filePathSub;
 			charenc = getRandomString();
 		
 			// 폴더 생성
@@ -71,11 +64,10 @@ public class CmmnUtilFile {
 	                 
 	                fp = new File(filePath + charenc);
 	                multipartFile.transferTo(fp);
-	                
 	                listMap = new HashMap<String,Object>();
 	                listMap.put("ORIGIN_FL_NM", fileName);
 	                listMap.put("FL_NM", charenc);
-	                listMap.put("FL_PATH", filePath);
+	                listMap.put("FL_PATH", filePathS);
 	                list.add(listMap);
 	            }
 	        }
@@ -113,12 +105,14 @@ public class CmmnUtilFile {
 		  
 		// 변경 해야됨
 		boolean pCt = realPath.contains("/app/online/");
-		if(pCt){
+		/*if(pCt){
 			// not local
-			filePathBase = realPath + "/file/a0000006/board/";
+			filePathSub = "/file/a0000006/board/";
 		}else{
 			// local
-			filePathBase = realPath + "\\file\\a0000006\\board\\";
-		}
+			filePathSub = "\\file\\a0000006\\board\\";
+		}*/
+		filePathSub = "/file/a0000006/board/";
+		filePathBase = realPath + filePathSub;
 	}		   
 }

@@ -16,10 +16,20 @@ public class BoardDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("a0000006/board.selectbookList", map);
     }
 	
+	@SuppressWarnings("unchecked")
+	public int selectbookListCnt(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/board.selectbookListCnt", map);
+    }
+	
 	/* 책소개 등록 */
 	public void insertBook(Map<String, Object> map) throws Exception{
 	    insert("a0000006/board.insertBook", map);
 	}
+	
+	public void insertBookFl(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.insertBookFl", map);
+	}
+
 	
 	/* 책소개 상세 */
 	@SuppressWarnings("unchecked")
