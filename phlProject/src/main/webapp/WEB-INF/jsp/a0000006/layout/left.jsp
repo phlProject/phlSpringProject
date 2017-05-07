@@ -50,7 +50,7 @@
 					<li><a href="#">댄스연습실</a></li>
 				</ul>
 			  </li>
-	          <li><h3><a href="#">자료</a></h3>
+	          <li><h3><a href="/a0000006/board/bookList.do">자료</a></h3>
 	          	<ul>
 					<li><a href="#">책소개</a></li>
 					<li><a href="#">간행물</a></li>
