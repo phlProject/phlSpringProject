@@ -79,14 +79,20 @@ public class MemberController {
     }
 	
 	/* 마이페이지 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/a0000006/mem/memMyPage.do")
 	public ModelAndView memMyPage(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/member/memMyPage");
 	
 		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+		
+		Map<String,Object> sessionInFo = (Map<String, Object>) session.getAttribute("loginInfo");
+		
 	    commandMap.put("CL_CODE", "G01");
-	    commandMap.put("NOT_DETAIL_CODE", "'998','999'");
+	    if(!sessionInFo.get("MEM_GRADE").equals("G01998") && !sessionInFo.get("MEM_GRADE").equals("G01999")){
+	    	commandMap.put("NOT_DETAIL_CODE", "'998','999'");
+	    }
 	    
 	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
 	    
@@ -198,5 +204,4 @@ public class MemberController {
         mv.addObject("list", list);
         return mv;
     }
-	
 }

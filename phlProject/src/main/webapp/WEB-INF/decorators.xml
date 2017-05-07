@@ -15,6 +15,7 @@
 	
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
 	<decorator name="indexLayoutHLBF" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
+		<pattern>*/mng*</pattern> 	<!-- 관리자 -->
 		<pattern>*/apply*</pattern>	<!-- 일정 -->
 		<pattern>*/board*</pattern> <!-- 게시판 -->
 	</decorator>

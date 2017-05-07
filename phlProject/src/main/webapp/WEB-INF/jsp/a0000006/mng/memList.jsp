@@ -24,7 +24,7 @@
 <body>
 <div id="content">
 	<table border="1">
-		<c:forEach items="${list }" var="row">
+		<c:forEach items="${memList}" var="row">
 			<tr>
                <td>${row.BSNS_CODE }</td>
                <td>${row.MEM_ID }</td>

@@ -53,7 +53,7 @@
 				<li><a href="/a0000006/board/bookList.do">자료</a>
 					<ul>
 						<li><a href="#">책소개</a></li>
-						<li><a href="#">간행물</a></li>
+						<li><a href="/a0000006/mng/memList.do">간행물</a></li>
 						<li><a href="#">기타자료</a></li>
 					</ul>
 				</li>
