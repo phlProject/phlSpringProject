@@ -14,6 +14,19 @@
 		  AND BMB.USE_YN = 'Y'
 		  AND BMB.BSNS_CODE = #{BSNS_CODE}
 		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENTS LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENTS) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
 	</select>
 	
 	<!-- 책소개 리스트 -->
@@ -38,6 +51,21 @@
 		  AND BMB.USE_YN = 'Y'
 		  AND BMB.BSNS_CODE = #{BSNS_CODE}
 		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENTS LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENTS) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		Limit #{limitFirst}, #{limitSecond}
+		  
 	</select>
 	
 	<!-- 책소개 등록 -->

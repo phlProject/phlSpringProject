@@ -29,37 +29,13 @@
         //전송버튼 클릭이벤트
         $("#fn_insertBook").click(function(){
             
-        	// 업로드 파일 있을 시 수행
-            if($("#uploadFile").val() != ""){
-            	var formData = new FormData($("#upload_Form")[0]);
-                $.ajax({
-                    type : 'post',
-                    url : "/phl/uploadFile.do",
-                    data : formData,
-                    enctype: "multipart/form-data",
-                    async: false,
-                    processData : false,
-                    contentType : false,
-                    success : function(data) {
-                        $("#fl_nm").val(data.fl_upload.FL_NM);
-                        $("#fl_path").val(data.fl_upload.FL_PATH);
-                        $("#origin_fl_nm").val(data.fl_upload.ORIGIN_FL_NM);
-                    },
-                    error : function(error) {
-                        alert("파일 업로드에 실패하였습니다.");
-                        console.log(error);
-                        console.log(error.status);
-                    }
-                });
-            }
-        	
             //id가 smarteditor인 textarea에 에디터에서 대입
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
        		
             var postUrl = "/a0000006/board/insertBook.do";
         	$.post(postUrl, $("#editor_Form").serialize(), function(data){
         		if(data.result == "success" ){
-        			alert("등록");
+        			alert("등록되었습니다.");
         			ComSubmit('editor_Form','/a0000006/board/bookList.do');
         		} else{
         			alert("실패");
@@ -69,21 +45,52 @@
         });
     }); 
 
+    function aa(){
+    	var formData = new FormData($("#upload_Form")[0]);
+        $.ajax({
+            type : 'post',
+            url : "/phl/uploadFile.do",
+            data : formData,
+            enctype: "multipart/form-data",
+            async: false,
+            processData : false,
+            contentType : false,
+            success : function(data) {
+                $("#fl_nm").val(data.fl_upload.FL_NM);
+                $("#fl_path").val(data.fl_upload.FL_PATH);
+                $("#origin_fl_nm").val(data.fl_upload.ORIGIN_FL_NM);
+                $("#mainImage").attr("src", data.fl_upload.FL_PATH+data.fl_upload.FL_NM);
+            },
+            error : function(error) {
+                alert("파일 업로드에 실패하였습니다.");
+                console.log(error);
+                console.log(error.status);
+            }
+        });
+    }
 	</script>
 </head>
 <body>
 <div id="content">
-	<form id="editor_Form">
-                  제목      <input type="text" id="subject" name="subject" size="86"><br>
-	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
-	    <input type="text" id="fl_nm" name="fl_nm">
-	    <input type="text" id="fl_path" name="fl_path">
-	    <input type="text" id="origin_fl_nm" name="origin_fl_nm">
+	
+	<!-- 책소개 Main 사진  -->
+	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
+		<div>
+			<img src="" id="mainImage" name="mainImage" width="150" height="200"><br>
+			<input type="file" id="uploadFile" name="uploadFile" onchange="aa()">
+		</div>
 	</form>
 	
-	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
-		메인사진 <input type="file" id="uploadFile" name="uploadFile"><br>
+	<form id="editor_Form">
+		<input type="hidden" id="fl_nm" name="fl_nm">
+	    <input type="hidden" id="fl_path" name="fl_path">
+	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm">
+	    
+                  제목      <input type="text" id="subject" name="subject" size="86"><br>
+	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
 	</form>
+	
+	
 	<a href="#" id="fn_insertBook" >저장</a>
 </div>
 </body>
