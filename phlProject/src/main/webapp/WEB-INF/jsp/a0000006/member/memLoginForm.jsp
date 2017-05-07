@@ -21,6 +21,8 @@
 		<c:choose>
 			<c:when test="${resultValue=='ID_ERROR'}">* 존재하지 않는 아이디입니다. </c:when>
 			<c:when test="${resultValue=='PW_ERROR'}">* 비밀번호가 일치하지 않습니다. </c:when>
+			<c:when test="${resultValue=='ID_STANDBY'}">* 권한 승인 대기중입니다. </c:when>
+			
 		</c:choose>
 		
 		</div>

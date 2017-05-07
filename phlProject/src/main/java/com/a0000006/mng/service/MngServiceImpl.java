@@ -18,9 +18,27 @@ Logger log = Logger.getLogger(this.getClass());
 	@Resource(name="mngDAO")
 	private MngDAO mngDAO;
 
+	/* 회원리스트 Count */
+	public int memListCnt(Map<String, Object> map) throws Exception {
+        return mngDAO.memListCnt(map);
+    }
+	
 	/* 회원리스트 */
 	@Override
     public List<Map<String, Object>> memList(Map<String, Object> map) throws Exception {
         return mngDAO.memList(map);
     }
+
+	/* 회원 활성화 비활성화 수정 */
+	@Override
+	public String memUpdateActive(Map<String, Object> map) throws Exception {
+		try {
+			mngDAO.memUpdateActive(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 }

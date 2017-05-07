@@ -49,9 +49,4 @@ public class MemberDAO extends AbstractDAO {
         return (Integer) selectOne("a0000006/member.idDupChk", map);
     }
     
-	/* 회원리스트 */
-	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> selectMemList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("a0000006/member.selectMemList", map);
-    }
 }

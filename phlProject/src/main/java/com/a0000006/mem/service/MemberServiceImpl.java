@@ -79,9 +79,4 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.idDupChk(map);
     }
 	
-	/* 회원리스트 */
-	@Override
-    public List<Map<String, Object>> selectMemList(Map<String, Object> map) throws Exception {
-        return memberDAO.selectMemList(map);
-    }
 }

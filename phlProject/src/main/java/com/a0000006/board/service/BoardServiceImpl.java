@@ -18,14 +18,15 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name="BoardDAO")
 	private BoardDAO boardDAO;
 	
+	/* 책소개 리스트 Count */
+	public int selectbookListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.selectbookListCnt(map);
+    }
+	
 	/* 책소개 리스트 */
 	@Override
     public List<Map<String, Object>> selectbookList(Map<String, Object> map) throws Exception {
         return boardDAO.selectbookList(map);
-    }
-	
-	public int selectbookListCnt(Map<String, Object> map) throws Exception {
-        return boardDAO.selectbookListCnt(map);
     }
 	
 	/* 책소개 등록 */

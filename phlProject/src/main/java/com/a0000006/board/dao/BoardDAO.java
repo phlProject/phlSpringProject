@@ -10,16 +10,19 @@ import com.phl.dao.AbstractDAO;
 @Repository("BoardDAO")
 public class BoardDAO extends AbstractDAO {
 
+	/* 책소개 리스트 Count */
+	@SuppressWarnings("unchecked")
+	public int selectbookListCnt(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/board.selectbookListCnt", map);
+    }
+	
 	/* 책소개 리스트 */
 	@SuppressWarnings("unchecked")
     public List<Map<String, Object>> selectbookList(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("a0000006/board.selectbookList", map);
     }
 	
-	@SuppressWarnings("unchecked")
-	public int selectbookListCnt(Map<String, Object> map) throws Exception{
-        return (Integer) selectOne("a0000006/board.selectbookListCnt", map);
-    }
+
 	
 	/* 책소개 등록 */
 	public void insertBook(Map<String, Object> map) throws Exception{

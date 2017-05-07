@@ -49,25 +49,35 @@ public class MemberController {
         /* 로그인(ID,PW CHECK) */
         List<Map<String,Object>> idPwChk = memberService.idPwCheck(commandMap.getMap());
         
+        String queryPw = (String) idPwChk.get(0).get("MEM_PW");
+    	String queryUseYn = (String) idPwChk.get(0).get("USE_YN");
+    	
         /* 해당하는 아이디 존재 시 */
         if(idPwChk.size() != 0){
-        	String queryPw = (String) idPwChk.get(0).get("MEM_PW");
-        	/* 해당하는 아이디, 비밀번호 일치 시 */
-	        if(queryPw != null && queryPw.equals(commandMap.get("mem_pw"))){
-	        	resultValue = "SUCCESS";
-	        	/* 로그인 정보 */
-	        	List<Map<String,Object>> loginInfo = memberService.loginInfo(commandMap.getMap());
-	
-	        	session.setAttribute("loginInfo", loginInfo.get(0));
-	        	session.setAttribute("session_id", loginInfo.get(0).get("MEM_ID"));
-	        	
-	        	mv.setViewName("/a0000006/mainIndex");
-	        }else{
-	        	/* 비밀번호 오류 */
-	        	resultValue = "PW_ERROR";
+        	
+        	/* 사용여부 'Y' */
+        	if(queryUseYn.equals("Y")){
+	        	/* 해당하는 아이디, 비밀번호 일치 시 */
+		        if(queryPw != null && queryPw.equals(commandMap.get("mem_pw"))){
+		        	resultValue = "SUCCESS";
+		        	/* 로그인 정보 */
+		        	List<Map<String,Object>> loginInfo = memberService.loginInfo(commandMap.getMap());
+		
+		        	session.setAttribute("loginInfo", loginInfo.get(0));
+		        	session.setAttribute("session_id", loginInfo.get(0).get("MEM_ID"));
+		        	
+		        	mv.setViewName("/a0000006/mainIndex");
+		        }else{
+		        	/* 비밀번호 오류 */
+		        	resultValue = "PW_ERROR";
+		        	
+		        	mv.setViewName("/a0000006/member/memLoginForm");
+		        }
+        	}else if(queryUseYn.equals("S")){
+        		resultValue = "ID_STANDBY";
 	        	
 	        	mv.setViewName("/a0000006/member/memLoginForm");
-	        }
+        	}
         }else{
         	/* 아이디 오류 */
         	resultValue = "ID_ERROR";
@@ -194,14 +204,4 @@ public class MemberController {
 		mv.addObject("result", result);  		
 		return mv;
 	}
-	
-	/* 회원리스트 */
-	@RequestMapping(value="/a0000006/mem/selectMemList.do")
-	public ModelAndView selectMemList(CommandMap commandMap) throws Exception{
-        ModelAndView mv = new ModelAndView("/a0000006/member/memberList");
-         
-        List<Map<String,Object>> list = memberService.selectMemList(commandMap.getMap());
-        mv.addObject("list", list);
-        return mv;
-    }
 }

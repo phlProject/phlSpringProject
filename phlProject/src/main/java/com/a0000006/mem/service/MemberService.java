@@ -28,7 +28,4 @@ public interface MemberService {
 	/* 아이디 중복체크 */
 	public int idDupChk(Map<String, Object> map) throws Exception;
 	
-	/* 회원리스트 */
-	List<Map<String, Object>> selectMemList(Map<String, Object> map) throws Exception;
-	
 }

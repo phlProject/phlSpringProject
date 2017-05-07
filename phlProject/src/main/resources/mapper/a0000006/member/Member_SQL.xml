@@ -6,9 +6,9 @@
     <!-- 로그인(ID,PW CHECK) -->
     <select id="idPwCheck" parameterType="hashmap" resultType="hashmap">
     	SELECT MEM_PW
+    	      ,USE_YN
     	FROM BSNS_MEMBER
     	WHERE 1=1
-    	  AND USE_YN = 'Y'
     	  AND MEM_ID = #{mem_id}
     	  AND BSNS_CODE = #{BSNS_CODE}
     </select>
@@ -55,7 +55,6 @@
     
     <!-- 회원가입 -->
     <insert id="insertMemRegist" parameterType="hashmap">
-    	<![CDATA[
     	INSERT INTO BSNS_MEMBER(
     		  BSNS_CODE
     		, MEM_ID
@@ -67,6 +66,9 @@
     		, MEM_PHONE
     		, REG_DT
     		, REG_ID
+    		<if test="mem_grade == 'G01002'">
+    		, USE_YN
+			</if>
     	)VALUES(
     		  #{BSNS_CODE}
     		, #{mem_id}
@@ -78,8 +80,10 @@
     		, #{mem_phone}
     		, now()
     		, #{mem_id}
+    		<if test="mem_grade == 'G01002'">
+    		, 'S'
+			</if>
     	)
-    	]]>
     </insert>   
     
     <!-- 마이페이지 수정 -->
@@ -101,6 +105,7 @@
 		]]>
     </update>
     
+    <!-- 회원 탈퇴 -->
     <update id="deleteMemRegist" parameterType="hashmap">
     	UPDATE BSNS_MEMBER
     	SET USE_YN = 'N'
@@ -119,19 +124,5 @@
 		  AND BSNS_CODE = #{BSNS_CODE}
 	</select>
     
-    <!-- 회원리스트 -->
-    <select id="selectMemList" parameterType="hashmap" resultType="hashmap">
-        SELECT  BSNS_CODE
-        	  , MEM_SN
-        	  , MEM_ID		
-			  , MEM_PW		
-			  , MEM_NM		
-			  , MEM_EMAIL	
-			  , MEM_NICKNM	
-			  , MEM_GRADE	
-			  , MEM_PHONE	
-			  , USE_YN		  
-        FROM BSNS_MEMBER
-    </select>
 </mapper>
 
