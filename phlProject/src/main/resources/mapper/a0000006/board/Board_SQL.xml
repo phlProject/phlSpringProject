@@ -64,6 +64,7 @@
 			 	</when>
 		  	</choose>
 		  </if>
+		ORDER BY BMB.BOARD_SN DESC
 		Limit #{limitFirst}, #{limitSecond}
 		  
 	</select>

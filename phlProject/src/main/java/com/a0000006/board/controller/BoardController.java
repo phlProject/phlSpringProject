@@ -71,6 +71,9 @@ public class BoardController {
 		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
 		mv.addObject("bookList", 		bookList);		// 책소개 리스트
 		
+		mv.addObject("searchSelect", 	commandMap.get("searchSelect"));	// 파라미터 검색조건
+		mv.addObject("searchWord", 		commandMap.get("searchWord"));		// 파라미터 검색단어
+		
 		return mv;
 	}
 	

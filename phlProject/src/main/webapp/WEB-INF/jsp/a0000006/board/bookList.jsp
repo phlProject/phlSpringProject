@@ -20,11 +20,11 @@
 					<!-- 검색조건 -->
 					<td colspan="2" style="text-align: right">
 						<select id="searchSelect" name="searchSelect">
-							<option value="searchSubject">제목</option>
-							<option value="searchContent">줄거리</option>
-							<option value="searchSubCon">제목+줄거리</option>
+							<option value="searchSubject" <c:if test="${searchSelect eq 'searchSubject'}">selected</c:if>> 제목</option>
+							<option value="searchContent" <c:if test="${searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
+							<option value="searchSubCon"  <c:if test="${searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
 						</select>
-						<input type="text" id="searchWord" name="searchWord">
+						<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
 						<input type="button" value="검색" onclick="searchBtn();">
 					</td>
 				</tr>
@@ -64,7 +64,6 @@
 						<c:if test="${endPageNum < totalPageCount}">
 							<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
 						</c:if>
-						
 					</td>
 				</tr>
 			</table>
