@@ -33,7 +33,6 @@
 			margin: 0 auto;
 			max-width:1100px;
 			width: 100%;
-			overflow: hidden;
 		}
 	</style>
     <script type='text/javascript' src='/js/jquery.mobile.customized.min.js'></script>
