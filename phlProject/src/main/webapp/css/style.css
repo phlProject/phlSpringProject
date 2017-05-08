@@ -65,7 +65,7 @@ nav ul li:hover ul { display: block; }
 .bookList { border-bottom:2px solid #e9e6e4; padding:22px 0;}
 .bookList { color:#333; /* text-align:center; */ }
 .book-left { border:1px solid #e9e6e4; width:200px; height:160px; margin-right:20px; display:inline-block; float:left;}
-.book-right { width:600px; height:160px; display:inline-block; }
+.book-right { width:600px; height:160px; display:inline-block; overflow:hidden;}
 .book-right a { font-size:17px; color:#222; font-weight:500; }
 .book-right a:hover { color:#660f57; }
 .book-right hr { margin-top:5px;}
