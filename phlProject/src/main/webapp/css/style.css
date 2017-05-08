@@ -33,7 +33,7 @@ nav ul li:hover ul { display: block; }
 
 /* content */
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
-#content { width:830px; margin:0 auto; overflow:hidden; padding-top:59px; padding-bottom:50px; position:relative; }
+#content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; }
 #main_content { width:830px; margin-bottom:20px; float:left; }
 #main_sidebar { width:250px; margin-bottom:20px; float:right; border:1px solid #bcbcbc;}
 
@@ -55,6 +55,27 @@ nav ul li:hover ul { display: block; }
 
 
 
+/*자료 CSS*/
+.cont-title { width:200px; font-size:28px; color:#444; line-height:1.2em; padding:25px; font-weight:500; float:left;}
+.search { float:right; padding:20px; }
+#searchSelect { width:110px; margin:0; }
+.search input { width:160px; height:28px; border:1px solid #ddd; }
+.search .button { width:80px; height:34px; background-color:#660f57; border:3px solid #660f57; color:#fff; font-weight:700; }
+.book-tab { width:830px; margin-top:68px; border-top:2px solid #e9e6e4; }
+.bookList { border-bottom:2px solid #e9e6e4; padding:22px 0;}
+.bookList { color:#333; /* text-align:center; */ }
+.book-left { border:1px solid #e9e6e4; width:200px; height:160px; margin-right:20px; display:inline-block; float:left;}
+.book-right { width:600px; height:160px; display:inline-block; }
+.book-right a { font-size:17px; color:#222; font-weight:500; }
+.book-right a:hover { color:#660f57; }
+.book-right hr { margin-top:5px;}
+.book-right p { font-size:13px; color:#555; line-height:1.2em; padding:8px 0px; max-height:56px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
+.bookForm a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
+.book_paging { margin-top:35px; text-align: center; margin-left:70px; }
+.book_paging a { font-size:12px; color:#c6beb6; border:2px solid #c6beb6; padding:7px 10px; cursor:pointer; text-align:center;}
+
+
+
 @media screen and (max-width:700px) {
 	#container { width:auto; margin:0 10px 0 10px; }
 	#content { float:none; width:auto; }
@@ -64,6 +85,10 @@ nav ul li:hover ul { display: block; }
     #loginform { float:none; width:auto; }
     #left_content { float:none; width:auto; }
     #left_sidebar { float:none; width:auto; }
+    .book-tab { float:none; width:auto; }
+    #logo img { width:165px; height: 85px;}
+    .book-left { float:none; width:auto; }
+    .book-right { float:none; width:auto; }
 }
 
 .content-1 { border: 1px solid #bcbcbc; }

@@ -14,59 +14,96 @@
 </head>
 <body>
 	<div id="content">
+			<h3 class="cont-title">자료</h3>
 		<form id="bookList_Form">
-			<table border="1">
-				<tr>
-					<!-- 검색조건 -->
-					<td colspan="2" style="text-align: right">
-						<select id="searchSelect" name="searchSelect">
-							<option value="searchSubject" <c:if test="${searchSelect eq 'searchSubject'}">selected</c:if>> 제목</option>
-							<option value="searchContent" <c:if test="${searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
-							<option value="searchSubCon"  <c:if test="${searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
-						</select>
-						<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
-						<input type="button" value="검색" onclick="searchBtn();">
-					</td>
-				</tr>
+			<!-- 검색조건 -->
+			<div class="search">
+				<select id="searchSelect" name="searchSelect">
+					<option value="searchSubject" <c:if test="${searchSelect eq 'searchSubject'}">selected</c:if>> 제목</option>
+					<option value="searchContent" <c:if test="${searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
+					<option value="searchSubCon"  <c:if test="${searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
+				</select>
+					<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
+					<input type="button" value="검색" onclick="searchBtn();" class="button">
+			</div>
+			<br/>
+			<div class="book-tab">
 				<c:if test="${empty bookList}">
-					<tr>
-						<td width="150" height="200">&nbsp;</td>
-						<td width="700" height="200">조회 된 내용이 없습니다.</td>
-					</tr>
-					
+					<div class="bookList">
+						<center><h4>조회 된 내용이 없습니다.</h4></center>
+					</div>
 				</c:if>
 				<c:if test="${not empty bookList}">
 					<c:forEach items="${bookList}" var="row">
-					<tr>
-						<td rowspan = "2" width="150" height="200"><img src="${row.FL_PATH}/${row.FL_NM}" width="150" height="200"></td>
-						<td width="700" height="30"><a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
-					</tr>
-					<tr>
-						<td width="700" height="170">${row.CONTENTS}</td>
-					</tr>
+						<div class="bookList">
+							<div class="book-left">
+								<img src="${row.FL_PATH}/${row.FL_NM}" width="200" height="160">
+							</div>
+							<div class="book-right">
+								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a>
+								<hr color="#e2d318" size="0.3">						
+								<p>${row.CONTENTS}</p>
+							</div>
+						</div>
 					</c:forEach>
-				</c:if>
-				<tr>
-					<td colspan="2" style="text-align: right">
+				</c:if>				
+					<div class="bookForm">
 						<a href="/a0000006/board/bookForm.do" id="bookForm">신규등록</a>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<c:if test="${beginPageNum > 5}">
-							<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
-						</c:if>
+					</div>
+				<div class="book_paging">
+					<c:if test="${beginPageNum > 5}">
+						<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+					</c:if>
+								
+					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
+						<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+					</c:forEach>
+								
+					<c:if test="${endPageNum < totalPageCount}">
+						<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+					</c:if>	
+				</div>			
+				<%-- <table>
+					<c:if test="${empty bookList}">
+						<tr>
+							<th>&nbsp;</th>
+							<td>조회 된 내용이 없습니다.</td>
+						</tr>
 						
-						<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-							<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+					</c:if>
+					<c:if test="${not empty bookList}">
+						<c:forEach items="${bookList}" var="row">
+						<tr style="border-top:1px solid #000;">
+							<th rowspan = "2"><img src="${row.FL_PATH}/${row.FL_NM}" width="150" height="200"></th>
+							<td><a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
+						</tr>
+						<tr>
+							<td>${row.CONTENTS}</td>
+						</tr>
 						</c:forEach>
-						
-						<c:if test="${endPageNum < totalPageCount}">
-							<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
-						</c:if>
-					</td>
-				</tr>
-			</table>
+					</c:if>
+					<tr>
+						<td colspan="2" style="text-align: right">
+							<a href="/a0000006/board/bookForm.do" id="bookForm">신규등록</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<c:if test="${beginPageNum > 5}">
+								<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+							</c:if>
+							
+							<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
+								<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+							</c:forEach>
+							
+							<c:if test="${endPageNum < totalPageCount}">
+								<a href="<c:out value="/a0000006/board/bookList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+							</c:if>
+						</td>
+					</tr>
+				</table> --%>
+			</div>
 		</form>
 	</div>
 </body>
