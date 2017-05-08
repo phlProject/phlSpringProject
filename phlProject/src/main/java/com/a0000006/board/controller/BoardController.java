@@ -124,6 +124,7 @@ public class BoardController {
 		return mv;
 	}
 	
+	/* 책소개 수정 폼 */
 	@RequestMapping(value="/a0000006/board/bookFormU.do")
 	public ModelAndView bookFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
@@ -131,7 +132,6 @@ public class BoardController {
 
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		commandMap.put("BOARD_GBN_CD", "B01001");
-		commandMap.put("BOARD_SN", request.getParameter("board_Sn"));
 		
 		List<Map<String,Object>> bookView = boardService.selectbookView(commandMap.getMap());
 		

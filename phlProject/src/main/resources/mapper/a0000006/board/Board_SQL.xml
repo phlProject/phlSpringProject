@@ -3,6 +3,7 @@
  
 <mapper namespace="a0000006/board">
 	
+	<!-- 책소개 리스트 Count -->
 	<select id="selectbookListCnt" parameterType="hashmap" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM BSNS_MNG_BOARD		BMB
@@ -89,6 +90,7 @@
 		)
 	</insert>
 	
+	<!-- 책소개 메인이미지 등록  -->
 	<insert id="insertBookFl"  parameterType="hashmap">
 		INSERT INTO BSNS_MNG_BOARD_FL(
 			 BSNS_CODE

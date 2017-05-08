@@ -41,6 +41,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
+	/* 책소개 메인이미지 등록 */
 	public void insertBookFl(Map<String, Object> map) throws Exception {
 		boardDAO.insertBookFl(map);
 	}
