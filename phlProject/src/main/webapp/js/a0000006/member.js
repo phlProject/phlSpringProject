@@ -166,6 +166,7 @@ function changedId(){
 	$("#usableId_yn").val("N");
 	$("#idDupText").text("");
 	
+	return true;
 }
 
 function chk(re, e, msg) {
@@ -179,6 +180,12 @@ function chk(re, e, msg) {
 	
 // 아이디 중복 검사
 function idDupChk(){
+	
+	// 아이디 유효성검사
+	if(!changedId()){
+		return;
+	}
+	
 	$.ajax({
 		url		: "/a0000006/mem/idDupChk.do",
 		type 	: "post",
@@ -190,8 +197,8 @@ function idDupChk(){
 			if(data.result == "success"){
 				$("#idDupText").text("사용할 수 있는 아이디입니다.");
 				$("#usableId_yn").val("Y");
-			}else{
-				$("#idDupText").Text("중복된 아이디입니다. 다른 아이디를 입력해주세요.");
+			}else if(data.result == "fail"){
+				$("#idDupText").text("중복된 아이디입니다. 다른 아이디를 입력해주세요.");
 				$("#mem_id").focus();
 			}
 		}

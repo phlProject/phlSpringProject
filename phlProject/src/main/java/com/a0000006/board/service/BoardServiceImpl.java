@@ -18,15 +18,21 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name="BoardDAO")
 	private BoardDAO boardDAO;
 	
-	/* 책소개 리스트 Count */
-	public int selectbookListCnt(Map<String, Object> map) throws Exception {
-        return boardDAO.selectbookListCnt(map);
+	/* 책소개 > 조회 > Count */
+	public int bookListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.bookListCnt(map);
     }
 	
-	/* 책소개 리스트 */
+	/* 책소개 > 조회  */
 	@Override
-    public List<Map<String, Object>> selectbookList(Map<String, Object> map) throws Exception {
-        return boardDAO.selectbookList(map);
+    public List<Map<String, Object>> bookList(Map<String, Object> map) throws Exception {
+        return boardDAO.bookList(map);
+    }
+	
+	/* 책소개 > 상세 */
+	@Override
+    public List<Map<String, Object>> bookView(Map<String, Object> map) throws Exception {
+        return boardDAO.bookView(map);
     }
 	
 	/* 책소개 등록 */
@@ -46,9 +52,5 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.insertBookFl(map);
 	}
 	
-	/* 책소개 상세 */
-	@Override
-    public List<Map<String, Object>> selectbookView(Map<String, Object> map) throws Exception {
-        return boardDAO.selectbookView(map);
-    }
+	
 }

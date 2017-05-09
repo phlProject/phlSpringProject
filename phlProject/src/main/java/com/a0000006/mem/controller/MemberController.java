@@ -49,11 +49,12 @@ public class MemberController {
         /* 로그인(ID,PW CHECK) */
         List<Map<String,Object>> idPwChk = memberService.idPwCheck(commandMap.getMap());
         
-        String queryPw = (String) idPwChk.get(0).get("MEM_PW");
-    	String queryUseYn = (String) idPwChk.get(0).get("USE_YN");
-    	
+        
         /* 해당하는 아이디 존재 시 */
         if(idPwChk.size() != 0){
+        	
+        	String queryPw = (String) idPwChk.get(0).get("MEM_PW");
+        	String queryUseYn = (String) idPwChk.get(0).get("USE_YN");
         	
         	/* 사용여부 'Y' */
         	if(queryUseYn.equals("Y")){
@@ -74,9 +75,13 @@ public class MemberController {
 		        	mv.setViewName("/a0000006/member/memLoginForm");
 		        }
         	}else if(queryUseYn.equals("S")){
+        		/* 권한부여 대기중 */
         		resultValue = "ID_STANDBY";
-	        	
 	        	mv.setViewName("/a0000006/member/memLoginForm");
+        	}else if(queryUseYn.equals("N")){
+        		/* 아이디 오류 */
+            	resultValue = "ID_ERROR";
+            	mv.setViewName("/a0000006/member/memLoginForm");
         	}
         }else{
         	/* 아이디 오류 */

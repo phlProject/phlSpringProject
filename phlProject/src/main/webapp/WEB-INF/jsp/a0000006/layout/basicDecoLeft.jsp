@@ -10,6 +10,7 @@
 <script src="/js/common.js"></script>
 <script src="/js/a0000006/member.js"></script>
 <script src="/js/a0000006/board.js"></script>
+<script src="/js/a0000006/mng.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <deco:head />
 </head>

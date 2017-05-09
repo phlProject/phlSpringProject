@@ -44,40 +44,24 @@
         	});
         });
     }); 
-
-    function aa(){
-    	var formData = new FormData($("#upload_Form")[0]);
-        $.ajax({
-            type : 'post',
-            url : "/phl/uploadFile.do",
-            data : formData,
-            enctype: "multipart/form-data",
-            async: false,
-            processData : false,
-            contentType : false,
-            success : function(data) {
-                $("#fl_nm").val(data.fl_upload.FL_NM);
-                $("#fl_path").val(data.fl_upload.FL_PATH);
-                $("#origin_fl_nm").val(data.fl_upload.ORIGIN_FL_NM);
-                $("#mainImage").attr("src", data.fl_upload.FL_PATH+data.fl_upload.FL_NM);
-            },
-            error : function(error) {
-                alert("파일 업로드에 실패하였습니다.");
-                console.log(error);
-                console.log(error.status);
-            }
-        });
-    }
 	</script>
 </head>
 <body>
+
+<!-- 목록이동_Form -->
+<form id="bookList_Form">
+	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
+	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
+</form>
+
 <div id="content">
 	
 	<!-- 책소개 Main 사진  -->
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
 		<div>
 			<img src="" id="mainImage" name="mainImage" width="150" height="200"><br>
-			<input type="file" id="uploadFile" name="uploadFile" onchange="aa()">
+			<input type="file" id="uploadFile" name="uploadFile" onchange="javascript:fn_bookUploadFile();">
+			<input type="hidden" id="sPath" name="sPath" value="/board/book/">
 		</div>
 	</form>
 	
@@ -90,8 +74,9 @@
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
 	</form>
 	
-	
 	<a href="#" id="fn_insertBook" >저장</a>
+	<a href="javascript:fn_bookList();" id="bookList">목록</a>
 </div>
+
 </body>
 </html>

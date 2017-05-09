@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div id="content" align="center">
 		<form id="memMypage_Form" name="memMypage_Form">
 		<table>

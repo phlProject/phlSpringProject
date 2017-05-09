@@ -6,11 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script>
-	function searchBtn(){
-		ComSubmit('bookList_Form','/a0000006/board/bookList.do');
-	}
-</script>
 </head>
 <body>
 	<div id="content">
@@ -19,12 +14,12 @@
 			<!-- 검색조건 -->
 			<div class="search">
 				<select id="searchSelect" name="searchSelect">
-					<option value="searchSubject" <c:if test="${searchSelect eq 'searchSubject'}">selected</c:if>> 제목</option>
-					<option value="searchContent" <c:if test="${searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
-					<option value="searchSubCon"  <c:if test="${searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
+					<option value="searchSubject" <c:if test="${item.searchSelect eq 'searchSubject'}">selected</c:if>> 제목</option>
+					<option value="searchContent" <c:if test="${item.searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
+					<option value="searchSubCon"  <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
 				</select>
-					<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
-					<input type="button" value="검색" onclick="searchBtn();" class="button">
+				<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
+				<input type="button" value="검색" onclick="fn_searchBookList();" class="button">
 			</div>
 			<br/>
 			<div class="book-tab">
@@ -48,7 +43,7 @@
 					</c:forEach>
 				</c:if>				
 					<div class="bookForm">
-						<a href="/a0000006/board/bookForm.do" id="bookForm">신규등록</a>
+						<a href="javascript:fn_bookFormI();" id="bookFormI">신규등록</a>
 					</div>
 				<div class="book_paging">
 					<c:if test="${beginPageNum > 5}">

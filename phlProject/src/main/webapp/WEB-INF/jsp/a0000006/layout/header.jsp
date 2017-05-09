@@ -10,13 +10,18 @@
 <div id="header">
 	<header id="masthead" class="site-header">
 		<div id="logo"><a href="/a0000006/mainIndex.do"><img src="/img/logo10.png"></a></div>
+		
 		<nav>
 			<ul>
 			<c:choose>
 			<c:when test="${not empty sessionScope.loginInfo}">
 				<li><a href="/a0000006/mem/memMyPage.do" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
 				<li><a href="/a0000006/mem/logoutAction.do" id="logoutAction">로그아웃</a></li>
-				<li><a href="/a0000006/mem/selectMemList.do" id="memList">회원리스트</a></li>
+				
+				<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
+				<c:if test="${loginInfo.MEM_GRADE eq 'G01998' || loginInfo.MEM_GRADE eq 'G01999'}">
+					<li><a href="/a0000006/mng/memList.do" id="memList">관리자</a></li>
+				</c:if>
 			</c:when>
 			<c:otherwise>
 				<li><a href="/a0000006/mem/memLoginForm.do" id="memLoginForm">로그인</a></li>
@@ -52,8 +57,8 @@
 				</li>
 				<li><a href="/a0000006/board/bookList.do">자료</a>
 					<ul>
-						<li><a href="#">책소개</a></li>
-						<li><a href="/a0000006/mng/memList.do">간행물</a></li>
+						<li><a href="/a0000006/board/bookList.do">책소개</a></li>
+						<li><a href="#">간행물</a></li>
 						<li><a href="#">기타자료</a></li>
 					</ul>
 				</li>

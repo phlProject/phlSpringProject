@@ -2,7 +2,9 @@ package com.phl.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +45,7 @@ public class CmmnUtilFile {
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
         Map<String, Object> listMap = null; 
 		try {
+			
 			setFilePathBase();
 			
 			filePath = filePathBase;
@@ -89,7 +92,6 @@ public class CmmnUtilFile {
     }
 
 
-	
 	/**
 	 * 경로 지정 
 	 */
@@ -100,19 +102,16 @@ public class CmmnUtilFile {
 		// 파일 기본 경로  2017.02.01 
 		String realPath = context.getRealPath("/");
 		realPath = realPath.substring(0, realPath.length()-1);
-		   		
+		
+		SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
+		String thisDate = toFormat.format(new Date());
+		
+		System.out.println();
+		
 		filePathBase = realPath;
-		  
-		// 변경 해야됨
-		boolean pCt = realPath.contains("/app/online/");
-		/*if(pCt){
-			// not local
-			filePathSub = "/file/a0000006/board/";
-		}else{
-			// local
-			filePathSub = "\\file\\a0000006\\board\\";
-		}*/
-		filePathSub = "/file/a0000006/board/";
+		
+		filePathSub = "/file/" + request.getAttribute("fullSubPath") + thisDate + "/";
+
 		filePathBase = realPath + filePathSub;
 	}		   
 }

@@ -24,28 +24,33 @@ public class BoardController {
 	@Resource(name="BoardService")
 	private BoardService boardService;
 	
-	/* 책소개 리스트 */
+	/* 책소개  > 조회 */
 	@RequestMapping(value="/a0000006/board/bookList.do")
 	public ModelAndView bookList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
-		request.setCharacterEncoding("utf-8"); // 한글깨짐 방지
+		// 한글깨짐 방지
+		request.setCharacterEncoding("utf-8"); 
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookList");
 		
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+		
+		/* 게시판 구분 - B01001 (책소개) */
 		commandMap.put("BOARD_GBN_CD", "B01001");
 		
-		// 책소개 리스트 Count
-		int totalListCount = boardService.selectbookListCnt(commandMap.getMap());		
+		// 책소개 > 조회 > 카운트
+		int totalListCount = boardService.bookListCnt(commandMap.getMap());		
 		
 		// 요청 페이지 번호
 		int requestPageNumber = 1;	
+		
+		// 요청 페이지 번호가 있을 시 해당 페이지 이동
 		if(request.getParameter("requestPageNumber") != null){
 			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
 		}
 
 		// 페이지당 리스트 갯수
-		 int countPerPage = 5;
+		int countPerPage = 5;
 		
 		/* 
 		 ** 페이징 계산 ** 
@@ -63,16 +68,32 @@ public class BoardController {
 		commandMap.put("limitFirst", 	pagingData[1]-1);
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 		
-		// 책소개 리스트 
-		List<Map<String,Object>> bookList = boardService.selectbookList(commandMap.getMap());
+		// 책소개 > 조회
+		List<Map<String,Object>> bookList = boardService.bookList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
 		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
 		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
 		mv.addObject("bookList", 		bookList);		// 책소개 리스트
 		
-		mv.addObject("searchSelect", 	commandMap.get("searchSelect"));	// 파라미터 검색조건
-		mv.addObject("searchWord", 		commandMap.get("searchWord"));		// 파라미터 검색단어
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	/* 책소개 > 상세 */
+	@RequestMapping(value="/a0000006/board/bookView.do")
+	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
+
+		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+		
+		// 책소개 > 상세
+		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
+		
+		mv.addObject("item", commandMap.getMap());
+		mv.addObject("bookView", bookView.get(0));
 		
 		return mv;
 	}
@@ -82,6 +103,8 @@ public class BoardController {
 	public ModelAndView bookForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookForm");
+		
+		mv.addObject("item", commandMap.getMap());
 		
 		return mv;
 	}
@@ -107,33 +130,15 @@ public class BoardController {
 		return mv;
 	}
 	
-	/* 책소개 상세 폼 */
-	@RequestMapping(value="/a0000006/board/bookView.do")
-	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		
-		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
-
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-		commandMap.put("BOARD_GBN_CD", "B01001");
-		commandMap.put("BOARD_SN", request.getParameter("board_Sn"));
-		
-		List<Map<String,Object>> bookView = boardService.selectbookView(commandMap.getMap());
-		
-		mv.addObject("bookView", bookView.get(0));
-		
-		return mv;
-	}
+	
 	
 	/* 책소개 수정 폼 */
 	@RequestMapping(value="/a0000006/board/bookFormU.do")
 	public ModelAndView bookFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookForm");
-
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-		commandMap.put("BOARD_GBN_CD", "B01001");
 		
-		List<Map<String,Object>> bookView = boardService.selectbookView(commandMap.getMap());
+		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
 		
 		mv.addObject("bookView", bookView.get(0));
 		
