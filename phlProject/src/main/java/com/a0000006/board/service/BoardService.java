@@ -14,11 +14,11 @@ public interface BoardService {
 	/* 책소개 > 상세 */
 	List<Map<String, Object>> bookView(Map<String, Object> map) throws Exception;
 	
-	/* 책소개  등록 */
-	String insertBook(Map<String, Object> map) throws Exception;
+	/* 책소개  > 등록 */
+	int insertBook(Map<String, Object> map) throws Exception;
 	
-	/* 책소개 메인이미지 등록 */
-	void insertBookFl(Map<String, Object> map) throws Exception;
+	/* 게시판 > 파일 등록 */
+	void insertBoardFl(Map<String, Object> map) throws Exception;
 	
 	
 }

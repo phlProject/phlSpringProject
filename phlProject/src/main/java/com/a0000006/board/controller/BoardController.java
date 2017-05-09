@@ -98,7 +98,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	/* 책소개 등록 폼 */
+	/* 책소개 > 등록 폼 이동 */
 	@RequestMapping(value="/a0000006/board/bookForm.do")
 	public ModelAndView bookForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
@@ -110,22 +110,29 @@ public class BoardController {
 	}
 	
 	
-	/* 책소개 등록  */
+	/* 책소개 > 등록  */
 	@RequestMapping(value="/a0000006/board/insertBook.do")
 	public ModelAndView insertBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-		commandMap.put("BOARD_GBN_CD", "B01001");
 
-		String result = boardService.insertBook(commandMap.getMap());
+		int board_Sn = boardService.insertBook(commandMap.getMap());
 		
 		if(commandMap.get("origin_fl_nm") != ""){
-			boardService.insertBookFl(commandMap.getMap());
+			
+			commandMap.put("board_sn", board_Sn);
+			// 게시판 > 파일 등록
+			boardService.insertBoardFl(commandMap.getMap());
+		}
+		if(board_Sn > 0){
+			mv.addObject("result", "success");  	
+		}else{
+			mv.addObject("result", "fail");
 		}
 		
-		mv.addObject("result", result);  		
+		mv.addObject("board_Sn", board_Sn);  		
 		
 		return mv;
 	}
@@ -136,10 +143,11 @@ public class BoardController {
 	@RequestMapping(value="/a0000006/board/bookFormU.do")
 	public ModelAndView bookFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
-		ModelAndView mv = new ModelAndView("/a0000006/board/bookForm");
+		ModelAndView mv = new ModelAndView("/a0000006/board/bookFormU");
 		
 		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
 		
+		mv.addObject("item", commandMap.getMap());
 		mv.addObject("bookView", bookView.get(0));
 		
 		return mv;

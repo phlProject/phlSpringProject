@@ -5,7 +5,7 @@ function fn_searchBookList(){
 	ComSubmit('bookList_Form','/a0000006/board/bookList.do');
 }
 
-/* 책소개 > 상세 이동 */
+/* 책소개 > 상세 폼 이동 */
 function fn_bookView(board_sn){
 	var input = $("<input>").attr("type", "hidden").attr("name", "board_Sn").attr("id", "board_Sn").val(board_sn);
 	$("#bookList_Form").attr({action:"/a0000006/board/bookView.do" ,method:'post'}).append($(input)).submit();
@@ -16,7 +16,7 @@ function fn_bookList(){
 	ComSubmit('bookList_Form','/a0000006/board/bookList.do');
 }
 
-/* 책소개 > 신규등록 이동 */
+/* 책소개 > 신규등록 폼 이동 */
 function fn_bookFormI(){
 	ComSubmit('bookList_Form','/a0000006/board/bookForm.do');
 }
@@ -44,4 +44,8 @@ function fn_bookUploadFile(){
             console.log(error.status);
         }
     });
+}
+
+function fn_bookFormU(){
+	ComSubmit('bookView_Form','/a0000006/board/bookFormU.do');
 }

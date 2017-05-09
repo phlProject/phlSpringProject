@@ -37,19 +37,22 @@ public class BoardServiceImpl implements BoardService {
 	
 	/* 책소개 등록 */
 	@Override
-	public String insertBook(Map<String, Object> map) throws Exception {
+	public int insertBook(Map<String, Object> map) throws Exception {
 		try {
 			boardDAO.insertBook(map);
-			return "success";
+			
+			// 전 등록된 Seq 가져오기
+			int board_sn = boardDAO.seqSn();
+			return board_sn;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "fail";
+			return -1;
 		}
 	}
 	
-	/* 책소개 메인이미지 등록 */
-	public void insertBookFl(Map<String, Object> map) throws Exception {
-		boardDAO.insertBookFl(map);
+	/* 게시판 > 파일 등록 */
+	public void insertBoardFl(Map<String, Object> map) throws Exception {
+		boardDAO.insertBoardFl(map);
 	}
 	
 	

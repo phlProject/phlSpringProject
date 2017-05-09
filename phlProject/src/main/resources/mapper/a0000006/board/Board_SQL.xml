@@ -104,7 +104,7 @@
 			,REG_ID
 		)VALUES(
 			 #{BSNS_CODE}
-			,#{BOARD_GBN_CD}
+			,#{board_gbn_cd}
 			,#{subject}
 			,#{editor}
 			,now()
@@ -113,8 +113,8 @@
 		)
 	</insert>
 	
-	<!-- 책소개 메인이미지 등록  -->
-	<insert id="insertBookFl"  parameterType="hashmap">
+	<!-- 게시판 > 파일 등록  -->
+	<insert id="insertBoardFl"  parameterType="hashmap">
 		INSERT INTO BSNS_MNG_BOARD_FL(
 			 BSNS_CODE
 			,BOARD_SN
@@ -125,7 +125,7 @@
 			,REG_ID
 		)VALUES(
 			 #{BSNS_CODE}
-			,LAST_INSERT_ID()
+			,#{board_sn}
 			,#{origin_fl_nm}
 			,#{fl_nm}
 			,#{fl_path}
@@ -135,5 +135,8 @@
 		)
 	</insert>
 	
+	<select id="seqSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
 	
 </mapper>

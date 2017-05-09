@@ -26,7 +26,7 @@
             }
         });
          
-        //전송버튼 클릭이벤트
+        //저장버튼 클릭이벤트
         $("#fn_insertBook").click(function(){
             
             //id가 smarteditor인 textarea에 에디터에서 대입
@@ -36,9 +36,11 @@
         	$.post(postUrl, $("#editor_Form").serialize(), function(data){
         		if(data.result == "success" ){
         			alert("등록되었습니다.");
-        			ComSubmit('editor_Form','/a0000006/board/bookList.do');
+        			// boardSn 부여
+        			$("#board_Sn").val(data.board_Sn);
+        			ComSubmit('bookList_Form','/a0000006/board/bookView.do');
         		} else{
-        			alert("실패");
+        			alert("실패하였습니다. 관리자에게 문의해주세요.");
         			return;
         		}
         	});
@@ -52,10 +54,10 @@
 <form id="bookList_Form">
 	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
 	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
+	<input type="hidden" id="board_Sn" 		name="board_Sn">
 </form>
 
 <div id="content">
-	
 	<!-- 책소개 Main 사진  -->
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
 		<div>
@@ -69,6 +71,7 @@
 		<input type="hidden" id="fl_nm" name="fl_nm">
 	    <input type="hidden" id="fl_path" name="fl_path">
 	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm">
+	    <input type="hidden" id="board_gbn_cd" name="board_gbn_cd" value="B01001">
 	    
                   제목      <input type="text" id="subject" name="subject" size="86"><br>
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>

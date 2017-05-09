@@ -32,11 +32,14 @@ public class BoardDAO extends AbstractDAO {
 	    insert("a0000006/board.insertBook", map);
 	}
 	
-	/* 책소개 메인이미지 등록 */
-	public void insertBookFl(Map<String, Object> map) throws Exception{
-	    insert("a0000006/board.insertBookFl", map);
+	/* 게시판  > 파일 등록 */
+	public void insertBoardFl(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.insertBoardFl", map);
 	}
 
+	public int seqSn() throws Exception{
+	    return (Integer) selectOne("a0000006/board.seqSn");
+	}
 	
 
 }
