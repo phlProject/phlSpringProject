@@ -29,6 +29,14 @@
         //저장버튼 클릭이벤트
         $("#fn_updateBook").click(function(){
             
+        	if(!bookValidation()){
+        		return;
+        	}
+        	
+        	if(!confirm("수정하시겠습니까? ")){
+        		return;
+        	}
+        	
             //id가 smarteditor인 textarea에 에디터에서 대입
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
        		
@@ -68,16 +76,19 @@
 	<form id="editor_Form">
 		<input type="hidden" id="bsns_code" name="bsns_code" value="${bookView.BSNS_CODE}">
 		<input type="hidden" id="board_Sn" name="board_Sn" value="${bookView.BOARD_SN}">
+		<input type="hidden" id="board_Fl_Sn" name="board_Fl_Sn" value="${bookView.BOARD_FL_SN}">
+		
 		<input type="hidden" id="fl_nm" name="fl_nm" value="${bookView.FL_NM}">
 	    <input type="hidden" id="fl_path" name="fl_path" value="${bookView.FL_PATH}">
 	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm" value="${bookView.ORIGIN_FL_NM}">
 	    <input type="hidden" id="board_gbn_cd" name="board_gbn_cd" value="B01001">
+	    <input type="hidden" id="uploadYn" name="uploadYn" value="N">
 	    
                   제목      <input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br>
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30">${bookView.CONTENTS}</textarea>
 	</form>
 	
-	<a href="#" id="fn_updateBook" >저장</a>
+	<a href="#" id="fn_updateBook" >수정</a>
 	<a href="javascript:fn_bookView(${bookView.BOARD_SN});" id="bookView">이전</a>
 </div>
 

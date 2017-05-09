@@ -37,9 +37,19 @@ public class BoardDAO extends AbstractDAO {
 	    update("a0000006/board.updateBook", map);
 	}
 	
+	/* 책소개 > 삭제 */
+	public void deleteBook(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.deleteBook", map);
+	}
+	
 	/* 게시판  > 파일 등록 */
 	public void insertBoardFl(Map<String, Object> map) throws Exception{
 	    insert("a0000006/board.insertBoardFl", map);
+	}
+	
+	/* 게시판  > 파일 수정 */
+	public void updateBoardFl(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.updateBoardFl", map);
 	}
 
 	/* 게시판 > 번호 채번 */

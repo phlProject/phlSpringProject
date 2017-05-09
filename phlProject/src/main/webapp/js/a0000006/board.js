@@ -24,7 +24,8 @@ function fn_bookFormI(){
 /* 책소개 > 신규등록/수정 > 파일업로드 */
 function fn_bookUploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);
-    $.ajax({
+	alert(formData);
+	$.ajax({
         type : 'post',
         url : "/phl/uploadFile.do",
         data : formData,
@@ -36,6 +37,7 @@ function fn_bookUploadFile(){
             $("#fl_nm").val(data.fl_upload.FL_NM);
             $("#fl_path").val(data.fl_upload.FL_PATH);
             $("#origin_fl_nm").val(data.fl_upload.ORIGIN_FL_NM);
+            $("#uploadYn").val("Y");
             $("#mainImage").attr("src", data.fl_upload.FL_PATH+data.fl_upload.FL_NM);
         },
         error : function(error) {
@@ -46,6 +48,47 @@ function fn_bookUploadFile(){
     });
 }
 
+/* 책소개 > 수정 폼 이동 */
 function fn_bookFormU(){
 	ComSubmit('bookView_Form','/a0000006/board/bookFormU.do');
+}
+
+/* 책소개 > 글 삭제 */
+function fn_deleteBook(){
+	
+	if(!confirm("삭제하시겠습니까? ")){
+		return;
+	}
+	
+	var postUrl = "/a0000006/board/deleteBook.do";
+	$.post(postUrl, $("#bookView_Form").serialize(), function(data){
+		if(data.result == "success" ){
+			alert("삭제되었습니다.");
+			ComSubmit('bookList_Form','/a0000006/board/bookList.do');
+		} else{
+			alert("실패하였습니다. 관리자에게 문의해주세요.");
+			return;
+		}
+	});
+}
+
+/* 책소개  > 등록/수정 > 유효성 체크 */
+function bookValidation(){
+	if($("#fl_nm").val()==""){
+		alert("이미지를 선택해주시기 바랍니다.");
+		return;
+	}
+	
+	if($("#subject").val()==""){
+		alert("제목을 입력해주세요.");
+		$("#subject").focus();
+		return;
+	}
+	
+	if($("#editor").val()==""){
+		alert("내용을 입력해주세요.");
+		return;
+	}
+	
+	return true;
 }

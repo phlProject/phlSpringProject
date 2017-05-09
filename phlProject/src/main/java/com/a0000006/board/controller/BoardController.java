@@ -120,12 +120,13 @@ public class BoardController {
 
 		int board_Sn = boardService.insertBook(commandMap.getMap());
 		
-		if(commandMap.get("origin_fl_nm") != ""){
+		if(commandMap.get("uploadYn") == "Y"){
 			
 			commandMap.put("board_Sn", board_Sn);
 			// 게시판 > 파일 등록
 			boardService.insertBoardFl(commandMap.getMap());
 		}
+
 		if(board_Sn > 0){
 			mv.addObject("result", "success");  	
 		}else{
@@ -160,10 +161,24 @@ public class BoardController {
 
 		String result = boardService.updateBook(commandMap.getMap());
 		
-/*		if(commandMap.get("origin_fl_nm") != ""){
+		if(commandMap.get("uploadYn") == "Y"){
 			// 게시판 > 파일 등록
-			boardService.insertBoardFl(commandMap.getMap());
-		}*/
+			boardService.updateBoardFl(commandMap.getMap());
+		}
+		
+		mv.addObject("result", result);  	
+		
+		return mv;
+	}
+	
+	/* 책소개 > 삭제  */
+	@RequestMapping(value="/a0000006/board/deleteBook.do")
+	public ModelAndView deleteBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
+
+		String result = boardService.deleteBook(commandMap.getMap());
 		
 		mv.addObject("result", result);  	
 		

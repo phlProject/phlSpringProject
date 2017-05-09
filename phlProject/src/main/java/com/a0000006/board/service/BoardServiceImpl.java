@@ -55,7 +55,18 @@ public class BoardServiceImpl implements BoardService {
 	public String updateBook(Map<String, Object> map) throws Exception {
 		try {
 			boardDAO.updateBook(map);
-			
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 책소개 > 삭제 */
+	@Override
+	public String deleteBook(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.deleteBook(map);
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,4 +79,8 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.insertBoardFl(map);
 	}
 	
+	/* 게시판 > 파일 수정 */
+	public void updateBoardFl(Map<String, Object> map) throws Exception {
+		boardDAO.updateBoardFl(map);
+	}
 }

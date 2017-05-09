@@ -17,9 +17,15 @@ public interface BoardService {
 	/* 책소개  > 등록 */
 	int insertBook(Map<String, Object> map) throws Exception;
 	
+	/* 책소개  > 수정 */
+	String updateBook(Map<String, Object> map) throws Exception;
+	
+	/* 책소개  > 삭제 */
+	String deleteBook(Map<String, Object> map) throws Exception;
+	
 	/* 게시판 > 파일 등록 */
 	void insertBoardFl(Map<String, Object> map) throws Exception;
 	
-	/* 책소개  > 수정 */
-	String updateBook(Map<String, Object> map) throws Exception;
+	/* 게시판 > 파일 수정 */
+	void updateBoardFl(Map<String, Object> map) throws Exception;
 }

@@ -26,6 +26,7 @@
 			 ${bookView.CONTENTS}
 			 <br>
 		<a href="javascript:fn_bookFormU();" id="bookFormU">수정</a>
+		<a href="javascript:fn_deleteBook();" id="deleteBook">삭제</a>
 		<a href="javascript:fn_bookList();" id="bookList">목록</a>
 	</div>
 	

@@ -29,6 +29,14 @@
         //저장버튼 클릭이벤트
         $("#fn_insertBook").click(function(){
             
+        	if(!bookValidation()){
+        		return;
+        	}
+        	
+        	if(!confirm("저장하시겠습니까? ")){
+        		return;
+        	}
+        	
             //id가 smarteditor인 textarea에 에디터에서 대입
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
        		
@@ -46,6 +54,8 @@
         	});
         });
     }); 
+    
+   
 	</script>
 </head>
 <body>
@@ -72,6 +82,7 @@
 	    <input type="hidden" id="fl_path" name="fl_path">
 	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm">
 	    <input type="hidden" id="board_gbn_cd" name="board_gbn_cd" value="B01001">
+	    <input type="hidden" id="uploadYn" name="uploadYn" value="N">
 	    
                   제목      <input type="text" id="subject" name="subject" size="86"><br>
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>

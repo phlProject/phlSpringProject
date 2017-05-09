@@ -125,6 +125,17 @@
 		   AND BOARD_SN  = #{board_Sn}
 	</update>
 	
+	<!-- 책소개 > 삭제 -->
+	<update id="deleteBook"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD
+		   SET USE_YN = 'N'
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{BSNS_CODE}
+		   AND BOARD_SN  = #{board_Sn}
+	</update>
+	
 	<!-- 게시판 > 파일 등록  -->
 	<insert id="insertBoardFl"  parameterType="hashmap">
 		INSERT INTO BSNS_MNG_BOARD_FL(
@@ -146,6 +157,20 @@
 			<!-- ,#{SESSION_ID} -->
 		)
 	</insert>
+	
+	<!-- 게시판 > 파일 수정  -->
+	<update id="updateBoardFl"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD_FL
+		   SET ORIGIN_FL_NM = #{origin_fl_nm}
+		      ,FL_NM = #{fl_nm}
+		      ,FL_PATH = #{fl_path}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1 
+		   AND BSNS_CODE = #{bsns_code}
+		   AND BOARD_SN  = #{board_Sn}
+		   AND BOARD_FL_SN =#{board_Fl_Sn}
+	</update>
 	
 	<!-- 게시판 > 번호 채번  -->
 	<select id="seqSn" resultType="java.lang.Integer">
