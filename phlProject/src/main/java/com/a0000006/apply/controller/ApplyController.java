@@ -84,6 +84,24 @@ public class ApplyController {
 		
 	}
 	
-	
+	@RequestMapping(value="/a0000006/apply/insertApply.do")
+	public ModelAndView insertApply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		Map<String, Object> map = commandMap.getMap();
+		
+		map.put("SESSION_ID", session.getAttribute("session_id"));
+		map.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+		
+		// 신청 등록
+		String result = applyService.insertApply(map);
+		mv.addObject("result", result);
+		mv.addObject("sessionId", session.getAttribute("session_id"));
+		mv.addObject("bsnsCode", session.getAttribute("BSNS_CODE"));
+		
+		return mv;
+		
+	} 
 	
 }

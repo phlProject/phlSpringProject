@@ -46,6 +46,19 @@ public class ApplyServiceImpl implements ApplyService{
 		
 		return applyDAO.applyList(map);
 	}
+
+
+	// 신청 등록
+	@Override
+	public String insertApply(Map<String, Object> map) throws Exception {
+		try {
+			applyDAO.insertApply(map);
+			return "0";
+		} catch (Exception e) {
+			return "-1";
+		}
+		
+	}
 	
 	
 }

@@ -17,4 +17,8 @@ public class ApplyDAO extends AbstractDAO{
 		return (List<CommandMap>)selectList("a0000006/apply.applyList", map); 	
 	}
 
+	public void insertApply(Map<String, Object> map) throws Exception{
+		insert("a0000006/apply.insertApply", map);
+	}
+
 }

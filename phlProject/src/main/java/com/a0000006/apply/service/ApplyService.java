@@ -11,4 +11,7 @@ public interface ApplyService {
 	// 스케줄 목록
 	List<CommandMap> applyList(Map<String, Object> map) throws Exception;
 
+	// 신청 등록
+	String insertApply(Map<String, Object> map) throws Exception;
+
 }
