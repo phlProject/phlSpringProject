@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="content">
-			<h3 class="cont-title">자료</h3>
+			<h3 class="cont-title">책 소개</h3>
 		<form id="bookList_Form">
 			<!-- 검색조건 -->
 			<div class="search">
