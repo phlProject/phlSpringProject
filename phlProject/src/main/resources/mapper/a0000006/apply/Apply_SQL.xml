@@ -13,7 +13,7 @@
 				, ST_HOUR
 				, END_HOUR
 				, SUBJECT
-				, CONTENTS
+				, CONTENT
 				, REG_DT
 				, REG_ID
 				, MOD_DT
