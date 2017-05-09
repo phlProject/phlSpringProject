@@ -6,17 +6,83 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+
 <jsp:useBean id="toYear" class="java.util.Date" />
 <jsp:useBean id="toMonth" class="java.util.Date" />
 <jsp:useBean id="toDay" class="java.util.Date" />
 
 <form id="applyForm" name="applyForm" method="post">	
 
+
 <input type="hidden" name="toYear" id="toYear" value="<fmt:formatDate value="${toYear}" pattern="yyyy" />"/>
 <input type="hidden" name="toMonth" id="toMonth" value="<fmt:formatDate value="${toMonth}" pattern="MM" />"/>
 <input type="hidden" name="toDay" id="toDay" value="<fmt:formatDate value="${toDay}" pattern="dd" />"/>
+<input type="hidden" name="bsnsCode"value="${bsnsCode}" id="bsnsCode">
+<input type="hidden" name="sessionId" value="${sessionId}" id="sessionId">
+<input type="hidden" name="scheduleSn" id="scheduleSn">
 
+<div id="content">
 
+	<div id="insertFormPop" class="insertLayer" style="display:none;">
+		<a href="javascript:closeLayer('insertFormPop');"><span>닫기X</span></a>
+		<table>
+			<tr>
+				<th>스케줄 구분</th>
+				<td>
+					<!-- 프로그램 신청 소공연장 강연회 세미나실 밴드연습실 댄스연습실 -->
+					<select name="scheduleCd">
+						<option value="P01001">프로그램 신청</option>
+						<option value="">장소대관</option>
+						<option value=""></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>일자</th>
+				<td>
+					<input type="text" name="scheduleDt" id="scheduleDt" class="text w90 datepicker">
+				</td>
+			</tr>
+			<tr>
+				<th>시작시간</th>
+				<td>
+					<select name="stHour" id="stHour">
+						<c:forEach begin="0" end="23" step="1" var="stHour">
+							<option value='<fmt:formatNumber pattern="00" value="${stHour}"/>'><fmt:formatNumber pattern="00" value="${stHour}"/></option>
+						</c:forEach>
+					</select>
+				</td>
+				
+			</tr>
+			<tr>
+				<th>끝시간</th>
+				<td>
+					<select name="endHour" id="endHour">
+						<c:forEach begin="0" end="23" step="1" var="endHour">
+							<option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
+						</c:forEach>
+					</select>
+				</td>
+				
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="subject">
+				</td>
+				
+			</tr>
+			<tr>	
+				<th>내용</th>
+				<td>
+					<input type="text" name="content">
+				</td>
+			</tr>		
+		</table>
+		
+		<a href="javascript:insert();"><span>등록</span></a>
+	</div>
+	
 	<!-- 월간 일정 -->
 	<div class="divWrap mt15" id="monthDiv">
 		<div class='btn-holder'>
@@ -25,6 +91,9 @@
 			<a href="javascript:void(0)"><img src="/img/btn_calendarNext.png" alt="" id="btnNext"/></a>
 		</div>
 		
+		<div style="float:right;">
+			<a href="javascript:insertForm();"><span>신규 신청</span></a>
+		</div><br>
 		<!-- 달력 -->
 		<div id="calendar"></div>
 	</div>
@@ -41,30 +110,92 @@
 		<table id="dailyTable"></table>
 	</div>
 
+</div>
 </form>
 
 <script type="text/javascript">
-/* 
-$.datepicker.setDefaults({
-	showOn: "both",
-	buttonImage: '<c:url value="/myFarm/images/icon_calendar.gif"/>',	
-    dateFormat: 'yy-mm-dd',
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-    showMonthAfterYear: false,
-       changeYear: true,
-    changeMonth: true
-}); */
+ 
+function insertForm(){
+	$("#insertFormPop").css("display", "block");
+	centerLocation("insertFormPop");
+}
+ 
+$(document).ready(function(){
+
+	$(".datepicker").datepicker({
+		showOn: "both",
+		buttonImage: '<c:url value="/img/icon_calendar.gif"/>',
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	    showMonthAfterYear: false,
+	    changeYear: true,
+	    changeMonth: true
+	});
+
+	
+	$(".date-cell").each(function(){
+		$(this).click(function(){
+			var thisDate = $(this).text();
+			insertForm();
+		});
+	});
+});
+
+function insert(){
+	
+	if(confirm("등록하시겠습니까?")){
+		
+		var url = "/a0000006/apply/insertApply.do";
+		
+		$.post(url,$("#applyForm").serialize(),function(data){
+			if(data.result == "0" ){
+				alert("등록되었습니다.");
+				$( "#applyForm").attr({action:'/a0000006/apply/applyList.do' ,method:'post'}).submit();
+			} else{
+				alert("등록에 실패했습니다.");
+				return;
+			}
+		});
+
+		
+	}
+	
+	
+}
+function closeLayer(objId){
+	$("#" + objId).css("display", "none");
+	
+}
+
+function centerLocation(objId){
+    
+	var obj = "#" + objId;
+	
+    var content = $("#content" ).offset();
+    var contentWidth = $("#content" ).width()/2;
+    var objWidth = $(obj).width()/2;
+   
+   
+    var tx = content.left + contentWidth - objWidth;
+    var ty = (($(window).height() - $(obj).outerHeight()) / 2) + $(window).scrollTop();
+           //( ( $(window).height() - ($(objName).height()/2) ) ) + $(window).scrollTop();/* + ((content.top) /2);*/
+   $(obj).css({
+          left : tx + "px",
+          top : ty + "px"
+   });
+}
+
 
 var cList = new Array();
 var pageLoad = false;
 var calendar = new controller();
-	
+
 // 달력
 calendar.init();
 
@@ -317,6 +448,12 @@ function controller(target) {
 	this.getYearMonth = function(oDate) {
 		return oDate.getFullYear() + '. ' + (oDate.getMonth() + 1);
 	};
+	
+}
+
+function popWorkDetail(scheduleSn){
+	
+	alert('상세페이지');
 	
 }
 
