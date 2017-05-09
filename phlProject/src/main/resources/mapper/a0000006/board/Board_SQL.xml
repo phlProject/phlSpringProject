@@ -93,7 +93,7 @@
 		  AND BMB.BOARD_SN = #{board_Sn}
 	</select>	
 
-	<!-- 책소개 등록 -->
+	<!-- 책소개 > 등록 -->
 	<insert id="insertBook" parameterType="hashmap">
 		INSERT INTO BSNS_MNG_BOARD(
 			 BSNS_CODE
@@ -113,6 +113,18 @@
 		)
 	</insert>
 	
+	<!-- 책소개 > 수정 -->
+	<update id="updateBook"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD
+		   SET SUBJECT = #{subject}
+		      ,CONTENTS = #{editor}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsns_code}
+		   AND BOARD_SN  = #{board_Sn}
+	</update>
+	
 	<!-- 게시판 > 파일 등록  -->
 	<insert id="insertBoardFl"  parameterType="hashmap">
 		INSERT INTO BSNS_MNG_BOARD_FL(
@@ -125,7 +137,7 @@
 			,REG_ID
 		)VALUES(
 			 #{BSNS_CODE}
-			,#{board_sn}
+			,#{board_Sn}
 			,#{origin_fl_nm}
 			,#{fl_nm}
 			,#{fl_path}
@@ -135,6 +147,7 @@
 		)
 	</insert>
 	
+	<!-- 게시판 > 번호 채번  -->
 	<select id="seqSn" resultType="java.lang.Integer">
 		SELECT LAST_INSERT_ID()
 	</select>

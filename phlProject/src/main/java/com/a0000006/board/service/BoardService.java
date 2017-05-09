@@ -20,5 +20,6 @@ public interface BoardService {
 	/* 게시판 > 파일 등록 */
 	void insertBoardFl(Map<String, Object> map) throws Exception;
 	
-	
+	/* 책소개  > 수정 */
+	String updateBook(Map<String, Object> map) throws Exception;
 }

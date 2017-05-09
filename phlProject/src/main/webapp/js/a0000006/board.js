@@ -6,8 +6,8 @@ function fn_searchBookList(){
 }
 
 /* 책소개 > 상세 폼 이동 */
-function fn_bookView(board_sn){
-	var input = $("<input>").attr("type", "hidden").attr("name", "board_Sn").attr("id", "board_Sn").val(board_sn);
+function fn_bookView(board_Sn){
+	var input = $("<input>").attr("type", "hidden").attr("name", "board_Sn").attr("id", "board_Sn").val(board_Sn);
 	$("#bookList_Form").attr({action:"/a0000006/board/bookView.do" ,method:'post'}).append($(input)).submit();
 }
 

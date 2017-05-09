@@ -27,9 +27,14 @@ public class BoardDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("a0000006/board.bookView", map);
     }
 	
-	/* 책소개 등록 */
+	/* 책소개 > 등록 */
 	public void insertBook(Map<String, Object> map) throws Exception{
 	    insert("a0000006/board.insertBook", map);
+	}
+	
+	/* 책소개 > 수정 */
+	public void updateBook(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.updateBook", map);
 	}
 	
 	/* 게시판  > 파일 등록 */
@@ -37,6 +42,7 @@ public class BoardDAO extends AbstractDAO {
 	    insert("a0000006/board.insertBoardFl", map);
 	}
 
+	/* 게시판 > 번호 채번 */
 	public int seqSn() throws Exception{
 	    return (Integer) selectOne("a0000006/board.seqSn");
 	}

@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.bookView(map);
     }
 	
-	/* 책소개 등록 */
+	/* 책소개 > 등록 */
 	@Override
 	public int insertBook(Map<String, Object> map) throws Exception {
 		try {
@@ -50,10 +50,22 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
+	/* 책소개 > 수정 */
+	@Override
+	public String updateBook(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.updateBook(map);
+			
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 	/* 게시판 > 파일 등록 */
 	public void insertBoardFl(Map<String, Object> map) throws Exception {
 		boardDAO.insertBoardFl(map);
 	}
-	
 	
 }

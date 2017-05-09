@@ -86,7 +86,7 @@ public class BoardController {
 	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
-
+		System.out.println(commandMap.getMap());
 		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		
 		// 책소개 > 상세
@@ -122,7 +122,7 @@ public class BoardController {
 		
 		if(commandMap.get("origin_fl_nm") != ""){
 			
-			commandMap.put("board_sn", board_Sn);
+			commandMap.put("board_Sn", board_Sn);
 			// 게시판 > 파일 등록
 			boardService.insertBoardFl(commandMap.getMap());
 		}
@@ -137,9 +137,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	
-	
-	/* 책소개 수정 폼 */
+	/* 책소개 > 수정 폼 이동 */
 	@RequestMapping(value="/a0000006/board/bookFormU.do")
 	public ModelAndView bookFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
@@ -153,4 +151,22 @@ public class BoardController {
 		return mv;
 	}
 	
+	/* 책소개 > 수정  */
+	@RequestMapping(value="/a0000006/board/updateBook.do")
+	public ModelAndView updateBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
+
+		String result = boardService.updateBook(commandMap.getMap());
+		
+/*		if(commandMap.get("origin_fl_nm") != ""){
+			// 게시판 > 파일 등록
+			boardService.insertBoardFl(commandMap.getMap());
+		}*/
+		
+		mv.addObject("result", result);  	
+		
+		return mv;
+	}
 }
