@@ -20,7 +20,7 @@ public class A0000006Controller {
 		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
         
         // 교육나눔꿈두레 사업코드 (A0000006)
-        session.setAttribute("BSNS_CODE","A0000006");
+        session.setAttribute("bsns_code","A0000006");
         
         return mv;
     }     

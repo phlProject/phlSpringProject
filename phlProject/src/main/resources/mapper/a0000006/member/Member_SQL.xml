@@ -10,7 +10,7 @@
     	FROM BSNS_MEMBER
     	WHERE 1=1
     	  AND MEM_ID = #{mem_id}
-    	  AND BSNS_CODE = #{BSNS_CODE}
+    	  AND BSNS_CODE = #{bsns_code}
     </select>
     
     <!-- 로그인 정보 -->
@@ -24,7 +24,7 @@
     	  AND USE_YN = 'Y'
     	  AND MEM_ID = #{mem_id}
     	  AND MEM_PW = #{mem_pw}
-    	  AND BSNS_CODE = #{BSNS_CODE}
+    	  AND BSNS_CODE = #{bsns_code}
     </select>
     
     <!-- 마이페이지 -->
@@ -42,15 +42,15 @@
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
     	 	       AND CMMN_CODE = MEM_GRADE
-    	 	       AND BSNS_CODE = #{BSNS_CODE}
+    	 	       AND BSNS_CODE = #{bsns_code}
     	 	  ) AS MEM_GRADE_NM
     	 	  ,MEM_EMAIL
     	 	  ,MEM_PHONE
     	FROM BSNS_MEMBER
     	WHERE 1=1
     	  AND USE_YN = 'Y'
-    	  AND MEM_ID = #{SESSION_ID}
-    	  AND BSNS_CODE = #{BSNS_CODE}
+    	  AND MEM_ID = #{session_id}
+    	  AND BSNS_CODE = #{bsns_code}
     </select>
     
     <!-- 회원가입 -->
@@ -70,7 +70,7 @@
     		, USE_YN
 			</if>
     	)VALUES(
-    		  #{BSNS_CODE}
+    		  #{bsns_code}
     		, #{mem_id}
     		, #{mem_pw}
     		, #{mem_nm}
@@ -97,7 +97,7 @@
     		, MEM_GRADE	= #{mem_grade}
     		, MEM_PHONE	= #{mem_phone}
     		, MOD_DT	= now()
-    		, MOD_ID	= #{mem_id}
+    		, MOD_ID	= #{session_id}
     	WHERE 1=1
     	  AND BSNS_CODE = #{bsns_code}
     	  AND MEM_ID    = #{mem_id}
@@ -121,7 +121,7 @@
 		FROM BSNS_MEMBER
 		WHERE 1=1
     	  AND MEM_ID = #{mem_id}
-		  AND BSNS_CODE = #{BSNS_CODE}
+		  AND BSNS_CODE = #{bsns_code}
 	</select>
     
 </mapper>

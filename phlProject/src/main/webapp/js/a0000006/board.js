@@ -24,7 +24,6 @@ function fn_bookFormI(){
 /* 책소개 > 신규등록/수정 > 파일업로드 */
 function fn_bookUploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);
-	alert(formData);
 	$.ajax({
         type : 'post',
         url : "/phl/uploadFile.do",
@@ -82,11 +81,6 @@ function bookValidation(){
 	if($("#subject").val()==""){
 		alert("제목을 입력해주세요.");
 		$("#subject").focus();
-		return;
-	}
-	
-	if($("#editor").val()==""){
-		alert("내용을 입력해주세요.");
 		return;
 	}
 	

@@ -13,7 +13,8 @@
 			<tr>
 				<td>아이디 </td><td>
 					${myPageInfo.MEM_ID}
-					<input type="hidden" value="${myPageInfo.BSNS_CODE}" id="bsns_code" name="bsns_code">
+					<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
+					<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
 					<input type="hidden" value="${myPageInfo.MEM_SN}" id="mem_sn" name="mem_sn">
 					<input type="hidden" value="${myPageInfo.MEM_ID}" id="mem_id" name="mem_id">
 				</td>

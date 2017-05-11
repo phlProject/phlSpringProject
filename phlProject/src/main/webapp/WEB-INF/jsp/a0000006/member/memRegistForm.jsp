@@ -12,6 +12,7 @@
 		<div id="register">
 			<p>회원가입</p>	
 			<form id="memRegist_Form" name="memRegist_Form">
+				<input type="hidden" id="bsns_code" name="bsns_code" value="${sessionScope.bsns_code}">
 				<input type="hidden" id="usableId_yn" value="N">
 					<table>
 						<tr>
@@ -63,7 +64,6 @@
 					</table>
 			</form>
 			<a href="javascript:fn_insertMemRegist();" id="insertMemRegist">가입하기</a>
-			<!-- <a href="/a0000006/mainIndex.do" id="mainIndex">메인</a> -->
 		</div>
 	</div>
 </body>

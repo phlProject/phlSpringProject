@@ -41,18 +41,13 @@ public class MemberController {
 	public ModelAndView loginAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView();
         
-        
-        commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-        
         String resultValue = "";
         
         /* 로그인(ID,PW CHECK) */
         List<Map<String,Object>> idPwChk = memberService.idPwCheck(commandMap.getMap());
         
-        
         /* 해당하는 아이디 존재 시 */
         if(idPwChk.size() != 0){
-        	
         	String queryPw = (String) idPwChk.get(0).get("MEM_PW");
         	String queryUseYn = (String) idPwChk.get(0).get("USE_YN");
         	
@@ -71,7 +66,6 @@ public class MemberController {
 		        }else{
 		        	/* 비밀번호 오류 */
 		        	resultValue = "PW_ERROR";
-		        	
 		        	mv.setViewName("/a0000006/member/memLoginForm");
 		        }
         	}else if(queryUseYn.equals("S")){
@@ -99,16 +93,15 @@ public class MemberController {
 	public ModelAndView memMyPage(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/member/memMyPage");
 	
-		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
+		Map<String,Object> sessionInfo = (Map<String, Object>) session.getAttribute("loginInfo");
 		
-		Map<String,Object> sessionInFo = (Map<String, Object>) session.getAttribute("loginInfo");
-		
-	    commandMap.put("CL_CODE", "G01");
-	    if(!sessionInFo.get("MEM_GRADE").equals("G01998") && !sessionInFo.get("MEM_GRADE").equals("G01999")){
-	    	commandMap.put("NOT_DETAIL_CODE", "'998','999'");
+	    commandMap.put("cl_code", "G01");
+	    
+	    if(!sessionInfo.get("MEM_GRADE").equals("G01998") && !sessionInfo.get("MEM_GRADE").equals("G01999")){
+	    	commandMap.put("not_detail_code", "'998','999'");
 	    }
 	    
+	    // 공통코드(회원권한)
 	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
 	    
 		List<CommandMap> myPageInfo = memberService.memMyPage(commandMap.getMap());
@@ -136,11 +129,10 @@ public class MemberController {
 	public ModelAndView memRegistForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 	    ModelAndView mv = new ModelAndView("/a0000006/member/memRegistForm");
 	    
-	    commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-	    commandMap.put("CL_CODE", "G01");
-	    commandMap.put("NOT_DETAIL_CODE", "'998','999'");
+	    commandMap.put("cl_code", "G01");
+	    commandMap.put("not_detail_code", "'998','999'");
 	    
-	    
+	    // 공통코드(회원권한)
 	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
 	    
 	    mv.addObject("commList", commList);
@@ -152,8 +144,6 @@ public class MemberController {
 	@RequestMapping(value="/a0000006/mem/insertMemRegist.do")
 	public ModelAndView insertMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
-
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 
 		String result = memberService.insertMemRegist(commandMap.getMap());
 		
@@ -195,7 +185,6 @@ public class MemberController {
 	public ModelAndView idDupChk(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		
 		int id_Chk = memberService.idDupChk(commandMap.getMap());
 		String result = "";

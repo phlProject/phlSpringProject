@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -10,22 +10,25 @@
 <div id="header">
 	<header id="masthead" class="site-header">
 		<div id="logo"><a href="/a0000006/mainIndex.do"><img src="/img/logo10.png"></a></div>
-		
+		<form id="topMenu_Form">
+			<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
+			<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
+		</form>
 		<nav>
 			<ul>
 			<c:choose>
 			<c:when test="${not empty sessionScope.loginInfo}">
-				<li><a href="/a0000006/mem/memMyPage.do" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
-				<li><a href="/a0000006/mem/logoutAction.do" id="logoutAction">로그아웃</a></li>
+				<li><a href="javascript:TopMenuMove('/a0000006/mem/memMyPage.do');" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
+				<li><a href="javascript:TopMenuMove('/a0000006/mem/logoutAction.do');" id="logoutAction">로그아웃</a></li>
 				
 				<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
 				<c:if test="${loginInfo.MEM_GRADE eq 'G01998' || loginInfo.MEM_GRADE eq 'G01999'}">
-					<li><a href="/a0000006/mng/memList.do" id="memList">관리자</a></li>
+					<li><a href="javascript:TopMenuMove('/a0000006/mng/memList.do');" id="memList">관리자</a></li>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<li><a href="/a0000006/mem/memLoginForm.do" id="memLoginForm">로그인</a></li>
-				<li><a href="/a0000006/mem/memRegistForm.do" id="memRegistForm">회원가입</a></li>
+				<li><a href="javascript:TopMenuMove('/a0000006/mem/memLoginForm.do');" id="memLoginForm">로그인</a></li>
+				<li><a href="javascript:TopMenuMove('/a0000006/mem/memRegistForm.do');" id="memRegistForm">회원가입</a></li>
 			</c:otherwise>
 			</c:choose>
 		
@@ -48,16 +51,16 @@
 						<li><a href="#">오시는 길</a></li>
 					</ul>		
 				</li>
-				<li><a href="/a0000006/apply/applyList.do">신청 및 문의</a>
+				<li><a href="javascript:TopMenuMove('/a0000006/apply/applyList.do');">신청 및 문의</a>
 					<ul>
-						<li><a href="/a0000006/apply/applyList.do">장소대관</a></li>
+						<li><a href="javascript:TopMenuMove('/a0000006/apply/applyList.do');">장소대관</a></li>
 						<li><a href="#">기관탐방</a></li>
 						<li><a href="#">문의</a></li>
 					</ul>
 				</li>
-				<li><a href="/a0000006/board/bookList.do">자료</a>
+				<li><a href="javascript:TopMenuMove('/a0000006/board/bookList.do');">자료</a>
 					<ul>
-						<li><a href="/a0000006/board/bookList.do">책소개</a></li>
+						<li><a href="javascript:TopMenuMove('/a0000006/board/bookList.do');">책소개</a></li>
 						<li><a href="#">간행물</a></li>
 						<li><a href="#">기타자료</a></li>
 					</ul>

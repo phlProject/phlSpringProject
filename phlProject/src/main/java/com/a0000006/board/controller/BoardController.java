@@ -33,10 +33,8 @@ public class BoardController {
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookList");
 		
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-		
 		/* 게시판 구분 - B01001 (책소개) */
-		commandMap.put("BOARD_GBN_CD", "B01001");
+		commandMap.put("board_gbn_cd", "B01001");
 		
 		// 책소개 > 조회 > 카운트
 		int totalListCount = boardService.bookListCnt(commandMap.getMap());		
@@ -86,8 +84,6 @@ public class BoardController {
 	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
-		System.out.println(commandMap.getMap());
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
 		
 		// 책소개 > 상세
 		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
@@ -115,12 +111,9 @@ public class BoardController {
 	public ModelAndView insertBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
-		commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-
 		int board_Sn = boardService.insertBook(commandMap.getMap());
 		
-		if(commandMap.get("uploadYn") == "Y"){
+		if(commandMap.get("uploadYn").equals("Y")){
 			
 			commandMap.put("board_Sn", board_Sn);
 			// 게시판 > 파일 등록
@@ -157,11 +150,9 @@ public class BoardController {
 	public ModelAndView updateBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
-
 		String result = boardService.updateBook(commandMap.getMap());
 		
-		if(commandMap.get("uploadYn") == "Y"){
+		if(commandMap.get("uploadYn").equals("Y")){
 			// 게시판 > 파일 등록
 			boardService.updateBoardFl(commandMap.getMap());
 		}
@@ -176,8 +167,6 @@ public class BoardController {
 	public ModelAndView deleteBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		commandMap.put("SESSION_ID", session.getAttribute("session_id"));
-
 		String result = boardService.deleteBook(commandMap.getMap());
 		
 		mv.addObject("result", result);  	

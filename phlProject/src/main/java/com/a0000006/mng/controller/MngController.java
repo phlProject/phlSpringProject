@@ -30,9 +30,6 @@ public class MngController {
        
 		ModelAndView mv = new ModelAndView("/a0000006/mng/memList");
         
-		
-        commandMap.put("BSNS_CODE", session.getAttribute("BSNS_CODE"));
-        
         // 전체 리스트 Count
         int totalListCount = mngService.memListCnt(commandMap.getMap());
         
@@ -92,7 +89,7 @@ public class MngController {
 		}
 		
 		commandMap.put("saveremark", saveremark);
-
+		System.out.println(commandMap.getMap());
 		String result = mngService.memUpdateActive(commandMap.getMap());
 		
 		mv.addObject("result", result); 

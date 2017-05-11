@@ -6,14 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-  #pop{
-	  width:300px; height:400px; background:#3d3d3d; color:#fff; 
-	  position:absolute; top:10px; left:100px; text-align:center; 
-	  border:2px solid #000;
-  }
 
-</style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -57,7 +50,7 @@
 		}
 	}
 	
-	function memManager(remark, bsns_code, mem_sn){
+	function memManager(remark, mem_sn){
 		
 		if(remark == "S"){
 			alert("레이어 예정");
@@ -74,11 +67,10 @@
 			
 			
 			var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
-			var input2 = $("<input>").attr("type", "hidden").attr("name", "bsns_code").attr("id", "bsns_code").val(bsns_code);
-			var input3 = $("<input>").attr("type", "hidden").attr("name", "mem_sn").attr("id", "mem_sn").val(mem_sn);
+			var input2 = $("<input>").attr("type", "hidden").attr("name", "mem_sn").attr("id", "mem_sn").val(mem_sn);
 			
 			var postUrl = "/a0000006/mng/memUpdateActive.do";
-			$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).append($(input3)).serialize(), function(data){
+			$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
 				if(data.result == "success" ){
 					alert("수정되었습니다.");
 					ComSubmit('mem_Form','/a0000006/mng/memList.do');
@@ -95,6 +87,8 @@
 <body>
 	<div id="content">
 		<form id="mem_Form">
+			<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
+			<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
 			<table border="1">
 			<tr>
 				<!-- 검색조건 -->
@@ -151,15 +145,15 @@
 		              <td>${row.REMARK_NM}</td>
 		              <td width="70">
 		              	<c:if test="${row.USE_YN == 'N'}">
-		              		<input type="button" value="활성화처리" onclick="memManager('N','${row.BSNS_CODE}','${row.MEM_SN}')">
+		              		<input type="button" value="활성화처리" onclick="memManager('N','${row.MEM_SN}')">
 		              	</c:if>
 		              	<c:if test="${row.USE_YN == 'Y'}">
-		              		<input type="button" value="비활성화처리" onclick="memManager('Y','${row.BSNS_CODE}','${row.MEM_SN}')">
+		              		<input type="button" value="비활성화처리" onclick="memManager('Y','${row.MEM_SN}')">
 		              	</c:if>
 		              </td>
 		              <td width="70">
 		              	<c:if test="${row.USE_YN == 'S'}">
-		              		<input type="button" value="권한승인" onclick="memManager('S','${row.BSNS_CODE}','${row.MEM_SN}')">
+		              		<input type="button" value="권한승인" onclick="memManager('S','${row.MEM_SN}')">
 		              	</c:if>
 		              </td>
 		        </tr>

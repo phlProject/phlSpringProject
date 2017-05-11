@@ -12,12 +12,16 @@
 	<form id="bookList_Form">
 		<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
 		<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
+		<input type="hidden" id="bsns_code" 	name="bsns_code" 		value="${sessionScope.bsns_code}" >
+		<input type="hidden" id="session_id" 	name="session_id" 		value="${sessionScope.session_id}" >
 	</form>
 	
 	<!-- 수정이동_Form -->
 	<form id="bookView_Form">
 		<input type="hidden" id="BSNS_CODE" 	name="BSNS_CODE" 		value="${bookView.BSNS_CODE}">	<!-- 업체코드 -->
 		<input type="hidden" id="board_Sn" 		name="board_Sn" 		value="${bookView.BOARD_SN}">	<!-- 게시판 번호 -->
+		<input type="hidden" id="bsns_code" 	name="bsns_code" 		value="${sessionScope.bsns_code}" >
+		<input type="hidden" id="session_id" 	name="session_id" 		value="${sessionScope.session_id}" >
 	</form>
 	
 	<div id="content">

@@ -12,12 +12,12 @@
     	  FROM BSNS_CMMN_CODE
     	 WHERE 1=1
     	   AND USE_YN = 'Y'
-   		   AND BSNS_CODE = #{BSNS_CODE}
-   		   <if test="CL_CODE != null" >
-   		   	AND CL_CODE = #{CL_CODE}
+   		   AND BSNS_CODE = #{bsns_code}
+   		   <if test="cl_code != null" >
+   		   	AND CL_CODE = #{cl_code}
    		   </if>
-   		   <if test="NOT_DETAIL_CODE != null" >
-   		   	AND DETAIL_CODE NOT IN (${NOT_DETAIL_CODE})
+   		   <if test="not_detail_code != null" >
+   		   	AND DETAIL_CODE NOT IN (${not_detail_code})
    		   </if>
     </select>
     

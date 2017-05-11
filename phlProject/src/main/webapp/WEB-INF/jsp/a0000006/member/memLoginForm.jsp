@@ -12,12 +12,13 @@
 		<div id="loginform">
 		<p>Login</p>	
 		<form id="loginActionForm">
+			<input type="hidden" id="bsns_code" name="bsns_code" value="${sessionScope.bsns_code}">
 			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="mem_id" name="mem_id" placeholder="ID" /> <br/>
 			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="mem_pw" name="mem_pw" placeholder="PASSWORD"/>
 		</form>
 		<br/><br/>
 		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> <br/><br/><br/>
-		<!-- <a href="/a0000006/mainIndex.do" id="mainIndex">메인</a> <br/> -->
+		
 		<c:choose>
 			<c:when test="${resultValue=='ID_ERROR'}">* 존재하지 않는 아이디입니다. </c:when>
 			<c:when test="${resultValue=='PW_ERROR'}">* 비밀번호가 일치하지 않습니다. </c:when>

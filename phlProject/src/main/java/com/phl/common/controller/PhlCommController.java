@@ -44,7 +44,7 @@ public class PhlCommController {
 		List<Map<String,Object>> fl_upload = new ArrayList<Map<String,Object>>();
 		
 		// Sub Full Path 지정
-		request.setAttribute("fullSubPath", session.getAttribute("BSNS_CODE") + request.getParameter("sPath"));
+		request.setAttribute("fullSubPath", session.getAttribute("bsns_code") + request.getParameter("sPath"));
 		
 		fl_upload = CmmnUtilFile.uploadFile(request);
 

@@ -190,7 +190,8 @@ function idDupChk(){
 		url		: "/a0000006/mem/idDupChk.do",
 		type 	: "post",
 		data : {
-					mem_id : $("#mem_id").val()
+					mem_id : $("#mem_id").val(),
+					bsns_code : $("#bsns_code").val()
 				},
 		dataType : "json",
 		success : function(data){

@@ -40,3 +40,7 @@ function ComSubmit(opt_formId) {
 function ComSubmit(formId, url){
 	$("#" + formId).attr({method : "post", action : url}).submit();
 }
+
+function TopMenuMove(url){
+	$("#topMenu_Form").attr({method : "post", action : url}).submit();
+}

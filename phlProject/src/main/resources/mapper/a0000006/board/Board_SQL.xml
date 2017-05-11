@@ -13,8 +13,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{BSNS_CODE}
-		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  AND BMB.BSNS_CODE = #{bsns_code}
+		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -50,8 +50,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{BSNS_CODE}
-		  AND BMB.BOARD_GBN_CD = #{BOARD_GBN_CD}
+		  AND BMB.BSNS_CODE = #{bsns_code}
+		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -89,7 +89,7 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{BSNS_CODE}
+		  AND BMB.BSNS_CODE = #{bsns_code}
 		  AND BMB.BOARD_SN = #{board_Sn}
 	</select>	
 
@@ -103,7 +103,7 @@
 			,REG_DT
 			,REG_ID
 		)VALUES(
-			 #{BSNS_CODE}
+			 #{bsns_code}
 			,#{board_gbn_cd}
 			,#{subject}
 			,#{editor}
@@ -132,7 +132,7 @@
 		      ,MOD_DT = now()
 		      ,MOD_ID = 'aa'
 		 WHERE 1=1
-		   AND BSNS_CODE = #{BSNS_CODE}
+		   AND BSNS_CODE = #{bsns_code}
 		   AND BOARD_SN  = #{board_Sn}
 	</update>
 	
@@ -147,7 +147,7 @@
 			,REG_DT
 			,REG_ID
 		)VALUES(
-			 #{BSNS_CODE}
+			 #{bsns_code}
 			,#{board_Sn}
 			,#{origin_fl_nm}
 			,#{fl_nm}
@@ -169,7 +169,7 @@
 		 WHERE 1=1 
 		   AND BSNS_CODE = #{bsns_code}
 		   AND BOARD_SN  = #{board_Sn}
-		   AND BOARD_FL_SN =#{board_Fl_Sn}
+		   AND BOARD_FL_SN = #{board_Fl_Sn}
 	</update>
 	
 	<!-- 게시판 > 번호 채번  -->
