@@ -21,13 +21,20 @@
 	</form>
 	
 	<div id="content">
-		<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="150" height="200">
-		제목 : ${bookView.SUBJECT}<br>
+		<h3 class="cont-title">책 소개</h3>
+		<p class="book-view">제목 : ${bookView.SUBJECT}</p>
+		<div class="view">
+			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
+		</div>
+		<%-- 제목 : ${bookView.SUBJECT}<br> --%>
 			 ${bookView.CONTENTS}
-			 <br>
-		<a href="javascript:fn_bookFormU();" id="bookFormU">수정</a>
-		<a href="javascript:fn_deleteBook();" id="deleteBook">삭제</a>
-		<a href="javascript:fn_bookList();" id="bookList">목록</a>
+		<div class="bookView">	
+			<div class="bookView-btn">
+				<a href="javascript:fn_bookFormU();" id="bookFormU">수정</a>
+				<a href="javascript:fn_deleteBook();" id="deleteBook">삭제</a>		
+				<a href="javascript:fn_bookList();" id="bookList">목록</a>
+			</div>
+		</div>
 	</div>
 	
 </body>

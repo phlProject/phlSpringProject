@@ -55,7 +55,7 @@ nav ul li:hover ul { display: block; }
 
 
 
-/*자료 CSS*/
+/*책소개 CSS - bookList*/
 .cont-title { width:200px; font-size:28px; color:#444; line-height:1.2em; padding:25px; font-weight:500; float:left;}
 .search { float:right; padding:20px; }
 #searchSelect { width:110px; margin:0; }
@@ -70,10 +70,17 @@ nav ul li:hover ul { display: block; }
 .book-right a:hover { color:#660f57; }
 .book-right hr { margin-top:5px;}
 .book-right p { font-size:13px; color:#555; line-height:1.2em; padding:8px 0px; max-height:56px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
-.bookForm a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
+.bookForm a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
 .book_paging { margin-top:35px; text-align: center; margin-left:70px; }
 .book_paging a { font-size:12px; color:#c6beb6; border:2px solid #c6beb6; padding:7px 10px; cursor:pointer; text-align:center;}
 
+
+/*책소개 CSS - bookView*/
+.book-view { margin-top:80px; font-size:23px; font-weight:500; padding:30px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:2px solid #e2d318; } 
+.bookView { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}
+.bookView-btn { display: inline-block; }
+.bookView-btn a { width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:right; margin-top:30px; text-align:center; border-left:3px solid #fff; text-align: center;}
+.view { text-align:center; margin-bottom: 20px; }
 
 
 @media screen and (max-width:700px) {
