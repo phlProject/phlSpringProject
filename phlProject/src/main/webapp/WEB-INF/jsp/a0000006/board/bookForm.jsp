@@ -65,13 +65,16 @@
 	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
 	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
 	<input type="hidden" id="board_Sn" 		name="board_Sn">
+	<input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
+    <input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 </form>
 
 <div id="content">
 	<!-- 책소개 Main 사진  -->
+	<h3 class="book-title">책 소개 작성</h3>
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
-		<div>
-			<img src="" id="mainImage" name="mainImage" width="150" height="200"><br>
+		<div class="book-Form">
+			<img src="" id="mainImage" name="mainImage" width="250" height="200"><br/>
 			<input type="file" id="uploadFile" name="uploadFile" onchange="javascript:fn_bookUploadFile();">
 			<input type="hidden" id="sPath" name="sPath" value="/board/book/">
 		</div>
@@ -83,13 +86,18 @@
 	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm">
 	    <input type="hidden" id="board_gbn_cd" name="board_gbn_cd" value="B01001">
 	    <input type="hidden" id="uploadYn" name="uploadYn" value="N">
+	    <input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
+        <input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 	    
-                  제목      <input type="text" id="subject" name="subject" size="86"><br>
-	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30"></textarea>
+        <h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86"><br/><br/>
+	    <textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30"></textarea>
 	</form>
-	
-	<a href="#" id="fn_insertBook" >저장</a>
-	<a href="javascript:fn_bookList();" id="bookList">목록</a>
+	<div class="bookView">	
+			<div class="bookView-btn">
+				<a href="#" id="fn_insertBook" >저장</a>
+				<a href="javascript:fn_bookList();" id="bookList">목록</a>
+			</div>
+	</div>
 </div>
 
 </body>

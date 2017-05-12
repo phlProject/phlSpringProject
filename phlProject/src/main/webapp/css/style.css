@@ -33,7 +33,7 @@ nav ul li:hover ul { display: block; }
 
 /* content */
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
-#content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; }
+#content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; min-height: 100%; }
 #main_content { width:830px; margin-bottom:20px; float:left; }
 #main_sidebar { width:250px; margin-bottom:20px; float:right; border:1px solid #bcbcbc;}
 
@@ -54,8 +54,16 @@ nav ul li:hover ul { display: block; }
 /* left CSS 끝 */
 
 
+/*책소개 - bookForm*/
+.book-title { width:100%; margin:15px 0 0; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #d6e0e2; border-top:2px solid #c7d5d8; border-bottom:1px solid #c7d5d8; }
+.book-Form { margin: 15px 0; display: inline-block; }
+.book-Form img { background-color: #f5f5f5;}
+.book-Form #uploadFile { height:28px; color:#444; border: 1px solid #d6e0e2; margin-top: 10px;}
+#editor_Form input { width:92%; height:28px; border:1px solid #ddd; }
+#editor_Form h3	{ display:inline-block; font-size:20px; color:#444; font-weight: 600; }
 
-/*책소개 CSS - bookList*/
+
+/*책소개  - bookList*/
 .cont-title { width:200px; font-size:28px; color:#444; line-height:1.2em; padding:25px; font-weight:500; float:left;}
 .search { float:right; padding:20px; }
 #searchSelect { width:110px; margin:0; }
@@ -75,12 +83,15 @@ nav ul li:hover ul { display: block; }
 .book_paging a { font-size:12px; color:#c6beb6; border:2px solid #c6beb6; padding:7px 10px; cursor:pointer; text-align:center;}
 
 
-/*책소개 CSS - bookView*/
+/*책소개 - bookView*/
 .book-view { margin-top:80px; font-size:23px; font-weight:500; padding:30px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:2px solid #e2d318; } 
 .bookView { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}
 .bookView-btn { display: inline-block; }
 .bookView-btn a { width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:right; margin-top:30px; text-align:center; border-left:3px solid #fff; text-align: center;}
 .view { text-align:center; margin-bottom: 20px; }
+
+
+
 
 
 @media screen and (max-width:700px) {
@@ -129,7 +140,7 @@ nav ul li:hover ul { display: block; }
 
 
 /* 회원가입 */
-#register { margin:50px 0; width: 50%; border: 1px solid #ddd; height: 650px; }
+#register { margin:100px 0; width: 50%; border: 1px solid #ddd; height: 650px; }
 #register p { background:#d6e0e2; color:#4d4d4f; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle;}
 #register input,select{ width: 220px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:10px;}
 #register table { margin:20px; text-align: center; border-top:2px solid #e5e5e5; }
@@ -139,7 +150,7 @@ nav ul li:hover ul { display: block; }
 
 
 /* 로그인 */
-#loginform { margin: 100px 0; width:380px; height: 280px; font-size:15px; font-weight:bold; border:1px solid #ddd; /* border-radius: 7px; */}
+#loginform { margin: 125px 0; width:380px; height: 280px; font-size:15px; font-weight:bold; border:1px solid #ddd; /* border-radius: 7px; */}
 #loginform p { background:#d6e0e2; color:#4d4d4f; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; /* border-radius: 7px 7px 0 0; */}
 #loginform input { margin-top: 20px; width: 220px; height: 35px; border:1px solid #ddd; margin-right: 20px; }
 #loginform a { color:#fff; background: #4d4d4f;  padding:15px 90px; margin-left:22px; }

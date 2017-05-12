@@ -61,6 +61,8 @@
 	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
 	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
 	<input type="hidden" id="board_Sn" 		name="board_Sn" 		value="${bookView.BOARD_SN}">
+	<input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
+    <input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 </form>
 
 <div id="content">
@@ -83,6 +85,8 @@
 	    <input type="hidden" id="origin_fl_nm" name="origin_fl_nm" value="${bookView.ORIGIN_FL_NM}">
 	    <input type="hidden" id="board_gbn_cd" name="board_gbn_cd" value="B01001">
 	    <input type="hidden" id="uploadYn" name="uploadYn" value="N">
+	    <input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
+      	<input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 	    
                   제목      <input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br>
 	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30">${bookView.CONTENTS}</textarea>
