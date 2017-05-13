@@ -153,8 +153,8 @@
 			,#{fl_nm}
 			,#{fl_path}
 			,now()
-			,'aa'
-			<!-- ,#{SESSION_ID} -->
+			<!-- ,'aa' -->
+			,#{SESSION_ID}
 		)
 	</insert>
 	

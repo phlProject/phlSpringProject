@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.phl.dao.AbstractDAO;
 
 @Repository("BoardDAO")
+@Transactional(readOnly=true)
 public class BoardDAO extends AbstractDAO {
 
 	/* 책소개 > 조회 > Count */

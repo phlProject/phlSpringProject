@@ -18,19 +18,19 @@
 		<nav>
 			<ul>
 				<c:choose>
-				<c:when test="${not empty sessionScope.loginInfo}">
-					<li><a href="javascript:TopMenuMove('/a0000006/mem/memMyPage.do');" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
-					<li><a href="javascript:TopMenuMove('/a0000006/mem/logoutAction.do');" id="logoutAction">로그아웃</a></li>
-					
-					<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
-					<c:if test="${loginInfo.MEM_GRADE eq 'G01998' || loginInfo.MEM_GRADE eq 'G01999'}">
-						<li><a href="javascript:TopMenuMove('/a0000006/mng/memList.do');" id="memList">관리자</a></li>
-					</c:if>
-				</c:when>
-				<c:otherwise>
-					<li><a href="javascript:TopMenuMove('/a0000006/mem/memLoginForm.do');" id="memLoginForm">로그인</a></li>
-					<li><a href="javascript:TopMenuMove('/a0000006/mem/memRegistForm.do');" id="memRegistForm">회원가입</a></li>
-				</c:otherwise>
+					<c:when test="${not empty sessionScope.loginInfo}">
+						<li><a href="javascript:TopMenuMove('/a0000006/mem/memMyPage.do');" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
+						<li><a href="javascript:TopMenuMove('/a0000006/mem/logoutAction.do');" id="logoutAction">로그아웃</a></li>
+						
+						<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
+						<c:if test="${loginInfo.MEM_GRADE eq 'G01998' || loginInfo.MEM_GRADE eq 'G01999'}">
+							<li><a href="javascript:TopMenuMove('/a0000006/mng/memList.do');" id="memList">관리자</a></li>
+						</c:if>
+					</c:when>
+					<c:otherwise>
+						<li><a href="javascript:TopMenuMove('/a0000006/mem/memLoginForm.do');" id="memLoginForm">로그인</a></li>
+						<li><a href="javascript:TopMenuMove('/a0000006/mem/memRegistForm.do');" id="memRegistForm">회원가입</a></li>
+					</c:otherwise>
 				</c:choose>
 		
 				<c:forEach var="row_dept1" items="${menuList}" varStatus="status">
