@@ -10,4 +10,6 @@ public interface PhlCommService {
 	/* 공통코드 */
 	List<CommandMap> selectCommCode(Map<String, Object> map) throws Exception;
 	
+	/* 메뉴조회 (2dept) */
+	List<CommandMap> menuList_dept2(Map<String, Object> map) throws Exception;
 }

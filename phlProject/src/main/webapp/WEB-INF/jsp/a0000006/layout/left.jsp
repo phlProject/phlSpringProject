@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
+
 	$(function(){
 		$("#left_sidebar h3").click(function(){
 			$("#left_sidebar ul ul").slideUp(100);
@@ -19,7 +21,26 @@
 </head>
 <body>
 	<div id="left_sidebar">
-        <h2>신청 및 문의</h2>
+		
+        <h2>1</h2>
+        <ul>
+			<c:forEach var="row_dept1" items="${menuList}" varStatus="status">
+				<c:if test="${row_dept1.MENU_LEVEL eq '1'}">
+					<li><h3>${row_dept1.MENU_NM}</h3>
+						<ul>
+							<c:forEach var="row_dept2" items="${menuList}" varStatus="status">
+								<c:if test="${(row_dept2.MENU_LEVEL eq '2') and (row_dept1.MENU_CD eq row_dept2.UPPER_MENU_CD)}">
+									<li>
+										<a href="javascript:TopMenuMove('${row_dept2.MENU_LINK}')">${row_dept2.MENU_NM}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</li>
+				</c:if>
+			</c:forEach>
+		</ul>
+		<!-- 
 	        <ul>
 	          <li><h3><a href="/sample/go.do">활동</a></h3>
 	          	<ul>
@@ -64,8 +85,7 @@
 					<li><a href="#">물</a></li>
 				</ul>
 			  </li>
-	        </ul>
-	        
-      </div>
+	        </ul> -->
+	</div>
 </body>
 </html>

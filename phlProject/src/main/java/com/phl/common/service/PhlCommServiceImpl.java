@@ -24,4 +24,11 @@ public class PhlCommServiceImpl implements PhlCommService {
     public List<CommandMap> selectCommCode(Map<String, Object> map) throws Exception {
         return phlCommDAO.selectCommCode(map);
     }
+	
+	/* 메뉴조회 (2dept) */
+	@Override
+    public List<CommandMap> menuList_dept2(Map<String, Object> map) throws Exception {
+        return phlCommDAO.menuList_dept2(map);
+    }
+	
 }

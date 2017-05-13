@@ -21,4 +21,41 @@
    		   </if>
     </select>
     
+    <!--  메뉴조회 (2dept)  -->
+    <select id="menuList_dept2" parameterType="hashmap" resultType="hashmap">
+    
+    	SELECT 1 AS MENU_LEVEL
+    		  ,T1.MENU_CD	
+    		  ,T1.UPPER_MENU_CD
+    		  ,T1.MENU_NM
+    		  ,T1.MENU_TY_CD
+    		  ,T1.ORDR
+    		  ,T1.MENU_LINK
+    	FROM PKHL_SYS_MENU T1
+    	WHERE 1=1
+    	  AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
+    	  AND T1.USE_YN = 'Y'
+    	  AND T1.BSNS_CODE = #{bsns_code}
+    	  
+	   	UNION ALL
+	   	
+	    SELECT 2 AS MENU_LEVEL
+			  ,T2.MENU_CD
+	   	      ,T2.UPPER_MENU_CD
+	   	      ,T2.MENU_NM
+	   	      ,T2.MENU_TY_CD
+	   	      ,T1.ORDR
+	   	      ,T2.MENU_LINK
+	   	  FROM PKHL_SYS_MENU T1
+	   	      ,PKHL_SYS_MENU T2
+	   	  WHERE 1=1
+	   	    AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
+	   	    AND T1.MENU_CD = T2.UPPER_MENU_CD 
+	   	    AND T1.BSNS_CODE = T2.BSNS_CODE
+		    	 AND T1.BSNS_CODE = #{bsns_code}
+				 AND T1.USE_YN = 'Y'
+				 AND T2.USE_YN = 'Y'
+	   ORDER BY ORDR ASC, MENU_CD
+	   
+    </select>
 </mapper>
