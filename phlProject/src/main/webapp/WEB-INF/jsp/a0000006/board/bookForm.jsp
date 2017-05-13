@@ -65,7 +65,7 @@
 	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
 	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
 	<input type="hidden" id="board_Sn" 		name="board_Sn">
-	<input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
+	<input type="hidden" id="bsns_code"     name="bsns_code"        value="${sessionScope.bsns_code}" >
     <input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 </form>
 

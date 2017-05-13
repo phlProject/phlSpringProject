@@ -76,7 +76,6 @@
 	</form>
 	
 	<form id="editor_Form">
-		<input type="hidden" id="bsns_code" name="bsns_code" value="${bookView.BSNS_CODE}">
 		<input type="hidden" id="board_Sn" name="board_Sn" value="${bookView.BOARD_SN}">
 		<input type="hidden" id="board_Fl_Sn" name="board_Fl_Sn" value="${bookView.BOARD_FL_SN}">
 		
