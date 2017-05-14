@@ -95,22 +95,21 @@
 
 	<!-- 책소개 > 등록 -->
 	<insert id="insertBook" parameterType="hashmap">
-		INSERT INTO BSNS_MNG_BOARD(
-			 BSNS_CODE
-			,BOARD_GBN_CD
-			,SUBJECT
-			,CONTENTS
-			,REG_DT
-			,REG_ID
-		)VALUES(
-			 #{bsns_code}
-			,#{board_gbn_cd}
-			,#{subject}
-			,#{editor}
-			,now()
-			,'aa'
-			<!-- ,#{SESSION_ID} -->
-		)
+			INSERT INTO BSNS_MNG_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENTS
+				,REG_DT
+				,REG_ID
+			)VALUES(
+				 #{bsns_code}
+				,#{board_gbn_cd}
+				,#{subject}
+				,#{editor}
+				,now()
+				,'aa'
+			)
 	</insert>
 	
 	<!-- 책소개 > 수정 -->
@@ -154,7 +153,6 @@
 			,#{fl_path}
 			,now()
 			,'aa'
-			<!-- ,#{SESSION_ID} -->
 		)
 	</insert>
 	

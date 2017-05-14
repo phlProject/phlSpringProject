@@ -43,6 +43,7 @@ public class BoardServiceImpl implements BoardService {
 			
 			// 전 등록된 Seq 가져오기
 			int board_sn = boardDAO.seqSn();
+			
 			return board_sn;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,12 +76,24 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	/* 게시판 > 파일 등록 */
-	public void insertBoardFl(Map<String, Object> map) throws Exception {
-		boardDAO.insertBoardFl(map);
+	public String insertBoardFl(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.insertBoardFl(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 	
 	/* 게시판 > 파일 수정 */
-	public void updateBoardFl(Map<String, Object> map) throws Exception {
-		boardDAO.updateBoardFl(map);
+	public String updateBoardFl(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.updateBoardFl(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 }

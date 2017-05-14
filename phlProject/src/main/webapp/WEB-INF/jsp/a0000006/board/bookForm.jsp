@@ -42,13 +42,14 @@
        		
             var postUrl = "/a0000006/board/insertBook.do";
         	$.post(postUrl, $("#editor_Form").serialize(), function(data){
-        		if(data.result == "success" ){
+        		if(data.result == "success" && data.result_Fl_Yn == "success"){
         			alert("등록되었습니다.");
         			// boardSn 부여
         			$("#board_Sn").val(data.board_Sn);
         			ComSubmit('bookList_Form','/a0000006/board/bookView.do');
         		} else{
         			alert("실패하였습니다. 관리자에게 문의해주세요.");
+        			ComSubmit('bookList_Form','/a0000006/board/bookList.do');
         			return;
         		}
         	});

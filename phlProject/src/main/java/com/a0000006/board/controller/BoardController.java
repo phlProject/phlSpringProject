@@ -113,11 +113,12 @@ public class BoardController {
 		
 		int board_Sn = boardService.insertBook(commandMap.getMap());
 		
+		String result_Fl_Yn = "success"; // 파일 등록 성공여부
+		
 		if(commandMap.get("uploadYn").equals("Y")){
-			
 			commandMap.put("board_Sn", board_Sn);
 			// 게시판 > 파일 등록
-			boardService.insertBoardFl(commandMap.getMap());
+			result_Fl_Yn = boardService.insertBoardFl(commandMap.getMap());
 		}
 
 		if(board_Sn > 0){
@@ -126,6 +127,7 @@ public class BoardController {
 			mv.addObject("result", "fail");
 		}
 		
+		mv.addObject("result_Fl_Yn", result_Fl_Yn);  		
 		mv.addObject("board_Sn", board_Sn);  		
 		
 		return mv;
@@ -152,11 +154,14 @@ public class BoardController {
 		
 		String result = boardService.updateBook(commandMap.getMap());
 		
+		String result_Fl_Yn = "success"; // 파일 등록 성공여부
+		
 		if(commandMap.get("uploadYn").equals("Y")){
 			// 게시판 > 파일 등록
-			boardService.updateBoardFl(commandMap.getMap());
+			result_Fl_Yn = boardService.updateBoardFl(commandMap.getMap());
 		}
 		
+		mv.addObject("result_Fl_Yn", result_Fl_Yn);  
 		mv.addObject("result", result);  	
 		
 		return mv;

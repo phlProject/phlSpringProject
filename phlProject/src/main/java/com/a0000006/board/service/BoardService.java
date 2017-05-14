@@ -24,8 +24,8 @@ public interface BoardService {
 	String deleteBook(Map<String, Object> map) throws Exception;
 	
 	/* 게시판 > 파일 등록 */
-	void insertBoardFl(Map<String, Object> map) throws Exception;
+	String insertBoardFl(Map<String, Object> map) throws Exception;
 	
 	/* 게시판 > 파일 수정 */
-	void updateBoardFl(Map<String, Object> map) throws Exception;
+	String updateBoardFl(Map<String, Object> map) throws Exception;
 }
