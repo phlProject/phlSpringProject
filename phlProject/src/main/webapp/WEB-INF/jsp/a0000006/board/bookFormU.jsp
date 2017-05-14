@@ -68,9 +68,10 @@
 
 <div id="content">
 	<!-- 책소개 Main 사진  -->
+	<h3 class="book-title">책 소개 수정</h3>
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
-		<div>
-			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" id="mainImage" name="mainImage" width="150" height="200"><br>
+		<div class="book-Form">
+			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" id="mainImage" name="mainImage" width="250" height="200"><br>
 			<input type="file" id="uploadFile" name="uploadFile" onchange="javascript:fn_bookUploadFile();">
 			<input type="hidden" id="sPath" name="sPath" value="/board/book/">
 		</div>
@@ -88,12 +89,16 @@
 	    <input type="hidden" id="bsns_code"    name="bsns_code"       value="${sessionScope.bsns_code}" >
       	<input type="hidden" id="session_id"    name="session_id"       value="${sessionScope.session_id}" >
 	    
-                  제목      <input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br>
-	    <textarea id="editor" name="editor" style="HEIGHT: 220px; WIDTH: 610px" rows="10" cols="30">${bookView.CONTENTS}</textarea>
+        <h3>제목 :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br/><br/>
+	    <textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${bookView.CONTENTS}</textarea>
 	</form>
 	
-	<a href="#" id="fn_updateBook" >수정</a>
-	<a href="javascript:fn_bookView(${bookView.BOARD_SN});" id="bookView">이전</a>
+	<div class="bookView">	
+		<div class="bookView-btn">
+			<a href="#" id="fn_updateBook" >수정</a>
+			<a href="javascript:fn_bookView(${bookView.BOARD_SN});" id="bookView">이전</a>
+		</div>
+	</div>
 </div>
 
 </body>
