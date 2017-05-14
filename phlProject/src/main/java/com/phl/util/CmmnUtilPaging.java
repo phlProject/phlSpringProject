@@ -31,7 +31,7 @@ public class CmmnUtilPaging {
 		int beginPageNum = (requestPageNumber - 1) / countPerPage * countPerPage + 1;
 		
 		// 끝 페이지 번호
-		int endPageNum = beginPageNum + 4;
+		int endPageNum = beginPageNum + (countPerPage-1);
 		if(endPageNum > totalPageCount){
 			endPageNum = totalPageCount;
 		}

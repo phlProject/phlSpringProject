@@ -10,6 +10,8 @@ import com.phl.dao.AbstractDAO;
 @Repository("BoardDAO")
 public class BoardDAO extends AbstractDAO {
 
+	/****************************** 책 소 개 시작  ******************************/
+	
 	/* 책소개 > 조회 > Count */
 	public int bookListCnt(Map<String, Object> map) throws Exception{
         return (Integer) selectOne("a0000006/board.bookListCnt", map);
@@ -56,6 +58,23 @@ public class BoardDAO extends AbstractDAO {
 	public int seqSn() throws Exception{
 	    return (Integer) selectOne("a0000006/board.seqSn");
 	}
+	
+	/****************************** 책 소 개 종료  ******************************/
+	
+	/****************************** 간 행 물 시작  ******************************/
+	
+	/* 간행물 > 조회 > Count */
+	public int publiListCnt(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/board.publiListCnt", map);
+    }
+	
+	/* 간행물 > 조회  */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> publiList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/board.publiList", map);
+    }
+	
+	/****************************** 간 행 물 종료  ******************************/
 	
 	@SuppressWarnings("unchecked")
     public List<Map<String, Object>> flList(Map<String, Object> map) throws Exception{

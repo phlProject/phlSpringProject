@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="content">
-			<h3 class="cont-title">책 소개</h3>
+		<h3 class="cont-title">책 소개</h3>
 		<form id="bookList_Form">
 			<input type="hidden" id="bsns_code" name="bsns_code" value="${sessionScope.bsns_code}" >
 			<input type="hidden" id="session_id" name="session_id" value="${sessionScope.session_id}" >

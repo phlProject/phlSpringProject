@@ -18,6 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name="BoardDAO")
 	private BoardDAO boardDAO;
 	
+	
+	/****************************** 책 소 개 시작  ******************************/
+	
 	/* 책소개 > 조회 > Count */
 	public int bookListCnt(Map<String, Object> map) throws Exception {
         return boardDAO.bookListCnt(map);
@@ -96,6 +99,24 @@ public class BoardServiceImpl implements BoardService {
 			return "fail";
 		}
 	}
+	
+	/****************************** 책 소 개 종료  ******************************/
+	
+	/****************************** 간 행 물 시작  ******************************/
+	
+	/* 간행물 > 조회 > Count */
+	public int publiListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.publiListCnt(map);
+    }
+	
+	/* 간행물 > 조회  */
+	@Override
+    public List<Map<String, Object>> publiList(Map<String, Object> map) throws Exception {
+        return boardDAO.publiList(map);
+    }
+	
+	/****************************** 간 행 물 종료  ******************************/
+	
 	@Override
     public List<Map<String, Object>> flList(Map<String, Object> map) throws Exception {
         return boardDAO.flList(map);

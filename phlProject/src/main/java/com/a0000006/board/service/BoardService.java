@@ -5,6 +5,8 @@ import java.util.Map;
 
 public interface BoardService {
 
+	/****************************** 책 소 개 시작  ******************************/
+	
 	/* 책소개 > 조회 > Count */
 	int bookListCnt(Map<String, Object> map) throws Exception;
 	
@@ -28,6 +30,18 @@ public interface BoardService {
 	
 	/* 게시판 > 파일 수정 */
 	String updateBoardFl(Map<String, Object> map) throws Exception;
+	
+	/****************************** 책 소 개 종료  ******************************/
+	
+	/****************************** 간 행 물 시작  ******************************/
+	
+	/* 간행물 > 조회 > Count */
+	int publiListCnt(Map<String, Object> map) throws Exception;
+	
+	/* 간행물 > 조회 */
+	List<Map<String, Object>> publiList(Map<String, Object> map) throws Exception;
+	
+	/****************************** 간 행 물 종료  ******************************/
 	
 	List<Map<String, Object>> flList(Map<String, Object> map) throws Exception;
 }

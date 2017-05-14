@@ -26,6 +26,8 @@ public class BoardController {
 	@Resource(name="BoardService")
 	private BoardService boardService;
 	
+	/****************************** 책 소 개 시작  ******************************/
+	
 	/* 책소개  > 조회 */
 	@RequestMapping(value="/a0000006/board/bookList.do")
 	public ModelAndView bookList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
@@ -35,6 +37,9 @@ public class BoardController {
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookList");
 		
+		if(request.getParameter("bsns_code") == null){
+			commandMap.put("bsns_code", session.getAttribute("bsns_code"));
+		}
 		/* 게시판 구분 - B01001 (책소개) */
 		commandMap.put("board_gbn_cd", "B01001");
 		
@@ -181,6 +186,70 @@ public class BoardController {
 		return mv;
 	}
 	
+	/****************************** 책 소 개 종료  ******************************/
+	
+	/****************************** 간 행 물 시작  ******************************/
+	
+	/* 간행물  > 조회 */
+	@RequestMapping(value="/a0000006/board/publiList.do")
+	public ModelAndView publiList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		request.setCharacterEncoding("utf-8");
+		
+		ModelAndView mv = new ModelAndView("/a0000006/board/publiList");
+		
+		if(request.getParameter("bsns_code") == null){
+			commandMap.put("bsns_code", session.getAttribute("bsns_code"));
+		}
+		/* 게시판 구분 - B01002 (간행물) */
+		commandMap.put("board_gbn_cd", "B01002");
+		
+		// 간행물 > 조회 > 카운트
+		int totalListCount = boardService.publiListCnt(commandMap.getMap());		
+		
+		// 요청 페이지 번호
+		int requestPageNumber = 1;	
+		
+		// 요청 페이지 번호가 있을 시 해당 페이지 이동
+		if(request.getParameter("requestPageNumber") != null){
+			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
+		}
+
+		// 페이지당 리스트 갯수
+		int countPerPage = 8;
+		
+		/* 
+		 ** 페이징 계산 ** 
+		 * 
+		 * 파라미터 : 전체리스트 Count, 요청페이지번호, 페이지당리스트갯수
+		 * pagingData[0] = 전체 페이지수
+		 * pagingData[1] = FirstRow ( Limit 사용 용도 )
+		 * pagingData[2] = EndRow	( Limit 사용 용도 )
+		 * pagingData[3] = 첫 페이지 번호
+		 * pagingData[4] = 끝 페이지 번호
+		 * 
+		 */
+		int pagingData[] = CmmnUtilPaging.paginData(totalListCount, requestPageNumber, countPerPage);
+		
+		commandMap.put("limitFirst", 	pagingData[1]-1);
+		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
+		
+		// 간행물 > 조회
+		List<Map<String,Object>> publiList = boardService.publiList(commandMap.getMap());
+		
+		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
+		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
+		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
+		mv.addObject("publiList", 		publiList);		// 책소개 리스트
+		
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	/****************************** 간 행 물 종료  ******************************/
+	
+	
 	/* 책소개 > 파일다운로드 */
 	@RequestMapping(value="/a0000006/board/downloadFile.do")
 	public void fldownloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -192,6 +261,5 @@ public class BoardController {
 		request.setAttribute("fullSubPath", session.getAttribute("bsns_code")+"/board/book/");
 		
 		CmmnUtilFile.downloadFile(commandMap, request, response);
-		
 	}
 }
