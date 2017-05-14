@@ -41,7 +41,7 @@ public class CmmnUtilFile {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 	 	Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		
-		  
+		    
 		String charenc = "";		// 변환 파일명
 		String fileName = "";		// 원본 파일명
 		String filePath = "";		// 전체 파일 경로
