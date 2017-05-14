@@ -29,10 +29,10 @@
 		<c:set var="urlPath" value="/${ext[0]}/${ext[1]}"/>	
 		
 		<c:forEach var="row_dept1" items="${menuList}" varStatus="status"> <!-- 부모 -->
-			<c:if test="${row_dept1.MENU_LEVEL eq '1' && fn:contains(row_dept1.MENU_LINK, urlPath) }">
+			<c:if test="${row_dept1.MENU_LEVEL eq '1' && fn:contains(row_dept1.MENU_LINK, urlPath)}">
 				<c:forEach var="row_dept2" items="${menuList}" varStatus="status">	<!-- 자식 -->
 					<!-- path :  / ? / ? 포함한 단어의 부모 메뉴명 뿌림 -->
-					<c:if test="${row_dept2.MENU_LEVEL eq '2' && fn:contains(row_dept2.MENU_LINK, urlPath)}">
+					<c:if test="${row_dept2.MENU_LEVEL eq '2' && row_dept2.MENU_LINK eq url && fn:contains(row_dept2.MENU_LINK, urlPath)}">
 							<h2>${row_dept1.MENU_NM}</h2>
 					</c:if>
 				</c:forEach>
