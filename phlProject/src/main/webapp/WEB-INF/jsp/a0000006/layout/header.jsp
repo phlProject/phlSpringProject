@@ -17,6 +17,7 @@
 		</form>
 		<nav>
 			<ul>
+				<!-- 로그인 관련 추후 DB메뉴화 예정 -->
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginInfo}">
 						<li><a href="javascript:TopMenuMove('/a0000006/mem/memMyPage.do');" id="memMyPage">${sessionScope.loginInfo.MEM_NM}</a></li>
