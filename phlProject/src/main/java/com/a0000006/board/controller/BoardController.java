@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.board.service.BoardService;
 import com.phl.common.CommandMap;
+import com.phl.util.CmmnUtilFile;
 import com.phl.util.CmmnUtilPaging;
 
 @Controller
@@ -177,5 +179,19 @@ public class BoardController {
 		mv.addObject("result", result);  	
 		
 		return mv;
+	}
+	
+	/* 책소개 > 파일다운로드 */
+	@RequestMapping(value="/a0000006/board/downloadFile.do")
+	public void fldownloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		List<Map<String,Object>> flList = boardService.flList(commandMap.getMap());
+		commandMap.put("originFlNm", flList.get(0).get("ORIGIN_FL_NM"));
+		commandMap.put("flNm", flList.get(0).get("FL_NM"));
+		commandMap.put("flPath", flList.get(0).get("FL_PATH"));
+		request.setAttribute("fullSubPath", session.getAttribute("bsns_code")+"/board/book/");
+		
+		CmmnUtilFile.downloadFile(commandMap, request, response);
+		
 	}
 }

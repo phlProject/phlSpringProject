@@ -175,4 +175,15 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 	
+	<select id="flList" parameterType="hashmap" resultType="hashmap">
+		SELECT *
+		FROM BSNS_MNG_BOARD 	A
+		    ,BSNS_MNG_BOARD_FL 	B
+		WHERE 1=1
+		  AND A.BSNS_CODE = B.BSNS_CODE
+		  AND A.BOARD_SN = B.BOARD_SN
+		  AND A.BSNS_CODE = 'A0000006'
+		  AND A.BOARD_SN = '33'
+		  AND B.BOARD_FL_SN = '1'
+	</select>
 </mapper>

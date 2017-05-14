@@ -57,5 +57,8 @@ public class BoardDAO extends AbstractDAO {
 	    return (Integer) selectOne("a0000006/board.seqSn");
 	}
 	
-
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> flList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/board.flList", map);
+    }
 }

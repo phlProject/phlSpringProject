@@ -28,4 +28,6 @@ public interface BoardService {
 	
 	/* 게시판 > 파일 수정 */
 	String updateBoardFl(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> flList(Map<String, Object> map) throws Exception;
 }

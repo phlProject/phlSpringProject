@@ -96,4 +96,8 @@ public class BoardServiceImpl implements BoardService {
 			return "fail";
 		}
 	}
+	@Override
+    public List<Map<String, Object>> flList(Map<String, Object> map) throws Exception {
+        return boardDAO.flList(map);
+	}
 }
