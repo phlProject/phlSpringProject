@@ -17,15 +17,20 @@
 <input type="hidden" name="toYear" id="toYear" value="<fmt:formatDate value="${toYear}" pattern="yyyy" />"/>
 <input type="hidden" name="toMonth" id="toMonth" value="<fmt:formatDate value="${toMonth}" pattern="MM" />"/>
 <input type="hidden" name="toDay" id="toDay" value="<fmt:formatDate value="${toDay}" pattern="dd" />"/>
-<input type="hidden" name="bsnsCode"value="${bsnsCode}" id="bsnsCode">
-<input type="hidden" name="sessionId" value="${sessionId}" id="sessionId">
+<input type="hidden" name="bsns_code" value="${bsns_code}" id="bsns_code">
+<input type="hidden" name="session_id" value="${session_id}" id="session_id">
 <input type="hidden" name="scheduleSn" id="scheduleSn">
+<input type="hidden" name="regId" id="regId">
 
-<div id="content">
+<!-- <div id="content"> -->
 
    <div id="insertFormPop" class="insertLayer" style="display:none;">
       <a href="javascript:closeLayer('insertFormPop');"><span>닫기X</span></a>
-      <table>
+      <table id="insertTbl">
+		<colgroup>
+			<col width="200"></col>
+			<col width="300"></col>
+		</colgroup>
          <tr>
             <th>스케줄 구분</th>
             <td>
@@ -68,19 +73,22 @@
          <tr>
             <th>제목</th>
             <td>
-               <input type="text" name="subject">
+               <input type="text" name="subject" id="subject">
             </td>
             
          </tr>
          <tr>   
             <th>내용</th>
             <td>
-               <input type="text" name="content">
+               <input type="text" name="content" id="content">
             </td>
          </tr>      
       </table>
       
-      <a href="javascript:insert();"><span>등록</span></a>
+      <div id="buttonDiv">
+      	<a href="javascript:insertApply();"><span>등록</span></a>
+      </div>
+      
    </div>
    
    <!-- 월간 일정 -->
@@ -110,14 +118,14 @@
       <table id="dailyTable"></table>
    </div>
 
-</div>
+<!-- </div> -->
 </form>
 
 <script type="text/javascript">
  
 function insertForm(){
    $("#insertFormPop").css("display", "block");
-   centerLocation("insertFormPop");
+   //centerLocation("insertFormPop");
 }
  
 $(document).ready(function(){
@@ -145,51 +153,124 @@ $(document).ready(function(){
          insertForm();
       });
    });
+  
 });
 
-function insert(){
+function insertApply(){
    
-   if(confirm("등록하시겠습니까?")){
+	if(validation() && confirm("등록하시겠습니까?")){
       
-      var url = "/a0000006/apply/insertApply.do";
+		var url = "/a0000006/apply/insertApply.do";
       
-      $.post(url,$("#applyForm").serialize(),function(data){
-         if(data.result == "0" ){
-            alert("등록되었습니다.");
-            $( "#applyForm").attr({action:'/a0000006/apply/applyList.do' ,method:'post'}).submit();
-         } else{
-            alert("등록에 실패했습니다.");
-            return;
-         }
-      });
-
-      
-   }
-   
+		$.post(url,$("#applyForm").serialize(),function(data){
+			if(data.result == "0" ){
+				alert("등록되었습니다.");
+				$( "#applyForm").attr({action:'/a0000006/apply/applyList.do' ,method:'post'}).submit();
+			} else{
+				alert("등록에 실패했습니다.");
+				return;
+			}
+		});
+	}
    
 }
+
+function updateApply(){
+	if(validation() && confirm("수정하시겠습니까?")){
+		var url = "/a0000006/apply/updateApply.do";
+	      
+		$.post(url,$("#applyForm").serialize(),function(data){
+			if(data.result == "0" ){
+				alert("수정되었습니다.");
+				$( "#applyForm").attr({action:'/a0000006/apply/applyList.do' ,method:'post'}).submit();
+			} else{
+				alert("등록에 실패했습니다.");
+				return;
+			}
+		});
+	}
+}
+
+function deleteApply(){
+	if(confirm("삭제하시겠습니까?")){
+		var url = "/a0000006/apply/deleteApply.do";
+	      
+		$.post(url,$("#applyForm").serialize(),function(data){
+			if(data.result == "0" ){
+				alert("삭제되었습니다.");
+				$( "#applyForm").attr({action:'/a0000006/apply/applyList.do' ,method:'post'}).submit();
+			} else{
+				alert("등록에 실패했습니다.");
+				return;
+			}
+		});
+	}
+}
+
+
+function validation(){
+
+	var userId = $("#session_id").val();
+	if(userId == ''){
+		alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+		$( "#applyForm").attr({action:'/a0000006/mem/memLoginForm.do' ,method:'post'}).submit();
+		return false;
+	}
+	
+	var scheduleDt = $("#scheduleDt").val();
+	if(scheduleDt == null || scheduleDt == ''){
+		alert('일자를 다시 입력해주세요.');
+		$("#scheduleDt").focus();
+		return false;
+	}
+	
+	var stHour = $("#stHour").val();
+	var endHour = $("#endHour").val();
+	if(stHour > endHour){
+		alert('끝시간을 다시 입력해주세요.');
+		$("#endHour").focus();
+		return false;
+	}
+	
+	var subject = $("#subject").val();
+	if(subject == null || subject == ''){
+		alert('제목을 다시 입력해주세요.');
+		$("#subject").focus();
+		return false;
+	}
+	var content = $("#content").val();
+	if(content == null || content == ''){
+		alert('내용을 다시 입력해주세요.');
+		$("#content").focus();
+		return false;
+	}
+	
+	return true;
+}
+
+
 function closeLayer(objId){
    $("#" + objId).css("display", "none");
    
 }
 
-function centerLocation(objId){
+function centerLocation(obj){
     
-   var obj = "#" + objId;
-   
-    var content = $(window).offset();
-    var contentWidth = $(window).width()/2;
-    var objWidth = $(obj).width()/2;
+	var objName = "#" + obj;
+    var content = $("#container").offset();
+    var contentWidth = $("#container").width()/2;
+    var objWidth = $(objName).width()/2;
    
    
     var tx = content.left + contentWidth - objWidth;
-    var ty = (($(window).height() - $(obj).outerHeight()) / 2) + $(window).scrollTop();
+    var ty = (($(window).height() - $(objName).outerHeight()) / 2) + $(window).scrollTop();
            //( ( $(window).height() - ($(objName).height()/2) ) ) + $(window).scrollTop();/* + ((content.top) /2);*/
-   $(obj).css({
+   $(objName).css({
           left : tx + "px",
           top : ty + "px"
    });
 }
+
 
 
 var cList = new Array();
@@ -452,10 +533,37 @@ function controller(target) {
 }
 
 function popWorkDetail(scheduleSn){
+	
+	$("#scheduleSn").val(scheduleSn);
    
-   alert('상세페이지');
+	var url = "/a0000006/apply/viewApply.do";
+	$.post(url,$("#applyForm").serialize(),function(data){
+		
+		var result = data.result;
+		
+		$("#scheduleCd").val(result.SCHEDULE_CD);
+		$("#scheduleDt").val(result.SCHEDULE_DT);
+		$("#stHour").val(result.ST_HOUR);
+		$("#endHour").val(result.END_HOUR);
+		$("#subject").val(result.SUBJECT);
+		$("#content").val(result.CONTENT);
+		$("#regId").val(result.REG_ID);
+		
+		// 현재 이용자가 글 작성자라면 수정버튼 생성
+		var session_id = $("#session_id").val();
+		var html = '';
+		if(result.REG_ID == session_id){
+			html = '<a href="javascript:updateApply();"><span>수정</span></a>'
+				 + '<a href="javascript:deleteApply();"><span>삭제</span></a>';
+		}
+		$("#buttonDiv").html(html);
+		
+		
+	});
+   
    
 }
+
 
 /* $(function(){
    

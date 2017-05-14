@@ -59,6 +59,36 @@ public class ApplyServiceImpl implements ApplyService{
 		}
 		
 	}
+
+
+	// 상세 페이지
+	@Override
+	public Map<String, Object> viewApply(Map<String, Object> map) throws Exception {
+		return applyDAO.viewApply(map);
+	}
+
+
+	// 수정 페이지
+	@Override
+	public String updateApply(Map<String, Object> map) throws Exception {
+		try {
+			applyDAO.updateApply(map);
+			return "0";
+		} catch (Exception e) {
+			return "-1";
+		}
+	}
+	
+	// 삭제 페이지
+	@Override
+	public String deleteApply(Map<String, Object> map) throws Exception {
+		try {
+			applyDAO.deleteApply(map);
+			return "0";
+		} catch (Exception e) {
+			return "-1";
+		}
+	}
 	
 	
 }

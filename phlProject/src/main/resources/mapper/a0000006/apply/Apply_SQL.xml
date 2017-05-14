@@ -43,17 +43,57 @@
                , MOD_DT
          ) VALUES (
                
-               #{BSNS_CODE}
+               #{bsns_code}
                , #{scheduleCd}
                , #{scheduleDt}
                , #{stHour}
                , #{endHour}
                , #{subject}
                , #{content}
-               , #{SESSION_ID}
+               , #{session_id}
                , now()
-               , #{SESSION_ID}
+               , #{session_id}
                , now()
          )
    </insert>
+   
+	<select id="viewApply" parameterType="hashmap" resultType="hashmap">
+		SELECT	BSNS_CODE
+				, SCHEDULE_SN
+				, SCHEDULE_CD
+				, SCHEDULE_DT
+				, ST_HOUR
+				, END_HOUR
+				, SUBJECT
+				, CONTENT
+				, REG_DT
+				, REG_ID
+				, MOD_DT
+				, MOD_ID
+		FROM	BSNS_SCHEDULE
+		WHERE	1=1
+				AND SCHEDULE_SN = #{scheduleSn}
+   
+	</select>
+	
+	
+	<update id="updateApply" parameterType="hashmap">
+		UPDATE	BSNS_SCHEDULE
+		SET		SCHEDULE_DT = #{scheduleDt}
+				, ST_HOUR = #{stHour}
+				, END_HOUR = #{endHour}
+				, SUBJECT = #{subject}
+				, CONTENT = #{content}
+				, MOD_DT = now()
+				, MOD_ID = #{session_id}
+		WHERE	SCHEDULE_SN = #{scheduleSn}	
+	</update>
+	
+	<delete id="deleteApply" parameterType="hashmap">
+		DELETE	
+		FROM	BSNS_SCHEDULE
+		WHERE	SCHEDULE_SN = #{scheduleSn}
+	</delete>
+	
+	
 </mapper>

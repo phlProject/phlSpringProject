@@ -320,3 +320,21 @@ nav ul li:hover ul { display: block; }
    border: 1px solid;
    z-index: 9999;
 }
+#insertTbl{
+	width : 450px;
+	min-width: 450px;
+	max-width : 450px;
+	height : 350px;
+	min-height: 350px;
+	max-height: 350px;
+}
+#insertTbl th {
+	width : 150px;
+	min-width: 150px;
+	max-width : 150px;
+}
+#insertTbl td {
+	width : 300px;
+	min-width: 300px;
+	max-width : 300px;
+}

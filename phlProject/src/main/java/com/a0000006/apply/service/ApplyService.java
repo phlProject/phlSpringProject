@@ -14,4 +14,13 @@ public interface ApplyService {
 	// 신청 등록
 	String insertApply(Map<String, Object> map) throws Exception;
 
+	// 상세 페이지
+	Map<String, Object> viewApply(Map<String, Object> map) throws Exception;
+
+	// 수정
+	String updateApply(Map<String, Object> map) throws Exception;
+
+	// 삭제
+	String deleteApply(Map<String, Object> map) throws Exception;
+
 }
