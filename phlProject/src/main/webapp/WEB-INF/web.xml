@@ -12,7 +12,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+  
 	<!-- 사용자의 요청 응답 처리 역할 (.do) 설정 -->
 	<servlet>
         <servlet-name>action</servlet-name>
