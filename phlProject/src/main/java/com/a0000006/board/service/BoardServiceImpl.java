@@ -45,7 +45,7 @@ public class BoardServiceImpl implements BoardService {
 			boardDAO.insertBook(map);
 			
 			// 전 등록된 Seq 가져오기
-			int board_sn = boardDAO.seqSn();
+			int board_sn = boardDAO.selectboardSn();
 			
 			return board_sn;
 		} catch (Exception e) {
@@ -78,28 +78,6 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
-	/* 게시판 > 파일 등록 */
-	public String insertBoardFl(Map<String, Object> map) throws Exception {
-		try {
-			boardDAO.insertBoardFl(map);
-			return "success";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "fail";
-		}
-	}
-	
-	/* 게시판 > 파일 수정 */
-	public String updateBoardFl(Map<String, Object> map) throws Exception {
-		try {
-			boardDAO.updateBoardFl(map);
-			return "success";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "fail";
-		}
-	}
-	
 	/****************************** 책 소 개 종료  ******************************/
 	
 	/****************************** 간 행 물 시작  ******************************/
@@ -115,10 +93,85 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.publiList(map);
     }
 	
+	/* 간행물 > 상세 폼 */
+	@Override
+    public List<Map<String, Object>> publiView(Map<String, Object> map) throws Exception {
+        return boardDAO.publiView(map);
+    }
+	
+	/* 간행물 > 등록 */
+	@Override
+	public int insertPubli(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.insertPubli(map);
+			
+			// 게시판 공통 > 일련번호 조회
+			int board_sn = boardDAO.selectboardSn();
+			
+			return board_sn;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	/* 간행물 > 수정 */
+	@Override
+	public String updatePubli(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.updatePubli(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 간행물 > 삭제 */
+	@Override
+	public String deletePubli(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.deletePubli(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 	/****************************** 간 행 물 종료  ******************************/
 	
-	@Override
-    public List<Map<String, Object>> flList(Map<String, Object> map) throws Exception {
-        return boardDAO.flList(map);
+	/****************************** 게시판 공통 시작  ******************************/
+	
+	/* 게시판 공통 > 파일 등록 */
+	public String insertBoardFl(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.insertBoardFl(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
+	
+	/* 게시판 공통 > 파일 수정 */
+	public String updateBoardFl(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.updateBoardFl(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 게시판 공통 > 파일다운로드 > 조회 */
+	@Override
+    public List<Map<String, Object>> boardFlList(Map<String, Object> map) throws Exception {
+        return boardDAO.boardFlList(map);
+	}
+	
+	/****************************** 게시판 공통 종료  ******************************/
+	
+
 }

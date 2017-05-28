@@ -44,3 +44,8 @@ function ComSubmit(formId, url){
 function TopMenuMove(url){
 	$("#topMenu_Form").attr({method : "post", action : url}).submit();
 }
+
+function ComSubmitView(formId, url, view){
+	var input = $("<input>").attr("type", "hidden").attr("name", "view").val(view);
+	$("#" + formId).attr({method : "post", action : url}).append($(input)).submit();
+}

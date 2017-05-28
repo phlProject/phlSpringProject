@@ -137,46 +137,6 @@
 		   AND BOARD_SN  = #{board_Sn}
 	</update>
 	
-	<!-- 게시판 > 파일 등록  -->
-	<insert id="insertBoardFl"  parameterType="hashmap">
-		INSERT INTO BSNS_MNG_BOARD_FL(
-			 BSNS_CODE
-			,BOARD_SN
-			,ORIGIN_FL_NM
-			,FL_NM
-			,FL_PATH
-			,REG_DT
-			,REG_ID
-		)VALUES(
-			 #{bsns_code}
-			,#{board_Sn}
-			,#{origin_fl_nm}
-			,#{fl_nm}
-			,#{fl_path}
-			,now()
-			,'aa'
-		)
-	</insert>
-	
-	<!-- 게시판 > 파일 수정  -->
-	<update id="updateBoardFl"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD_FL
-		   SET ORIGIN_FL_NM = #{origin_fl_nm}
-		      ,FL_NM = #{fl_nm}
-		      ,FL_PATH = #{fl_path}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
-		 WHERE 1=1 
-		   AND BSNS_CODE = #{bsns_code}
-		   AND BOARD_SN  = #{board_Sn}
-		   AND BOARD_FL_SN = #{board_Fl_Sn}
-	</update>
-	
-	<!-- 게시판 > 번호 채번  -->
-	<select id="seqSn" resultType="java.lang.Integer">
-		SELECT LAST_INSERT_ID()
-	</select>
-	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->
 	
 	<!-- /****************************** 간 행 물 시작  ******************************/ -->
@@ -191,8 +151,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsns_code}
-		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -228,8 +188,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsns_code}
-		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -247,17 +207,139 @@
 		LIMIT #{limitFirst}, #{limitSecond}
 	</select>
 	
+	<!-- 간행물 > 상세 폼  -->
+	<select id="publiView" parameterType="hashmap" resultType="hashmap">
+	SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENTS
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_MNG_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_SN = #{boardSn}
+	</select>	
+	
+	<!--  간행물 > 등록 --> 
+	<insert id="insertPubli" parameterType="hashmap">
+		INSERT INTO BSNS_MNG_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENTS
+				,REG_DT
+				,REG_ID
+		)VALUES(
+				 #{bsnsCode}
+				,#{boardGbnCd}
+				,#{subject}
+				,#{editor}
+				,now()
+				,'aa'
+				<!--,#{sessionId}-->
+			)
+	</insert>
+	
+	<!-- 간행물 > 수정 -->
+	<update id="updatePubli"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD
+		   SET SUBJECT = #{subject}
+		      ,CONTENTS = #{editor}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 간행물 > 삭제 -->
+	<update id="deletePubli"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD
+		   SET USE_YN = 'N'
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
 	<!-- /****************************** 간 행 물 종료  ******************************/ -->
 	
-	<select id="flList" parameterType="hashmap" resultType="hashmap">
-		SELECT *
-		FROM BSNS_MNG_BOARD 	A
-		    ,BSNS_MNG_BOARD_FL 	B
-		WHERE 1=1
-		  AND A.BSNS_CODE = B.BSNS_CODE
-		  AND A.BOARD_SN = B.BOARD_SN
-		  AND A.BSNS_CODE = 'A0000006'
-		  AND A.BOARD_SN = '33'
-		  AND B.BOARD_FL_SN = '1'
+	
+	<!-- /****************************** 게시판 공통 시작  ****************************/ -->
+	
+	<!-- 게시판 공통 > 일련번호 조회  -->
+	<select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
 	</select>
+	
+	<!-- 게시판 공통 > 파일 등록  -->
+	<insert id="insertBoardFl"  parameterType="hashmap">
+		INSERT INTO BSNS_MNG_BOARD_FL(
+			 BSNS_CODE
+			,BOARD_SN
+			,ORIGIN_FL_NM
+			,FL_NM
+			,FL_PATH
+			,REG_DT
+			,REG_ID
+		)VALUES(
+			 #{bsnsCode}
+			,#{boardSn}
+			,#{originFlNm}
+			,#{flNm}
+			,#{flPath}
+			,now()
+			,'aa'
+			<!--,#{sessionId}-->
+		)
+	</insert>
+	
+	<!-- 게시판 공통 > 파일 수정  -->
+	<update id="updateBoardFl"  parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD_FL
+		   SET ORIGIN_FL_NM = #{originFlNm}
+		      ,FL_NM = #{flNm}
+		      ,FL_PATH = #{flPath}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1 
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+		   AND BOARD_FL_SN = #{boardFlSn}
+	</update>
+	
+	<!-- 게시판 공통 > 파일 다운로드 > 조회 -->
+	<select id="boardFlList" parameterType="hashmap" resultType="hashmap">
+		SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_MNG_BOARD 	BMB
+		    ,BSNS_MNG_BOARD_FL 	BMBF
+		WHERE 1=1
+		  AND BMB.BSNS_CODE = BMBF.BSNS_CODE
+		  AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		  AND BMB.USE_YN = 'Y'
+		  AND BMBF.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_SN  = #{boardSn}
+		  AND BMBF.BOARD_FL_SN = #{boardFlSn}
+	</select>
+	
+	<!-- /****************************** 게시판 공통 종료  ****************************/ -->
+	
 </mapper>

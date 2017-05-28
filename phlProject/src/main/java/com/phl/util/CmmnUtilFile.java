@@ -40,7 +40,6 @@ public class CmmnUtilFile {
 
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 	 	Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		    
 		          
 		String charenc = "";		// 변환 파일명
 		String fileName = "";		// 원본 파일명
@@ -53,7 +52,8 @@ public class CmmnUtilFile {
         Map<String, Object> listMap = null; 
 		try {
 			
-			setFilePathBase();
+			// 경로 지정
+			setFileUploadPathBase();
 			
 			filePath = filePathBase;
 			filePathS = filePathSub;
@@ -67,8 +67,6 @@ public class CmmnUtilFile {
 				fp.mkdirs();
 			}
 			
-			
-			
 			while(iterator.hasNext()){
 	            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 	            if(multipartFile.isEmpty() == false){
@@ -78,7 +76,6 @@ public class CmmnUtilFile {
 	            	System.out.println(originalFileExtension);
 	            	for(int j=0; j<badExt.length; j++){
 	            		if(originalFileExtension.toLowerCase().equals("."+badExt[j])){
-	            			System.out.println("불가");
 	            			throw new Exception();
 	            		}
 	            	}
@@ -93,14 +90,10 @@ public class CmmnUtilFile {
 	                list.add(listMap);
 	            }
 	        }
-			
 		}catch (Exception e) {
 			throw e;
 		}
-		
-		
 		return list;
-		
 	}
 	
 	/**
@@ -112,7 +105,7 @@ public class CmmnUtilFile {
 		
 		ServletContext context = request.getSession().getServletContext();
 		
-		setFilePathBase();
+		setFileDownloadPathBase(commandMap);
 		String svrFlPth = filePathBase;
 		
 	    String svrFlNm = (String) commandMap.get("flNm");
@@ -194,9 +187,9 @@ public class CmmnUtilFile {
 
 
 	/**
-	 * 경로 지정 
+	 * 업로드 경로 지정 
 	 */
-	public static void setFilePathBase(){
+	public static void setFileUploadPathBase(){
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		ServletContext context = request.getSession().getServletContext();
 		   
@@ -212,5 +205,23 @@ public class CmmnUtilFile {
 		filePathSub = "/file/" + request.getAttribute("fullSubPath") + thisDate + "/";
 
 		filePathBase = realPath + filePathSub;
-	}		   
+	}	
+	
+	/**
+	 * 다운로드 경로 지정 
+	 */
+	public static void setFileDownloadPathBase(CommandMap commandMap){
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		ServletContext context = request.getSession().getServletContext();
+		   
+		// 파일 기본 경로  2017.02.01 
+		String realPath = context.getRealPath("/");
+		realPath = realPath.substring(0, realPath.length()-1);
+		
+		filePathBase = realPath;
+		
+		filePathSub = (String) commandMap.get("flPath");
+
+		filePathBase = realPath + filePathSub;
+	}
 }

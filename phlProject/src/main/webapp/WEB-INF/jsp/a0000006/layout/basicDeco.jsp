@@ -10,6 +10,7 @@
 <script src="/js/jquery-ui.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/a0000006/member.js"></script>
+<script src="/js/phl/phl_common.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
 <deco:head />

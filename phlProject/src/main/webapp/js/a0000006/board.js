@@ -86,3 +86,57 @@ function bookValidation(){
 	
 	return true;
 }
+
+
+/***** 게시판 - 간행물 *****/
+
+/* 간행물 > 리스트 조회 */
+function fn_publiList(){
+	ComSubmit('publiList_Form','/a0000006/board/publiList.do');
+}
+
+/* 간행물 > 상세 폼 */
+function fn_publiView(boardSn){
+	var input = $("<input>").attr("type", "hidden").attr("name", "boardSn").attr("id", "boardSn").val(boardSn);
+	$("#publiList_Form").attr({action:"/a0000006/board/publiView.do" ,method:'post'}).append($(input)).submit();
+}
+
+/* 간행물 > 신규등록 폼 */
+function fn_publiFormI(){
+	ComSubmit('publiList_Form','/a0000006/board/publiFormI.do');
+}
+
+/* 간행물 > 수정 폼 */
+function fn_publiFormU(){
+	ComSubmit('publiList_Form','/a0000006/board/publiFormU.do');
+}
+
+/* 간행물 > 삭제 */
+function fn_deletePubli(){
+	if(!confirm("삭제하시겠습니까? ")){
+		return;
+	}
+	
+	var postUrl = "/a0000006/board/deletePubli.do";
+	$.post(postUrl, $("#publiList_Form").serialize(), function(data){
+		if(data.result == "success" ){
+			alert("삭제되었습니다.");
+			ComSubmit('publiList_Form','/a0000006/board/publiList.do');
+		} else{
+			alert("실패하였습니다. 관리자에게 문의해주세요.");
+			return;
+		}
+	});
+}
+
+/***** 게시판 - 공통 *****/
+
+/* 게시판 공통 > 파일다운로드 */
+function fn_boardFlDown(bsnsCode, boardSn, boardFlSn){
+	var strUrl  = "/a0000006/board/downloadFile.do";
+		strUrl += "?bsnsCode="+bsnsCode;
+		strUrl += "&&boardSn="+boardSn;
+		strUrl += "&&boardFlSn="+boardFlSn;
+	
+	document.location.href=strUrl;
+}
