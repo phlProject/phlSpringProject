@@ -82,7 +82,7 @@
 			<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
 			
 			<h3 class="book-title">간행물 등록/수정</h3>
-			
+			<br/><br/>
 			<!-- Editor_Form -->
 			<form id="editor_Form">
 				<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
@@ -94,8 +94,9 @@
 			    <input type="hidden" id="flPath" 		name="flPath"			value="${publiView.FL_PATH}">		<!-- 파일 경로 -->
 			    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${publiView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 			    <input type="hidden" id="uploadYn" 		name="uploadYn" 		value="N">							<!-- 업로드 여부 -->
-			    
+			    <br/><br/><br/>
 				<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${publiView.SUBJECT}">
+				<br/><br/>
 				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${publiView.CONTENTS}</textarea>
 			</form>
 			

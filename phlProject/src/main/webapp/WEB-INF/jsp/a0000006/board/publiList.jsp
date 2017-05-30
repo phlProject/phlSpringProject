@@ -31,25 +31,25 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty publiList}">
-				<div style="position: relative; float: left; width: 100%;">
+				<div class="public">
 					
 					<c:forEach items="${publiList}" var="row" varStatus="status">
-						<div style="position:relative; float:left; background-color: ; width: 200px; height: 220px;">
-							<div style="position:relative; background-color: ; width: 200px; height: 150px;">
+						<div class="public-list">
+							<div class="public-img">
 								<a href="javascript:fn_publiView('${row.BOARD_SN}')">
-									이미지
+								 Image
 								</a>
 							</div>
 							
-							<div style="position:relative; background-color: ; width: 200px; height: 30px;">
+							<div class="public-title">
 								${row.SUBJECT}
 							</div>
-							<div style="position:relative; float:left; background-color: ; width: 100px; height: 40px;">
-								다운로드
+							<div class="public-down">
+								 Download
 							</div>
-							<div style="position:relative; float:left; background-color: ; width: 100px; height: 40px;">
+							<div class="public-view">
 								<a href="javascript:fn_publiView('${row.BOARD_SN}')">
-									상세보기
+								  View
 								</a>
 							</div>
 						</div>
@@ -60,7 +60,8 @@
 						</c:if>
 					</c:forEach>	
 				</div>
-				</c:if>				
+				<br/><br/><br/>
+				</c:if>			
 				<div class="bookForm">
 					<a href="javascript:fn_publiFormI();" id="publiFormI">신규등록</a>
 				</div>
