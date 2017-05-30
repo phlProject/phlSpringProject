@@ -37,11 +37,15 @@ public class BoardController {
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookList");
 		
-		if(request.getParameter("bsns_code") == null){
-			commandMap.put("bsns_code", session.getAttribute("bsns_code"));
+		/* 업체코드 - A0000006 (꿈두레) */
+		if(commandMap.get("bsnsCode") == null){
+			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
 		}
+		
 		/* 게시판 구분 - B01001 (책소개) */
-		commandMap.put("board_gbn_cd", "B01001");
+		if(commandMap.get("boardGbnCd") == null){
+			commandMap.put("boardGbnCd", "B01001");
+		}
 		
 		// 책소개 > 조회 > 카운트
 		int totalListCount = boardService.bookListCnt(commandMap.getMap());		
@@ -86,7 +90,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	/* 책소개 > 상세 */
+	/* 책소개 > 상세 폼 */
 	@RequestMapping(value="/a0000006/board/bookView.do")
 	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
@@ -101,12 +105,12 @@ public class BoardController {
 		return mv;
 	}
 	
-	/* 책소개 > 등록 폼 이동 */
-	@RequestMapping(value="/a0000006/board/bookForm.do")
+	/* 책소개 > 신규등록 폼 */
+	@RequestMapping(value="/a0000006/board/bookFormI.do")
 	public ModelAndView bookForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookForm");
 		
+		commandMap.put("newYn", "Y"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
 		
 		return mv;
@@ -118,36 +122,33 @@ public class BoardController {
 	public ModelAndView insertBook(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		int board_Sn = boardService.insertBook(commandMap.getMap());
+		int boardSn = boardService.insertBook(commandMap.getMap());
 		
-		String result_Fl_Yn = "success"; // 파일 등록 성공여부
+		commandMap.put("boardSn", boardSn);
 		
-		if(commandMap.get("uploadYn").equals("Y")){
-			commandMap.put("board_Sn", board_Sn);
-			// 게시판 > 파일 등록
-			result_Fl_Yn = boardService.insertBoardFl(commandMap.getMap());
-		}
+		// 게시판 공통 > 파일 등록
+		String resultFlYn = boardService.insertBoardFl(commandMap.getMap());
 
-		if(board_Sn > 0){
+		if(boardSn > 0){
 			mv.addObject("result", "success");  	
 		}else{
 			mv.addObject("result", "fail");
 		}
-		
-		mv.addObject("result_Fl_Yn", result_Fl_Yn);  		
-		mv.addObject("board_Sn", board_Sn);  		
+	
+		mv.addObject("boardSn", boardSn);
+		mv.addObject("resultFlYn", resultFlYn);
 		
 		return mv;
 	}
 	
-	/* 책소개 > 수정 폼 이동 */
+	/* 책소개 > 수정 폼 */
 	@RequestMapping(value="/a0000006/board/bookFormU.do")
 	public ModelAndView bookFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		
-		ModelAndView mv = new ModelAndView("/a0000006/board/bookFormU");
+		ModelAndView mv = new ModelAndView("/a0000006/board/bookForm");
 		
 		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
 		
+		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
 		mv.addObject("bookView", bookView.get(0));
 		
@@ -161,14 +162,14 @@ public class BoardController {
 		
 		String result = boardService.updateBook(commandMap.getMap());
 		
-		String result_Fl_Yn = "success"; // 파일 등록 성공여부
+		String resultFlYn = "success"; // 파일 등록 성공여부
 		
 		if(commandMap.get("uploadYn").equals("Y")){
 			// 게시판 > 파일 등록
-			result_Fl_Yn = boardService.updateBoardFl(commandMap.getMap());
+			resultFlYn = boardService.updateBoardFl(commandMap.getMap());
 		}
 		
-		mv.addObject("result_Fl_Yn", result_Fl_Yn);  
+		mv.addObject("resultFlYn", resultFlYn);  
 		mv.addObject("result", result);  	
 		
 		return mv;
@@ -208,7 +209,7 @@ public class BoardController {
 			commandMap.put("boardGbnCd", "B01002");
 		}
 		
-		// 게시판 공통 > 조회 > Count
+		// 간행물 > 조회 > Count
 		int totalListCount = boardService.publiListCnt(commandMap.getMap());		
 		
 		// 요청 페이지 번호
@@ -238,7 +239,7 @@ public class BoardController {
 		commandMap.put("limitFirst", 	pagingData[1]-1);
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 		
-		// 게시판 공통 > 조회 > List
+		// 간행물 > 조회
 		List<Map<String,Object>> publiList = boardService.publiList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호

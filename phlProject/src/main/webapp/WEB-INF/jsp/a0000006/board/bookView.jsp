@@ -1,34 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script>
-	function fn_fileDown(){
-	var strUrl = "/a0000006/board/downloadFile.do";
-
-	document.location.href=strUrl;
-}
-</script>
+<title>교육나눔 꿈두레 - 책 소개</title>
 </head>
 <body>
 	<!-- 목록이동_Form -->
 	<form id="bookList_Form">
-		<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">
-		<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">
-		<input type="hidden" id="bsns_code" 	name="bsns_code" 		value="${sessionScope.bsns_code}" >
-		<input type="hidden" id="session_id" 	name="session_id" 		value="${sessionScope.session_id}" >
-	</form>
-	
-	<!-- 수정이동_Form -->
-	<form id="bookView_Form">
-		<input type="hidden" id="BSNS_CODE" 	name="BSNS_CODE" 		value="${bookView.BSNS_CODE}">	<!-- 업체코드 -->
-		<input type="hidden" id="board_Sn" 		name="board_Sn" 		value="${bookView.BOARD_SN}">	<!-- 게시판 번호 -->
-		<input type="hidden" id="bsns_code" 	name="bsns_code" 		value="${sessionScope.bsns_code}" >
-		<input type="hidden" id="session_id" 	name="session_id" 		value="${sessionScope.session_id}" >
+		<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">		<!-- 검색구분 -->
+		<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
+		<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${bookView.BSNS_CODE}">		<!-- 업체코드 -->
+		<input type="hidden" id="boardSn" 		name="boardSn" 			value="${bookView.BOARD_SN}">		<!-- 게시판 번호 -->
+		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">
 	</form>
 	
 	<div id="content">
@@ -37,17 +22,14 @@
 		<div class="view">
 			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
 		</div>
-		<%-- 제목 : ${bookView.SUBJECT}<br> --%>
 			 ${bookView.CONTENTS}
 		<div class="bookView">	
 			<div class="bookView-btn">
-				<a href="javascript:fn_bookFormU();" id="bookFormU">수정</a>
-				<a href="javascript:fn_deleteBook();" id="deleteBook">삭제</a>		
-				<a href="javascript:fn_bookList();" id="bookList">목록</a>
+				<a href="javascript:fn_bookFormU();" 	id="bookFormU">수정</a>
+				<a href="javascript:fn_deleteBook();" 	id="deleteBook">삭제</a>		
+				<a href="javascript:fn_bookList();" 	id="bookList">목록</a>
 			</div>
 		</div>
-		<!-- 다운로드 테스트 -->
-		<%-- <a href="javascript:fn_fileDown();"><c:out value="${bookView.ORIGIN_FL_NM}"/></a> --%>
 	</div>
 	
 </body>

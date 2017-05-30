@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.bookList(map);
     }
 	
-	/* 책소개 > 상세 */
+	/* 책소개 > 상세 폼 */
 	@Override
     public List<Map<String, Object>> bookView(Map<String, Object> map) throws Exception {
         return boardDAO.bookView(map);
@@ -44,10 +44,10 @@ public class BoardServiceImpl implements BoardService {
 		try {
 			boardDAO.insertBook(map);
 			
-			// 전 등록된 Seq 가져오기
-			int board_sn = boardDAO.selectboardSn();
+			// 게시판 공통 > 일련번호 조회
+			int boardSn = boardDAO.selectboardSn();
 			
-			return board_sn;
+			return boardSn;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -106,9 +106,9 @@ public class BoardServiceImpl implements BoardService {
 			boardDAO.insertPubli(map);
 			
 			// 게시판 공통 > 일련번호 조회
-			int board_sn = boardDAO.selectboardSn();
+			int boardSn = boardDAO.selectboardSn();
 			
-			return board_sn;
+			return boardSn;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

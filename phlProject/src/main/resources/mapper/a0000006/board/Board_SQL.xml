@@ -15,8 +15,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsns_code}
-		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -52,8 +52,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsns_code}
-		  AND BMB.BOARD_GBN_CD = #{board_gbn_cd}
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -71,7 +71,7 @@
 		LIMIT #{limitFirst}, #{limitSecond}
 	</select>
 
-	<!-- 책소개 > 상세  -->
+	<!-- 책소개 > 상세  폼 -->
 	<select id="bookView" parameterType="hashmap" resultType="hashmap">
 	SELECT BMB.BSNS_CODE
 			  ,BMB.BOARD_SN
@@ -91,8 +91,8 @@
 		     AND BMBF.USE_YN = 'Y'
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsns_code}
-		  AND BMB.BOARD_SN = #{board_Sn}
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_SN = #{boardSn}
 	</select>	
 
 	<!-- 책소개 > 등록 -->
@@ -105,8 +105,8 @@
 				,REG_DT
 				,REG_ID
 			)VALUES(
-				 #{bsns_code}
-				,#{board_gbn_cd}
+				 #{bsnsCode}
+				,#{boardGbnCd}
 				,#{subject}
 				,#{editor}
 				,now()
@@ -122,8 +122,8 @@
 		      ,MOD_DT = now()
 		      ,MOD_ID = 'aa'
 		 WHERE 1=1
-		   AND BSNS_CODE = #{bsns_code}
-		   AND BOARD_SN  = #{board_Sn}
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
 	</update>
 	
 	<!-- 책소개 > 삭제 -->
@@ -133,8 +133,8 @@
 		      ,MOD_DT = now()
 		      ,MOD_ID = 'aa'
 		 WHERE 1=1
-		   AND BSNS_CODE = #{bsns_code}
-		   AND BOARD_SN  = #{board_Sn}
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
 	</update>
 	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->

@@ -1,6 +1,5 @@
 /* 파일 업로드 */
 function fn_uploadFile(){
-	alert(1);
 	var formData = new FormData($("#upload_Form")[0]);
 	$.ajax({
         type : 'post',

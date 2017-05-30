@@ -23,7 +23,7 @@ public class BoardDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("a0000006/board.bookList", map);
     }
 	
-	/* 책소개 > 상세 */
+	/* 책소개 > 상세 폼 */
 	@SuppressWarnings("unchecked")
     public List<Map<String, Object>> bookView(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("a0000006/board.bookView", map);

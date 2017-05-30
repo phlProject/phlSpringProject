@@ -13,7 +13,7 @@ public interface BoardService {
 	/* 책소개 > 조회 */
 	List<Map<String, Object>> bookList(Map<String, Object> map) throws Exception;
 	
-	/* 책소개 > 상세 */
+	/* 책소개 > 상세 폼 */
 	List<Map<String, Object>> bookView(Map<String, Object> map) throws Exception;
 	
 	/* 책소개  > 등록 */
@@ -44,7 +44,7 @@ public interface BoardService {
 	/* 간행물 > 수정 */
 	String updatePubli(Map<String, Object> map) throws Exception;
 	
-	/* 간행물  > 삭제 */
+	/* 간행물 > 삭제 */
 	String deletePubli(Map<String, Object> map) throws Exception;
 	
 	/****************************** 간 행 물 종료  ******************************/

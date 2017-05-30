@@ -25,7 +25,7 @@
 		<div class="bookView">	
 			<div class="bookView-btn">
 				<a href="javascript:fn_publiFormU();" 	id="publiFormU">수정</a>
-				<a href="javascript:fn_deletePubli();" 	id="deleteBook">삭제</a>		
+				<a href="javascript:fn_deletePubli();" 	id="deletePubli">삭제</a>		
 				<a href="javascript:fn_publiList();" 	id="publiList">목록</a>
 			</div>
 		</div>
