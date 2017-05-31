@@ -93,12 +93,12 @@ nav ul li:hover ul { display: block; }
 
 /* 간행물 - publiList */
 .public { position: relative; float: left; width: 100%; margin-top:20px; margin-bottom:30px; border-bottom: 2px solid #e9e6e4; }
-.public-list { position:relative; float:left; width: 190px; height: 225px; margin-bottom: 30px; border:1px solid #ddd; /* box-shadow:0px 0px 5px #c1c1c1; */ margin-left:4px; margin-right: 4px;}
-.public-img { position:relative; background-color:  ; width: 190px; height: 150px; text-align: center; display:table-cell; vertical-align: middle; font-weight: 500; }
+.public-list { position:relative; float:left; width: 190px; /* height: 225px; */ margin-bottom: 30px; border:1px solid #ddd; /* box-shadow:0px 0px 5px #c1c1c1; */ margin-left:4px; margin-right: 4px;}
+.public-img { position:relative; background-color:  ; width: 190px; height: 150px; text-align: center; display:table-cell; vertical-align: middle; font-weight: 400; }
 .public-img a { color: #737373; }
-.public-title { position:relative; background-color: ; width: 190px; text-align: center; padding:8px 0; font-weight:600; color:#555; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
-.public-down { position:relative; float:left; background-color:#f8f8f8; width: 95px; text-align: center; padding:9px 0; font-weight:600; /* border-right: 1px solid #e5e5e5 */ color: #777; font-size:13px;}
-.public-view { position:relative; float:left; background-color:#f8f8f8; width: 94px; text-align: center; padding:9px 0; font-weight:600;  border-left: 1px solid #e5e5e5;  color: #777;  font-size:13px;}
+.public-title { position:relative; background-color: ; width: 190px; text-align: center; padding:8px 0; font-weight:500; color:#555; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
+.public-down { position:relative; float:left; background-color:#f8f8f8; width: 95px; text-align: center; padding:9px 0; font-weight:500; /* border-right: 1px solid #e5e5e5 */ color: #777; font-size:13px;}
+.public-view { position:relative; float:left; background-color:#f8f8f8; width: 94px; text-align: center; padding:9px 0; font-weight:500;  border-left: 1px solid #e5e5e5;  color: #777;  font-size:13px;}
 .public-view a { color:#777; }
 
 @media screen and (max-width:700px) {
