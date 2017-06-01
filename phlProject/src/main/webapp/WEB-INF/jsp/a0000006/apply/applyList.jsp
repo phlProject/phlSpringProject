@@ -25,7 +25,7 @@
 <!-- <div id="content"> -->
 
    <div id="insertFormPop" class="insertLayer" style="display:none;">
-      <a href="javascript:closeLayer('insertFormPop');"><span>닫기X</span></a>
+   	  <div id="applyform">신규신청</div>
       <table id="insertTbl">
 		<colgroup>
 			<col width="200"></col>
@@ -73,33 +73,34 @@
          <tr>
             <th>제목</th>
             <td>
-               <input type="text" name="subject" id="subject">
+               <input type="text" name="subject" id="subject" class="apply-wd">
             </td>
             
          </tr>
          <tr>   
             <th>내용</th>
             <td>
-               <input type="text" name="content" id="content">
+               <input type="text" name="content" class="apply-wd2">
             </td>
          </tr>      
       </table>
       
       <div id="buttonDiv">
       	<a href="javascript:insertApply();"><span>등록</span></a>
+      	<a href="javascript:closeLayer('insertFormPop');"><span>닫기</span></a>
       </div>
       
    </div>
    
    <!-- 월간 일정 -->
    <div class="divWrap mt15" id="monthDiv">
-      <div class='btn-holder'>
+      <div class="btn-holder">    
          <a href="javascript:void(0)"><img src="/img/btn_calendarPrev.png" alt="" id="btnPrev"/></a>
          <span id='currentDate'></span>
          <a href="javascript:void(0)"><img src="/img/btn_calendarNext.png" alt="" id="btnNext"/></a>
       </div>
       
-      <div style="float:right;">
+      <div class="btn">
          <a href="javascript:insertForm();"><span>신규 신청</span></a>
       </div><br>
       <!-- 달력 -->
