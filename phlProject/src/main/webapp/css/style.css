@@ -53,6 +53,13 @@ nav ul li:hover ul { display: block; }
 #left_sidebar li.active ul li:FIRST-CHILD a{ color:#a6bf38; }
 /* left CSS 끝 */
 
+/* 마이페이지 */
+.my-title { width:100%; margin:15px 0 20px; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; text-align:left;}
+.mytab { width:90%; border-top:2px solid #888; }
+.mytab th { width:20%; height:45px; background:#f5f8f9; text-align: left; font-size: 13px; font-weight: normal; padding:3px 10px; border-bottom: 1px solid #ddd; }
+.mytab td { width:65%; height:45px; text-align: left; font-size: 13px; font-weight: normal; padding:3px 10px; border-bottom: 1px solid #ddd; }
+.mytab input { width:300px; height: 30px; border: 1px solid #ddd;}
+.mytab select { width:300px; height: 30px; border: 1px solid #ddd; margin:0; }
 
 /*책소개 - bookForm*/
 .book-title { width:100%; margin:15px 0 0; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; }
@@ -84,7 +91,7 @@ nav ul li:hover ul { display: block; }
 
 
 /*책소개 - bookView*/
-.book-view { margin-top:80px; font-size:23px; font-weight:500; padding:30px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:2px solid #e2d318; } 
+.book-view { margin-top:80px; font-size:23px; font-weight:500; padding:20px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:1px solid #e2d318; margin-bottom: 20px; } 
 .bookView { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}
 .bookView-btn { display: inline-block; }
 .bookView-btn a { width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:right; margin-top:30px; text-align:center; border-left:3px solid #fff; text-align: center;}

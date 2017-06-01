@@ -9,9 +9,13 @@
 <body>
 	<div id="content" align="center">
 		<form id="memMypage_Form" name="memMypage_Form">
-		<table>
+		
+		<h3 class="my-title">MYPAGE</h3>
+		
+		<table class="mytab">
 			<tr>
-				<td>아이디 </td><td>
+				<th>아이디 </th>			
+				<td>
 					${myPageInfo.MEM_ID}
 					<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
 					<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
@@ -20,22 +24,27 @@
 				</td>
 			</tr>
 			<tr>
-				<td>비밀번호 </td><td><input type="text" value="${myPageInfo.MEM_PW}" id="mem_pw" name="mem_pw" ></td>
+				<th>비밀번호 </th>
+				<td><input type="text" value="${myPageInfo.MEM_PW}" id="mem_pw" name="mem_pw" ></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인</td><td><input type="text" value="${myPageInfo.MEM_PW}" id="conf_mem_pw" name="conf_mem_pw" ></td>
+				<th>비밀번호 확인</th>
+				<td><input type="text" value="${myPageInfo.MEM_PW}" id="conf_mem_pw" name="conf_mem_pw" ></td>
 			</tr>
 			<tr>
-				<td>이름</td><td><input type="text" value="${myPageInfo.MEM_NM}" id="mem_nm" name="mem_nm" ></td>
+				<th>이름</th>
+				<td><input type="text" value="${myPageInfo.MEM_NM}" id="mem_nm" name="mem_nm" ></td>
 			</tr>
 			<tr>
-				<td>이메일 </td><td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="mem_email" name="mem_email"></td>
+				<th>이메일 </th>
+				<td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="mem_email" name="mem_email"></td>
 			</tr>
 			<tr>
-				<td>별명</td><td><input type="text" value="${myPageInfo.MEM_NICKNM}" id="mem_nicknm" name="mem_nicknm"></td>
+				<th>별명</th>
+				<td><input type="text" value="${myPageInfo.MEM_NICKNM}" id="mem_nicknm" name="mem_nicknm"></td>
 			</tr>
 			<tr>
-				<td>등급</td>
+				<th>등급</th>
 				<td>
 					<select id="mem_grade" name="mem_grade">
 						<c:forEach items="${commList}" var="rows">
@@ -45,13 +54,17 @@
 				</td>
 			</tr>
 			<tr>
-				<td>전화번호 </td><td><input type="text" value="${myPageInfo.MEM_PHONE}" id="mem_phone" name="mem_phone"></td>
+				<th>전화번호 </th>
+				<td><input type="text" value="${myPageInfo.MEM_PHONE}" id="mem_phone" name="mem_phone"></td>
 			</tr>
 		</table>
-		
-		<a href="javascript:fn_updateMemRegist();" id="updateMemRegist">수정</a>
-		<a href="" id="mainIndex">메인</a>
-		<a href="javascript:fn_deleteMemRegist();" id="deleteMember">회원탈퇴</a>
+		<div class="bookView">
+			<div class="bookView-btn">
+				<a href="javascript:fn_deleteMemRegist();" id="deleteMember">회원탈퇴</a>
+				<a href="" id="mainIndex">메인</a>
+				<a href="javascript:fn_updateMemRegist();" id="updateMemRegist">수정</a>
+			</div>
+		</div>
 		</form>
 	</div>
 
