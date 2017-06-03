@@ -15,7 +15,7 @@
 		<input type="hidden" id="boardSn" 		name="boardSn" 			value="${publiView.BOARD_SN}">		<!-- 게시판 번호 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">
 	</form>
-	
+	  
 	<div id="content">
 		<h3 class="cont-title">간행물</h3>
 		<p class="book-view">제목 : ${publiView.SUBJECT}</p>
