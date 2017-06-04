@@ -39,6 +39,39 @@ function fn_deleteBook(){
 	});
 }
 
+/* 책소개 > 좋아요 등록/수정  */
+function fn_bookLike(){
+	
+	var saveLike = ""; // 저장 될 라이크 유무	
+	
+	if($("#likeYn").val() == "Y"){
+		saveLike = 'N';
+	}else{
+		saveLike = 'Y';
+	}
+	$.ajax({
+		url		: "/a0000006/board/bookLike.do",
+		type 	: "post",
+		data : {
+					bsnsCode 	: $("#bsnsCode").val(),
+					boardSn		: $("#boardSn").val(),
+					saveLike	: saveLike
+				},
+		dataType : "json",
+		success : function(data){
+			if(data.result == "success"){
+				if(saveLike == "Y"){
+					$("#likeImage").text("♥");
+				}else if(saveLike == "N"){
+					$("#likeImage").text("♡");
+				}
+				$("#likeYn").val(saveLike);
+			}
+		}
+	});
+	
+}
+
 /* 책소개 > 신규등록/수정 > 파일업로드 */
 /*function fn_bookUploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);

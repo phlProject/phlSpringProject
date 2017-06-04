@@ -44,6 +44,16 @@ public class BoardDAO extends AbstractDAO {
 	    update("a0000006/board.deleteBook", map);
 	}
 	
+	/* 책소개 > 좋아요 Count */
+	public void bookLikeCount(Map<String, Object> map) throws Exception{
+		update("a0000006/board.bookLikeCount", map);
+	}
+	
+	/* 책소개 > 좋아요 등록/수정 */
+	public void bookLikeHistory(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.bookLikeHistory", map);
+	}
+	
 	/****************************** 책 소 개 종료  ******************************/
 	
 	/****************************** 간 행 물 시작  ******************************/

@@ -14,11 +14,28 @@
 		<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${bookView.BSNS_CODE}">		<!-- 업체코드 -->
 		<input type="hidden" id="boardSn" 		name="boardSn" 			value="${bookView.BOARD_SN}">		<!-- 게시판 번호 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">
+		
+		<input type="hidden" id="likeYn"		name="likeYn"			value="${bookView.LIKE_YN}">			<!-- 라이크 유무 -->
 	</form>
 	
 	<div id="content">
 		<h3 class="cont-title">책 소개</h3>
-		<p class="book-view">제목 : ${bookView.SUBJECT}</p>
+		<p class="book-view">
+			제목 : ${bookView.SUBJECT}
+			<c:choose>
+				<c:when test="${not empty sessionScope.session_id}">
+					<c:if test="${bookView.LIKE_YN eq 'Y'}">
+						<a href="javascript:fn_bookLike();"><span id="likeImage">♥</span></a>
+					</c:if>
+					<c:if test="${bookView.LIKE_YN eq 'N' or empty bookView.LIKE_YN}">
+						<a href="javascript:fn_bookLike();"><span id="likeImage">♡</span></a>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					♡ 
+				</c:otherwise>
+			</c:choose>
+		</p>
 		<div class="view">
 			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
 		</div>

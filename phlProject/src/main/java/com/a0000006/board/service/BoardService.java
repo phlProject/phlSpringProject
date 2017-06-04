@@ -25,6 +25,12 @@ public interface BoardService {
 	/* 책소개  > 삭제 */
 	String deleteBook(Map<String, Object> map) throws Exception;
 	
+	/* 책소개  > 좋아요 COunt */
+	String bookLikeCount(Map<String, Object> map) throws Exception;
+	
+	/* 책소개  > 좋아요 등록/수정  */
+	String bookLikeHistory(Map<String, Object> map) throws Exception;
+	
 	/****************************** 책 소 개 종료  ******************************/
 	
 	/****************************** 간 행 물 시작  ******************************/

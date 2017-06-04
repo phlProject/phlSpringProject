@@ -11,6 +11,7 @@
 		<h3 class="cont-title">책 소개</h3>
 		<form id="bookList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
+			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.session_id}" >	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 			
 			<!-- 검색조건 -->
@@ -37,7 +38,7 @@
 								<img src="${row.FL_PATH}/${row.FL_NM}" width="200" height="160">
 							</div>
 							<div class="book-right">
-								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT}</a>
+								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT} ♥${row.LIKE_COUNT}</a>
 								<hr color="#e2d318" size="0.3">						
 								<p>${row.CONTENTS}</p>
 							</div>

@@ -187,6 +187,30 @@ public class BoardController {
 		return mv;
 	}
 	
+	/* 책소개 > 좋아요 */
+	@RequestMapping(value="/a0000006/board/bookLike.do")
+	public ModelAndView bookLike(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		commandMap.put("bsnsCode",request.getParameter("bsnsCode"));	
+		commandMap.put("boardSn",request.getParameter("boardSn"));
+		commandMap.put("saveLike",request.getParameter("saveLike"));	
+		commandMap.put("sessionId",session.getAttribute("session_id"));
+		
+		try{
+			// 책소개 > 좋아요 Count
+			String result = boardService.bookLikeCount(commandMap.getMap());
+			if(result.equals("success")){
+				// 책소개 > 좋아요 등록/수정
+				result = boardService.bookLikeHistory(commandMap.getMap());
+				
+				mv.addObject("result", result);  	
+			}
+		}catch(Exception e){
+		}
+		return mv;
+	}
+	
 	/****************************** 책 소 개 종료  ******************************/
 	
 	/****************************** 간 행 물 시작  ******************************/

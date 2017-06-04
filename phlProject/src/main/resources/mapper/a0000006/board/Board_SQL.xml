@@ -84,11 +84,17 @@
 			  ,BMBF.ORIGIN_FL_NM
 			  ,BMBF.FL_NM
 			  ,BMBF.FL_PATH
+			  ,BMBFLH.MEM_ID
+		  	  ,BMBFLH.LIKE_YN
 		FROM BSNS_MNG_BOARD		BMB
 		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_LIKE_HISTORY BMBFLH
+	      	   ON BMB.BSNS_CODE = BMBFLH.BSNS_CODE
+	     	 AND BMB.BOARD_SN  = BMBFLH.BOARD_SN
+	     	 AND BMBFLH.MEM_ID = #{sessionId}
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'
 		  AND BMB.BSNS_CODE = #{bsnsCode}
@@ -136,6 +142,27 @@
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
 	</update>
+	
+	<!-- 책소개 > 좋아요 Count -->
+	<update id="bookLikeCount" parameterType="hashmap">
+		UPDATE BSNS_MNG_BOARD
+		SET 
+			<if test='saveLike eq "Y"'>	LIKE_COUNT = LIKE_COUNT + 1 </if>
+			<if test='saveLike eq "N"'>	LIKE_COUNT = LIKE_COUNT - 1 </if>
+		WHERE 1=1
+		  AND BSNS_CODE = #{bsnsCode}
+		  AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 책소개 > 좋아요 등록/수정 -->
+	<insert id="bookLikeHistory" parameterType="hashmap">
+		INSERT INTO BSNS_MNG_BOARD_LIKE_HISTORY(BSNS_CODE, BOARD_SN, MEM_ID, LIKE_YN, REG_ID, REG_DT, MOD_ID, MOD_DT)
+		VALUES(#{bsnsCode}, #{boardSn}, #{sessionId}, #{saveLike}, #{sessionId}, now(), #{sessionId}, now() )
+		ON DUPLICATE KEY 
+		UPDATE 	LIKE_YN = #{saveLike},
+				MOD_ID 	= #{sessionId},
+				MOD_DT	= now()
+	</insert>
 	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->
 	

@@ -43,7 +43,8 @@
         <ul>
 			<c:forEach var="row_dept1" items="${menuList}" varStatus="status">
 				<c:if test="${row_dept1.MENU_LEVEL eq '1'}">
-					<li><h3>${row_dept1.MENU_NM}</h3>
+					<li>
+						<h3>${row_dept1.MENU_NM}</h3>
 						<ul>
 							<c:forEach var="row_dept2" items="${menuList}" varStatus="status">
 								<c:if test="${(row_dept2.MENU_LEVEL eq '2') && (row_dept1.MENU_CD eq row_dept2.UPPER_MENU_CD) }">

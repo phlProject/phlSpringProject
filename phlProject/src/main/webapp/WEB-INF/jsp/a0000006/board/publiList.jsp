@@ -45,7 +45,9 @@
 								${row.SUBJECT}
 							</div>
 							<div class="public-down">
+								<a href="javascript:fn_boardFlDown('${row.BSNS_CODE}','${row.BOARD_SN}','${row.BOARD_FL_SN}');">
 								 Download
+								</a>
 							</div>
 							<div class="public-view">
 								<a href="javascript:fn_publiView('${row.BOARD_SN}')">

@@ -78,6 +78,30 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
+	/* 책소개 > 좋아요 Count */
+	@Override
+	public String bookLikeCount(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.bookLikeCount(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 책소개 > 좋아요 등록/수정 */
+	@Override
+	public String bookLikeHistory(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.bookLikeHistory(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 	/****************************** 책 소 개 종료  ******************************/
 	
 	/****************************** 간 행 물 시작  ******************************/
