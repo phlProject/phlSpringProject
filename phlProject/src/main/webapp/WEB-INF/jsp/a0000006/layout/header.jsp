@@ -38,7 +38,7 @@
 					<li>
 						<!-- 대메뉴 -->
 						<c:if test="${row_dept1.MENU_LEVEL eq '1'}">
-							 <a href="javascript:TopMenuMove('${row_dept2.MENU_LINK}')">${row_dept1.MENU_NM}</a>
+							 <a href="javascript:TopMenuMove('${row_dept1.MENU_LINK}')">${row_dept1.MENU_NM}</a>
 						</c:if>
 						
 						<ul>
