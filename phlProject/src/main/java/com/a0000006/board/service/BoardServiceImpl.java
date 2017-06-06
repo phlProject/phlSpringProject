@@ -198,4 +198,14 @@ public class BoardServiceImpl implements BoardService {
 	/****************************** 게시판 공통 종료  ******************************/
 	
 
+	/* 신청 > 기관탐방 > 탐방 조회 Count */
+	public int visitListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.visitListCnt(map);
+    }
+	
+	/* 신청 > 기관탐방 > 탐방 조회 */
+	@Override
+    public List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception {
+        return boardDAO.visitList(map);
+    }
 }

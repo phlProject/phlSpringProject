@@ -369,4 +369,69 @@
 	
 	<!-- /****************************** 게시판 공통 종료  ****************************/ -->
 	
+	
+	<select id="visitListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM BSNS_MNG_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+		  		<!-- 제목 -->
+			 	<when test='searchSelect == "searchSubject"'> 
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<!-- 내용 -->
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENTS LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<!-- 제목+내용 -->
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENTS) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+	</select>
+	
+	<select id="visitList" parameterType="hashmap" resultType="hashmap">
+		SELECT VISIT.*
+		FROM
+		(SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENTS
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMB.REG_ID
+			  ,@ROWNUM := @ROWNUM + 1 AS ROWNUM
+		FROM BSNS_MNG_BOARD		BMB
+			 ,(SELECT @ROWNUM := 0) R
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENTS LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENTS) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY BMB.BOARD_SN ASC
+		) VISIT
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
 </mapper>

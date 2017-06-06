@@ -118,4 +118,14 @@ public class BoardDAO extends AbstractDAO {
 	/****************************** 게시판 공통 종료  ******************************/
 	
     
+	/* 신청 > 기관탐방 > 탐방 조회 Count */
+	public int visitListCnt(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/board.visitListCnt", map);
+    }
+	
+	/* 신청 > 기관탐방 > 탐방 조회 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/board.visitList", map);
+    }
 }

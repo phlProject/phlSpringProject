@@ -69,4 +69,9 @@ public interface BoardService {
 	/****************************** 게시판 공통 종료  ******************************/
 	
 
+	/* 신청 > 기관탐방 > 탐방 조회  Count*/
+	int visitListCnt(Map<String, Object> map) throws Exception;
+	
+	/* 신청 > 기관탐방 > 탐방 조회 */
+	List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception;
 }
