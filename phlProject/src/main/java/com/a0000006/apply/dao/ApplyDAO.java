@@ -23,6 +23,7 @@ public class ApplyDAO extends AbstractDAO{
 	}
 
 	// 상세 페이지
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> viewApply(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("a0000006/apply.viewApply", map);
 	}
@@ -36,6 +37,12 @@ public class ApplyDAO extends AbstractDAO{
 	public void deleteApply(Map<String, Object> map) throws Exception{
 		delete("a0000006/apply.deleteApply", map);
 		
+	}
+	
+	// 대관 장소 목록
+	@SuppressWarnings("unchecked")
+	public List<CommandMap> placeList(Map<String, Object> map) {
+		return (List<CommandMap>)selectList("a0000006/apply.placeList", map);
 	}
 
 }

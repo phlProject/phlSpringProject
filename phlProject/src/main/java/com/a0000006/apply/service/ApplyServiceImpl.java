@@ -89,6 +89,13 @@ public class ApplyServiceImpl implements ApplyService{
 			return "-1";
 		}
 	}
+
+
+	// 대관 장소 목록
+	@Override
+	public List<CommandMap> placeList(Map<String, Object> map) {
+		return applyDAO.placeList(map);
+	}
 	
 	
 }

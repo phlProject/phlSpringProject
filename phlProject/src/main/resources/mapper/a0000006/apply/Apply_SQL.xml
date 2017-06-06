@@ -27,6 +27,7 @@
       
    </select>
 
+   <!-- 등록 -->
    <insert id="insertApply" parameterType="hashmap">
       INSERT INTO 
          BSNS_SCHEDULE (
@@ -57,6 +58,7 @@
          )
    </insert>
    
+   <!-- 상세 -->
 	<select id="viewApply" parameterType="hashmap" resultType="hashmap">
 		SELECT	BSNS_CODE
 				, SCHEDULE_SN
@@ -76,7 +78,7 @@
    
 	</select>
 	
-	
+	<!-- 수정 -->
 	<update id="updateApply" parameterType="hashmap">
 		UPDATE	BSNS_SCHEDULE
 		SET		SCHEDULE_DT = #{scheduleDt}
@@ -89,11 +91,22 @@
 		WHERE	SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
+	<!-- 삭제 -->
 	<delete id="deleteApply" parameterType="hashmap">
 		DELETE	
 		FROM	BSNS_SCHEDULE
 		WHERE	SCHEDULE_SN = #{scheduleSn}
 	</delete>
 	
+	<!-- 대관 장소 목록 -->
+	<select id="placeList" parameterType="hashmap" resultType="hashmap">
+		SELECT	CMMN_CODE
+				, DETAIL_CODE_NM
+		FROM	BSNS_CMMN_CODE
+		WHERE	1=1
+				AND USE_YN = 'Y'
+				AND CL_CODE = 'P01'
+		ORDER BY CMMN_CODE
+	</select>
 	
 </mapper>

@@ -23,4 +23,7 @@ public interface ApplyService {
 	// 삭제
 	String deleteApply(Map<String, Object> map) throws Exception;
 
+	// 대관 장소 목록
+	List<CommandMap> placeList(Map<String, Object> map);
+
 }

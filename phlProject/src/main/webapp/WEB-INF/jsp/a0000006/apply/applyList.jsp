@@ -25,22 +25,21 @@
 <!-- <div id="content"> -->
 
    <div id="insertFormPop" class="insertLayer" style="display:none;">
-   	  <div id="applyform">신규신청</div>
+   	  <div id="popName">장소 대관</div>
       <table id="insertTbl">
 		<colgroup>
 			<col width="200"></col>
 			<col width="300"></col>
 		</colgroup>
          <tr>
-            <th>스케줄 구분</th>
-            <td>
-               <!-- 프로그램 신청 소공연장 강연회 세미나실 밴드연습실 댄스연습실 -->
-               <select name="scheduleCd">
-                  <option value="P01001">프로그램 신청</option>
-                  <option value="">장소대관</option>
-                  <option value=""></option>
-               </select>
-            </td>
+         	<th>장소 구분</th>
+         	<td>
+	         	<select name="scheduleCd" id="scheduleCd">
+	         		<c:forEach var="placeList" items="${placeList}">
+	         			<option value="${placeList.CMMN_CODE}">${placeList.DETAIL_CODE_NM}</option>
+	         		</c:forEach>
+	         	</select>
+         	</td>
          </tr>
          <tr>
             <th>일자</th>
@@ -49,38 +48,31 @@
             </td>
          </tr>
          <tr>
-            <th>시작시간</th>
+            <th>이용 시간</th>
             <td>
-               <select name="stHour" id="stHour">
+               <select name="stHour" id="stHour" class="selectTime">
                   <c:forEach begin="0" end="23" step="1" var="stHour">
                      <option value='<fmt:formatNumber pattern="00" value="${stHour}"/>'><fmt:formatNumber pattern="00" value="${stHour}"/></option>
                   </c:forEach>
                </select>
-            </td>
-            
-         </tr>
-         <tr>
-            <th>끝시간</th>
-            <td>
-               <select name="endHour" id="endHour">
+               ~
+               <select name="endHour" id="endHour" class="selectTime">
                   <c:forEach begin="0" end="23" step="1" var="endHour">
                      <option value='<fmt:formatNumber pattern="00" value="${endHour}"/>'><fmt:formatNumber pattern="00" value="${endHour}"/></option>
                   </c:forEach>
-               </select>
+               </select> 시
             </td>
-            
          </tr>
          <tr>
             <th>제목</th>
             <td>
                <input type="text" name="subject" id="subject" class="apply-wd">
             </td>
-            
          </tr>
          <tr>   
             <th>내용</th>
             <td>
-               <input type="text" name="content" class="apply-wd2">
+               <input type="text" name="content" id="contents" class="apply-wd2">
             </td>
          </tr>      
       </table>
@@ -125,8 +117,20 @@
 <script type="text/javascript">
  
 function insertForm(){
-   $("#insertFormPop").css("display", "block");
-   //centerLocation("insertFormPop");
+	$("#insertFormPop").css("display", "block");
+	var	html = '<a href="javascript:insertApply();"><span>등록</span></a>' +
+	   		   '<a href="javascript:closeLayer(\'insertFormPop\');"><span>닫기</span></a>';
+	$("#buttonDiv").html(html);
+	$("#buttonDiv").css("margin-left", 135);
+	$("#scheduleCd").find("option:eq(0)").prop("selected", true);
+	var today = $("#toYear").val() + "-" + $("#toMonth").val() + "-" + $("#toDay").val()
+	$("#scheduleDt").val(today);
+	$("#stHour").val("00");
+	$("#endHour").val("00");
+	$("#subject").val("");
+	$("#contents").val("");
+	$("#regId").val("");
+	
 }
  
 $(document).ready(function(){
@@ -155,8 +159,10 @@ $(document).ready(function(){
       });
    });
   
+   
 });
 
+// 등록
 function insertApply(){
    
 	if(validation() && confirm("등록하시겠습니까?")){
@@ -176,6 +182,7 @@ function insertApply(){
    
 }
 
+// 수정
 function updateApply(){
 	if(validation() && confirm("수정하시겠습니까?")){
 		var url = "/a0000006/apply/updateApply.do";
@@ -192,6 +199,7 @@ function updateApply(){
 	}
 }
 
+// 삭제
 function deleteApply(){
 	if(confirm("삭제하시겠습니까?")){
 		var url = "/a0000006/apply/deleteApply.do";
@@ -209,6 +217,7 @@ function deleteApply(){
 }
 
 
+// validation
 function validation(){
 
 	var userId = $("#session_id").val();
@@ -227,7 +236,7 @@ function validation(){
 	
 	var stHour = $("#stHour").val();
 	var endHour = $("#endHour").val();
-	if(stHour > endHour){
+	if(stHour >= endHour){
 		alert('끝시간을 다시 입력해주세요.');
 		$("#endHour").focus();
 		return false;
@@ -239,22 +248,23 @@ function validation(){
 		$("#subject").focus();
 		return false;
 	}
-	var content = $("#content").val();
+	var content = $("#contents").val();
 	if(content == null || content == ''){
 		alert('내용을 다시 입력해주세요.');
-		$("#content").focus();
+		$("#contents").focus();
 		return false;
 	}
 	
 	return true;
 }
 
-
+// close layer
 function closeLayer(objId){
    $("#" + objId).css("display", "none");
    
 }
 
+// 중앙에 팝업 위치시키기.
 function centerLocation(obj){
     
 	var objName = "#" + obj;
@@ -533,10 +543,10 @@ function controller(target) {
    
 }
 
+// 상세 내역
 function popWorkDetail(scheduleSn){
 	
 	$("#scheduleSn").val(scheduleSn);
-   
 	var url = "/a0000006/apply/viewApply.do";
 	$.post(url,$("#applyForm").serialize(),function(data){
 		
@@ -547,18 +557,24 @@ function popWorkDetail(scheduleSn){
 		$("#stHour").val(result.ST_HOUR);
 		$("#endHour").val(result.END_HOUR);
 		$("#subject").val(result.SUBJECT);
-		$("#content").val(result.CONTENT);
+		$("#contents").val(result.CONTENT);
 		$("#regId").val(result.REG_ID);
 		
 		// 현재 이용자가 글 작성자라면 수정버튼 생성
 		var session_id = $("#session_id").val();
 		var html = '';
+		var mgLeft = 135;
 		if(result.REG_ID == session_id){
 			html = '<a href="javascript:updateApply();"><span>수정</span></a>'
-				 + '<a href="javascript:deleteApply();"><span>삭제</span></a>';
+				 + '<a href="javascript:deleteApply();"><span>삭제</span></a>'
+				 + '<a href="javascript:closeLayer(\'insertFormPop\');"><span>닫기</span></a>';
+			mgLeft = 80;
+		}else{
+			html = '<a href="javascript:closeLayer(\'insertFormPop\');"><span>닫기</span></a>';
+			mgLeft = 170;
 		}
 		$("#buttonDiv").html(html);
-		
+		$("#buttonDiv").css("margin-left", mgLeft);
 		
 	});
    
