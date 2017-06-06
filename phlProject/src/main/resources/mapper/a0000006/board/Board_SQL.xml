@@ -429,7 +429,7 @@
 			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENTS) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
-		  </if>
+		  </if>  
 		ORDER BY BMB.BOARD_SN ASC
 		) VISIT
 		LIMIT #{limitFirst}, #{limitSecond}
