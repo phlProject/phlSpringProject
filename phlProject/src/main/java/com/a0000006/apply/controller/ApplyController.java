@@ -45,10 +45,17 @@ public class ApplyController {
 		map.put("toMonth", toMonth);
 		map.put("toDay", toDay);
 		
+
+		// 대관 장소 목록
+		List<CommandMap> placeList = applyService.placeList(map);
+		mv.addObject("placeList", placeList);
+		
+		
 		// 스케줄 목록
 		List<CommandMap> applyList = applyService.applyList(map);
 		mv.addObject("applyList", applyList);
 		
+
 		return mv;
 		
 	}

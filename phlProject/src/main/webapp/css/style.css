@@ -327,7 +327,7 @@ nav ul li:hover ul { display: block; }
 .btn a { float:left; width:100px; background-color:#660f57; color:#fff; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:20px; text-align:center; }
 #buttonDiv { display: inline-block; margin-left:135px; }
 #buttonDiv a{ width:80px; background-color:#4d4d4f; color:#fff; font-weight:500; font-size:13px; padding:10px 3px; float:left; text-align:center; border-left:10px solid #fefefd; text-align: center;}
-#applyform { width:100%;  background-color:#d6e0e2; float:left; text-align: center; padding:10px 0; font-size:20px; color:#4d4d4f; border-bottom:2px solid #4d4d4f; }
+#popName { width:100%;  background-color:#d6e0e2; float:left; text-align: center; padding:10px 0; font-size:20px; color:#4d4d4f; border-bottom:2px solid #4d4d4f; }
 
 
 #calendar table {border-collapse: collapse;}
@@ -403,6 +403,13 @@ nav ul li:hover ul { display: block; }
 	border:1px solid #ddd;
 }
 
+#insertTbl .selectTime {
+	width: 80px;
+	height: 30px;
+	margin: 10px;
+	border:1px solid #ddd;
+}
+
 .datepicker {
 	width: 196px;
 	height: 30px;
@@ -413,3 +420,15 @@ nav ul li:hover ul { display: block; }
 .ui-datepicker-trigger {
 	vertical-align: middle;
 }
+
+
+/* tab */
+.tab_menu {clear:both; overflow:hidden; width:100%; margin-top:30px; line-height:normal; background:url(../images/tab_line.gif) repeat-x left 27px;}
+.tab_menu ul {padding:0; overflow:hidden;}
+.tab_menu li{display:inline; float:left; width:100px; height:28px; margin-right:1px; margin-left:1px; padding-left:1px; 
+			font-family:NanumGothic; font-size:12px; color:#fff; line-height:27px; letter-spacing:-1px; text-align:center; background:url(../images/tab_bg.png) no-repeat left -10px;}
+.tab_menu li a{display:block; height:28px; color:#fff; background:url(../images/tab_bg.png) no-repeat right -10px; text-decoration:none;}
+.tab_menu li a:hover{display:block; height:28px; color:#fff; background:url(../images/tab_bg.png) no-repeat right -96px; text-decoration:none;}
+.tab_menu .on {display:block; background:url(../images/tab_bg.png) no-repeat left -53px;}
+.tab_menu .on a {display:block; background:url(../images/tab_bg.png) no-repeat right -53px; color:#fff;}
+.tab_menu .on a:hover{display:block; background:url(../images/tab_bg.png) no-repeat right -139px; color:#fff;}
