@@ -1,7 +1,6 @@
 package com.a0000006.main.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +24,7 @@ public class A0000006Controller {
 	private PhlCommService phlCommService;
 	
 	
+	/* 메인화면 */
 	@RequestMapping(value="/a0000006/mainIndex.do")
 	public ModelAndView mainIndex(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
@@ -38,8 +38,6 @@ public class A0000006Controller {
         List<CommandMap> menuList = phlCommService.menuList_dept2(commandMap.getMap());
         
         session.setAttribute("menuList", menuList);
-        
-        //mv.addObject("menuList", menuList);
         
         return mv;
     }     

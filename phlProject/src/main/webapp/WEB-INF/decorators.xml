@@ -16,9 +16,13 @@
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
 	<decorator name="indexLayoutHLBF" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
 		<pattern>*/mem/memMyPage*</pattern> <!--회원정보수정-->
-		<pattern>*/mng*</pattern> 	<!-- 관리자 -->
-		<pattern>*/apply*</pattern>	<!-- 일정 -->
-		<pattern>*/board*</pattern> <!-- 게시판 -->
+		<pattern>*/mng*</pattern> 		<!-- 관리자 -->
+		<pattern>*/intro*</pattern> 	<!-- 교육나눔꿈두레 -->
+		<pattern>*/teacher*</pattern> 	<!-- 교사학교 -->
+		
+		<pattern>*/apply*</pattern>		<!-- 일정 -->
+		<pattern>*/board*</pattern> 	<!-- 게시판 -->
+		
 	</decorator>
 	
 	<!-- Header -->
