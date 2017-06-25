@@ -77,6 +77,58 @@ nav ul li:hover ul { display: block; }
 .mem_paging a { font-size:12px; color:#c6beb6; border:2px solid #c6beb6; padding:7px 10px; cursor:pointer; text-align:center;}
 
 
+/* 이사장인사말 */
+.contents {
+	margin:80px 0 30px;
+	padding:35px 0 50px;
+	border-top:2px solid #e9e6e4;
+	border-bottom:1px solid #dcd8d4;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	font-size:15px;
+	line-height:2;
+	color:#444;
+}
+.cont2-title {
+	font-size:28px;
+    color:#444;
+    line-height:1.2em;
+    padding:25px;
+    font-weight:500;
+    float:left;
+}
+.cont1 {
+	font-size:26px;
+	color:#A6BF38;
+	font-weight: bold;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	line-height:0.7;
+}
+
+.cont2 p{
+	padding:30px 0;
+	margin-bottom: 15px;
+}
+.cont2{
+	float:right;
+	font-size:13px;
+	font-family:Dotum !important;
+	color:#888;
+}
+.cont3{
+	font-size:28px;
+	color:#555;
+	font-family:"Nanum Myeongjo", serif !important;
+	margin-left:11px;
+	vertical-align:middle;
+}
+.cont4{
+	float:right;
+	font-size:17px;
+	color:#444;
+	font-weight: bold;
+	margin-left:11px;
+	vertical-align:middle;
+}
 /*책소개 - bookForm*/
 .book-title { width:100%; margin:15px 0 0; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; }
 .book-Form { margin: 15px 0; display: inline-block; }
