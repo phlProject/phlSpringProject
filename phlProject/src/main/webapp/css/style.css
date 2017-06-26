@@ -88,6 +88,15 @@ nav ul li:hover ul { display: block; }
 	line-height:2;
 	color:#444;
 }
+.contents2 {
+	margin:80px 0 30px;
+	padding:20px 0 50px;
+	border-top:2px solid #e9e6e4;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	font-size:15px;
+	line-height:2;
+	color:#444;
+}
 .cont2-title {
 	font-size:28px;
     color:#444;
