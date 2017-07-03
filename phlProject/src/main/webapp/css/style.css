@@ -90,7 +90,7 @@ nav ul li:hover ul { display: block; }
 }
 .contents2 {
 	margin:80px 0 30px;
-	padding:20px 0 50px;
+	padding:20px 0 0;
 	border-top:2px solid #e9e6e4;
 	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
 	font-size:15px;
@@ -101,7 +101,7 @@ nav ul li:hover ul { display: block; }
 	font-size:28px;
     color:#444;
     line-height:1.2em;
-    padding:25px;
+    padding:25px 0 25px;
     font-weight:500;
     float:left;
 }
@@ -138,6 +138,59 @@ nav ul li:hover ul { display: block; }
 	margin-left:11px;
 	vertical-align:middle;
 }
+.cont5{
+	float:left;
+	font-size:26px;
+	color:#A6BF38;
+	font-weight: bold;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	line-height:0.7;
+}
+
+/* introduce-탭메뉴 */
+.tabmenu {position:relative; width:100%; height:1000px; font-family:dotum,"",verdana;line-height:17px;font-size:12px;color:#555;}
+.tabmenu img {border:none;vertical-align:top;}
+.tabmenu ul {margin:0px;padding:0px;list-style:none; margin-top: 15px;}
+.tabmenu ul li {float:left}
+.tabmenu .tabcontent {display:none; width:100%; position:absolute; left:0px;top:60px }
+.tabmenu .morebtn {position:absolute;right:0;top:30px;}
+.tab-cont {
+ 	width:830px;
+ 	margin-top:30px;
+ 	height:670px;
+	border-bottom:1px solid #dcd8d4;
+}
+.tab-cont1 {
+ 	width:420px;
+ 	padding-right:20px;
+ 	float:left;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	font-size:15px;
+	line-height:2.5;
+	color:#444;
+}
+.tab-cont2 {
+ 	width:380px;
+ 	margin-top:65px;
+ 	float:left;
+}
+
+.tab-cont3 {
+ 	width:830px;
+ 	margin-top:30px;
+	padding:0 0 50px;
+	border-bottom:1px solid #dcd8d4;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	font-size:15px;
+	line-height:2;
+	color:#444;
+}
+
+.tab_table { width:100%; border-top:2px solid #888; }
+.tab_table th { height:38px; background:#f5f8f9; text-align: center; font-size: 13px; font-weight: normal; padding:3px 10px; border-right:1px solid #ddd; border-bottom: 1px solid #ddd; }
+.tab_table td { height:38px; border-left:1px solid #ddd; font-size: 13px; font-weight: normal; padding:3px 10px; border-bottom: 1px solid #ddd; }
+
+
 /*책소개 - bookForm*/
 .book-title { width:100%; margin:15px 0 0; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; }
 .book-Form { margin: 15px 0; display: inline-block; }
