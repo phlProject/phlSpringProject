@@ -38,7 +38,7 @@
 	            <ul class="tabcontent">
 	                <li><a href="#"></a>
 	                <div class="tab-cont3">
-						<h3 class="cont1">이사진 소개</h3><br/>
+						<h3 class="cont1-1">이사진 소개</h3><br/>
 						<table class="tab_table">
 							<tr>
 								<th width="20%">이사장</th>			
@@ -97,7 +97,7 @@
 							</tr>
 						</table>
 						<br/><br/>
-						<h3 class="cont1">상근진 소개</h3><br/>
+						<h3 class="cont1-1">상근진 소개</h3><br/>
 						<table class="tab_table">
 							<tr>
 								<th rowspan="3" width="20%">교육나눔<br/>꿈두레</th>			

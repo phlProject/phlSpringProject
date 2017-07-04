@@ -21,7 +21,9 @@
 </head>
 <body>
 	<page:applyDecorator id="header" name="header"/>
-	<div id="bg"></div>
+	<div id="bg">
+		<img src="/img/back-img.png" width="100%">
+	</div>
 	<div id="container">	
 		<page:applyDecorator id="left" name="left"/>
 		<div id="left_content">
