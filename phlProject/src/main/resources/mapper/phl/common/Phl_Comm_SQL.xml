@@ -9,7 +9,7 @@
     	 	  ,CL_CODE
     	 	  ,DETAIL_CODE
     	 	  ,DETAIL_CODE_NM
-    	  FROM BSNS_CMMN_CODE
+    	  FROM PKHL_SYS_CMMN_CODE
     	 WHERE 1=1
     	   AND USE_YN = 'Y'
    		   AND BSNS_CODE = #{bsns_code}

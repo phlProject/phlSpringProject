@@ -38,7 +38,7 @@
     	 	  ,MEM_NICKNM
     	 	  ,MEM_GRADE
     	 	  ,(SELECT DETAIL_CODE_NM
-    	 	      FROM BSNS_CMMN_CODE
+    	 	      FROM PKHL_SYS_CMMN_CODE
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
     	 	       AND CMMN_CODE = MEM_GRADE
