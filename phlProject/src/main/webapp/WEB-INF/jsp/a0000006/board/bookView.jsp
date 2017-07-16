@@ -39,7 +39,7 @@
 		<div class="view">
 			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
 		</div>
-			 ${bookView.CONTENTS}
+			 ${bookView.CONTENT}
 		<div class="bookView">	
 			<div class="bookView-btn">
 				<a href="javascript:fn_bookFormU();" 	id="bookFormU">수정</a>

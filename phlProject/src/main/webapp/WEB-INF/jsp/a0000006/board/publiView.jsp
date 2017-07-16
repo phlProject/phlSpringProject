@@ -19,7 +19,7 @@
 	<div id="content">
 		<h3 class="cont-title">간행물</h3>
 		<p class="book-view">제목 : ${publiView.SUBJECT}</p>
-			 ${publiView.CONTENTS}
+			 ${publiView.CONTENT}
 		<br>
 		첨부파일 :  <a href="javascript:fn_boardFlDown('${publiView.BSNS_CODE}','${publiView.BOARD_SN}','${publiView.BOARD_FL_SN}');"><c:out value="${publiView.ORIGIN_FL_NM}"/></a>
 		<div class="bookView">	

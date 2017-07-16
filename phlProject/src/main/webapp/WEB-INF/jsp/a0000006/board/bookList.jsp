@@ -40,7 +40,7 @@
 							<div class="book-right">
 								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT} ♥${row.LIKE_COUNT}</a>
 								<hr color="#e2d318" size="0.3">						
-								<p>${row.CONTENTS}</p>
+								<p>${row.CONTENT}</p>
 							</div>
 						</div>
 					</c:forEach>

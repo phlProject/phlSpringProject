@@ -97,7 +97,7 @@
 			    <br/><br/><br/>
 				<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${publiView.SUBJECT}">
 				<br/><br/>
-				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${publiView.CONTENTS}</textarea>
+				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${publiView.CONTENT}</textarea>
 			</form>
 			
 			<!-- Upload_Form -->

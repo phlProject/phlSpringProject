@@ -113,7 +113,7 @@
 				value="${bookView.SUBJECT}"><br />
 			<br />
 			<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%"
-				rows="10" cols="30">${bookView.CONTENTS}</textarea>
+				rows="10" cols="30">${bookView.CONTENT}</textarea>
 		</form>
 		<div class="bookView">
 			<div class="bookView-btn">
