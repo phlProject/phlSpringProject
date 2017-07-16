@@ -9,8 +9,8 @@
     
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>*/main*</pattern>	<!-- MAIN -->
-		<pattern>*/mem*</pattern>	<!-- 회원정보 -->
+		<pattern>*/main*</pattern>	<!-- main -->
+		<pattern>*/mem*</pattern>	<!-- 회원 -->
 	</decorator>
 	
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
@@ -20,9 +20,10 @@
 		<pattern>*/intro*</pattern> 		<!-- 교육나눔꿈두레 -->
 		<pattern>*/teacher*</pattern> 		<!-- 교사학교 -->
 		<pattern>*/network*</pattern>		<!-- 네트워크 활동 -->
+		<pattern>*/board*</pattern> 		<!-- 게시판 -->
 		
-		<pattern>*/apply*</pattern>		<!-- 일정 -->
-		<pattern>*/board*</pattern> 	<!-- 게시판 -->
+		<pattern>*/apply*</pattern>			<!-- 일정 -->
+		
 		
 	</decorator>
 	
