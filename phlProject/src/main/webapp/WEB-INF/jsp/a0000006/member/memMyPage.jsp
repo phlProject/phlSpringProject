@@ -46,9 +46,9 @@
 			<tr>
 				<th>등급</th>
 				<td>
-					<select id="mem_grade" name="mem_grade">
+					<select id="mem_gbn_cd" name="mem_gbn_cd">
 						<c:forEach items="${commList}" var="rows">
-							<option value="${rows.CMMN_CODE}" <c:if test="${rows.CMMN_CODE == myPageInfo.MEM_GRADE}">SELECTED</c:if> >${rows.DETAIL_CODE_NM}</option>
+							<option value="${rows.CMMN_CODE}" <c:if test="${rows.CMMN_CODE == myPageInfo.MEM_GBN_CD}">SELECTED</c:if> >${rows.DETAIL_CODE_NM}</option>
 						</c:forEach>
 					</select>
 				</td>

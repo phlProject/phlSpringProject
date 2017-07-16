@@ -24,7 +24,7 @@
 						<li><a href="javascript:TopMenuMove('/a0000006/mem/logoutAction.do');" id="logoutAction">로그아웃</a></li>
 						
 						<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
-						<c:if test="${loginInfo.MEM_GRADE eq 'G01998' || loginInfo.MEM_GRADE eq 'G01999'}">
+						<c:if test="${loginInfo.MEM_GBN_CD eq 'G01998' || loginInfo.MEM_GBN_CD eq 'G01999'}">
 							<li><a href="javascript:TopMenuMove('/a0000006/mng/memList.do');" id="memList">관리자</a></li>
 						</c:if>
 					</c:when>

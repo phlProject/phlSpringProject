@@ -18,7 +18,7 @@
     	SELECT MEM_ID
     	 	  ,MEM_NM
     	 	  ,MEM_NICKNM
-    	 	  ,MEM_GRADE
+    	 	  ,MEM_GBN_CD
     	FROM BSNS_MEMBER
     	WHERE 1=1
     	  AND USE_YN = 'Y'
@@ -36,14 +36,14 @@
     	 	  ,MEM_PW
     	 	  ,MEM_NM
     	 	  ,MEM_NICKNM
-    	 	  ,MEM_GRADE
+    	 	  ,MEM_GBN_CD
     	 	  ,(SELECT DETAIL_CODE_NM
     	 	      FROM PKHL_SYS_CMMN_CODE
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
-    	 	       AND CMMN_CODE = MEM_GRADE
+    	 	       AND CMMN_CODE = MEM_GBN_CD
     	 	       AND BSNS_CODE = #{bsns_code}
-    	 	  ) AS MEM_GRADE_NM
+    	 	  ) AS MEM_GBN_CD_NM
     	 	  ,MEM_EMAIL
     	 	  ,MEM_PHONE
     	FROM BSNS_MEMBER
@@ -62,11 +62,11 @@
     		, MEM_NM
     		, MEM_EMAIL
     		, MEM_NICKNM
-    		, MEM_GRADE
+    		, MEM_GBN_CD
     		, MEM_PHONE
     		, REG_DT
     		, REG_ID
-    		<if test="mem_grade == 'G01002'">
+    		<if test="mem_gbn_cd == 'G01002'">
     		, USE_YN
 			</if>
     	)VALUES(
@@ -76,11 +76,11 @@
     		, #{mem_nm}
     		, #{mem_email}
     		, #{mem_nicknm}
-    		, #{mem_grade}
+    		, #{mem_gbn_cd}
     		, #{mem_phone}
     		, now()
     		, #{mem_id}
-    		<if test="mem_grade == 'G01002'">
+    		<if test="mem_gbn_cd == 'G01002'">
     		, 'S'
 			</if>
     	)
@@ -94,7 +94,7 @@
     		, MEM_NM	= #{mem_nm}
     		, MEM_EMAIL	= #{mem_email}
     		, MEM_NICKNM= #{mem_nicknm}
-    		, MEM_GRADE	= #{mem_grade}
+    		, MEM_GBN_CD= #{mem_gbn_cd}
     		, MEM_PHONE	= #{mem_phone}
     		, MOD_DT	= now()
     		, MOD_ID	= #{session_id}

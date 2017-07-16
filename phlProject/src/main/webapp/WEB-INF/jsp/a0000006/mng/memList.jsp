@@ -143,7 +143,7 @@
 		              <td>${row.MEM_NICKNM}</td>
 		              <td>${row.MEM_EMAIL}</td>
 		              <td>${row.MEM_PHONE}</td>
-		              <td>${row.MEM_GRADE_NM}</td>
+		              <td>${row.MEM_GBN_CD_NM}</td>
 		              <td>${row.REMARK_NM}</td>
 		              <td width="10%">
 		              	<c:if test="${row.USE_YN == 'N'}">

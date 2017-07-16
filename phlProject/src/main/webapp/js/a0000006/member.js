@@ -116,9 +116,9 @@ function fn_validation(){
 		return false;
 	}
 	
-	if($("#mem_grade").val() == ""){
+	if($("#mem_gbn_cd").val() == ""){
 		alert(" * 회원구분을 선택해주세요. ");
-		$("#mem_grade").focus();
+		$("#mem_gbn_cd").focus();
 		return false;
 	}
 	

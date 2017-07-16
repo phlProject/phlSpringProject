@@ -8,8 +8,8 @@
 	<!-- 책소개 > 조회 > Count -->
 	<select id="bookListCnt" parameterType="hashmap" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -45,8 +45,8 @@
 			  ,BMBF.ORIGIN_FL_NM
 			  ,BMBF.FL_NM
 			  ,BMBF.FL_PATH
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -86,12 +86,12 @@
 			  ,BMBF.FL_PATH
 			  ,BMBFLH.MEM_ID
 		  	  ,BMBFLH.LIKE_YN
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_LIKE_HISTORY BMBFLH
+		     LEFT OUTER JOIN BSNS_BOARD_LIKE BMBFLH
 	      	   ON BMB.BSNS_CODE = BMBFLH.BSNS_CODE
 	     	 AND BMB.BOARD_SN  = BMBFLH.BOARD_SN
 	     	 AND BMBFLH.MEM_ID = #{sessionId}
@@ -103,7 +103,7 @@
 
 	<!-- 책소개 > 등록 -->
 	<insert id="insertBook" parameterType="hashmap">
-			INSERT INTO BSNS_MNG_BOARD(
+			INSERT INTO BSNS_BOARD(
 				 BSNS_CODE
 				,BOARD_GBN_CD
 				,SUBJECT
@@ -122,7 +122,7 @@
 	
 	<!-- 책소개 > 수정 -->
 	<update id="updateBook"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD
+		UPDATE BSNS_BOARD
 		   SET SUBJECT = #{subject}
 		      ,CONTENTS = #{editor}
 		      ,MOD_DT = now()
@@ -134,7 +134,7 @@
 	
 	<!-- 책소개 > 삭제 -->
 	<update id="deleteBook"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD
+		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
 		      ,MOD_DT = now()
 		      ,MOD_ID = 'aa'
@@ -145,7 +145,7 @@
 	
 	<!-- 책소개 > 좋아요 Count -->
 	<update id="bookLikeCount" parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD
+		UPDATE BSNS_BOARD
 		SET 
 			<if test='saveLike eq "Y"'>	LIKE_COUNT = LIKE_COUNT + 1 </if>
 			<if test='saveLike eq "N"'>	LIKE_COUNT = LIKE_COUNT - 1 </if>
@@ -156,7 +156,7 @@
 	
 	<!-- 책소개 > 좋아요 등록/수정 -->
 	<insert id="bookLikeHistory" parameterType="hashmap">
-		INSERT INTO BSNS_MNG_BOARD_LIKE_HISTORY(BSNS_CODE, BOARD_SN, MEM_ID, LIKE_YN, REG_ID, REG_DT, MOD_ID, MOD_DT)
+		INSERT INTO BSNS_BOARD_LIKE(BSNS_CODE, BOARD_SN, MEM_ID, LIKE_YN, REG_ID, REG_DT, MOD_ID, MOD_DT)
 		VALUES(#{bsnsCode}, #{boardSn}, #{sessionId}, #{saveLike}, #{sessionId}, now(), #{sessionId}, now() )
 		ON DUPLICATE KEY 
 		UPDATE 	LIKE_YN = #{saveLike},
@@ -171,8 +171,8 @@
 	<!-- 간행물 > 조회 > Count -->
 	<select id="publiListCnt" parameterType="hashmap" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -208,8 +208,8 @@
 			  ,BMBF.ORIGIN_FL_NM
 			  ,BMBF.FL_NM
 			  ,BMBF.FL_PATH
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -247,8 +247,8 @@
 			  ,BMBF.ORIGIN_FL_NM
 			  ,BMBF.FL_NM
 			  ,BMBF.FL_PATH
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -260,7 +260,7 @@
 	
 	<!--  간행물 > 등록 --> 
 	<insert id="insertPubli" parameterType="hashmap">
-		INSERT INTO BSNS_MNG_BOARD(
+		INSERT INTO BSNS_BOARD(
 				 BSNS_CODE
 				,BOARD_GBN_CD
 				,SUBJECT
@@ -280,7 +280,7 @@
 	
 	<!-- 간행물 > 수정 -->
 	<update id="updatePubli"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD
+		UPDATE BSNS_BOARD
 		   SET SUBJECT = #{subject}
 		      ,CONTENTS = #{editor}
 		      ,MOD_DT = now()
@@ -292,7 +292,7 @@
 	
 	<!-- 간행물 > 삭제 -->
 	<update id="deletePubli"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD
+		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
 		      ,MOD_DT = now()
 		      ,MOD_ID = 'aa'
@@ -313,7 +313,7 @@
 	
 	<!-- 게시판 공통 > 파일 등록  -->
 	<insert id="insertBoardFl"  parameterType="hashmap">
-		INSERT INTO BSNS_MNG_BOARD_FL(
+		INSERT INTO BSNS_BOARD_FL(
 			 BSNS_CODE
 			,BOARD_SN
 			,ORIGIN_FL_NM
@@ -335,7 +335,7 @@
 	
 	<!-- 게시판 공통 > 파일 수정  -->
 	<update id="updateBoardFl"  parameterType="hashmap">
-		UPDATE BSNS_MNG_BOARD_FL
+		UPDATE BSNS_BOARD_FL
 		   SET ORIGIN_FL_NM = #{originFlNm}
 		      ,FL_NM = #{flNm}
 		      ,FL_PATH = #{flPath}
@@ -355,8 +355,8 @@
 			  ,BMBF.ORIGIN_FL_NM
 			  ,BMBF.FL_NM
 			  ,BMBF.FL_PATH
-		FROM BSNS_MNG_BOARD 	BMB
-		    ,BSNS_MNG_BOARD_FL 	BMBF
+		FROM BSNS_BOARD 	BMB
+		    ,BSNS_BOARD_FL 	BMBF
 		WHERE 1=1
 		  AND BMB.BSNS_CODE = BMBF.BSNS_CODE
 		  AND BMB.BOARD_SN  = BMBF.BOARD_SN
@@ -372,8 +372,8 @@
 	
 	<select id="visitListCnt" parameterType="hashmap" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM BSNS_MNG_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_MNG_BOARD_FL	BMBF
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
 		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
 		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
 		     AND BMBF.USE_YN = 'Y'
@@ -411,7 +411,7 @@
 			  ,BMB.LIKE_COUNT
 			  ,BMB.REG_ID
 			  ,@ROWNUM := @ROWNUM + 1 AS ROWNUM
-		FROM BSNS_MNG_BOARD		BMB
+		FROM BSNS_BOARD		BMB
 			 ,(SELECT @ROWNUM := 0) R
 		WHERE 1=1
 		  AND BMB.USE_YN = 'Y'

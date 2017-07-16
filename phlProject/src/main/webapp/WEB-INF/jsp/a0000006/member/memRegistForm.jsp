@@ -49,7 +49,7 @@
 						<tr>
 							<th>회원 구분</th>
 							<td>
-							<select id="mem_grade" name="mem_grade">
+							<select id="mem_gbn_cd" name="mem_gbn_cd">
 								<option value="">선택</option>	
 								<c:forEach items="${commList}" var="rows">
 									<option value="${rows.CMMN_CODE}">${rows.DETAIL_CODE_NM}</option>

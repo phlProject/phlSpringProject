@@ -97,7 +97,7 @@ public class MemberController {
 		
 	    commandMap.put("cl_code", "G01");
 	    
-	    if(!sessionInfo.get("MEM_GRADE").equals("G01998") && !sessionInfo.get("MEM_GRADE").equals("G01999")){
+	    if(!sessionInfo.get("MEM_GBN_CD").equals("G01998") && !sessionInfo.get("MEM_GBN_CD").equals("G01999")){
 	    	commandMap.put("not_detail_code", "'998','999'");
 	    }
 	    

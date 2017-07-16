@@ -9,7 +9,7 @@
     	FROM BSNS_MEMBER
         WHERE 1=1
           AND BSNS_CODE = #{bsns_code}
-          AND MEM_GRADE NOT IN ('G01999')
+          AND MEM_GBN_CD NOT IN ('G01999')
           <if test="searchSelect != '' or searchSelect != null">
 			<choose>
 				<when test='searchSelect == "searchId"'>
@@ -31,7 +31,7 @@
 					AND MEM_PHONE LIKE CONCAT('%',#{searchWord},'%')
 				</when>
 				<when test='searchSelect == "searchAuthor"'>
-					AND MEM_GRADE = #{searchAuthor}
+					AND MEM_GBN_CD = #{searchAuthor}
 				</when>
 				<when test='searchSelect == "searchRemark"'>
 					AND USE_YN = #{searchRemark}
@@ -48,14 +48,14 @@
 			  , MEM_NM		
 			  , MEM_EMAIL	
 			  , MEM_NICKNM	
-			  , MEM_GRADE
+			  , MEM_GBN_CD
 			  ,(SELECT DETAIL_CODE_NM
     	 	      FROM PKHL_SYS_CMMN_CODE
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
-    	 	       AND CMMN_CODE = MEM_GRADE
+    	 	       AND CMMN_CODE = MEM_GBN_CD
     	 	       AND BSNS_CODE = #{bsns_code}
-    	 	  ) AS MEM_GRADE_NM	
+    	 	  ) AS MEM_GBN_CD_NM	
 			  , MEM_PHONE	
 			  , USE_YN		  
 			  , (CASE WHEN USE_YN = 'Y' THEN '활성화'
@@ -65,7 +65,7 @@
         FROM BSNS_MEMBER
         WHERE 1=1
           AND BSNS_CODE = #{bsns_code}
-          AND MEM_GRADE NOT IN ('G01999')
+          AND MEM_GBN_CD NOT IN ('G01999')
           <if test="searchSelect != '' or searchSelect != null">
 			<choose>
 				<when test='searchSelect == "searchId"'>
@@ -87,7 +87,7 @@
 					AND MEM_PHONE LIKE CONCAT('%',#{searchWord},'%')
 				</when>
 				<when test='searchSelect == "searchAuthor"'>
-					AND MEM_GRADE = #{searchAuthor}
+					AND MEM_GBN_CD = #{searchAuthor}
 				</when>
 				<when test='searchSelect == "searchRemark"'>
 					AND USE_YN = #{searchRemark}
