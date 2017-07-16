@@ -10,9 +10,9 @@
 	<div id="content">
 		<h3 class="cont-title">책 소개</h3>
 		<form id="bookList_Form">
-			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
-			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.session_id}" >	<!-- 세션_업체코드 -->
-			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >		<!-- 세션_업체코드 -->
+			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.session_id}" >	<!-- 세션_ID -->
+			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">				<!-- 게시판_구분 -->
 			
 			<!-- 검색조건 -->
 			<div class="search">
@@ -39,7 +39,10 @@
 							</div>
 							<div class="book-right">
 								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT} ♥${row.LIKE_COUNT}</a>
-								<hr color="#e2d318" size="0.3">						
+								<hr color="#e2d318" size="0.3">	
+								<p>지은이:${row.BOOK_WRITER}</p>
+								<p>출판사:${row.BOOK_PUBLISHER}</p>
+								<p>가격:${row.BOOK_PRICE}</p>					
 								<p>${row.CONTENT}</p>
 							</div>
 						</div>

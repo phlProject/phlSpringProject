@@ -14,8 +14,7 @@
 		<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${bookView.BSNS_CODE}">		<!-- 업체코드 -->
 		<input type="hidden" id="boardSn" 		name="boardSn" 			value="${bookView.BOARD_SN}">		<!-- 게시판 번호 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">
-		
-		<input type="hidden" id="likeYn"		name="likeYn"			value="${bookView.LIKE_YN}">			<!-- 라이크 유무 -->
+		<input type="hidden" id="likeYn"		name="likeYn"			value="${bookView.LIKE_YN}">		<!-- 라이크 유무 -->
 	</form>
 	
 	<div id="content">
@@ -39,7 +38,8 @@
 		<div class="view">
 			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
 		</div>
-			 ${bookView.CONTENT}
+			 지은이:${bookView.BOOK_WRITER} 출판사:${bookView.BOOK_PUBLISHER} 가격:${bookView.BOOK_PRICE}
+			 <br><br>${bookView.CONTENT}
 		<div class="bookView">	
 			<div class="bookView-btn">
 				<a href="javascript:fn_bookFormU();" 	id="bookFormU">수정</a>

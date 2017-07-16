@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
-
+	
+	
+	/*********************************************************************/
 	/****************************** 책 소 개 시작  ******************************/
 	
 	/* 책소개 > 조회 > Count */
@@ -19,6 +21,9 @@ public interface BoardService {
 	/* 책소개  > 등록 */
 	int insertBook(Map<String, Object> map) throws Exception;
 	
+	/* 책소개 > 등록(상세) */
+	void insertBookDetail(Map<String, Object> map) throws Exception;
+	
 	/* 책소개  > 수정 */
 	String updateBook(Map<String, Object> map) throws Exception;
 	
@@ -32,6 +37,9 @@ public interface BoardService {
 	String bookLikeHistory(Map<String, Object> map) throws Exception;
 	
 	/****************************** 책 소 개 종료  ******************************/
+	/*********************************************************************/
+	
+	
 	
 	/****************************** 간 행 물 시작  ******************************/
 	
@@ -55,18 +63,22 @@ public interface BoardService {
 	
 	/****************************** 간 행 물 종료  ******************************/
 	
+	
+	/*********************************************************************/
 	/****************************** 게시판 공통 시작  ******************************/
 	
-	/* 게시판 공통 > 파일 등록 */
-	String insertBoardFl(Map<String, Object> map) throws Exception;
+	/* 게시판 공통 > 파일 등록 ( 'file' / 'image' ) */
+	String insertBoardAttach(Map<String, Object> map, String attach) throws Exception;
 	
-	/* 게시판 공통 > 파일 수정 */
-	String updateBoardFl(Map<String, Object> map) throws Exception;
+	/* 게시판 공통 > 파일 수정 ( 'file' / 'image' ) */
+	String updateBoardAttach(Map<String, Object> map, String attach) throws Exception;
 	
 	/* 게시판 공통 > 파일다운로드 > 조회 */
 	List<Map<String, Object>> boardFlList(Map<String, Object> map) throws Exception;
 	
 	/****************************** 게시판 공통 종료  ******************************/
+	/*********************************************************************/
+	
 	
 
 	/* 신청 > 기관탐방 > 탐방 조회  Count*/

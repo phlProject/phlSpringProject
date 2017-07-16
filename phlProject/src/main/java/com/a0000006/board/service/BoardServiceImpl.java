@@ -19,6 +19,8 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 	
 	
+	
+	/*********************************************************************/
 	/****************************** 책 소 개 시작  ******************************/
 	
 	/* 책소개 > 조회 > Count */
@@ -51,6 +53,16 @@ public class BoardServiceImpl implements BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
+		}
+	}
+	
+	/* 책소개 > 등록(상세) */
+	@Override
+	public void insertBookDetail(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.insertBookDetail(map);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -103,6 +115,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	/****************************** 책 소 개 종료  ******************************/
+	/*********************************************************************/
+	
 	
 	/****************************** 간 행 물 시작  ******************************/
 	
@@ -165,12 +179,18 @@ public class BoardServiceImpl implements BoardService {
 	
 	/****************************** 간 행 물 종료  ******************************/
 	
-	/****************************** 게시판 공통 시작  ******************************/
 	
-	/* 게시판 공통 > 파일 등록 */
-	public String insertBoardFl(Map<String, Object> map) throws Exception {
+	/*********************************************************************/
+	/***************************** 게시판 공통 시작  *****************************/
+	
+	/* 게시판 공통 > 파일 등록 ( 'file' / 'image' )*/
+	public String insertBoardAttach(Map<String, Object> map, String attach) throws Exception {
 		try {
-			boardDAO.insertBoardFl(map);
+			if(attach.equals("file")){
+				boardDAO.insertBoardFl(map);
+			}else if(attach.equals("image")){
+				boardDAO.insertBoardImg(map);
+			}
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -179,9 +199,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	/* 게시판 공통 > 파일 수정 */
-	public String updateBoardFl(Map<String, Object> map) throws Exception {
+	public String updateBoardAttach(Map<String, Object> map, String attach) throws Exception {
 		try {
-			boardDAO.updateBoardFl(map);
+			if(attach.equals("file")){
+				boardDAO.updateBoardFl(map);
+			}else if(attach.equals("image")){
+				boardDAO.updateBoardImg(map);
+			}
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -195,7 +219,8 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.boardFlList(map);
 	}
 	
-	/****************************** 게시판 공통 종료  ******************************/
+	/***************************** 게시판 공통 종료  *****************************/
+	/*********************************************************************/
 	
 
 	/* 신청 > 기관탐방 > 탐방 조회 Count */

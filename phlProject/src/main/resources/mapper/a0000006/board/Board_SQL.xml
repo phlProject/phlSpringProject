@@ -2,104 +2,123 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="a0000006/board">
-	
+
+	<!-- /*********************************************************************/ -->
 	<!-- /****************************** 책 소 개 시작  ******************************/ -->
 	
 	<!-- 책소개 > 조회 > Count -->
 	<select id="bookListCnt" parameterType="hashmap" resultType="java.lang.Integer">
-		SELECT COUNT(*)
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
+		SELECT COUNT(AA.BOARD_SN)
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		     LEFT OUTER JOIN BSNS_BOARD_BOOK AB		/* 업체_게시판_책소개 */
+			  ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     LEFT OUTER JOIN BSNS_BOARD_IMG	AC		/* 업체_게시판_이미지 */
+		      ON AA.BSNS_CODE = AC.BSNS_CODE
+		     AND AA.BOARD_SN  = AC.BOARD_SN
+		     AND AC.USE_YN = 'Y'
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
 		  </if>
 	</select>
 	
+	
 	<!-- 책소개 > 조회  -->
 	<select id="bookList" parameterType="hashmap" resultType="hashmap">
-		SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+			  ,AB.BOOK_WRITER		/* 책_지은이 */
+			  ,AB.BOOK_PUBLISHER 	/* 책_출판사 */
+			  ,AB.BOOK_PRICE		/* 책_가격 */
+			  ,AC.BOARD_FL_SN		/* 게시판_이미지_일련번호 */
+			  ,AC.ORIGIN_FL_NM		/* 원본_이미지_명 */
+			  ,AC.FL_NM				/* 이미지_명 */
+			  ,AC.FL_PATH			/* 이미지_경로 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		      LEFT OUTER JOIN BSNS_BOARD_BOOK AB	/* 업체_게시판_책소개 */
+			  ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     LEFT OUTER JOIN BSNS_BOARD_IMG	AC		/* 업체_게시판_이미지 */
+		      ON AA.BSNS_CODE = AC.BSNS_CODE
+		     AND AA.BOARD_SN  = AC.BOARD_SN
+		     AND AC.USE_YN = 'Y'
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
 		  </if>
-		ORDER BY BMB.BOARD_SN DESC
+		ORDER BY AA.BOARD_SN DESC
 		LIMIT #{limitFirst}, #{limitSecond}
 	</select>
 
+
 	<!-- 책소개 > 상세  폼 -->
 	<select id="bookView" parameterType="hashmap" resultType="hashmap">
-	SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-			  ,BMBFLH.MEM_ID
-		  	  ,BMBFLH.LIKE_YN
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
-		     LEFT OUTER JOIN BSNS_BOARD_LIKE BMBFLH
-	      	   ON BMB.BSNS_CODE = BMBFLH.BSNS_CODE
-	     	 AND BMB.BOARD_SN  = BMBFLH.BOARD_SN
-	     	 AND BMBFLH.MEM_ID = #{sessionId}
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+			  ,AB.BOOK_WRITER		/* 책_지은이 */
+			  ,AB.BOOK_PUBLISHER 	/* 책_출판사 */
+			  ,AB.BOOK_PRICE		/* 책_가격 */
+			  ,AC.BOARD_FL_SN		/* 게시판_이미지_일련번호 */
+			  ,AC.ORIGIN_FL_NM		/* 원본_이미지_명 */
+			  ,AC.FL_NM				/* 이미지_명 */
+			  ,AC.FL_PATH			/* 이미지_경로 */
+			  ,AD.MEM_ID			/* 회원_ID */
+		  	  ,AD.LIKE_YN			/* 좋아요_사용여부 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		     LEFT OUTER JOIN BSNS_BOARD_BOOK AB		/* 업체_게시판_책소개 */
+			  ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     LEFT OUTER JOIN BSNS_BOARD_IMG	AC		/* 업체_게시판_이미지 */
+		      ON AA.BSNS_CODE = AC.BSNS_CODE
+		     AND AA.BOARD_SN  = AC.BOARD_SN
+		     AND AC.USE_YN = 'Y'
+		     LEFT OUTER JOIN BSNS_BOARD_LIKE AD		/* 업체_게시판_좋아요 */
+	      	ON AA.BSNS_CODE = AD.BSNS_CODE
+	     	  AND AA.BOARD_SN  = AD.BOARD_SN
+	     	  AND AD.MEM_ID = #{sessionId}
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_SN = #{boardSn}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
 	</select>	
+	
 
 	<!-- 책소개 > 등록 -->
 	<insert id="insertBook" parameterType="hashmap">
@@ -108,40 +127,73 @@
 				,BOARD_GBN_CD
 				,SUBJECT
 				,CONTENT
-				,REG_DT
 				,REG_ID
+				,REG_DT
 			)VALUES(
 				 #{bsnsCode}
 				,#{boardGbnCd}
 				,#{subject}
 				,#{editor}
-				,now()
 				,'aa'
+				,now()
 			)
 	</insert>
 	
+	
+	<!-- 책소개 > 등록 (상세)-->
+	<insert id="insertBookDetail" parameterType="hashmap">
+		INSERT INTO BSNS_BOARD_BOOK(
+			 BSNS_CODE
+			,BOARD_SN
+			,BOOK_WRITER
+			,BOOK_PUBLISHER
+			,BOOK_PRICE
+			,REG_ID
+			,REG_DT
+		)VALUES(
+			 #{bsnsCode}
+			,#{boardSn}
+			,#{bookWriter}
+			,#{bookPublisher}
+			,#{bookPrice}
+			,'aa'
+			,now()
+		)
+	</insert>
+	
+	
 	<!-- 책소개 > 수정 -->
 	<update id="updateBook"  parameterType="hashmap">
-		UPDATE BSNS_BOARD
-		   SET SUBJECT = #{subject}
-		      ,CONTENT = #{editor}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		UPDATE BSNS_BOARD AA 					/* 업체_게시판 */
+			   INNER JOIN BSNS_BOARD_BOOK AB	/* 업체_게시판_책소개 */
+			    ON AA.BSNS_CODE = AB.BSNS_CODE
+			   AND AA.BOARD_SN  = AB.BOARD_SN
+		   SET AA.SUBJECT 		= #{subject}
+		      ,AA.CONTENT 		= #{editor}
+		      ,AB.BOOK_WRITER 	= #{bookWriter}
+		      ,AB.BOOK_PUBLISHER= #{bookPublisher}
+		      ,AB.BOOK_PRICE	= #{bookPrice}
+		      ,AA.MOD_ID 		= 'aa'
+		      ,AA.MOD_DT 		= now()
+		      ,AB.MOD_ID 		= 'aa'
+		      ,AB.MOD_DT 		= now()
 		 WHERE 1=1
-		   AND BSNS_CODE = #{bsnsCode}
-		   AND BOARD_SN  = #{boardSn}
+		   AND AA.BSNS_CODE = #{bsnsCode}
+		   AND AA.BOARD_SN  = #{boardSn}
 	</update>
+	
 	
 	<!-- 책소개 > 삭제 -->
 	<update id="deleteBook"  parameterType="hashmap">
 		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
+			  ,MOD_ID = 'aa'
 		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
 	</update>
+	
 	
 	<!-- 책소개 > 좋아요 Count -->
 	<update id="bookLikeCount" parameterType="hashmap">
@@ -154,15 +206,34 @@
 		  AND BOARD_SN  = #{boardSn}
 	</update>
 	
+	
 	<!-- 책소개 > 좋아요 등록/수정 -->
 	<insert id="bookLikeHistory" parameterType="hashmap">
-		INSERT INTO BSNS_BOARD_LIKE(BSNS_CODE, BOARD_SN, MEM_ID, LIKE_YN, REG_ID, REG_DT, MOD_ID, MOD_DT)
-		VALUES(#{bsnsCode}, #{boardSn}, #{sessionId}, #{saveLike}, #{sessionId}, now(), #{sessionId}, now() )
+		INSERT INTO BSNS_BOARD_LIKE(
+			 BSNS_CODE
+			,BOARD_SN
+			,MEM_ID
+			,LIKE_YN
+			,REG_ID
+			,REG_DT
+			,MOD_ID
+			,MOD_DT
+		)VALUES(
+			 #{bsnsCode}
+			,#{boardSn}
+			,#{sessionId}
+			,#{saveLike}
+			,#{sessionId}
+			,now()
+			,#{sessionId}
+			,now()
+		)
 		ON DUPLICATE KEY 
 		UPDATE 	LIKE_YN = #{saveLike},
 				MOD_ID 	= #{sessionId},
 				MOD_DT	= now()
 	</insert>
+	
 	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->
 	
@@ -302,8 +373,10 @@
 	</update>
 	
 	<!-- /****************************** 간 행 물 종료  ******************************/ -->
+	<!-- /*********************************************************************/ -->
 	
 	
+	<!-- /*********************************************************************/ -->
 	<!-- /****************************** 게시판 공통 시작  ****************************/ -->
 	
 	<!-- 게시판 공통 > 일련번호 조회  -->
@@ -311,7 +384,7 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 	
-	<!-- 게시판 공통 > 파일 등록  -->
+	<!-- 게시판 공통 > 파일 등록  (파일) -->
 	<insert id="insertBoardFl"  parameterType="hashmap">
 		INSERT INTO BSNS_BOARD_FL(
 			 BSNS_CODE
@@ -333,9 +406,46 @@
 		)
 	</insert>
 	
-	<!-- 게시판 공통 > 파일 수정  -->
+	<!-- 게시판 공통 > 파일 등록  (이미지) -->
+	<insert id="insertBoardImg"  parameterType="hashmap">
+		INSERT INTO BSNS_BOARD_IMG(
+			 BSNS_CODE
+			,BOARD_SN
+			,ORIGIN_FL_NM
+			,FL_NM
+			,FL_PATH
+			,REG_DT
+			,REG_ID
+		)VALUES(
+			 #{bsnsCode}
+			,#{boardSn}
+			,#{originFlNm}
+			,#{flNm}
+			,#{flPath}
+			,now()
+			,'aa'
+			<!--,#{sessionId}-->
+		)
+	</insert>
+	
+	
+	<!-- 게시판 공통 > 파일 수정 (파일) -->
 	<update id="updateBoardFl"  parameterType="hashmap">
 		UPDATE BSNS_BOARD_FL
+		   SET ORIGIN_FL_NM = #{originFlNm}
+		      ,FL_NM = #{flNm}
+		      ,FL_PATH = #{flPath}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1 
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+		   AND BOARD_FL_SN = #{boardFlSn}
+	</update>
+	
+	<!-- 게시판 공통 > 파일 수정 (이미지) -->
+	<update id="updateBoardImg"  parameterType="hashmap">
+		UPDATE BSNS_BOARD_IMG
 		   SET ORIGIN_FL_NM = #{originFlNm}
 		      ,FL_NM = #{flNm}
 		      ,FL_PATH = #{flPath}
@@ -368,6 +478,7 @@
 	</select>
 	
 	<!-- /****************************** 게시판 공통 종료  ****************************/ -->
+	<!-- /*********************************************************************/ -->
 	
 	
 	<select id="visitListCnt" parameterType="hashmap" resultType="java.lang.Integer">

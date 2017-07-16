@@ -26,6 +26,8 @@ public class BoardController {
 	@Resource(name="BoardService")
 	private BoardService boardService;
 	
+	
+	/*********************************************************************/
 	/****************************** 책 소 개 시작  ******************************/
 	
 	/* 책소개  > 조회 */
@@ -123,11 +125,13 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		int boardSn = boardService.insertBook(commandMap.getMap());
-		
 		commandMap.put("boardSn", boardSn);
 		
-		// 게시판 공통 > 파일 등록
-		String resultFlYn = boardService.insertBoardFl(commandMap.getMap());
+		// 책소개 > 등록(상세)
+		boardService.insertBookDetail(commandMap.getMap());
+		
+		// 게시판 공통 > 파일 등록 ( 'file' / 'image' )
+		String resultFlYn = boardService.insertBoardAttach(commandMap.getMap(), "image");
 
 		if(boardSn > 0){
 			mv.addObject("result", "success");  	
@@ -165,8 +169,8 @@ public class BoardController {
 		String resultFlYn = "success"; // 파일 등록 성공여부
 		
 		if(commandMap.get("uploadYn").equals("Y")){
-			// 게시판 > 파일 등록
-			resultFlYn = boardService.updateBoardFl(commandMap.getMap());
+			// 게시판 > 파일 등록  ( 'file' / 'image' )
+			resultFlYn = boardService.updateBoardAttach(commandMap.getMap(), "image");
 		}
 		
 		mv.addObject("resultFlYn", resultFlYn);  
@@ -212,6 +216,9 @@ public class BoardController {
 	}
 	
 	/****************************** 책 소 개 종료  ******************************/
+	/*********************************************************************/
+	
+	
 	
 	/****************************** 간 행 물 시작  ******************************/
 	
@@ -312,7 +319,7 @@ public class BoardController {
 		commandMap.put("boardSn", boardSn);
 		
 		// 게시판 공통 > 파일 등록
-		String resultFlYn = boardService.insertBoardFl(commandMap.getMap());
+		String resultFlYn = boardService.insertBoardAttach(commandMap.getMap(), "file");
 		
 		if(boardSn > 0){
 			mv.addObject("result", "success");  	
@@ -350,8 +357,8 @@ public class BoardController {
 		String resultFlYn = "success"; // 파일 등록 성공여부
 		
 		if(commandMap.get("uploadYn").equals("Y")){
-			// 게시판 > 파일 등록
-			resultFlYn = boardService.updateBoardFl(commandMap.getMap());
+			// 게시판 > 파일 등록  ( 'file' / 'image' )
+			resultFlYn = boardService.updateBoardAttach(commandMap.getMap(), "image");
 		}
 		
 		mv.addObject("resultFlYn", resultFlYn);  

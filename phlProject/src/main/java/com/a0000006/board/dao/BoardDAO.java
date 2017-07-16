@@ -10,6 +10,7 @@ import com.phl.dao.AbstractDAO;
 @Repository("BoardDAO")
 public class BoardDAO extends AbstractDAO {
 
+	/*********************************************************************/
 	/****************************** 책 소 개 시작  ******************************/
 	
 	/* 책소개 > 조회 > Count */
@@ -34,6 +35,11 @@ public class BoardDAO extends AbstractDAO {
 	    insert("a0000006/board.insertBook", map);
 	}
 	
+	/* 책소개 > 등록(상세) */
+	public void insertBookDetail(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.insertBookDetail", map);
+	}
+	
 	/* 책소개 > 수정 */
 	public void updateBook(Map<String, Object> map) throws Exception{
 	    update("a0000006/board.updateBook", map);
@@ -55,6 +61,8 @@ public class BoardDAO extends AbstractDAO {
 	}
 	
 	/****************************** 책 소 개 종료  ******************************/
+	/*********************************************************************/
+	
 	
 	/****************************** 간 행 물 시작  ******************************/
 	
@@ -92,21 +100,33 @@ public class BoardDAO extends AbstractDAO {
 	
 	/****************************** 간 행 물 종료  ******************************/
 	
-	/****************************** 게시판 공통 시작  ******************************/
+	
+	/*********************************************************************/
+	/***************************** 게시판 공통 시작  *****************************/
 	
 	/* 게시판 공통 > 일련번호 조회 */
 	public int selectboardSn() throws Exception{
 	    return (Integer) selectOne("a0000006/board.selectboardSn");
 	}
 	
-	/* 게시판 공통 > 파일 등록 */
+	/* 게시판 공통 > 파일 등록 (파일) */
 	public void insertBoardFl(Map<String, Object> map) throws Exception{
 	    insert("a0000006/board.insertBoardFl", map);
+	}
+	
+	/* 게시판 공통 > 파일 등록 (이미지) */
+	public void insertBoardImg(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.insertBoardImg", map);
 	}
 	
 	/* 게시판 공통 > 파일 수정 */
 	public void updateBoardFl(Map<String, Object> map) throws Exception{
 	    update("a0000006/board.updateBoardFl", map);
+	}
+	
+	/* 게시판 공통 > 파일 수정 */
+	public void updateBoardImg(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.updateBoardImg", map);
 	}
 	
 	/* 게시판 공통 > 파일다운로드 > 조회 */
@@ -115,7 +135,9 @@ public class BoardDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("a0000006/board.boardFlList", map);
     }
 	
-	/****************************** 게시판 공통 종료  ******************************/
+	/***************************** 게시판 공통 종료  *****************************/
+	/*********************************************************************/
+	
 	
     
 	/* 신청 > 기관탐방 > 탐방 조회 Count */
