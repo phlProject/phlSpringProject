@@ -242,7 +242,7 @@
 	<!-- /*********************************************************************/ -->
 	<!-- /********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/ -->
 	
-	<!-- 간행물 > 조회 > Count -->
+	<!-- 자료공통 > 조회 > Count -->
 	<select id="dataListCnt" parameterType="hashmap" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM BSNS_BOARD		BMB
@@ -269,7 +269,7 @@
 		  </if>
 	</select>
 	
-	<!-- 간행물 > 조회  -->
+	<!-- 자료공통 > 조회  -->
 	<select id="dataList" parameterType="hashmap" resultType="hashmap">
 		SELECT BMB.BSNS_CODE
 			  ,BMB.BOARD_SN
@@ -308,7 +308,7 @@
 		LIMIT #{limitFirst}, #{limitSecond}
 	</select>
 	
-	<!-- 간행물 > 상세 폼  -->
+	<!-- 자료공통 > 상세 폼  -->
 	<select id="dataView" parameterType="hashmap" resultType="hashmap">
 	SELECT BMB.BSNS_CODE
 			  ,BMB.BOARD_SN
@@ -332,7 +332,7 @@
 		  AND BMB.BOARD_SN = #{boardSn}
 	</select>	
 	
-	<!--  간행물 > 등록 --> 
+	<!-- 자료공통 > 등록 --> 
 	<insert id="insertData" parameterType="hashmap">
 		INSERT INTO BSNS_BOARD(
 				 BSNS_CODE
@@ -352,7 +352,7 @@
 			)
 	</insert>
 	
-	<!-- 간행물 > 수정 -->
+	<!-- 자료공통 > 수정 -->
 	<update id="updateData"  parameterType="hashmap">
 		UPDATE BSNS_BOARD
 		   SET SUBJECT = #{subject}
@@ -364,7 +364,7 @@
 		   AND BOARD_SN  = #{boardSn}
 	</update>
 	
-	<!-- 간행물 > 삭제 -->
+	<!-- 자료공통 > 삭제 -->
 	<update id="deleteData"  parameterType="hashmap">
 		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'

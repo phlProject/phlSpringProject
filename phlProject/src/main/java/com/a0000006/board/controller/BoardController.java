@@ -409,6 +409,63 @@ public class BoardController {
 	}
 	
 	
+	/* 자료공통  > 조회 */
+	@RequestMapping(value="/a0000006/board/dataList.do")
+	public ModelAndView dataList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardList");
+		
+		/* 업체코드 - A0000006 (꿈두레) */
+		if(commandMap.get("bsnsCode") == null){
+			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+		}
+		
+		// 자료공통 > 조회 > Count
+		int totalListCount = boardService.dataListCnt(commandMap.getMap());		
+		
+		// 요청 페이지 번호
+		int requestPageNumber = 1;	
+		
+		// 요청 페이지 번호가 있을 시 해당 페이지 이동
+		if(request.getParameter("requestPageNumber") != null){
+			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
+		}
+
+		// 페이지당 리스트 갯수
+		int countPerPage = 8;
+		
+		/* 
+		 ** 페이징 계산 ** 
+		 * 
+		 * 파라미터 : 전체리스트 Count, 요청페이지번호, 페이지당리스트갯수
+		 * pagingData[0] = 전체 페이지수
+		 * pagingData[1] = FirstRow ( Limit 사용 용도 )
+		 * pagingData[2] = EndRow	( Limit 사용 용도 )
+		 * pagingData[3] = 첫 페이지 번호
+		 * pagingData[4] = 끝 페이지 번호
+		 * 
+		 */
+		int pagingData[] = CmmnUtilPaging.paginData(totalListCount, requestPageNumber, countPerPage);
+		
+		commandMap.put("limitFirst", 	pagingData[1]-1);
+		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
+		
+		// 간행물 > 조회
+		List<Map<String,Object>> dataList = boardService.dataList(commandMap.getMap());
+		
+		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
+		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
+		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
+		mv.addObject("dataList", 		dataList);		// 자료 리스트
+		
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	
 	/* 자료공통 > 상세 폼 */
 	@RequestMapping(value="/a0000006/board/dataView.do")
 	public ModelAndView eduDataView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{

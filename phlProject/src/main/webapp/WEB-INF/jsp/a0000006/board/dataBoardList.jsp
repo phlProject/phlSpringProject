@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>교육나눔 꿈두레 - 간행물</title>
+<title>교육나눔 꿈두레</title>
 </head>
 <body>
 	<div id="content">
