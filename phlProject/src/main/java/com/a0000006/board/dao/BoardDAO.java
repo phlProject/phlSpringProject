@@ -64,6 +64,45 @@ public class BoardDAO extends AbstractDAO {
 	/*********************************************************************/
 	
 	
+	/*********************************************************************/
+	/********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/
+	
+	/* 간행물 > 조회 > Count */
+	public int dataListCnt(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/board.dataListCnt", map);
+    }
+	
+	/* 간행물 > 조회  */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> dataList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/board.dataList", map);
+    }
+	
+	/* 간행물 > 상세 폼 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> dataView(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/board.dataView", map);
+    }
+	
+	/* 간행물 > 등록 */
+	public void insertData(Map<String, Object> map) throws Exception{
+	    insert("a0000006/board.insertData", map);
+	}
+	
+	/* 간행물 > 수정 */
+	public void updateData(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.updateData", map);
+	}
+	
+	/* 간행물 > 삭제 */
+	public void deleteData(Map<String, Object> map) throws Exception{
+	    update("a0000006/board.deleteData", map);
+	}
+	
+	
+	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
+	/*********************************************************************/
+	
 	/****************************** 간 행 물 시작  ******************************/
 	
 	/* 간행물 > 조회 > Count */
@@ -139,15 +178,5 @@ public class BoardDAO extends AbstractDAO {
 	/*********************************************************************/
 	
 	
-    
-	/* 신청 > 기관탐방 > 탐방 조회 Count */
-	public int visitListCnt(Map<String, Object> map) throws Exception{
-        return (Integer) selectOne("a0000006/board.visitListCnt", map);
-    }
-	
-	/* 신청 > 기관탐방 > 탐방 조회 */
-	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("a0000006/board.visitList", map);
-    }
+
 }

@@ -40,6 +40,30 @@ public interface BoardService {
 	/*********************************************************************/
 	
 	
+	/*********************************************************************/
+	/********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/
+	
+	/* 자료공통 > 조회 > Count */
+	int dataListCnt(Map<String, Object> map) throws Exception;
+	
+	/* 자료공통 > 조회 */
+	List<Map<String, Object>> dataList(Map<String, Object> map) throws Exception;
+	
+	/* 자료공통 > 상세 폼 */
+	List<Map<String, Object>> dataView(Map<String, Object> map) throws Exception;
+	
+	/* 자료공통 > 등록 */
+	int insertData(Map<String, Object> map) throws Exception;
+
+	/* 자료공통 > 수정 */
+	String updateData(Map<String, Object> map) throws Exception;
+	
+	/* 자료공통 > 삭제 */
+	String deleteData(Map<String, Object> map) throws Exception;
+	
+	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
+	/*********************************************************************/
+	
 	
 	/****************************** 간 행 물 시작  ******************************/
 	
@@ -80,10 +104,4 @@ public interface BoardService {
 	/*********************************************************************/
 	
 	
-
-	/* 신청 > 기관탐방 > 탐방 조회  Count*/
-	int visitListCnt(Map<String, Object> map) throws Exception;
-	
-	/* 신청 > 기관탐방 > 탐방 조회 */
-	List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception;
 }

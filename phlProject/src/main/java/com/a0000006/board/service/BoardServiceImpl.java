@@ -118,6 +118,71 @@ public class BoardServiceImpl implements BoardService {
 	/*********************************************************************/
 	
 	
+	/*********************************************************************/
+	/********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/
+	
+	/* 자료공통 > 조회 > Count */
+	public int dataListCnt(Map<String, Object> map) throws Exception {
+        return boardDAO.dataListCnt(map);
+    }
+	
+	/* 자료공통 > 조회  */
+	@Override
+    public List<Map<String, Object>> dataList(Map<String, Object> map) throws Exception {
+        return boardDAO.dataList(map);
+    }
+	
+	/* 자료공통 > 상세 폼 */
+	@Override
+    public List<Map<String, Object>> dataView(Map<String, Object> map) throws Exception {
+        return boardDAO.dataView(map);
+    }
+	
+	/* 자료공통 > 등록 */
+	@Override
+	public int insertData(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.insertData(map);
+
+			// 게시판 공통 > 일련번호 조회
+			int boardSn = boardDAO.selectboardSn();
+			return boardSn;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	/* 자료공통 > 수정 */
+	@Override
+	public String updateData(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.updateData(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 자료공통 > 삭제 */
+	@Override
+	public String deleteData(Map<String, Object> map) throws Exception {
+		try {
+			boardDAO.deleteData(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	
+	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
+	/*********************************************************************/
+	
+	
+	
 	/****************************** 간 행 물 시작  ******************************/
 	
 	/* 간행물 > 조회 > Count */
@@ -223,14 +288,4 @@ public class BoardServiceImpl implements BoardService {
 	/*********************************************************************/
 	
 
-	/* 신청 > 기관탐방 > 탐방 조회 Count */
-	public int visitListCnt(Map<String, Object> map) throws Exception {
-        return boardDAO.visitListCnt(map);
-    }
-	
-	/* 신청 > 기관탐방 > 탐방 조회 */
-	@Override
-    public List<Map<String, Object>> visitList(Map<String, Object> map) throws Exception {
-        return boardDAO.visitList(map);
-    }
 }

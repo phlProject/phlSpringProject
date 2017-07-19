@@ -237,6 +237,145 @@
 	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->
 	
+	<!-- /********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/ -->
+	
+	<!-- 간행물 > 조회 > Count -->
+	<select id="dataListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+	</select>
+	
+	<!-- 간행물 > 조회  -->
+	<select id="dataList" parameterType="hashmap" resultType="hashmap">
+		SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENT
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY BMB.BOARD_SN DESC
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
+	
+	<!-- 간행물 > 상세 폼  -->
+	<select id="dataView" parameterType="hashmap" resultType="hashmap">
+	SELECT BMB.BSNS_CODE
+			  ,BMB.BOARD_SN
+			  ,BMB.BOARD_GBN_CD
+			  ,BMB.SUBJECT
+			  ,BMB.CONTENT
+			  ,BMB.HIT_COUNT
+			  ,BMB.LIKE_COUNT
+			  ,BMBF.BOARD_FL_SN
+			  ,BMBF.ORIGIN_FL_NM
+			  ,BMBF.FL_NM
+			  ,BMBF.FL_PATH
+		FROM BSNS_BOARD		BMB
+		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
+		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
+		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
+		     AND BMBF.USE_YN = 'Y'
+		WHERE 1=1
+		  AND BMB.USE_YN = 'Y'
+		  AND BMB.BSNS_CODE = #{bsnsCode}
+		  AND BMB.BOARD_SN = #{boardSn}
+	</select>	
+	
+	<!--  간행물 > 등록 --> 
+	<insert id="insertData" parameterType="hashmap">
+		INSERT INTO BSNS_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENT
+				,REG_DT
+				,REG_ID
+		)VALUES(
+				 #{bsnsCode}
+				,#{boardGbnCd}
+				,#{subject}
+				,#{editor}
+				,now()
+				,'aa'
+				<!--,#{sessionId}-->
+			)
+	</insert>
+	
+	<!-- 간행물 > 수정 -->
+	<update id="updateData"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET SUBJECT = #{subject}
+		      ,CONTENT = #{editor}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 간행물 > 삭제 -->
+	<update id="deleteData"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET USE_YN = 'N'
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- /********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/ -->
+	
+	
+	
 	<!-- /****************************** 간 행 물 시작  ******************************/ -->
 	
 	<!-- 간행물 > 조회 > Count -->
@@ -480,69 +619,4 @@
 	<!-- /****************************** 게시판 공통 종료  ****************************/ -->
 	<!-- /*********************************************************************/ -->
 	
-	
-	<select id="visitListCnt" parameterType="hashmap" resultType="java.lang.Integer">
-		SELECT COUNT(*)
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
-		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
-		  <if test="searchSelect != '' or searchSelect != null">
-		  	<choose>
-		  		<!-- 제목 -->
-			 	<when test='searchSelect == "searchSubject"'> 
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<!-- 내용 -->
-			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<!-- 제목+내용 -->
-			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-		  	</choose>
-		  </if>
-	</select>
-	
-	<select id="visitList" parameterType="hashmap" resultType="hashmap">
-		SELECT VISIT.*
-		FROM
-		(SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMB.REG_ID
-			  ,@ROWNUM := @ROWNUM + 1 AS ROWNUM
-		FROM BSNS_BOARD		BMB
-			 ,(SELECT @ROWNUM := 0) R
-		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
-		  <if test="searchSelect != '' or searchSelect != null">
-		  	<choose>
-			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-		  	</choose>
-		  </if>  
-		ORDER BY BMB.BOARD_SN ASC
-		) VISIT
-		LIMIT #{limitFirst}, #{limitSecond}
-	</select>
 </mapper>
