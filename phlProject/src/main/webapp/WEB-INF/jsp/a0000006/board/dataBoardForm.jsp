@@ -24,7 +24,7 @@
         });
          
         //저장버튼 클릭이벤트
-        $("#fn_savePubli").click(function(){
+        $("#fn_saveData").click(function(){
             
         	/* if(!pulbiValidation()){
         		return;
@@ -35,10 +35,10 @@
         	
         	if($("#newYn").val() == "Y"){
         		msg = "저장하시겠습니까?";
-        		postUrl = "/a0000006/board/insertPubli.do";
+        		postUrl = "/a0000006/board/insertData.do";
         	}else if($("#newYn").val() == "N"){
         		msg = "수정하시겠습니까?";
-        		postUrl = "/a0000006/board/updatePubli.do";
+        		postUrl = "/a0000006/board/updateData.do";
         	}
         	
         	if(!confirm(msg)){
@@ -55,10 +55,10 @@
         		if(data.result == "success" && data.resultFlYn == "success"){
         			alert("등록되었습니다.");
         			if($("#newYn").val() == "Y") $("#boardSn").val(data.boardSn);
-        			ComSubmit('publiList_Form','/a0000006/board/publiView.do');
+        			ComSubmit('dataList_Form','/a0000006/board/dataView.do');
         		} else{
         			alert("실패하였습니다. 관리자에게 문의해주세요.");
-        			ComSubmit('publiList_Form','/a0000006/board/publiList.do');
+        			ComSubmit('dataList_Form','/a0000006/board/dataList.do');
         			return;
         		}
         	});
@@ -68,13 +68,13 @@
 </head>
 
 	<body>
-		<form id="publiList_Form">
+		<form id="dataList_Form">
 			<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">		<!-- 검색구분 -->
 			<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
 			<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsns_code}">	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
-			<input type="hidden" id="boardSn" 		name="boardSn"			value="${publiView.BOARD_SN}">		<!-- 게시판_번호 -->
-			<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${publiView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
+			<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
+			<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
 		</form>
 		
 		<div id="content">
@@ -88,16 +88,16 @@
 				<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
 				<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 				<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.session_id}">	<!-- 세션_아이디(등록자/수정자) -->
-				<input type="hidden" id="boardSn" 		name="boardSn"			value="${publiView.BOARD_SN}">		<!-- 게시판_번호 -->
-				<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${publiView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
-				<input type="hidden" id="flNm" 			name="flNm"				value="${publiView.FL_NM}">			<!-- 파일 명 -->
-			    <input type="hidden" id="flPath" 		name="flPath"			value="${publiView.FL_PATH}">		<!-- 파일 경로 -->
-			    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${publiView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
+				<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
+				<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
+				<input type="hidden" id="flNm" 			name="flNm"				value="${dataView.FL_NM}">			<!-- 파일 명 -->
+			    <input type="hidden" id="flPath" 		name="flPath"			value="${dataView.FL_PATH}">		<!-- 파일 경로 -->
+			    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${dataView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 			    <input type="hidden" id="uploadYn" 		name="uploadYn" 		value="N">							<!-- 업로드 여부 -->
 			    <br/><br/><br/>
-				<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${publiView.SUBJECT}">
+				<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${dataView.SUBJECT}">
 				<br/><br/>
-				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${publiView.CONTENT}</textarea>
+				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${dataView.CONTENT}</textarea>
 			</form>
 			
 			<!-- Upload_Form -->
@@ -109,8 +109,8 @@
 			</form>
 			<div class="bookView">	
 				<div class="bookView-btn">
-					<a href="#" id="fn_savePubli" >저장</a>
-					<a href="javascript:fn_publiList();" id="publiList">목록</a>
+					<a href="#" id="fn_saveData" >저장</a>
+					<a href="javascript:fn_dataList();" id="dataList">목록</a>
 				</div>
 			</div>		
 		</div>

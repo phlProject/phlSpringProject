@@ -115,40 +115,40 @@ function fn_bookLike(){
 }
 */
 
-/***** 게시판 - 간행물 *****/
+/***** 게시판 - 자료공통 *****/
 
-/* 간행물 > 리스트 조회 */
-function fn_publiList(){
-	ComSubmit('publiList_Form','/a0000006/board/publiList.do');
+/* 자료공통 > 리스트 조회 */
+function fn_dataList(){
+	ComSubmit('dataList_Form','/a0000006/board/dataList.do');
 }
 
-/* 간행물 > 상세 폼 */
-function fn_publiView(boardSn){
+/* 자료공통 > 상세 폼 */
+function fn_dataView(boardSn){
 	var input = $("<input>").attr("type", "hidden").attr("name", "boardSn").attr("id", "boardSn").val(boardSn);
-	$("#publiList_Form").attr({action:"/a0000006/board/publiView.do" ,method:'post'}).append($(input)).submit();
+	$("#dataList_Form").attr({action:"/a0000006/board/dataView.do" ,method:'post'}).append($(input)).submit();
 }
 
-/* 간행물 > 신규등록 폼 */
-function fn_publiFormI(){
-	ComSubmit('publiList_Form','/a0000006/board/publiFormI.do');
+/* 자료공통 > 신규등록 폼 */
+function fn_dataFormI(){
+	ComSubmit('dataList_Form','/a0000006/board/dataFormI.do');
 }
 
-/* 간행물 > 수정 폼 */
-function fn_publiFormU(){
-	ComSubmit('publiList_Form','/a0000006/board/publiFormU.do');
+/* 자료공통 > 수정 폼 */
+function fn_dataFormU(){
+	ComSubmit('dataList_Form','/a0000006/board/dataFormU.do');
 }
 
-/* 간행물 > 삭제 */
-function fn_deletePubli(){
+/* 자료공통 > 삭제 */
+function fn_deleteData(){
 	if(!confirm("삭제하시겠습니까? ")){
 		return;
 	}
 	
-	var postUrl = "/a0000006/board/deletePubli.do";
-	$.post(postUrl, $("#publiList_Form").serialize(), function(data){
+	var postUrl = "/a0000006/board/deleteData.do";
+	$.post(postUrl, $("#dataList_Form").serialize(), function(data){
 		if(data.result == "success" ){
 			alert("삭제되었습니다.");
-			ComSubmit('publiList_Form','/a0000006/board/publiList.do');
+			ComSubmit('dataList_Form','/a0000006/board/dataList.do');
 		} else{
 			alert("실패하였습니다. 관리자에게 문의해주세요.");
 			return;

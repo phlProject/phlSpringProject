@@ -103,43 +103,6 @@ public class BoardDAO extends AbstractDAO {
 	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
 	/*********************************************************************/
 	
-	/****************************** 간 행 물 시작  ******************************/
-	
-	/* 간행물 > 조회 > Count */
-	public int publiListCnt(Map<String, Object> map) throws Exception{
-        return (Integer) selectOne("a0000006/board.publiListCnt", map);
-    }
-	
-	/* 간행물 > 조회  */
-	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> publiList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("a0000006/board.publiList", map);
-    }
-	
-	/* 간행물 > 상세 폼 */
-	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> publiView(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("a0000006/board.publiView", map);
-    }
-	
-	/* 간행물 > 등록 */
-	public void insertPubli(Map<String, Object> map) throws Exception{
-	    insert("a0000006/board.insertPubli", map);
-	}
-	
-	/* 간행물 > 수정 */
-	public void updatePubli(Map<String, Object> map) throws Exception{
-	    update("a0000006/board.updatePubli", map);
-	}
-	
-	/* 간행물 > 삭제 */
-	public void deletePubli(Map<String, Object> map) throws Exception{
-	    update("a0000006/board.deletePubli", map);
-	}
-	
-	/****************************** 간 행 물 종료  ******************************/
-	
-	
 	/*********************************************************************/
 	/***************************** 게시판 공통 시작  *****************************/
 	

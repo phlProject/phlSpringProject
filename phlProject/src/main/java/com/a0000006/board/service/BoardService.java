@@ -65,29 +65,6 @@ public interface BoardService {
 	/*********************************************************************/
 	
 	
-	/****************************** 간 행 물 시작  ******************************/
-	
-	/* 간행물 > 조회 > Count */
-	int publiListCnt(Map<String, Object> map) throws Exception;
-	
-	/* 간행물 > 조회 */
-	List<Map<String, Object>> publiList(Map<String, Object> map) throws Exception;
-	
-	/* 간행물 > 상세 폼 */
-	List<Map<String, Object>> publiView(Map<String, Object> map) throws Exception;
-	
-	/* 간행물 > 등록 */
-	int insertPubli(Map<String, Object> map) throws Exception;
-
-	/* 간행물 > 수정 */
-	String updatePubli(Map<String, Object> map) throws Exception;
-	
-	/* 간행물 > 삭제 */
-	String deletePubli(Map<String, Object> map) throws Exception;
-	
-	/****************************** 간 행 물 종료  ******************************/
-	
-	
 	/*********************************************************************/
 	/****************************** 게시판 공통 시작  ******************************/
 	

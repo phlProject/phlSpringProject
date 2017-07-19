@@ -236,7 +236,10 @@
 	
 	
 	<!-- /****************************** 책 소 개 종료  ******************************/ -->
+	<!-- /*********************************************************************/ -->
 	
+	
+	<!-- /*********************************************************************/ -->
 	<!-- /********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/ -->
 	
 	<!-- 간행물 > 조회 > Count -->
@@ -373,147 +376,8 @@
 	</update>
 	
 	<!-- /********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/ -->
-	
-	
-	
-	<!-- /****************************** 간 행 물 시작  ******************************/ -->
-	
-	<!-- 간행물 > 조회 > Count -->
-	<select id="publiListCnt" parameterType="hashmap" resultType="java.lang.Integer">
-		SELECT COUNT(*)
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
-		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
-		  <if test="searchSelect != '' or searchSelect != null">
-		  	<choose>
-			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-		  	</choose>
-		  </if>
-	</select>
-	
-	<!-- 간행물 > 조회  -->
-	<select id="publiList" parameterType="hashmap" resultType="hashmap">
-		SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
-		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
-		  <if test="searchSelect != '' or searchSelect != null">
-		  	<choose>
-			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
-			 	</when>
-		  	</choose>
-		  </if>
-		ORDER BY BMB.BOARD_SN DESC
-		LIMIT #{limitFirst}, #{limitSecond}
-	</select>
-	
-	<!-- 간행물 > 상세 폼  -->
-	<select id="publiView" parameterType="hashmap" resultType="hashmap">
-	SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
-		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_SN = #{boardSn}
-	</select>	
-	
-	<!--  간행물 > 등록 --> 
-	<insert id="insertPubli" parameterType="hashmap">
-		INSERT INTO BSNS_BOARD(
-				 BSNS_CODE
-				,BOARD_GBN_CD
-				,SUBJECT
-				,CONTENT
-				,REG_DT
-				,REG_ID
-		)VALUES(
-				 #{bsnsCode}
-				,#{boardGbnCd}
-				,#{subject}
-				,#{editor}
-				,now()
-				,'aa'
-				<!--,#{sessionId}-->
-			)
-	</insert>
-	
-	<!-- 간행물 > 수정 -->
-	<update id="updatePubli"  parameterType="hashmap">
-		UPDATE BSNS_BOARD
-		   SET SUBJECT = #{subject}
-		      ,CONTENT = #{editor}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
-		 WHERE 1=1
-		   AND BSNS_CODE = #{bsnsCode}
-		   AND BOARD_SN  = #{boardSn}
-	</update>
-	
-	<!-- 간행물 > 삭제 -->
-	<update id="deletePubli"  parameterType="hashmap">
-		UPDATE BSNS_BOARD
-		   SET USE_YN = 'N'
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
-		 WHERE 1=1
-		   AND BSNS_CODE = #{bsnsCode}
-		   AND BOARD_SN  = #{boardSn}
-	</update>
-	
-	<!-- /****************************** 간 행 물 종료  ******************************/ -->
 	<!-- /*********************************************************************/ -->
-	
+
 	
 	<!-- /*********************************************************************/ -->
 	<!-- /****************************** 게시판 공통 시작  ****************************/ -->
