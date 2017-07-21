@@ -13,12 +13,13 @@
 		<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
 		<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${bookView.BSNS_CODE}">		<!-- 업체코드 -->
 		<input type="hidden" id="boardSn" 		name="boardSn" 			value="${bookView.BOARD_SN}">		<!-- 게시판 번호 -->
-		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">
+		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+		<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 		<input type="hidden" id="likeYn"		name="likeYn"			value="${bookView.LIKE_YN}">		<!-- 라이크 유무 -->
 	</form>
 	
 	<div id="content">
-		<h3 class="cont-title">책 소개</h3>
+		<h3 class="cont-title">${item.boardGbnCdNm}</h3>
 		<p class="book-view">
 			제목 : ${bookView.SUBJECT}
 			<c:choose>

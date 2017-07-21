@@ -80,7 +80,7 @@
 		
 		<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 
-		<h3 class="book-title">책 소개 작성</h3>
+		<h3 class="book-title">${item.boardGbnCdNm} 작성</h3>
 
 		<!-- Upload_Form -->
 		<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
@@ -95,6 +95,7 @@
 		<form id="editor_Form">
 			<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsns_code}"> 	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"	value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 			<input type="hidden" id="sessionId" 	name="sessionId"	value="${sessionScope.session_id}">	<!-- 세션_아이디(등록자/수정자) -->
 			<input type="hidden" id="boardSn" 		name="boardSn"		value="${bookView.BOARD_SN}">		<!-- 게시판_번호 -->
 			<input type="hidden" id="boardFlSn" 	name="boardFlSn"	value="${bookView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->

@@ -73,6 +73,7 @@
 			<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
 			<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsns_code}">	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 			<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
 			<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
 		</form>
@@ -81,7 +82,7 @@
 			<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->	
 			<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
 			
-			<h3 class="book-title">간행물 등록/수정</h3>
+			<h3 class="book-title">${item.boardGbnCdNm} 등록/수정</h3>
 			<br/><br/>
 			<!-- Editor_Form -->
 			<form id="editor_Form">

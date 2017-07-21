@@ -47,6 +47,7 @@ public class BoardController {
 		/* 게시판 구분 - B01001 (책소개) */
 		if(commandMap.get("boardGbnCd") == null){
 			commandMap.put("boardGbnCd", "B01001");
+			commandMap.put("boardGbnCdNm", "책소개");
 		}
 		
 		// 책소개 > 조회 > 카운트
@@ -239,6 +240,7 @@ public class BoardController {
 		/* 게시판 구분 - B01002 (교육자료) */
 		if(commandMap.get("boardGbnCd") == null){
 			commandMap.put("boardGbnCd", "B01002");
+			commandMap.put("boardGbnCdNm", "교육자료");
 		}
 		
 		// 교육자료 > 조회 > Count
@@ -301,6 +303,7 @@ public class BoardController {
 		/* 게시판 구분 - B01003 (정책자료) */
 		if(commandMap.get("boardGbnCd") == null){
 			commandMap.put("boardGbnCd", "B01003");
+			commandMap.put("boardGbnCdNm", "정책자료");
 		}
 		
 		// 교육자료 > 조회 > Count
@@ -363,6 +366,7 @@ public class BoardController {
 		/* 게시판 구분 - B01004 (기타자료) */
 		if(commandMap.get("boardGbnCd") == null){
 			commandMap.put("boardGbnCd", "B01004");
+			commandMap.put("boardGbnCdNm", "기타자료");
 		}
 		
 		// 교육자료 > 조회 > Count
@@ -421,6 +425,12 @@ public class BoardController {
 		if(commandMap.get("bsnsCode") == null){
 			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
 		}
+		
+		String boardGbnCdNm = "";
+		if(commandMap.get("boardGbnCd").equals("B01002")) 		boardGbnCdNm = "교육자료";
+		else if(commandMap.get("boardGbnCd").equals("B01003"))	boardGbnCdNm = "정책자료";
+		else if(commandMap.get("boardGbnCd").equals("B01004"))	boardGbnCdNm = "기타자료";
+		commandMap.put("boardGbnCdNm", boardGbnCdNm);
 		
 		// 자료공통 > 조회 > Count
 		int totalListCount = boardService.dataListCnt(commandMap.getMap());		

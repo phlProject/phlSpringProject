@@ -32,6 +32,12 @@
 			 	<when test='searchSelect == "searchSubCon"'>
 			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
+			 	<when test='searchSelect == "searchWriter"'>
+			 		AND AB.BOOK_WRITER LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchPublisher"'>
+			 		AND AB.BOOK_PUBLISHER LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
 		  	</choose>
 		  </if>
 	</select>
@@ -42,6 +48,13 @@
 		SELECT AA.BSNS_CODE			/* 업체_코드 */
 			  ,AA.BOARD_SN			/* 게시판_일련번호*/
 			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CL_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM /* 게시판_구분_코드_명 */
 			  ,AA.SUBJECT			/* 제목 */
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
@@ -75,6 +88,12 @@
 			 	</when>
 			 	<when test='searchSelect == "searchSubCon"'>
 			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchWriter"'>
+			 		AND AB.BOOK_WRITER LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchPublisher"'>
+			 		AND AB.BOOK_PUBLISHER LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
 		  </if>
@@ -244,26 +263,26 @@
 	
 	<!-- 자료공통 > 조회 > Count -->
 	<select id="dataListCnt" parameterType="hashmap" resultType="java.lang.Integer">
-		SELECT COUNT(*)
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
+		SELECT COUNT(AA.BOARD_SN)
+		FROM BSNS_BOARD						AA	/* 업체_게시판 */
+		     LEFT OUTER JOIN BSNS_BOARD_FL	AB	/* 업체_게시판_파일 */
+		      ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     AND AB.USE_YN = 'Y'
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
 		  </if>
@@ -271,36 +290,42 @@
 	
 	<!-- 자료공통 > 조회  -->
 	<select id="dataList" parameterType="hashmap" resultType="hashmap">
-		SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호 */
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CL_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM	/* 게시판_구분_코드_명 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회수 */
+			  ,AB.BOARD_FL_SN		/* 게시판_파일_일련번호 */
+			  ,AB.ORIGIN_FL_NM		/* 파일_원본_명 */
+			  ,AB.FL_NM				/* 파일_명 */
+			  ,AB.FL_PATH			/* 파일_경로 */
+		FROM BSNS_BOARD						AA	/* 업체_게시판 */
+		     LEFT OUTER JOIN BSNS_BOARD_FL	AB	/* 업체_게시판_파일 */
+		      ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     AND AB.USE_YN = 'Y'
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_GBN_CD = #{boardGbnCd}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
-			 		AND BMB.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchContent"'>
-			 		AND BMB.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 			 	<when test='searchSelect == "searchSubCon"'>
-			 		AND CONCAT(BMB.SUBJECT,BMB.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 		AND CONCAT(AA.SUBJECT,AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
 			 	</when>
 		  	</choose>
 		  </if>
@@ -310,26 +335,25 @@
 	
 	<!-- 자료공통 > 상세 폼  -->
 	<select id="dataView" parameterType="hashmap" resultType="hashmap">
-	SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMB.BOARD_GBN_CD
-			  ,BMB.SUBJECT
-			  ,BMB.CONTENT
-			  ,BMB.HIT_COUNT
-			  ,BMB.LIKE_COUNT
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD		BMB
-		     LEFT OUTER JOIN BSNS_BOARD_FL	BMBF
-		      ON BMB.BSNS_CODE = BMBF.BSNS_CODE
-		     AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		     AND BMBF.USE_YN = 'Y'
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호 */
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AB.BOARD_FL_SN		/* 게시판_파일_일련번호 */
+			  ,AB.ORIGIN_FL_NM		/* 원본_파일_명 */
+			  ,AB.FL_NM				/* 파일_명 */
+			  ,AB.FL_PATH			/* 파일_경로 */
+		FROM BSNS_BOARD						AA	/* 업체_게시판 */
+		     LEFT OUTER JOIN BSNS_BOARD_FL	AB	/* 업체_게시판_파일 */
+		      ON AA.BSNS_CODE = AB.BSNS_CODE
+		     AND AA.BOARD_SN  = AB.BOARD_SN
+		     AND AB.USE_YN = 'Y'
 		WHERE 1=1
-		  AND BMB.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_SN = #{boardSn}
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
 	</select>	
 	
 	<!-- 자료공통 > 등록 --> 
@@ -462,22 +486,22 @@
 	
 	<!-- 게시판 공통 > 파일 다운로드 > 조회 -->
 	<select id="boardFlList" parameterType="hashmap" resultType="hashmap">
-		SELECT BMB.BSNS_CODE
-			  ,BMB.BOARD_SN
-			  ,BMBF.BOARD_FL_SN
-			  ,BMBF.ORIGIN_FL_NM
-			  ,BMBF.FL_NM
-			  ,BMBF.FL_PATH
-		FROM BSNS_BOARD 	BMB
-		    ,BSNS_BOARD_FL 	BMBF
+		SELECT AA.BSNS_CODE		/* 업체_코드 */
+			  ,AA.BOARD_SN		/* 게시판_일련번호 */
+			  ,AB.BOARD_FL_SN	/* 게시판_파일_일련번호 */
+			  ,AB.ORIGIN_FL_NM	/* 원본_파일_명 */
+			  ,AB.FL_NM			/* 파일_명 */
+			  ,AB.FL_PATH		/* 파일_경로 */
+		FROM BSNS_BOARD 	AA	/* 업체_게시판 */
+		    ,BSNS_BOARD_FL 	AB	/* 업체_게시판_파일 */
 		WHERE 1=1
-		  AND BMB.BSNS_CODE = BMBF.BSNS_CODE
-		  AND BMB.BOARD_SN  = BMBF.BOARD_SN
-		  AND BMB.USE_YN = 'Y'
-		  AND BMBF.USE_YN = 'Y'
-		  AND BMB.BSNS_CODE = #{bsnsCode}
-		  AND BMB.BOARD_SN  = #{boardSn}
-		  AND BMBF.BOARD_FL_SN = #{boardFlSn}
+		  AND AA.BSNS_CODE = AB.BSNS_CODE
+		  AND AA.BOARD_SN  = AB.BOARD_SN
+		  AND AA.USE_YN = 'Y'
+		  AND AB.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN  = #{boardSn}
+		  AND AB.BOARD_FL_SN = #{boardFlSn}
 	</select>
 	
 	<!-- /****************************** 게시판 공통 종료  ****************************/ -->

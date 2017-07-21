@@ -8,17 +8,18 @@
 </head>
 <body>
 	<div id="content">
-		<h3 class="cont-title">간행물</h3>
+		<h3 class="cont-title">${item.boardGbnCdNm}</h3>
 		<form id="dataList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 			
 			<!-- 검색조건 -->
 			<div class="search">
 				<select id="searchSelect" name="searchSelect">
 					<option value="searchSubject" <c:if test="${item.searchSelect eq 'searchSubject'}">selected</c:if>>제목</option>
-					<option value="searchContent" <c:if test="${item.searchSelect eq 'searchContent'}">selected</c:if>>줄거리</option>
-					<option value="searchSubCon"  <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+줄거리</option>
+					<option value="searchContent" <c:if test="${item.searchSelect eq 'searchContent'}">selected</c:if>>내용</option>
+					<option value="searchSubCon"  <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+내용</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
 				<input type="button" value="검색" onclick="fn_dataList();" class="button">
