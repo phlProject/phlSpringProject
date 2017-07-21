@@ -110,12 +110,6 @@ function fn_validation(){
 		return false;
 	}
 	
-	if($("#mem_nicknm").val() == ""){
-		alert(" * 닉네임을 입력해주세요. ");
-		$("#mem_nicknm").focus();
-		return false;
-	}
-	
 	if($("#mem_gbn_cd").val() == ""){
 		alert(" * 회원구분을 선택해주세요. ");
 		$("#mem_gbn_cd").focus();

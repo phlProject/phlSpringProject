@@ -97,8 +97,6 @@
 					<select id="searchSelect" name="searchSelect" onchange="searchChange()">
 						<option value="searchId" 		<c:if test="${searchSelect eq 'searchId'}">selected</c:if>>아이디</option>
 						<option value="searchNm" 		<c:if test="${searchSelect eq 'searchNm'}">selected</c:if>>이름</option>
-						<option value="searchNick" 		<c:if test="${searchSelect eq 'searchNick'}">selected</c:if>>닉네임</option>
-						<option value="searchNmNick"  	<c:if test="${searchSelect eq 'searchNmNick'}">selected</c:if>>이름+닉네임</option>
 						<option value="searchEmail"  	<c:if test="${searchSelect eq 'searchEmail'}">selected</c:if>>이메일</option>
 						<option value="searchPhone"  	<c:if test="${searchSelect eq 'searchPhone'}">selected</c:if>>연락처</option>
 						<option value="searchAuthor"  	<c:if test="${searchSelect eq 'searchAuthor'}">selected</c:if>>권한</option>
@@ -129,7 +127,6 @@
 				<tr>
 					<th>아이디</th>
 					<th>이름</th>
-					<th>닉네임</th>
 					<th>이메일</th>
 					<th>연락처</th>
 					<th>권한</th>
@@ -140,7 +137,6 @@
 				<tr>
 		              <td>${row.MEM_ID}</td>
 		              <td>${row.MEM_NM}</td>
-		              <td>${row.MEM_NICKNM}</td>
 		              <td>${row.MEM_EMAIL}</td>
 		              <td>${row.MEM_PHONE}</td>
 		              <td>${row.MEM_GBN_CD_NM}</td>

@@ -329,7 +329,7 @@
 			 	</when>
 		  	</choose>
 		  </if>
-		ORDER BY BMB.BOARD_SN DESC
+		ORDER BY AA.BOARD_SN DESC
 		LIMIT #{limitFirst}, #{limitSecond}
 	</select>
 	

@@ -39,10 +39,7 @@
 				<th>이메일 </th>
 				<td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="mem_email" name="mem_email"></td>
 			</tr>
-			<tr>
-				<th>별명</th>
-				<td><input type="text" value="${myPageInfo.MEM_NICKNM}" id="mem_nicknm" name="mem_nicknm"></td>
-			</tr>
+			
 			<tr>
 				<th>등급</th>
 				<td>

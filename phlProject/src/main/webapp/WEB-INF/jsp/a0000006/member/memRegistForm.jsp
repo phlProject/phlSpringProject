@@ -43,10 +43,6 @@
 							<td><input type="text" id="mem_email" name="mem_email" placeholder="이메일" /></td>
 						</tr>
 						<tr>
-							<th>닉네임</th>
-							<td><input type="text" id="mem_nicknm" name="mem_nicknm" placeholder="닉네임" /></td>
-						</tr>
-						<tr>
 							<th>회원 구분</th>
 							<td>
 							<select id="mem_gbn_cd" name="mem_gbn_cd">
