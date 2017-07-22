@@ -8,32 +8,32 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.a0000006.manage.dao.MngDAO;
+import com.a0000006.manage.dao.ManageDAO;
 
-@Service("mngService")
-public class MngServiceImpl implements MngService {
+@Service("manageService")
+public class ManageServiceImpl implements ManageService {
 
 Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="mngDAO")
-	private MngDAO mngDAO;
+	@Resource(name="manageDAO")
+	private ManageDAO manageDAO;
 
 	/* 회원리스트 Count */
 	public int memListCnt(Map<String, Object> map) throws Exception {
-        return mngDAO.memListCnt(map);
+        return manageDAO.memListCnt(map);
     }
 	
 	/* 회원리스트 */
 	@Override
     public List<Map<String, Object>> memList(Map<String, Object> map) throws Exception {
-        return mngDAO.memList(map);
+        return manageDAO.memList(map);
     }
 
 	/* 회원 활성화 비활성화 수정 */
 	@Override
 	public String memUpdateActive(Map<String, Object> map) throws Exception {
 		try {
-			mngDAO.memUpdateActive(map);
+			manageDAO.memUpdateActive(map);
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();

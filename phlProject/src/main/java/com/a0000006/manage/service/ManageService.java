@@ -3,7 +3,7 @@ package com.a0000006.manage.service;
 import java.util.List;
 import java.util.Map;
 
-public interface MngService {
+public interface ManageService {
 
 	/* 회원리스트 Count */
 	int memListCnt(Map<String, Object> map) throws Exception;

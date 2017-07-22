@@ -12,26 +12,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.a0000006.manage.service.MngService;
+import com.a0000006.manage.service.ManageService;
 import com.phl.common.CommandMap;
 import com.phl.util.CmmnUtilPaging;
 
 @Controller
-public class MngController {
+public class ManageController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name="mngService")
-	private MngService mngService;
+	@Resource(name="manageService")
+	private ManageService manageService;
 	
 	/* 회원리스트 */
-	@RequestMapping(value="/a0000006/mng/memList.do")
+	@RequestMapping(value="/a0000006/manage/memList.do")
 	public ModelAndView selectMemList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
        
-		ModelAndView mv = new ModelAndView("/a0000006/mng/memList");
+		ModelAndView mv = new ModelAndView("/a0000006/manage/memList");
         
         // 전체 리스트 Count
-        int totalListCount = mngService.memListCnt(commandMap.getMap());
+        int totalListCount = manageService.memListCnt(commandMap.getMap());
         
         // 요청 페이지 번호
  		int requestPageNumber = 1;	
@@ -59,7 +59,7 @@ public class MngController {
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 
         // 회원 리스트
-        List<Map<String,Object>> memList = mngService.memList(commandMap.getMap());
+        List<Map<String,Object>> memList = manageService.memList(commandMap.getMap());
 
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
 		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
@@ -75,7 +75,7 @@ public class MngController {
     }
 	
 	/* 회원 활성화 비활성화 수정 */
-	@RequestMapping(value="/a0000006/mng/memUpdateActive.do")
+	@RequestMapping(value="/a0000006/manage/memUpdateActive.do")
 	public ModelAndView memUpdateActive(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -90,7 +90,7 @@ public class MngController {
 		
 		commandMap.put("saveremark", saveremark);
 		System.out.println(commandMap.getMap());
-		String result = mngService.memUpdateActive(commandMap.getMap());
+		String result = manageService.memUpdateActive(commandMap.getMap());
 		
 		mv.addObject("result", result); 
 		
