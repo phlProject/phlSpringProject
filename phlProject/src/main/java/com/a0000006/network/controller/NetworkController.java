@@ -1,16 +1,23 @@
 package com.a0000006.network.controller;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.a0000006.network.service.NetworkService;
 import com.phl.common.CommandMap;
 
 @Controller
 public class NetworkController {
 
 	Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name="networkService")
+	private NetworkService networkService;
+	
 	
 	/* 헝겊 원숭이 연대 */
 	@RequestMapping(value="/a0000006/network/patchMonkeyIntro.do")

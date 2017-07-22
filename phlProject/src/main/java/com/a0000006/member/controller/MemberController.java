@@ -21,12 +21,14 @@ public class MemberController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="memberService")
-	private MemberService memberService;
-	
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	@Resource(name="memberService")
+	private MemberService memberService;
+	
+	
 	
 	/* 로그인 폼 */
 	@RequestMapping(value="/a0000006/mem/memLoginForm.do")

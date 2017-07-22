@@ -1,16 +1,23 @@
 package com.a0000006.teacher.controller;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.a0000006.teacher.service.TeacherService;
 import com.phl.common.CommandMap;
 
 @Controller
 public class TeacherController {
 
-Logger log = Logger.getLogger(this.getClass());
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name="teacherService")
+	private TeacherService teacherService;
+
 	
 	/* 아하 과정 */
 	@RequestMapping(value="/a0000006/teacher/ahaProcess.do")
