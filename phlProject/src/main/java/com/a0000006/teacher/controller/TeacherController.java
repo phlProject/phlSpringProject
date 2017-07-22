@@ -1,4 +1,4 @@
-package com.a0000006.teacher.web;
+package com.a0000006.teacher.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
