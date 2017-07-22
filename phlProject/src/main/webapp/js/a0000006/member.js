@@ -10,11 +10,11 @@ function fn_insertMemRegist(){
 	// 회원 등록
 	ComSubmit('memRegist_Form','/a0000006/mem/insertMemRegist.do');*/
 	
-	var postUrl = "/a0000006/mem/insertMemRegist.do";
+	var postUrl = "/a0000006/member/insertMemRegist.do";
 	$.post(postUrl, $("#memRegist_Form").serialize(), function(data){
 		if(data.result == "success" ){
 			alert("환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
-			ComSubmit('memRegist_Form','/a0000006/mem/memLoginForm.do');
+			ComSubmit('memRegist_Form','/a0000006/member/memLoginForm.do');
 		} else{
 			alert("회원 가입에 실패하였습니다. 관리자에게 문의해주세요.");
 			return;
@@ -28,11 +28,11 @@ function fn_insertMemRegist(){
 function fn_updateMemRegist(){
 	/*ComSubmit('memMypage_Form','/a0000006/mem/updateMemRegist.do');*/
 
-	var postUrl = "/a0000006/mem/updateMemRegist.do";
+	var postUrl = "/a0000006/member/updateMemRegist.do";
 	$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 		if(data.result == "success" ){
 			alert("수정되었습니다.");
-			ComSubmit('memMypage_Form','/a0000006/mem/memMyPage.do');
+			ComSubmit('memMypage_Form','/a0000006/member/memMyPage.do');
 		} else{
 			alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
 			return;
@@ -49,7 +49,7 @@ function fn_deleteMemRegist(){
 		
 		//alert("탈퇴 처리 되었습니다.");
 		
-		var postUrl = "/a0000006/mem/deleteMemRegist.do";
+		var postUrl = "/a0000006/member/deleteMemRegist.do";
 		$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 			if(data.result == "success" ){
 				alert("탈퇴 처리 되었습니다.");
@@ -181,7 +181,7 @@ function idDupChk(){
 	}
 	
 	$.ajax({
-		url		: "/a0000006/mem/idDupChk.do",
+		url		: "/a0000006/member/idDupChk.do",
 		type 	: "post",
 		data : {
 					mem_id : $("#mem_id").val(),
@@ -230,6 +230,6 @@ function fn_loginVal(){
 		return;
 	}
 	
-	ComSubmit('loginActionForm','/a0000006/mem/loginAction.do');
+	ComSubmit('loginActionForm','/a0000006/member/loginAction.do');
 	
 }

@@ -31,7 +31,7 @@ public class MemberController {
 	
 	
 	/* 로그인 폼 */
-	@RequestMapping(value="/a0000006/mem/memLoginForm.do")
+	@RequestMapping(value="/a0000006/member/memLoginForm.do")
 	public ModelAndView memLoginForm(CommandMap commandMap) throws Exception{
 	    ModelAndView mv = new ModelAndView("/a0000006/member/memLoginForm");
 	     
@@ -39,7 +39,7 @@ public class MemberController {
 	}
 	
 	/* 로그인 */
-	@RequestMapping(value="/a0000006/mem/loginAction.do")
+	@RequestMapping(value="/a0000006/member/loginAction.do")
 	public ModelAndView loginAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView();
         
@@ -91,7 +91,7 @@ public class MemberController {
 	
 	/* 마이페이지 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/a0000006/mem/memMyPage.do")
+	@RequestMapping(value="/a0000006/member/memMyPage.do")
 	public ModelAndView memMyPage(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/member/memMyPage");
 	
@@ -115,7 +115,7 @@ public class MemberController {
 	}
 	
 	/* 로그아웃 */
-	@RequestMapping(value="/a0000006/mem/logoutAction.do")
+	@RequestMapping(value="/a0000006/member/logoutAction.do")
 	public ModelAndView logoutAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
         
@@ -127,7 +127,7 @@ public class MemberController {
     }
 	
 	/* 회원가입 폼 */
-	@RequestMapping(value="/a0000006/mem/memRegistForm.do")
+	@RequestMapping(value="/a0000006/member/memRegistForm.do")
 	public ModelAndView memRegistForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 	    ModelAndView mv = new ModelAndView("/a0000006/member/memRegistForm");
 	    
@@ -143,7 +143,7 @@ public class MemberController {
 	}
 
 	/* 회원 등록 */
-	@RequestMapping(value="/a0000006/mem/insertMemRegist.do")
+	@RequestMapping(value="/a0000006/member/insertMemRegist.do")
 	public ModelAndView insertMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 
@@ -155,7 +155,7 @@ public class MemberController {
 	}
 	
 	/* 마이페이지 수정 */
-	@RequestMapping(value="/a0000006/mem/updateMemRegist.do")
+	@RequestMapping(value="/a0000006/member/updateMemRegist.do")
 	public ModelAndView updateMemRegist(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 
@@ -167,7 +167,7 @@ public class MemberController {
 	}
 	
 	/* 회원탈퇴 */
-	@RequestMapping(value="/a0000006/mem/deleteMemRegist.do")
+	@RequestMapping(value="/a0000006/member/deleteMemRegist.do")
 	public ModelAndView deleteMemRegist(CommandMap commandMap, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
@@ -183,7 +183,7 @@ public class MemberController {
 	}
 	
 	/* 아이디 중복체크 */
-	@RequestMapping(value="/a0000006/mem/idDupChk.do")
+	@RequestMapping(value="/a0000006/member/idDupChk.do")
 	public ModelAndView idDupChk(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
