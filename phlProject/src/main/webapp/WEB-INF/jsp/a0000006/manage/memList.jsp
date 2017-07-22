@@ -29,7 +29,7 @@
 	}
 	
 	function searchBtn(){
-		ComSubmit('mem_Form','/a0000006/mng/memList.do');
+		ComSubmit('mem_Form','/a0000006/manage/memList.do');
 	}
 	
 	function searchChange(){
@@ -69,11 +69,11 @@
 			var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
 			var input2 = $("<input>").attr("type", "hidden").attr("name", "mem_sn").attr("id", "mem_sn").val(mem_sn);
 			
-			var postUrl = "/a0000006/mng/memUpdateActive.do";
+			var postUrl = "/a0000006/manage/memUpdateActive.do";
 			$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
 				if(data.result == "success" ){
 					alert("수정되었습니다.");
-					ComSubmit('mem_Form','/a0000006/mng/memList.do');
+					ComSubmit('mem_Form','/a0000006/manage/memList.do');
 				} else{
 					alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
 					return;
@@ -159,15 +159,15 @@
 			</table>	
 				<div class="mem_paging">
 					<c:if test="${beginPageNum > 10}">
-						<a href="<c:out value="/a0000006/mng/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
 					</c:if>
 					
 					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-						<a href="<c:out value="/a0000006/mng/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
 					</c:forEach>
 					
 					<c:if test="${endPageNum < totalPageCount}">
-						<a href="<c:out value="/a0000006/mng/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
 					</c:if>
 				</div>
 			</div>
