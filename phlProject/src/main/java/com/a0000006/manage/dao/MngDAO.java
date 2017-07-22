@@ -1,4 +1,4 @@
-package com.a0000006.mng.dao;
+package com.a0000006.manage.dao;
 
 import java.util.List;
 import java.util.Map;

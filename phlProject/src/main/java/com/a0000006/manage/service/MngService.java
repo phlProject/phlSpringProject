@@ -1,4 +1,4 @@
-package com.a0000006.mng.service;
+package com.a0000006.manage.service;
 
 import java.util.List;
 import java.util.Map;

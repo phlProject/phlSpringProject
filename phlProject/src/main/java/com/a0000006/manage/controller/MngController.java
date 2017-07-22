@@ -1,4 +1,4 @@
-package com.a0000006.mng.controller;
+package com.a0000006.manage.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.a0000006.mng.service.MngService;
+import com.a0000006.manage.service.MngService;
 import com.phl.common.CommandMap;
 import com.phl.util.CmmnUtilPaging;
 
