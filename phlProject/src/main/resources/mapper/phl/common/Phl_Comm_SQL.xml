@@ -12,7 +12,7 @@
     	  FROM PKHL_SYS_CMMN_CODE
     	 WHERE 1=1
     	   AND USE_YN = 'Y'
-   		   AND BSNS_CODE = #{bsns_code}
+   		   AND BSNS_CODE = #{bsnsCode}
    		   <if test="cl_code != null" >
    		   	AND CL_CODE = #{cl_code}
    		   </if>
@@ -35,7 +35,7 @@
     	WHERE 1=1
     	  AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
     	  AND T1.USE_YN = 'Y'
-    	  AND T1.BSNS_CODE = #{bsns_code}
+    	  AND T1.BSNS_CODE = #{bsnsCode}
     	  
 	   	UNION ALL
 	   	
@@ -52,7 +52,7 @@
 	   	    AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
 	   	    AND T1.MENU_CD = T2.UPPER_MENU_CD 
 	   	    AND T1.BSNS_CODE = T2.BSNS_CODE
-		    	 AND T1.BSNS_CODE = #{bsns_code}
+		    	 AND T1.BSNS_CODE = #{bsnsCode}
 				 AND T1.USE_YN = 'Y'
 				 AND T2.USE_YN = 'Y'
 	   ORDER BY ORDR ASC, MENU_CD

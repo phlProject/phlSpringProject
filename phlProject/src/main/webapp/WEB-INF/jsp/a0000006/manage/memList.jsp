@@ -86,9 +86,9 @@
 </head>
 <body>
 	<div id="content">
-		<form id="mem_Form">
-			<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
-			<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
+		<form id="mem_Form">	
+			<input type="hidden" value="${sessionScope.bsnsCode}" 	id="bsnsCode" 	name="bsnsCode" >
+			<input type="hidden" value="${sessionScope.sessionId}"  id="sessionId" 	name="sessionId" >
 			
 			<h3 class="my-title">회원관리</h3>
 			

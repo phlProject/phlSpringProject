@@ -11,7 +11,7 @@
 	<div id="content">
 		<h3 class="cont-title">기관 탐방 신청</h3>
 		<form id="visitList_Form">
-			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
+			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 			
 			<!-- 검색조건 -->

@@ -23,7 +23,7 @@
 		<p class="book-view">
 			제목 : ${bookView.SUBJECT}
 			<c:choose>
-				<c:when test="${not empty sessionScope.session_id}">
+				<c:when test="${not empty sessionScope.sessionId}">
 					<c:if test="${bookView.LIKE_YN eq 'Y'}">
 						<a href="javascript:fn_bookLike();"><span id="likeImage">♥</span></a>
 					</c:if>

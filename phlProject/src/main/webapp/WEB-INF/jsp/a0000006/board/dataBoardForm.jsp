@@ -71,7 +71,7 @@
 		<form id="dataList_Form">
 			<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">		<!-- 검색구분 -->
 			<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
-			<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsns_code}">	<!-- 세션_업체코드 -->
+			<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 			<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
@@ -86,9 +86,9 @@
 			<br/><br/>
 			<!-- Editor_Form -->
 			<form id="editor_Form">
-				<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >	<!-- 세션_업체코드 -->
+				<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
 				<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
-				<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.session_id}">	<!-- 세션_아이디(등록자/수정자) -->
+				<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 				<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
 				<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
 				<input type="hidden" id="flNm" 			name="flNm"				value="${dataView.FL_NM}">			<!-- 파일 명 -->

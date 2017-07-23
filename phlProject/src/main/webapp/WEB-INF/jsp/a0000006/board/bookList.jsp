@@ -10,8 +10,8 @@
 	<div id="content">
 		<h3 class="cont-title">${item.boardGbnCdNm}</h3>
 		<form id="bookList_Form">
-			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsns_code}" >		<!-- 세션_업체코드 -->
-			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.session_id}" >	<!-- 세션_ID -->
+			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >		<!-- 세션_업체코드 -->
+			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.sessionId}" >	<!-- 세션_ID -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">				<!-- 게시판_구분 -->
 			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">			<!-- 게시판_구분_명 -->
 			

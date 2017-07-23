@@ -12,7 +12,7 @@
 		<div id="register">
 			<p>회원가입</p>	
 			<form id="memRegist_Form" name="memRegist_Form">
-				<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsns_code}"> <!-- 업체_코드 -->
+				<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}"> <!-- 업체_코드 -->
 				<input type="hidden" id="usableIdYn" value="N"> <!-- ID 사용 여부 -->
 				
 					<table>

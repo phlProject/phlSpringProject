@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>교육나눔 꿈두레</title>
 </head>
-<body>
+<body>	
 
 	<div id="content" align="center">
 		<div id="loginform">
 		<p>Login</p>	
 		<form id="loginActionForm">
-			<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsns_code}">
+			<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}">
 			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" /> <br/>
 			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD"/>
 		</form>
@@ -28,6 +28,5 @@
 		
 		</div>
 	</div>
-
 </body>
 </html>

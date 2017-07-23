@@ -17,8 +17,8 @@
 <input type="hidden" name="toYear" id="toYear" value="<fmt:formatDate value="${toYear}" pattern="yyyy" />"/>
 <input type="hidden" name="toMonth" id="toMonth" value="<fmt:formatDate value="${toMonth}" pattern="MM" />"/>
 <input type="hidden" name="toDay" id="toDay" value="<fmt:formatDate value="${toDay}" pattern="dd" />"/>
-<input type="hidden" name="bsns_code" value="${bsns_code}" id="bsns_code">
-<input type="hidden" name="session_id" value="${session_id}" id="session_id">
+<input type="hidden" name="bsnsCode" value="${bsnsCode}" id="bsnsCode">
+<input type="hidden" name="sessionId" value="${sessionId}" id="sessionId">
 <input type="hidden" name="scheduleSn" id="scheduleSn">
 <input type="hidden" name="regId" id="regId">
 
@@ -220,7 +220,7 @@ function deleteApply(){
 // validation
 function validation(){
 
-	var userId = $("#session_id").val();
+	var userId = $("#sessionId").val();
 	if(userId == ''){
 		alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
 		$( "#applyForm").attr({action:'/a0000006/mem/memLoginForm.do' ,method:'post'}).submit();
@@ -561,10 +561,10 @@ function popWorkDetail(scheduleSn){
 		$("#regId").val(result.REG_ID);
 		
 		// 현재 이용자가 글 작성자라면 수정버튼 생성
-		var session_id = $("#session_id").val();
+		var sessionId = $("#sessionId").val();
 		var html = '';
 		var mgLeft = 135;
-		if(result.REG_ID == session_id){
+		if(result.REG_ID == sessionId){
 			html = '<a href="javascript:updateApply();"><span>수정</span></a>'
 				 + '<a href="javascript:deleteApply();"><span>삭제</span></a>'
 				 + '<a href="javascript:closeLayer(\'insertFormPop\');"><span>닫기</span></a>';

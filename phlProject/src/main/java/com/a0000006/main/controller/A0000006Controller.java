@@ -30,9 +30,9 @@ public class A0000006Controller {
 		ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
         
         // 교육나눔꿈두레 사업코드 (A0000006)
-        session.setAttribute("bsns_code","A0000006");
+        session.setAttribute("bsnsCode","A0000006");
         
-        commandMap.put("bsns_code", session.getAttribute("bsns_code"));
+        commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
         
         // 메뉴조회
         List<CommandMap> menuList = phlCommService.menuList_dept2(commandMap.getMap());

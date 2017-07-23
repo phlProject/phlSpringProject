@@ -56,13 +56,13 @@ public class MemberController {
         	/* 사용여부 'Y' */
         	if(queryUseYn.equals("Y")){
 	        	/* 해당하는 아이디, 비밀번호 일치 시 */
-		        if(queryPw != null && queryPw.equals(commandMap.get("mem_pw"))){
+		        if(queryPw != null && queryPw.equals(commandMap.get("memPw"))){
 		        	resultValue = "SUCCESS";
 		        	/* 로그인 정보 */
 		        	List<Map<String,Object>> loginInfo = memberService.loginInfo(commandMap.getMap());
 		
 		        	session.setAttribute("loginInfo", loginInfo.get(0));
-		        	session.setAttribute("session_id", loginInfo.get(0).get("MEM_ID"));
+		        	session.setAttribute("sessionId", loginInfo.get(0).get("MEM_ID"));
 		        	
 		        	mv.setViewName("/a0000006/mainIndex");
 		        }else{
@@ -97,7 +97,6 @@ public class MemberController {
 	
 		Map<String,Object> sessionInfo = (Map<String, Object>) session.getAttribute("loginInfo");
 		
-		
 		// 공통코드 - G01 : 회원구분
 	    commandMap.put("cl_code", "G01");
 	    
@@ -124,7 +123,7 @@ public class MemberController {
         
         /* 로그인정보만 세션제거 */
         session.removeAttribute("loginInfo");
-        session.removeAttribute("session_id");
+        session.removeAttribute("sessionId");
         
         return mv;
     }
@@ -183,7 +182,7 @@ public class MemberController {
 		
 		/* 로그인정보만 세션제거 */
         session.removeAttribute("loginInfo");
-        session.removeAttribute("session_id");
+        session.removeAttribute("sessionId");
 		
         return mv;
 	}

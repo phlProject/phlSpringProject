@@ -41,7 +41,7 @@ public class BoardController {
 		
 		/* 업체코드 - A0000006 (꿈두레) */
 		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
 		
 		/* 게시판 구분 - B01001 (책소개) */
@@ -200,7 +200,7 @@ public class BoardController {
 		commandMap.put("bsnsCode",request.getParameter("bsnsCode"));	
 		commandMap.put("boardSn",request.getParameter("boardSn"));
 		commandMap.put("saveLike",request.getParameter("saveLike"));	
-		commandMap.put("sessionId",session.getAttribute("session_id"));
+		commandMap.put("sessionId",session.getAttribute("sessionId"));
 		
 		try{
 			// 책소개 > 좋아요 Count
@@ -234,7 +234,7 @@ public class BoardController {
 		
 		/* 업체코드 - A0000006 (꿈두레) */
 		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
 		
 		/* 게시판 구분 - B01002 (교육자료) */
@@ -297,7 +297,7 @@ public class BoardController {
 		
 		/* 업체코드 - A0000006 (꿈두레) */
 		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
 		
 		/* 게시판 구분 - B01003 (정책자료) */
@@ -360,7 +360,7 @@ public class BoardController {
 		
 		/* 업체코드 - A0000006 (꿈두레) */
 		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
 		
 		/* 게시판 구분 - B01004 (기타자료) */
@@ -423,7 +423,7 @@ public class BoardController {
 		
 		/* 업체코드 - A0000006 (꿈두레) */
 		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsns_code"));
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
 		
 		String boardGbnCdNm = "";
@@ -596,7 +596,7 @@ public class BoardController {
 		commandMap.put("originFlNm", boardFlList.get(0).get("ORIGIN_FL_NM"));
 		commandMap.put("flNm", boardFlList.get(0).get("FL_NM"));
 		commandMap.put("flPath", boardFlList.get(0).get("FL_PATH"));
-		//request.setAttribute("fullSubPath", session.getAttribute("bsns_code")+"/board/book/");
+		//request.setAttribute("fullSubPath", session.getAttribute("bsnsCode")+"/board/book/");
 		
 		CmmnUtilFile.downloadFile(commandMap, request, response);
 	}

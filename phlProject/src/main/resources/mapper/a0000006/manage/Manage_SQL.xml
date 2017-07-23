@@ -8,7 +8,7 @@
     	SELECT COUNT(*)
     	FROM BSNS_MEMBER
         WHERE 1=1
-          AND BSNS_CODE = #{bsns_code}
+          AND BSNS_CODE = #{bsnsCode}
           AND MEM_GBN_CD NOT IN ('G01999')
           <if test="searchSelect != '' or searchSelect != null">
 			<choose>
@@ -47,7 +47,7 @@
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
     	 	       AND CMMN_CODE = MEM_GBN_CD
-    	 	       AND BSNS_CODE = #{bsns_code}
+    	 	       AND BSNS_CODE = #{bsnsCode}
     	 	  ) AS MEM_GBN_CD_NM	
 			  , MEM_PHONE	
 			  , USE_YN		  
@@ -57,7 +57,7 @@
 			     END ) AS REMARK_NM
         FROM BSNS_MEMBER
         WHERE 1=1
-          AND BSNS_CODE = #{bsns_code}
+          AND BSNS_CODE = #{bsnsCode}
           AND MEM_GBN_CD NOT IN ('G01999')
           <if test="searchSelect != '' or searchSelect != null">
 			<choose>
@@ -87,10 +87,10 @@
      <update id="memUpdateActive" parameterType="hashmap">
      	UPDATE BSNS_MEMBER
      	SET USE_YN = #{saveremark}
-     	   ,MOD_ID = #{session_id}
+     	   ,MOD_ID = #{sessionId}
      	   ,MOD_DT = now()
      	WHERE 1=1
-     	  AND BSNS_CODE = #{bsns_code}
+     	  AND BSNS_CODE = #{bsnsCode}
      	  AND MEM_SN = #{mem_sn}
      </update>
 </mapper>

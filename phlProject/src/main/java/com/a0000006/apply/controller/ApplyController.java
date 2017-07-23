@@ -98,14 +98,14 @@ public class ApplyController {
 		
 		Map<String, Object> map = commandMap.getMap();
 		
-		map.put("session_id", session.getAttribute("session_id"));
-		map.put("bsns_code", session.getAttribute("bsns_code"));
+		map.put("sessionId", session.getAttribute("sessionId"));
+		map.put("bsnsCode", session.getAttribute("bsnsCode"));
 		
 		// 신청 등록
 		String result = applyService.insertApply(map);
 		mv.addObject("result", result);
-		mv.addObject("session_id", session.getAttribute("session_id"));
-		mv.addObject("bsns_code", session.getAttribute("bsns_code"));
+		mv.addObject("sessionId", session.getAttribute("sessionId"));
+		mv.addObject("bsnsCode", session.getAttribute("bsnsCode"));
 		
 		return mv;
 		

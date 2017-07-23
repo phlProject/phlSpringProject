@@ -17,19 +17,19 @@
 				<th>아이디 </th>			
 				<td>
 					${myPageInfo.MEM_ID}
-					<input type="hidden" id="bsnsCode" 	name="bsnsCode" 	value="${sessionScope.bsns_code}">
-					<input type="hidden" id="sessionId" name="sessionId" 	value="${sessionScope.session_id}">
+					<input type="hidden" id="bsnsCode" 	name="bsnsCode" 	value="${sessionScope.bsnsCode}">
+					<input type="hidden" id="sessionId" name="sessionId" 	value="${sessionScope.sessionId}">
 					<input type="hidden" id="memSn" 	name="memSn" 		value="${myPageInfo.MEM_SN}">
 					<input type="hidden" id="memId" 	name="memId"		value="${myPageInfo.MEM_ID}">
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호 </th>
-				<td><input type="text" value="${myPageInfo.MEM_PW}" id="memPw" name="memPw" ></td>
+				<td><input type="password" value="${myPageInfo.MEM_PW}" id="memPw" name="memPw" ></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="text" value="${myPageInfo.MEM_PW}" id="confMemPw" name="confMemPw" ></td>
+				<td><input type="password" value="${myPageInfo.MEM_PW}" id="confMemPw" name="confMemPw" ></td>
 			</tr>
 			<tr>
 				<th>이름</th>

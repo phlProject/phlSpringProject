@@ -44,16 +44,16 @@
                , MOD_DT
          ) VALUES (
                
-               #{bsns_code}
+               #{bsnsCode}
                , #{scheduleCd}
                , #{scheduleDt}
                , #{stHour}
                , #{endHour}
                , #{subject}
                , #{content}
-               , #{session_id}
+               , #{sessionId}
                , now()
-               , #{session_id}
+               , #{sessionId}
                , now()
          )
    </insert>
@@ -87,7 +87,7 @@
 				, SUBJECT = #{subject}
 				, CONTENT = #{content}
 				, MOD_DT = now()
-				, MOD_ID = #{session_id}
+				, MOD_ID = #{sessionId}
 		WHERE	SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	

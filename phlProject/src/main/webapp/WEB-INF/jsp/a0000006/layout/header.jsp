@@ -12,8 +12,8 @@
 		
 		<div id="logo"><a href="/a0000006/mainIndex.do"><img src="/img/logo10.png"></a></div>
 		<form id="topMenu_Form">
-			<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
-			<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
+			<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}">
+			<input type="hidden" id="sessionId" 	name="sessionId"  	value="${sessionScope.sessionId}">
 		</form>
 		<nav>
 			<ul>
