@@ -50,7 +50,7 @@
 		}
 	}
 	
-	function memManager(remark, mem_sn){
+	function memManager(remark, memSn){
 		
 		if(remark == "S"){
 			alert("레이어 예정");
@@ -67,7 +67,7 @@
 			
 			
 			var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
-			var input2 = $("<input>").attr("type", "hidden").attr("name", "mem_sn").attr("id", "mem_sn").val(mem_sn);
+			var input2 = $("<input>").attr("type", "hidden").attr("name", "memSn").attr("id", "memSn").val(memSn);
 			
 			var postUrl = "/a0000006/manage/memUpdateActive.do";
 			$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
