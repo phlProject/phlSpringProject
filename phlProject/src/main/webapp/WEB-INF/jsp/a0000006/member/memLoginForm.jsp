@@ -12,9 +12,9 @@
 		<div id="loginform">
 		<p>Login</p>	
 		<form id="loginActionForm">
-			<input type="hidden" id="bsns_code" name="bsns_code" value="${sessionScope.bsns_code}">
-			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="mem_id" name="mem_id" placeholder="ID" /> <br/>
-			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="mem_pw" name="mem_pw" placeholder="PASSWORD"/>
+			<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsns_code}">
+			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" /> <br/>
+			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD"/>
 		</form>
 		<br/><br/>
 		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> <br/><br/><br/>

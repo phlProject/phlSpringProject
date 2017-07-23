@@ -9,8 +9,8 @@
     	      ,USE_YN
     	FROM BSNS_MEMBER
     	WHERE 1=1
-    	  AND MEM_ID = #{mem_id}
-    	  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID = #{memId}
+    	  AND BSNS_CODE = #{bsnsCode}
     </select>
     
     <!-- 로그인 정보 -->
@@ -21,9 +21,9 @@
     	FROM BSNS_MEMBER
     	WHERE 1=1
     	  AND USE_YN = 'Y'
-    	  AND MEM_ID = #{mem_id}
-    	  AND MEM_PW = #{mem_pw}
-    	  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID = #{memId}
+    	  AND MEM_PW = #{memPw}
+    	  AND BSNS_CODE = #{bsnsCode}
     </select>
     
     <!-- 마이페이지 -->
@@ -40,15 +40,15 @@
     	 	     WHERE 1=1
     	 	       AND USE_YN = 'Y'
     	 	       AND CMMN_CODE = MEM_GBN_CD
-    	 	       AND BSNS_CODE = #{bsns_code}
+    	 	       AND BSNS_CODE = #{bsnsCode}
     	 	  ) AS MEM_GBN_CD_NM
     	 	  ,MEM_EMAIL
     	 	  ,MEM_PHONE
     	FROM BSNS_MEMBER
     	WHERE 1=1
     	  AND USE_YN = 'Y'
-    	  AND MEM_ID = #{session_id}
-    	  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID = #{sessionId}
+    	  AND BSNS_CODE = #{bsnsCode}
     </select>
     
     <!-- 회원가입 -->
@@ -63,20 +63,20 @@
     		, MEM_PHONE
     		, REG_DT
     		, REG_ID
-    		<if test="mem_gbn_cd == 'G01002'">
+    		<if test="memGbnCd == 'G01002'">
     		, USE_YN
 			</if>
     	)VALUES(
-    		  #{bsns_code}
-    		, #{mem_id}
-    		, #{mem_pw}
-    		, #{mem_nm}
-    		, #{mem_email}
-    		, #{mem_gbn_cd}
-    		, #{mem_phone}
+    		  #{bsnsCode}
+    		, #{memId}
+    		, #{memPw}
+    		, #{memNm}
+    		, #{memEmail}
+    		, #{memGbnCd}
+    		, #{memPhone}
     		, now()
-    		, #{mem_id}
-    		<if test="mem_gbn_cd == 'G01002'">
+    		, #{memId}
+    		<if test="memGbnCd == 'G01002'">
     		, 'S'
 			</if>
     	)
@@ -86,17 +86,17 @@
     <update id="updateMemRegist" parameterType="hashmap">
     	<![CDATA[
     	UPDATE BSNS_MEMBER
-    	SET   MEM_PW	= #{mem_pw}
-    		, MEM_NM	= #{mem_nm}
-    		, MEM_EMAIL	= #{mem_email}
-    		, MEM_GBN_CD= #{mem_gbn_cd}
-    		, MEM_PHONE	= #{mem_phone}
+    	SET   MEM_PW	= #{memPw}
+    		, MEM_NM	= #{memNm}
+    		, MEM_EMAIL	= #{memEmail}
+    		, MEM_GBN_CD= #{memGbnCd}
+    		, MEM_PHONE	= #{memPhone}
     		, MOD_DT	= now()
-    		, MOD_ID	= #{session_id}
+    		, MOD_ID	= #{sessionId}
     	WHERE 1=1
-    	  AND BSNS_CODE = #{bsns_code}
-    	  AND MEM_ID    = #{mem_id}
-    	  AND MEM_SN    = #{mem_sn}
+    	  AND BSNS_CODE = #{bsnsCode}
+    	  AND MEM_ID    = #{memId}
+    	  AND MEM_SN    = #{memSn}
 		]]>
     </update>
     
@@ -105,9 +105,9 @@
     	UPDATE BSNS_MEMBER
     	SET USE_YN = 'N'
     	WHERE 1=1
-    	  AND BSNS_CODE = #{bsns_code}
-    	  AND MEM_ID    = #{mem_id}
-    	  AND MEM_SN    = #{mem_sn}
+    	  AND BSNS_CODE = #{bsnsCode}
+    	  AND MEM_ID    = #{memId}
+    	  AND MEM_SN    = #{memSn}
     </update>
     
     <!-- 아이디 중복체크  -->
@@ -115,8 +115,8 @@
 		SELECT COUNT(*) AS CNT
 		FROM BSNS_MEMBER
 		WHERE 1=1
-    	  AND MEM_ID = #{mem_id}
-		  AND BSNS_CODE = #{bsns_code}
+    	  AND MEM_ID = #{memId}
+		  AND BSNS_CODE = #{bsnsCode}
 	</select>
     
 </mapper>

@@ -97,18 +97,21 @@ public class MemberController {
 	
 		Map<String,Object> sessionInfo = (Map<String, Object>) session.getAttribute("loginInfo");
 		
+		
+		// 공통코드 - G01 : 회원구분
 	    commandMap.put("cl_code", "G01");
 	    
+	    // G01 - 998/999 : 홈페이지 관리자 , PHL 관리자 ( 조회 제외코드  )
 	    if(!sessionInfo.get("MEM_GBN_CD").equals("G01998") && !sessionInfo.get("MEM_GBN_CD").equals("G01999")){
 	    	commandMap.put("not_detail_code", "'998','999'");
 	    }
 	    
 	    // 공통코드(회원권한)
-	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
+	    List<CommandMap> memGbnList = phlCommService.selectCommCode(commandMap.getMap());
 	    
 		List<CommandMap> myPageInfo = memberService.memMyPage(commandMap.getMap());
 		
-		mv.addObject("commList", commList);
+		mv.addObject("memGbnList", memGbnList);
 		mv.addObject("myPageInfo", myPageInfo.get(0)); 
 		
 		return mv;
@@ -131,13 +134,16 @@ public class MemberController {
 	public ModelAndView memRegistForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 	    ModelAndView mv = new ModelAndView("/a0000006/member/memRegistForm");
 	    
+	    // 공통코드 - G01 : 회원구분
 	    commandMap.put("cl_code", "G01");
+	    
+	    // G01 - 998/999 : 홈페이지 관리자 , PHL 관리자 ( 조회 제외코드  )
 	    commandMap.put("not_detail_code", "'998','999'");
 	    
 	    // 공통코드(회원권한)
-	    List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
+	    List<CommandMap> memGbnList = phlCommService.selectCommCode(commandMap.getMap());
 	    
-	    mv.addObject("commList", commList);
+	    mv.addObject("memGbnList", memGbnList);
 	    
 	    return mv;
 	}

@@ -4,7 +4,7 @@
 <html>
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>교육나눔 꿈두레</title>
 </head>
 
 <body>
@@ -12,42 +12,43 @@
 		<div id="register">
 			<p>회원가입</p>	
 			<form id="memRegist_Form" name="memRegist_Form">
-				<input type="hidden" id="bsns_code" name="bsns_code" value="${sessionScope.bsns_code}">
-				<input type="hidden" id="usableId_yn" value="N">
+				<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsns_code}"> <!-- 업체_코드 -->
+				<input type="hidden" id="usableIdYn" value="N"> <!-- ID 사용 여부 -->
+				
 					<table>
 						<tr>
 							<th>아이디 </th>
 						    <td>
-							     <input type="text" id="mem_id" name="mem_id" placeholder="아이디" onchange="javascript:changedId();"/>
+							     <input type="text" id="memId" name="memId" placeholder="아이디" onchange="javascript:changedId();"/>
 								 <input type="button" value="중복검사" onclick="idDupChk()"><br/>
 								 <span id="idDupText" style="color:red; font-size:12px;"></span>
 							</td>
 						</tr>
 					    <tr>
 							<th>비밀번호</th>
-							<td><input type="password" id="mem_pw" name="mem_pw" placeholder="비밀번호" onchange="javascript:confirmPw();"/></td>
+							<td><input type="password" id="memPw" name="memPw" placeholder="비밀번호" onchange="javascript:confirmPw();"/></td>
 						</tr>
 						<tr>
 						    <th>비밀번호 확인</th>
 						    <td>
-						    <input type="password" id="conf_mem_pw" name="conf_mem_pw" placeholder="비밀번호확인" onchange="javascript:confirmPw();"/>
+						    <input type="password" id="confMemPw" name="confMemPw" placeholder="비밀번호확인" onchange="javascript:confirmPw();"/>
 						    <span id="confPwText" style="color:red; font-size:12px;"></span>
 						    </td>
 						</tr>
 						<tr>	
 							<th>이 름</th>
-							<td><input type="text" id="mem_nm" name="mem_nm" placeholder="이 름" /></td>
+							<td><input type="text" id="memNm" name="memNm" placeholder="이 름" /></td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" id="mem_email" name="mem_email" placeholder="이메일" /></td>
+							<td><input type="text" id="memEmail" name="memEmail" placeholder="이메일" /></td>
 						</tr>
 						<tr>
 							<th>회원 구분</th>
 							<td>
-							<select id="mem_gbn_cd" name="mem_gbn_cd">
+							<select id="memGbnCd" name="memGbnCd">
 								<option value="">선택</option>	
-								<c:forEach items="${commList}" var="rows">
+								<c:forEach items="${memGbnList}" var="rows">
 									<option value="${rows.CMMN_CODE}">${rows.DETAIL_CODE_NM}</option>
 								</c:forEach>
 							</select>
@@ -55,7 +56,7 @@
 						</tr>
 						<tr>
 							<th>핸드폰</th>
-							<td><input type="text" id="mem_phone" name="mem_phone" placeholder="핸드폰" /></td>
+							<td><input type="text" id="memPhone" name="memPhone" placeholder="핸드폰" /></td>
 						</tr>
 					</table>
 			</form>

@@ -17,34 +17,34 @@
 				<th>아이디 </th>			
 				<td>
 					${myPageInfo.MEM_ID}
-					<input type="hidden" value="${sessionScope.bsns_code}" id="bsns_code" name="bsns_code" >
-					<input type="hidden" value="${sessionScope.session_id}" id="session_id" name="session_id" >
-					<input type="hidden" value="${myPageInfo.MEM_SN}" id="mem_sn" name="mem_sn">
-					<input type="hidden" value="${myPageInfo.MEM_ID}" id="mem_id" name="mem_id">
+					<input type="hidden" id="bsnsCode" 	name="bsnsCode" 	value="${sessionScope.bsns_code}">
+					<input type="hidden" id="sessionId" name="sessionId" 	value="${sessionScope.session_id}">
+					<input type="hidden" id="memSn" 	name="memSn" 		value="${myPageInfo.MEM_SN}">
+					<input type="hidden" id="memId" 	name="memId"		value="${myPageInfo.MEM_ID}">
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호 </th>
-				<td><input type="text" value="${myPageInfo.MEM_PW}" id="mem_pw" name="mem_pw" ></td>
+				<td><input type="text" value="${myPageInfo.MEM_PW}" id="memPw" name="memPw" ></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="text" value="${myPageInfo.MEM_PW}" id="conf_mem_pw" name="conf_mem_pw" ></td>
+				<td><input type="text" value="${myPageInfo.MEM_PW}" id="confMemPw" name="confMemPw" ></td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" value="${myPageInfo.MEM_NM}" id="mem_nm" name="mem_nm" ></td>
+				<td><input type="text" value="${myPageInfo.MEM_NM}" id="memNm" name="memNm" ></td>
 			</tr>
 			<tr>
 				<th>이메일 </th>
-				<td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="mem_email" name="mem_email"></td>
+				<td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="memEmail" name="memEmail"></td>
 			</tr>
 			
 			<tr>
 				<th>등급</th>
 				<td>
-					<select id="mem_gbn_cd" name="mem_gbn_cd">
-						<c:forEach items="${commList}" var="rows">
+					<select id="memGbnCd" name="memGbnCd">
+						<c:forEach items="${memGbnList}" var="rows">
 							<option value="${rows.CMMN_CODE}" <c:if test="${rows.CMMN_CODE == myPageInfo.MEM_GBN_CD}">SELECTED</c:if> >${rows.DETAIL_CODE_NM}</option>
 						</c:forEach>
 					</select>
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<th>전화번호 </th>
-				<td><input type="text" value="${myPageInfo.MEM_PHONE}" id="mem_phone" name="mem_phone"></td>
+				<td><input type="text" value="${myPageInfo.MEM_PHONE}" id="memPhone" name="memPhone"></td>
 			</tr>
 		</table>
 		<div class="bookView">
