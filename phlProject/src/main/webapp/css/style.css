@@ -253,7 +253,7 @@ nav ul li:hover ul { display: block; }
 .book-Form img { background-color: #f5f5f5;}
 .book-Form #uploadFile { height:28px; color:#444; border: 1px solid #d6e0e2; margin-top: 10px;}
 #editor_Form input { width:92%; height:28px; border:1px solid #ddd; }
-#editor_Form h3	{ display:inline-block; font-size:20px; color:#444; font-weight: 600; }
+#editor_Form h3	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; }
 
 
 /*책소개  - bookList*/
@@ -265,12 +265,20 @@ nav ul li:hover ul { display: block; }
 .book-tab { width:830px; margin-top:68px; border-top:2px solid #e9e6e4; }
 .bookList { border-bottom:2px solid #e9e6e4; padding:22px 0;}
 .bookList { color:#333; /* text-align:center; */ }
-.book-left { border:1px solid #e9e6e4; width:200px; height:160px; margin-right:20px; display:inline-block; float:left;}
+.book-left { position:relative; border:1px solid #e9e6e4; width:200px; height:160px; margin-right:20px; display:inline-block; float:left;}
+.book-left > .book-like { position: absolute; float: left; top:125px; width:200px;  }
+.book-left > .book-like > .count { position: relative; float: left; width:100px;  padding:8px 0; background-color: #EAD7C9; color:#fff; font-size:13px; text-align: center; font-weight: bold; }
+.book-left > .book-like > .like { position: relative; float: left; width:100px; padding:8px 0;  background-color: #D67C7C; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
+.book-left > .book-like > .count a, .book-left > .book-like > .like a{ color:#fff; }
+.book-left > .book-like > .count:hover a, .book-left > .book-like > .like:hover{ color:#222; }
 .book-right { width:600px; height:160px; display:inline-block; overflow:hidden;}
 .book-right a { font-size:17px; color:#222; font-weight:500; }
 .book-right a:hover { color:#660f57; }
 .book-right hr { margin-top:5px;}
-.book-right p { font-size:13px; color:#555; line-height:1.2em; padding:8px 0px; max-height:56px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
+.book-right p { font-size:13px; color:#555; line-height:1.2em; padding:3px 0px; max-height:90px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
+.book-right p > a { font-size:13px; color:#555; }
+.book-right > .detail { color:#797979; }
+.detail { color:#797979; padding:10px 0; }
 .bookForm a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
 .book_paging { margin-top:35px; text-align: center; margin-left:70px; }
 .book_paging a { font-size:12px; color:#c6beb6; border:2px solid #c6beb6; padding:7px 10px; cursor:pointer; text-align:center;}

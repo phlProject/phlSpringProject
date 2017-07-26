@@ -38,14 +38,18 @@
 					<c:forEach items="${bookList}" var="row">
 						<div class="bookList">
 							<div class="book-left">
-								<img src="${row.FL_PATH}/${row.FL_NM}" width="200" height="160">
+								<img src="${row.FL_PATH}/${row.FL_NM}" width="200" height="135">
+								<div class="book-like">
+									<div class="count"><a href="javascript:fn_bookView('${row.BOARD_SN}')">view</a></div>
+									<div class="like">♥&nbsp;&nbsp;${row.LIKE_COUNT}</div>
+								</div>
 							</div>
 							<div class="book-right">
-								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT} ♥${row.LIKE_COUNT}</a>
+								<a href="javascript:fn_bookView('${row.BOARD_SN}')">${row.SUBJECT} </a>
 								<hr color="#e2d318" size="0.3">	
-								<p>지은이:${row.BOOK_WRITER}</p>
-								<p>출판사:${row.BOOK_PUBLISHER}</p>
-								<p>가격:${row.BOOK_PRICE}</p>					
+								<p class="detail">지은이&nbsp;:&nbsp;${row.BOOK_WRITER}&nbsp;&nbsp;|&nbsp;&nbsp; 
+								출판사&nbsp;:&nbsp;${row.BOOK_PUBLISHER}&nbsp;&nbsp;|&nbsp;&nbsp;
+								가격&nbsp;:&nbsp;${row.BOOK_PRICE}원</p>				
 								<p>${row.CONTENT}</p>
 							</div>
 						</div>

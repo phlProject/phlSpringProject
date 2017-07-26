@@ -39,8 +39,9 @@
 		<div class="view">
 			<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
 		</div>
-			 지은이:${bookView.BOOK_WRITER} 출판사:${bookView.BOOK_PUBLISHER} 가격:${bookView.BOOK_PRICE}
-			 <br><br>${bookView.CONTENT}
+			 <p class="detail">지은이&nbsp;:&nbsp;${bookView.BOOK_WRITER}&nbsp;&nbsp;|&nbsp;&nbsp;출판사&nbsp;:&nbsp;${bookView.BOOK_PUBLISHER}&nbsp;&nbsp;|&nbsp;&nbsp;가격&nbsp;:&nbsp;${bookView.BOOK_PRICE} </p>
+			 <hr color="#dddddd" size="0.2">
+			 <br>${bookView.CONTENT}
 		<div class="bookView">	
 			<div class="bookView-btn">
 				<a href="javascript:fn_bookFormU();" 	id="bookFormU">수정</a>

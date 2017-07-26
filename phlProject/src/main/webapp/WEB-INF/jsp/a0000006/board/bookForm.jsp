@@ -92,7 +92,7 @@
 		</form>
 
 		<!-- Editor_Form -->
-		<form id="editor_Form">bsnsCode
+		<form id="editor_Form">
 			<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}"> 	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"	value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
@@ -104,14 +104,14 @@
 			<input type="hidden" id="originFlNm" 	name="originFlNm"	value="${bookView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 			<input type="hidden" id="uploadYn" 		name="uploadYn" 	value="N">							<!-- 업로드 여부 -->
 			
+			<h3>제  &nbsp;&nbsp;목 :</h3> &nbsp;&nbsp;
+			<input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br/><br/>
 			<h3>지은이 : </h3>&nbsp;&nbsp;
 			<input type="text" id="bookWriter" 		name="bookWriter" 		size="40" value="${bookView.BOOK_WRITER}"><br/><br/>
 			<h3>출판사 : </h3>&nbsp;&nbsp;
 			<input type="text" id="bookPublisher" 	name="bookPublisher" 	size="40" value="${bookView.BOOK_PUBLISHER}"><br/><br/>
-			<h3>가격: </h3>&nbsp;&nbsp;
+			<h3>가 &nbsp;&nbsp; 격 : </h3>&nbsp;&nbsp;
 			<input type="text" id="bookPrice" 		name="bookPrice" 		size="40" value="${bookView.BOOK_PRICE}"><br/><br/>
-			<h3>제목 :</h3> &nbsp;&nbsp;
-			<input type="text" id="subject" name="subject" size="86" value="${bookView.SUBJECT}"><br/><br/>
 			<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${bookView.CONTENT}</textarea>
 		</form>
 		
