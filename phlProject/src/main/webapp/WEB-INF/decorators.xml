@@ -21,7 +21,7 @@
 		<pattern>*/teacher*</pattern> 		<!-- 교사학교 -->
 		<pattern>*/network*</pattern>		<!-- 네트워크 활동 -->
 		<pattern>*/board*</pattern> 		<!-- 게시판 -->
-		<pattern>*/apply*</pattern>			<!-- 일정 -->
+		<pattern>*/open*</pattern>			<!-- 열린마당 -->
 		
 		
 	</decorator>

@@ -1,4 +1,4 @@
-package com.a0000006.apply.controller;
+package com.a0000006.open.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -12,22 +12,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.a0000006.apply.service.ApplyService;
+import com.a0000006.open.service.OpenService;
 import com.phl.common.CommandMap;
 
 @Controller
-public class ApplyController {
+public class OpenController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="applyService")
-	private ApplyService applyService;
+	@Resource(name="openService")
+	private OpenService openService;
 	
 	
-	@RequestMapping(value="/a0000006/apply/applyList.do")
-	public ModelAndView applyList(CommandMap commandMap) throws Exception{
+	@RequestMapping(value="/a0000006/open/scheduleList.do")
+	public ModelAndView scheduleList(CommandMap commandMap) throws Exception{
 		
-		ModelAndView mv = new ModelAndView("/a0000006/apply/applyList");
+		ModelAndView mv = new ModelAndView("/a0000006/open/scheduleList");
 		
 
 		//현재 년도, 월, 일
@@ -47,13 +47,13 @@ public class ApplyController {
 		
 
 		// 대관 장소 목록
-		List<CommandMap> placeList = applyService.placeList(map);
+		List<CommandMap> placeList = openService.placeList(map);
 		mv.addObject("placeList", placeList);
 		
 		
 		// 스케줄 목록
-		List<CommandMap> applyList = applyService.applyList(map);
-		mv.addObject("applyList", applyList);
+		List<CommandMap> scheduleList = openService.scheduleList(map);
+		mv.addObject("scheduleList", scheduleList);
 		
 
 		return mv;
@@ -62,7 +62,7 @@ public class ApplyController {
 	
 	
 
-	@RequestMapping(value="/a0000006/apply/scheduleList.do")
+	@RequestMapping(value="/a0000006/open/ajaxScheduleList.do")
 	public ModelAndView scheduleList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -84,15 +84,15 @@ public class ApplyController {
 		map.put("toDay", toDay);*/
 		
 		// 스케줄 목록
-		List<CommandMap> applyList = applyService.applyList(map);
-		mv.addObject("applyList", applyList);
+		List<CommandMap> scheduleList = openService.scheduleList(map);
+		mv.addObject("scheduleList", scheduleList);
 		
 		return mv;
 		
 	}
 	
-	@RequestMapping(value="/a0000006/apply/insertApply.do")
-	public ModelAndView insertApply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/a0000006/open/insertSchedule.do")
+	public ModelAndView insertSchedule(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
@@ -102,7 +102,7 @@ public class ApplyController {
 		map.put("bsnsCode", session.getAttribute("bsnsCode"));
 		
 		// 신청 등록
-		String result = applyService.insertApply(map);
+		String result = openService.insertSchedule(map);
 		mv.addObject("result", result);
 		mv.addObject("sessionId", session.getAttribute("sessionId"));
 		mv.addObject("bsnsCode", session.getAttribute("bsnsCode"));
@@ -112,15 +112,15 @@ public class ApplyController {
 	} 
 
 	// 상세페이지
-	@RequestMapping(value="/a0000006/apply/viewApply.do")
-	public ModelAndView viewApply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/a0000006/open/viewSchedule.do")
+	public ModelAndView viewSchedule(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		Map<String, Object> map = commandMap.getMap();
 		
 		// 상세 페이지
-		Map<String, Object> result = applyService.viewApply(map);
+		Map<String, Object> result = openService.viewSchedule(map);
 		mv.addObject("result", result);
 		
 		return mv;
@@ -128,15 +128,15 @@ public class ApplyController {
 	}
 	
 	// 수정
-	@RequestMapping(value="/a0000006/apply/updateApply.do")
-	public ModelAndView updateApply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/a0000006/open/updateSchedule.do")
+	public ModelAndView updateSchedule(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		Map<String, Object> map = commandMap.getMap();
 		
 		// 상세 페이지
-		String result = applyService.updateApply(map);
+		String result = openService.updateSchedule(map);
 		mv.addObject("result", result);
 		
 		return mv;
@@ -144,15 +144,15 @@ public class ApplyController {
 	}
 	
 	// 삭제
-	@RequestMapping(value="/a0000006/apply/deleteApply.do")
-	public ModelAndView deleteApply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/a0000006/open/deleteSchedule.do")
+	public ModelAndView deleteSchedule(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		Map<String, Object> map = commandMap.getMap();
 		
 		// 상세 페이지
-		String result = applyService.deleteApply(map);
+		String result = openService.deleteSchedule(map);
 		mv.addObject("result", result);
 		
 		return mv;

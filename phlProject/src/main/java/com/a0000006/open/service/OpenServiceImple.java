@@ -1,4 +1,4 @@
-package com.a0000006.apply.service;
+package com.a0000006.open.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,23 +10,20 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.a0000006.apply.dao.ApplyDAO;
+import com.a0000006.open.dao.OpenDAO;
 import com.phl.common.CommandMap;
 
-
-@Service("applyService")
-public class ApplyServiceImpl implements ApplyService{
-
+@Service("openService")
+public class OpenServiceImple implements OpenService {
+	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="applyDAO")
-	private ApplyDAO applyDAO;
+	@Resource(name="openDAO")
+	private OpenDAO openDAO;
 
-	
 	// 스케줄 목록
 	@Override
-	public List<CommandMap> applyList(Map<String, Object> map) throws Exception {
-		
+	public List<CommandMap> scheduleList(Map<String, Object> map) throws Exception {
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -44,58 +41,51 @@ public class ApplyServiceImpl implements ApplyService{
 		map.put("toMonth", toMonth);
 		map.put("toDay", toDay);
 		
-		return applyDAO.applyList(map);
+		return openDAO.scheduleList(map);
 	}
 
-
-	// 신청 등록
+	// 스케줄 등록
 	@Override
-	public String insertApply(Map<String, Object> map) throws Exception {
+	public String insertSchedule(Map<String, Object> map) throws Exception {
 		try {
-			applyDAO.insertApply(map);
-			return "0";
-		} catch (Exception e) {
-			return "-1";
-		}
-		
-	}
-
-
-	// 상세 페이지
-	@Override
-	public Map<String, Object> viewApply(Map<String, Object> map) throws Exception {
-		return applyDAO.viewApply(map);
-	}
-
-
-	// 수정 페이지
-	@Override
-	public String updateApply(Map<String, Object> map) throws Exception {
-		try {
-			applyDAO.updateApply(map);
-			return "0";
-		} catch (Exception e) {
-			return "-1";
-		}
-	}
-	
-	// 삭제 페이지
-	@Override
-	public String deleteApply(Map<String, Object> map) throws Exception {
-		try {
-			applyDAO.deleteApply(map);
+			openDAO.insertSchedule(map);
 			return "0";
 		} catch (Exception e) {
 			return "-1";
 		}
 	}
 
+	// 상세 스케줄
+	@Override
+	public Map<String, Object> viewSchedule(Map<String, Object> map) throws Exception {
+		return openDAO.viewSchedule(map);
+	}
+
+	// 스케줄 수정
+	@Override
+	public String updateSchedule(Map<String, Object> map) throws Exception {
+		try {
+			openDAO.updateSchedule(map);
+			return "0";
+		} catch (Exception e) {
+			return "-1";
+		}
+	}
+
+	// 스케줄 삭제
+	@Override
+	public String deleteSchedule(Map<String, Object> map) throws Exception {
+		try {
+			openDAO.deleteSchedule(map);
+			return "0";
+		} catch (Exception e) {
+			return "-1";
+		}
+	}
 
 	// 대관 장소 목록
 	@Override
 	public List<CommandMap> placeList(Map<String, Object> map) {
-		return applyDAO.placeList(map);
+		return openDAO.placeList(map);
 	}
-	
-	
 }
