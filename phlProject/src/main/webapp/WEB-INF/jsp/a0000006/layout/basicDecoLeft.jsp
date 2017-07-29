@@ -12,7 +12,7 @@
 <script src="/js/common.js"></script>
 <script src="/js/a0000006/member.js"></script>
 <script src="/js/a0000006/board.js"></script>
-<script src="/js/a0000006/mng.js"></script>
+<script src="/js/a0000006/manage.js"></script>
 <script src="/js/a0000006/teacher.js"></script>
 <script src="/js/phl/phl_common.js"></script>
 
