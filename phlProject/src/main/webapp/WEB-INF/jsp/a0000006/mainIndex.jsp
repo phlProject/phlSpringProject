@@ -154,7 +154,15 @@
       </div>
       <div id="main_sidebar">
       	<div class="sidebar-1">
-      		<h3><a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">참여와 후원안내</a></h3>
+      		<a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">
+      		<img src="/img/sidebar4.png"  alt="sponsor"/>      		
+      		</a>
+      	</div>
+      	<div class="sidebar-2">
+      		
+      	</div>
+      	<div class="sidebar-3">
+      		<a href="#"><img src="/img/books.jpg" alt="books"></a>
       	</div>
         <!-- <h3>Sidebar</h3>
         <ul>
