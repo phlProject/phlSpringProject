@@ -3,4 +3,151 @@
  
 <mapper namespace="a0000006/teacher">
     
+    <!-- 참여게시판 > 조회 > Count -->
+    <select id="joinListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+    	SELECT COUNT(AA.BOARD_SN)
+    	FROM BSNS_BOARD AA
+    	WHERE 1=1
+    	  AND AA.USE_YN ='Y'
+    	  AND AA.BSNS_CODE = #{bsnsCode}
+    	  AND SUBSTR(AA.BOARD_GBN_CD,1,3) = #{boardClGbnCd}
+    	  <if test="searchSelect != '' or searchSelect != null">
+    	  	<choose>
+    	  		<when test='searchSelect == "searchCategory" and selectCategory != ""'>
+    	  			AND AA.BOARD_GBN_CD = #{selectCategory}
+    	  		</when>
+    	  		<when test='searchSelect == "searchSubject"'>
+    	  			AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+    	  		</when>
+    	  		<when test='searchSelect == "searchMemNm"'>
+    	  			AND AA.REG_ID IN (SELECT BM.MEM_ID
+    	  							  FROM BSNS_MEMBER BM
+    	  							  WHERE 1=1
+    	  							    AND BM.USE_YN = 'Y'
+    	  							    AND BM.BSNS_CODE = AA.BSNS_CODE
+    	  							    AND BM.MEM_NM LIKE CONCAT('%',#{searchWord},'%')) 
+    	  		</when>
+    	  	</choose>
+    	  </if>
+    </select>
+    
+    <!-- 참여게시판 > 조회 -->
+    <select id="joinList" parameterType="hashmap" resultType="hashmap">
+    	SELECT AA.BSNS_CODE				/* 업체_코드 */
+			  ,AA.BOARD_SN				/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD			/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE 	 = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM 	/* 게시판_구분_코드_명 */
+			  ,AA.SUBJECT				/* 제목 */
+			  ,AA.HIT_COUNT				/* 조회 수 */
+			  ,AA.REG_ID				/* 등록_ID */
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y-%m-%d') AS REG_DT	/* 등록_일시 */
+		FROM BSNS_BOARD AA
+    	WHERE 1=1
+    	  AND AA.USE_YN ='Y'
+    	  AND AA.BSNS_CODE = #{bsnsCode}
+    	  AND SUBSTR(AA.BOARD_GBN_CD,1,3) = #{boardClGbnCd}
+    	  <if test="searchSelect != '' or searchSelect != null">
+    	  	<choose>
+    	  		<when test='searchSelect == "searchCategory" and selectCategory != ""'>
+    	  			AND AA.BOARD_GBN_CD = #{selectCategory}
+    	  		</when>
+    	  		<when test='searchSelect == "searchSubject"'>
+    	  			AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+    	  		</when>
+    	  		<when test='searchSelect == "searchMemNm"'>
+    	  			AND AA.REG_ID IN (SELECT BM.MEM_ID
+    	  							  FROM BSNS_MEMBER BM
+    	  							  WHERE 1=1
+    	  							    AND BM.USE_YN = 'Y'
+    	  							    AND BM.BSNS_CODE = AA.BSNS_CODE
+    	  							    AND BM.MEM_NM LIKE CONCAT('%',#{searchWord},'%')) 
+    	  		</when>
+    	  	</choose>
+    	  </if>
+    	ORDER BY AA.REG_DT DESC  
+    	LIMIT #{limitFirst}, #{limitSecond}
+    </select>
+    
+    <!-- 참여게시판 > 상세  폼 -->
+	<select id="joinView" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE 	 = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM 	/* 게시판_구분_코드_명 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+		FROM BSNS_BOARD	AA	
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
+	</select>
+    
+    <!-- 일련번호 조회 -->
+    <select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+    
+    <!-- 참여게시판 > 등록 -->
+	<insert id="insertJoin" parameterType="hashmap">
+		INSERT INTO BSNS_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENT
+				,REG_ID
+				,REG_DT
+			)VALUES(
+				 #{bsnsCode}
+				,#{teacherGbnCd}
+				,#{subject}
+				,#{editor}
+				,'aa'
+				,now()
+			)
+	</insert>
+    
+    <!-- 참여게시판 > 수정 -->
+	<update id="updateJoin"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET SUBJECT = #{subject}
+		      ,CONTENT = #{editor}
+		      ,BOARD_GBN_CD = #{teacherGbnCd}
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 참여게시판 > 삭제 -->
+	<update id="deleteJoin"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET USE_YN = 'N'
+		      ,MOD_DT = now()
+		      ,MOD_ID = 'aa'
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+
 </mapper>

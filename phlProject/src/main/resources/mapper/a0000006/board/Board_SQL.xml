@@ -53,7 +53,7 @@
 			  	 WHERE 1=1
 			  	   AND PSCC.USE_YN = 'Y'
 			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
-			  	   AND PSCC.CL_CODE = AA.BOARD_GBN_CD
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
 			   ) AS BOARD_GBN_CD_NM /* 게시판_구분_코드_명 */
 			  ,AA.SUBJECT			/* 제목 */
 			  ,AA.CONTENT			/* 내용 */
@@ -298,7 +298,7 @@
 			  	 WHERE 1=1
 			  	   AND PSCC.USE_YN = 'Y'
 			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
-			  	   AND PSCC.CL_CODE = AA.BOARD_GBN_CD
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
 			   ) AS BOARD_GBN_CD_NM	/* 게시판_구분_코드_명 */
 			  ,AA.SUBJECT			/* 제목 */
 			  ,AA.CONTENT			/* 내용 */
