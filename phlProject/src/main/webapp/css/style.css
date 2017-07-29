@@ -543,7 +543,7 @@ line-height: 1.2em; height: 4.1em; }
 #currentDate {font-family: Malgun Gothic; font-size: 26px; color:#333; padding: 0px 30px 20px 30px; display: inline-block;}
 #btnPrev {vertical-align:top;}
 #btnNext {vertical-align:top;}
-insertLayer{
+.insertLayer{
    position: absolute;
    max-width : 450px; 
    width : 450px;
