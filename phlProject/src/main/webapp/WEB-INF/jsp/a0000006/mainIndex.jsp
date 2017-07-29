@@ -86,25 +86,82 @@
       </div>
 	  <div id="main_content">
 	  	<div class="content-1">	
-			<h3>Content</h3>
+	  		<img src="/img/back.jpg"  width="250" height="150"/>
+			<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
 	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
 	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
-	        Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. 
-	        Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
+	       </p>
       	</div>
-      	<!-- <div class="content-2">	
-			<div class="box-cont"></div>
-			<div class="box-cont"></div>
-			<div class="box-cont"></div>
-      	</div> -->
+      	<div class="content-1">	
+			<img src="/img/back1.jpg"  width="250" height="150"/>
+			<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	       </p>
+      	</div>
+      	<div class="content-1">	
+      		<img src="/img/back2.jpg"  width="250" height="150"/>
+      		<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	       </p>
+      	</div>
+	  	<div class="content-1">	
+			<img src="/img/back3.jpg"  width="250" height="150"/>
+			<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	       </p>
+      	</div>
+      	<div class="content-1">	
+			<img src="/img/back4.jpg"  width="250" height="150"/>
+			<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	       </p>
+      	</div>
+      	<div class="content-1">	
+			<img src="/img/back5.jpg"  width="250" height="150"/>
+			<div class="main-like">
+				<div class="count"><a href="#">view</a></div>
+				<div class="like">♥</div>
+			</div>
+			<h3><a href="#">Lorem ipsum</a></h3>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
+	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
+	       </p>
+      	</div>
       </div>
       <div id="main_sidebar">
-        <h3>Sidebar</h3>
+      	<div class="sidebar-1">
+      		<h3><a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">참여와 후원안내</a></h3>
+      	</div>
+        <!-- <h3>Sidebar</h3>
         <ul>
           <li><a href="#">Lorem</a></li>
           <li><a href="#">Ipsum</a></li>
           <li><a href="#">Dolor</a></li>
-        </ul>
+        </ul> -->
       </div>
 </body>
 </html>
