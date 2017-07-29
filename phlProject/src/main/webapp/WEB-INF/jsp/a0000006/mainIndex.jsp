@@ -155,7 +155,7 @@
       <div id="main_sidebar">
       	<div class="sidebar-1">
       		<a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">
-      		<img src="/img/sidebar4.png"  alt="sponsor"/>      		
+      		<img src="/img/sidebar7.png"  alt="sponsor"/>      		
       		</a>
       	</div>
       	<div class="sidebar-2">
