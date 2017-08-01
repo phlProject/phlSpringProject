@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="/js/a0000006/apply.js"></script>
+<script src="/js/a0000006/tabMenu.js"></script>
 <title>교육나눔 꿈두레 - 청년 네트워크 소개</title>
 </head>
 <body>
