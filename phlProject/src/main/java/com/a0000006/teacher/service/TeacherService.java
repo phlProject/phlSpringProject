@@ -23,4 +23,9 @@ public interface TeacherService {
 	/* 참여게시판 > 삭제 */
 	String deleteJoin(Map<String, Object> map) throws Exception;
 	
+	/* 참여게시판 > 댓글 조회 */
+	List<Map<String, Object>> joinReList(Map<String, Object> map) throws Exception;
+	
+	/* 참여게시판  > 댓글 등록/수정/삭제 */
+	String saveJoinRe(Map<String, Object> map) throws Exception;
 }

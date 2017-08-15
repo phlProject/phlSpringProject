@@ -73,4 +73,29 @@ public class TeacherServiceImpl implements TeacherService {
 			return "fail";
 		}
 	}
+	
+	/* 참여게시판 > 댓글 조회 */
+	@Override
+    public List<Map<String, Object>> joinReList(Map<String, Object> map) throws Exception {
+        return teacherDAO.joinReList(map);
+    }
+	
+	/* 참여게시판 > 댓글 등록/수정/삭제 */
+	@Override
+	public String saveJoinRe(Map<String, Object> map) throws Exception {
+		try {
+				if(map.get("boardReType").equals("insert")){
+					teacherDAO.insertJoinRe(map);
+				}else if(map.get("boardReType").equals("update")){
+					teacherDAO.updateJoinRe(map);
+				}else if(map.get("boardReType").equals("delete")){
+					teacherDAO.deleteJoinRe(map);
+				}
+				
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
 }

@@ -101,7 +101,8 @@
 		  AND AA.BSNS_CODE = #{bsnsCode}
 		  AND AA.BOARD_SN = #{boardSn}
 	</select>
-    
+	
+	
     <!-- 일련번호 조회 -->
     <select id="selectboardSn" resultType="java.lang.Integer">
 		SELECT LAST_INSERT_ID()
@@ -150,4 +151,106 @@
 		   AND BOARD_SN  = #{boardSn}
 	</update>
 
+	<!-- 참여게시판 > 댓글 조회 -->
+	<select id="joinReList" parameterType="hashmap" resultType="hashmap">
+		SELECT 1 AS RE_LEVEL
+				,AA.BSNS_CODE
+				,AA.BOARD_SN
+				,AA.BOARD_RE_SN
+				,AA.BOARD_UP_RE_SN
+				,AA.CONTENT
+				,AA.MEM_ID
+				,(SELECT BM.MEM_NM
+			        FROM BSNS_MEMBER BM
+			       WHERE 1=1
+			         AND BM.USE_YN = 'Y'
+			         AND BM.BSNS_CODE = AA.BSNS_CODE
+			         AND BM.MEM_ID = AA.REG_ID) AS MEM_NM
+				,AA.BOARD_RE_SN AS ORDR
+		FROM BSNS_BOARD_RE AA
+		WHERE 1=1
+		  AND NOT EXISTS (SELECT 1 FROM BSNS_BOARD_RE WHERE BOARD_RE_SN = AA.BOARD_UP_RE_SN)
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
+		  
+		UNION ALL
+		
+		SELECT 2 AS RE_LEVEL
+			  ,AB.BSNS_CODE
+		      ,AB.BOARD_SN
+		      ,AB.BOARD_RE_SN
+			  ,AB.BOARD_UP_RE_SN
+		      ,AB.CONTENT
+		      ,AB.MEM_ID
+		      ,(SELECT BM.MEM_NM
+			        FROM BSNS_MEMBER BM
+			       WHERE 1=1
+			         AND BM.USE_YN = 'Y'
+			         AND BM.BSNS_CODE = AB.BSNS_CODE
+			         AND BM.MEM_ID = AB.REG_ID) AS MEM_NM
+		      ,AA.BOARD_RE_SN AS ORDR
+		FROM BSNS_BOARD_RE AA
+			,BSNS_BOARD_RE AB
+		WHERE 1=1
+		  AND NOT EXISTS (SELECT 1 FROM BSNS_BOARD_RE WHERE BOARD_RE_SN = AA.BOARD_UP_RE_SN)
+		  AND AA.BOARD_RE_SN = AB.BOARD_UP_RE_SN
+		  AND AA.USE_YN = 'Y'
+		  AND AB.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
+		  
+		ORDER BY ORDR, BOARD_RE_SN;
+	</select>
+    
+	<!-- 참여게시판 > 등록 -->
+	<insert id="insertJoinRe" parameterType="hashmap">
+		INSERT INTO BSNS_BOARD_RE(
+				 BSNS_CODE
+				,BOARD_SN
+				,BOARD_UP_RE_SN
+				,MEM_ID
+				,CONTENT
+				,REG_ID
+				,REG_DT
+				,MOD_ID
+				,MOD_DT
+			)VALUES(
+				 #{bsnsCode}
+				,#{boardSn}
+				,#{boardReSn}
+				,#{sessionId}
+				,#{content}
+				,#{sessionId}
+				,now()
+				,#{sessionId}
+				,now()
+			)
+	</insert>
+	
+	<!-- 참여게시판 > 수정 -->
+	<update id="updateJoinRe" parameterType="hashmap">
+		UPDATE BSNS_BOARD_RE
+		SET CONTENT = #{content}
+			,MOD_ID = #{sessionId}
+			,MOD_DT = now()
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+		  AND BSNS_CODE = #{bsnsCode}
+		  AND BOARD_SN  = #{boardSn}
+		  AND BOARD_RE_SN = #{boardReSn}
+	</update>
+	
+	<!-- 참여게시판 > 삭제 -->
+	<update id="deleteJoinRe" parameterType="hashmap">
+		UPDATE BSNS_BOARD_RE
+		SET USE_YN = 'N'
+			,MOD_ID = #{sessionId}
+			,MOD_DT = now()
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+		  AND BSNS_CODE = #{bsnsCode}
+		  AND BOARD_SN  = #{boardSn}
+		  AND BOARD_RE_SN = #{boardReSn}
+	</update>
 </mapper>

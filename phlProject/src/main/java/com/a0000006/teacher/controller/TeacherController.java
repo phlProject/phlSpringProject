@@ -134,8 +134,12 @@ public class TeacherController {
 		// 참여게시판 > 상세
 		List<Map<String,Object>> joinView = teacherService.joinView(commandMap.getMap());
 		
+		// 참여게시판 > 댓글 상세
+		List<Map<String,Object>> joinReList = teacherService.joinReList(commandMap.getMap());
+		
 		mv.addObject("item", commandMap.getMap());
 		mv.addObject("joinView", joinView.get(0));
+		mv.addObject("joinReList", joinReList);
 		
 		return mv;
 	}
@@ -220,6 +224,21 @@ public class TeacherController {
 		
 		mv.addObject("result", result);  	
 		
+		return mv;
+	}
+	
+	/* 참여게시판 > 댓글 등록/수정/삭제 */
+	@RequestMapping(value="/a0000006/teacher/saveJoinRe.do")
+	public ModelAndView saveJoinRe(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		commandMap.put("sessionId",session.getAttribute("sessionId"));
+		
+		try{
+			String result = teacherService.saveJoinRe(commandMap.getMap());
+			mv.addObject("result", result);  	
+		}catch(Exception e){
+		}
 		return mv;
 	}
 }

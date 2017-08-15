@@ -17,23 +17,66 @@
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 	</form>
 	
-	<div id="content">
-		<h3 class="cont-title">상세</h3>
-		<p class="book-view">제목 : ${joinView.SUBJECT}</p>
-		<br>카테고리 :
-			<select id="teacherGbnCd" name="teacherGbnCd">
-				<option value="${joinView.BOARD_GBN_CD}">${joinView.BOARD_GBN_CD_NM}</option>
-			</select>
+		<div id="content">
+			<h3 class="cont-title">상세</h3>
+			<p class="book-view">제목 : ${joinView.SUBJECT}</p>
+			<br>카테고리 :
+				<select id="teacherGbnCd" name="teacherGbnCd">
+					<option value="${joinView.BOARD_GBN_CD}">${joinView.BOARD_GBN_CD_NM}</option>
+				</select>
+				
+			<br>${joinView.CONTENT}
 			
-		<br>${joinView.CONTENT}
-		
-		<div class="bookView">	
-			<div class="bookView-btn">
-				<a href="javascript:fn_joinFormU();" 	id="joinFormU">수정</a>
-				<a href="javascript:fn_deleteJoin();" 	id="deleteJoin">삭제</a>		
-				<a href="javascript:fn_joinList();" 	id="joinList">목록</a>
+			<div class="bookView">	
+				<div class="bookView-btn">
+					<a href="javascript:fn_joinFormU();" 	id="joinFormU">수정</a>
+					<a href="javascript:fn_deleteJoin();" 	id="deleteJoin">삭제</a>		
+					<a href="javascript:fn_joinList();" 	id="joinList">목록</a>
+				</div>
 			</div>
 		</div>
-	</div>
+		
+		<div id="content">
+			<h3>댓글</h3>
+			
+			<!-- 댓글 조회 -->
+			<div>
+				<table>
+					<c:forEach items="${joinReList}" var="row">
+						<tr>
+							<td>${row.MEM_NM}</td>
+							<td>${row.CONTENT}</td>
+							
+							<c:if test="${not empty sessionScope.loginInfo and sessionScope.loginInfo.MEM_ID ne row.MEM_ID}">
+								<td><a href="javascript:fn_insertJoinReRe('${row.MEM_NM}','${row.ORDR}')" id="insertJoinReRe">답글</a></td>
+							</c:if>
+							
+							<c:if test="${not empty sessionScope.loginInfo and sessionScope.loginInfo.MEM_ID eq row.MEM_ID}">
+								<td><a href="javascript:fn_updateJoinRe('${row.BOARD_RE_SN}','${row.CONTENT}')" id="updateJoinRe">수정</a></td>
+								<td><a href="javascript:fn_deleteJoinRe('${row.BOARD_RE_SN}')" id="deleteJoinRe">삭제</a></td>
+							</c:if>
+							
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			
+			<!-- 댓글 등록 -->
+			<c:if test="${not empty sessionScope.loginInfo}">
+				<table>
+					<tr>
+						<td>${sessionScope.loginInfo.MEM_NM}</td>
+						<td>
+							<textarea rows="5" cols="70" id="contents" name="contents"></textarea>
+							<input type="text" id="boardReSn" 	name="boardReSn" 	value="">
+							<input type="text" id="boardReType"	name="boardReType" 	value="insert">
+						</td>
+						<td><a href="javascript:fn_saveJoinRe()" id="saveJoinRe"><span id="regNm">등록</span></a></td>
+						<td><a href="javascript:fn_cancelJoinRe()" id="cancelJoinRe"><span id="canNm">취소</span></a></td>
+					</tr>
+				</table>
+			</c:if>
+		</div>
 </body>
+
 </html>

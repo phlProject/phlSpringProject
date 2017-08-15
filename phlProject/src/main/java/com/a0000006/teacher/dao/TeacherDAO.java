@@ -37,13 +37,34 @@ public class TeacherDAO extends AbstractDAO {
 	    insert("a0000006/teacher.insertJoin", map);
 	}
 	
-	/* 책소개 > 수정 */
+	/* 참여게시판 > 수정 */
 	public void updateJoin(Map<String, Object> map) throws Exception{
 	    update("a0000006/teacher.updateJoin", map);
 	}
 	
-	/* 책소개 > 삭제 */
+	/* 참여게시판 > 삭제 */
 	public void deleteJoin(Map<String, Object> map) throws Exception{
 	    update("a0000006/teacher.deleteJoin", map);
+	}
+	
+	/* 참여게시판 > 댓글 조회 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> joinReList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("a0000006/teacher.joinReList", map);
+    }
+	
+	/* 참여게시판 > 댓글 등록 */
+	public void insertJoinRe(Map<String, Object> map) throws Exception{
+		update("a0000006/teacher.insertJoinRe", map);
+	}
+	
+	/* 참여게시판 > 댓글 수정 */
+	public void updateJoinRe(Map<String, Object> map) throws Exception{
+		update("a0000006/teacher.updateJoinRe", map);
+	}
+	
+	/* 참여게시판 > 댓글 삭제 */
+	public void deleteJoinRe(Map<String, Object> map) throws Exception{
+		update("a0000006/teacher.deleteJoinRe", map);
 	}
 }
