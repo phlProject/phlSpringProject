@@ -87,16 +87,17 @@
 			<input type="hidden" id="sessionId" 	name="sessionId"	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 			<input type="hidden" id="boardSn" 		name="boardSn"		value="${joinView.BOARD_SN}">		<!-- 게시판_번호 -->
 			
-			<h3>제  &nbsp;&nbsp;목 :</h3> &nbsp;&nbsp;
-			<input type="text" id="subject" name="subject" size="86" value="${joinView.SUBJECT}"><br/><br/>
-			
-			카테고리 : 
+			<h3 class="edit-02">제  &nbsp;&nbsp;목 :</h3> &nbsp;&nbsp;
+			<input type="text" id="subject" name="subject" size="86" value="${joinView.SUBJECT}">
+		
+			<h3 class="edit-03">카테고리 :</h3>
 			<select id="teacherGbnCd" name="teacherGbnCd">
 				<option value="">선택</option>	
 				<c:forEach items="${teacherGbnList}" var="rows">
 					<option value="${rows.CMMN_CODE}" <c:if test="${rows.CMMN_CODE == joinView.BOARD_GBN_CD}">SELECTED</c:if>>${rows.DETAIL_CODE_NM}</option>
 				</c:forEach>
 			</select>
+
 			<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${joinView.CONTENT}</textarea>
 		</form>
 		

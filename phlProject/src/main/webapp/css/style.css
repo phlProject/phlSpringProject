@@ -275,6 +275,74 @@ line-height: 1.2em; height: 4.1em; }
 	line-height:1.3;
 }
 
+/*참여게시판*/
+.detail01 {
+		background-color: #F7F7F7;
+		margin:0 auto;
+		padding-bottom: 30px;
+}
+.reply {
+	font-size:16px;
+	color:#333333;
+	font-weight: 700;
+	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
+	line-height: 2;
+	padding: 10px 20px;
+}
+
+.reply-tb table{
+	width: 95%;
+}
+
+.reply-tb table tr{
+	border-bottom: 1px solid #ddd;
+}
+.reply-tb table td{
+	font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 50px;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.reply-tb02 table{
+	width: 95%;
+}
+.reply-tb02 table td{
+	height: 50px;
+}
+
+.reply-name {
+	font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #a8a8a8;
+}
+.reply-value{
+	font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	font-weight: bold;
+}
+
+.edit-02 {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+.edit-03 {
+	padding-bottom: 25px;
+}
+
+#insertJoinReRe, #updateJoinRe, #deleteJoinRe { background-color:#D3CBC3; border:3px solid #D3CBC3; color:#fff; padding:5px 15px; font-size:12px; font-weight:bold; margin-left:10px;}
+#regNm,#canNm { background-color:#D67C7C; border:3px solid #D67C7C; color:#fff; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+
+.book-view02 { margin-top:20px; font-size:23px; font-weight:500; padding:20px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:1px solid #e2d318; margin-bottom: 20px; } 
+.bookView02 { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}
+.bookView02-btn { display: inline-block; }
+.bookView02-btn a { width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:right; margin-top:30px; text-align:center; border-left:3px solid #fff; text-align: center;}
+.memtab a { color:#D67C7C; }
+.memtab a:hover { color:#660F57; }
+
+
+
 /*책소개 - bookForm*/
 .book-title { width:100%; margin:15px 0 0; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; }
 .book-Form { margin: 15px 0; display: inline-block; }

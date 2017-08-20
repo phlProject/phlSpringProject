@@ -33,7 +33,7 @@
 </head>
 <body>
 	<div id="content">
-		<h3 class="cont2-title">참여게시판 - 조회</h3>
+		<h3 class="my-title">참여게시판 - 조회</h3>
 		<form id="joinList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >		<!-- 세션_업체코드 -->
 			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.sessionId}" >		<!-- 세션_ID -->
