@@ -54,6 +54,8 @@ public class TeacherController {
         return mv;
     } 
 	
+	
+	
 	/* 참여게시판 > 조회 */
 	@RequestMapping(value="/a0000006/teacher/joinList.do")
 	public ModelAndView joinList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
@@ -109,7 +111,7 @@ public class TeacherController {
 		commandMap.put("limitFirst", 	pagingData[1]-1);
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 		
-		// 책소개 > 조회
+		// 참여게시판 > 조회
 		List<Map<String,Object>> joinList = teacherService.joinList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호

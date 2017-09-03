@@ -20,8 +20,11 @@ public class OpenServiceImple implements OpenService {
 	
 	@Resource(name="openDAO")
 	private OpenDAO openDAO;
-
-	// 스케줄 목록
+	
+	/*********************************************************************/
+	/****************************** 일   정  시작  ******************************/
+	
+	// 일정 - 리스트
 	@Override
 	public List<CommandMap> scheduleList(Map<String, Object> map) throws Exception {
 		Date d = new Date();
@@ -44,7 +47,7 @@ public class OpenServiceImple implements OpenService {
 		return openDAO.scheduleList(map);
 	}
 
-	// 스케줄 등록
+	// 일정 - 등록
 	@Override
 	public String insertSchedule(Map<String, Object> map) throws Exception {
 		try {
@@ -55,13 +58,13 @@ public class OpenServiceImple implements OpenService {
 		}
 	}
 
-	// 상세 스케줄
+	// 일정 - 상세
 	@Override
 	public Map<String, Object> viewSchedule(Map<String, Object> map) throws Exception {
 		return openDAO.viewSchedule(map);
 	}
 
-	// 스케줄 수정
+	// 일정 - 수정
 	@Override
 	public String updateSchedule(Map<String, Object> map) throws Exception {
 		try {
@@ -72,7 +75,7 @@ public class OpenServiceImple implements OpenService {
 		}
 	}
 
-	// 스케줄 삭제
+	// 일정 - 삭제
 	@Override
 	public String deleteSchedule(Map<String, Object> map) throws Exception {
 		try {
@@ -83,9 +86,77 @@ public class OpenServiceImple implements OpenService {
 		}
 	}
 
-	// 대관 장소 목록
+	// 일정 - 대관 장소 목록 ( 삭제 예정 )
 	@Override
 	public List<CommandMap> placeList(Map<String, Object> map) {
 		return openDAO.placeList(map);
 	}
+	
+	
+	/****************************** 일   정  종료  ******************************/
+	/*********************************************************************/
+	
+	
+	/*********************************************************************/
+	/***************************** 자유게시판  시작  *****************************/
+	
+	/* 자유게시판 > 조회 > Count */
+	public int freeBoardListCnt(Map<String, Object> map) throws Exception {
+        return openDAO.freeBoardListCnt(map);
+    }
+	
+	/* 자유게시판 > 조회 */
+	@Override
+    public List<Map<String, Object>> freeBoardList(Map<String, Object> map) throws Exception {
+        return openDAO.freeBoardList(map);
+    }
+	
+	/* 자유게시판 > 상세 폼 */
+	@Override
+    public List<Map<String, Object>> freeBoardView(Map<String, Object> map) throws Exception {
+        return openDAO.freeBoardView(map);
+    }
+	
+	/* 자유게시판 > 등록 */
+	@Override
+	public int insertFreeBoard(Map<String, Object> map) throws Exception {
+		try {
+			openDAO.insertFreeBoard(map);
+			
+			// 게시판 공통 > 일련번호 조회
+			int boardSn = openDAO.selectboardSn();
+			
+			return boardSn;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	/* 자유게시판 > 수정 */
+	@Override
+	public String updateFreeBoard(Map<String, Object> map) throws Exception {
+		try {
+			openDAO.updateFreeBoard(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/* 자유게시판 > 삭제 */
+	@Override
+	public String deleteFreeBoard(Map<String, Object> map) throws Exception {
+		try {
+			openDAO.deleteFreeBoard(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/***************************** 자유게시판  종료  *****************************/
+	/*********************************************************************/
 }

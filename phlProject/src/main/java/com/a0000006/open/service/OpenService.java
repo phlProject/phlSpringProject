@@ -6,22 +6,56 @@ import java.util.Map;
 import com.phl.common.CommandMap;
 
 public interface OpenService {
-	// 스케줄 목록
+	
+	
+	/*********************************************************************/
+	/****************************** 일   정  시작  ******************************/
+	
+	// 일정 - 리스트
 	List<CommandMap> scheduleList(Map<String, Object> map) throws Exception;
 
-	// 스케줄 등록
+	// 일정 - 등록
 	String insertSchedule(Map<String, Object> map) throws Exception;
 
-	// 상세 스케줄
+	// 일정 - 상세
 	Map<String, Object> viewSchedule(Map<String, Object> map) throws Exception;
 
-	// 스케줄 수정
+	// 일정 - 수정
 	String updateSchedule(Map<String, Object> map) throws Exception;
 
-	// 스케줄 삭제
+	// 일정 - 삭제
 	String deleteSchedule(Map<String, Object> map) throws Exception;
 
-	// 대관 장소 목록
+	// 일정 - 대관 장소 목록 ( 삭제 예정 )
 	List<CommandMap> placeList(Map<String, Object> map);
+	
+	
+	/****************************** 일   정  종료  ******************************/
+	/*********************************************************************/
+	
+	
+	/*********************************************************************/
+	/***************************** 자유게시판  시작  *****************************/
+	
+	/* 자유게시판 > 조회 > Count */
+	int freeBoardListCnt(Map<String, Object> map) throws Exception;
+	
+	/* 자유게시판 > 조회 */
+	List<Map<String, Object>> freeBoardList(Map<String, Object> map) throws Exception;
+	
+	/* 자유게시판 > 상세 폼 */
+	List<Map<String, Object>> freeBoardView(Map<String, Object> map) throws Exception;
+	
+	/* 자유게시판 > 등록 */
+	int insertFreeBoard(Map<String, Object> map) throws Exception;
+	
+	/* 자유게시판 > 수정 */
+	String updateFreeBoard(Map<String, Object> map) throws Exception;
+	
+	/* 자유게시판 > 삭제 */
+	String deleteFreeBoard(Map<String, Object> map) throws Exception;
+	
+	/***************************** 자유게시판  종료  *****************************/
+	/*********************************************************************/
 
 }

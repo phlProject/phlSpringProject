@@ -3,8 +3,12 @@
  
 <mapper namespace="a0000006/open">
 
-   <!-- 스케줄 목록 -->
-   <select id="scheduleList" parameterType="hashmap" resultType="hashmap">
+	<!-- /*********************************************************************/ -->
+	<!-- /****************************** 일   정  시작  ******************************/ -->
+	
+	
+	<!-- 일정 - 리스트 -->
+	<select id="scheduleList" parameterType="hashmap" resultType="hashmap">
    
       SELECT   BSNS_CODE
             , SCHEDULE_SN
@@ -24,10 +28,10 @@
             AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
             AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
       
-   </select>
+	</select>
 
-   <!-- 스케줄 등록 -->
-   <insert id="insertSchedule" parameterType="hashmap">
+   	<!-- 일정 - 등록 -->
+   	<insert id="insertSchedule" parameterType="hashmap">
       INSERT INTO 
          BSNS_SCHEDULE (
                BSNS_CODE
@@ -53,9 +57,9 @@
                , #{sessionId}
                , now()
          )
-   </insert>
+   	</insert>
    
-   <!-- 상세 스케줄 -->
+   	<!-- 일정 - 상세 -->
 	<select id="viewSchedule" parameterType="hashmap" resultType="hashmap">
 		SELECT	BSNS_CODE
 				, SCHEDULE_SN
@@ -74,7 +78,7 @@
    
 	</select>
 	
-	<!-- 스케줄 수정 -->
+	<!-- 일정 - 수정 -->
 	<update id="updateSchedule" parameterType="hashmap">
 		UPDATE	BSNS_SCHEDULE
 		SET		SCHEDULE_DT = #{scheduleDt}
@@ -87,14 +91,14 @@
 		WHERE	SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
-	<!-- 스케줄 삭제 -->
+	<!-- 일정 - 삭제 -->
 	<delete id="deleteSchedule" parameterType="hashmap">
 		DELETE	
 		FROM	BSNS_SCHEDULE
 		WHERE	SCHEDULE_SN = #{scheduleSn}
 	</delete>
 	
-	<!-- 대관 장소 목록 -->
+	<!-- 일정 - 대관 장소 목록 ( 삭제예정 ) -->
 	<select id="placeList" parameterType="hashmap" resultType="hashmap">
 		SELECT	CMMN_CODE
 				, DETAIL_CODE_NM
@@ -105,4 +109,137 @@
 		ORDER BY CMMN_CODE
 	</select>
 	
+	<!-- /****************************** 일   정  종료  ******************************/ -->
+	<!-- /*********************************************************************/ -->
+	
+	
+	<!-- /*********************************************************************/ -->
+	<!-- /***************************** 자유게시판  시작  *****************************/ -->
+	
+	<!-- 자유게시판 > 조회 > Count -->
+	<select id="freeBoardListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+	SELECT COUNT(AA.BOARD_SN)
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+	</select>
+    
+	<!-- 자유게시판 > 조회 -->
+	<select id="freeBoardList" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM /* 게시판_구분_코드_명 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY AA.BOARD_SN DESC
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
+	
+	<!-- 자유게시판 > 상세 폼 -->
+	<select id="freeBoardView" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
+	</select>	
+	
+	<!-- 자유게시판 > 등록 -->
+	<insert id="insertFreeBoard" parameterType="hashmap">
+			INSERT INTO BSNS_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENT
+				,REG_ID
+				,REG_DT
+			)VALUES(
+				 #{bsnsCode}
+				,#{boardGbnCd}
+				,#{subject}
+				,#{editor}
+				,'aa'
+				,now()
+			)
+	</insert>
+	
+	<!-- 자유게시판 > 수정 -->
+	<update id="updateFreeBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD AA 					/* 업체_게시판 */
+		   SET AA.SUBJECT 		= #{subject}
+		      ,AA.CONTENT 		= #{editor}
+		      ,AA.MOD_ID 		= 'aa'
+		      ,AA.MOD_DT 		= now()
+		 WHERE 1=1
+		   AND AA.BSNS_CODE = #{bsnsCode}
+		   AND AA.BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 자유게시판 > 삭제 -->
+	<update id="deleteFreeBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET USE_YN = 'N'
+			  ,MOD_ID = 'aa'
+		      ,MOD_DT = now()
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 자유게시판 > 일련번호 조회 -->
+	<select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+	
+	<!-- /***************************** 자유게시판  종료  *****************************/ -->
+	<!-- /*********************************************************************/ -->
 </mapper>
