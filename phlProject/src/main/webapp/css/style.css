@@ -16,11 +16,11 @@ table { border-collapse: collapse; }
 #header { width:100%; margin:0 auto; background-color:#a6bf38; z-index:10; /*padding:20px; margin-bottom:20px; border-bottom:2px solid #5e7b38; border:1px solid #bcbcbc; */ }
 /*로고*/
 .site-header { top: 0; height: 62px; width: 1100px; margin:0 auto; z-index:20;} 
-.site-header > #logo { width: 480px; float: left; font: bold 20px Dotum;  vertical-align: middle; position: absolute; z-index: 80;}
+.site-header > #logo { width: 420px; float: left; font: bold 20px Dotum;  vertical-align: middle; position: absolute; z-index: 80;}
 .site-header > #logo a{ color: #000000;}
 
 /*헤더메뉴*/
-.site-header > nav { float: right; width: 620px; }
+.site-header > nav { float: right; width: 680px; }
 nav ul { float: right; }
 nav ul li { float:left; font-size:15px; font-weight:bold; padding: 0 10px; }
 nav ul li a { color: #fff; display: block; padding: 20px 5px; font-size: 14px; font-weight: 500;}
