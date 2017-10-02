@@ -35,7 +35,7 @@ public class A0000006Controller {
         commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
         
         // 메뉴조회
-        List<CommandMap> menuList = phlCommService.menuList_dept2(commandMap.getMap());
+        List<CommandMap> menuList = phlCommService.menuListDept2(commandMap.getMap());
         
         session.setAttribute("menuList", menuList);
         

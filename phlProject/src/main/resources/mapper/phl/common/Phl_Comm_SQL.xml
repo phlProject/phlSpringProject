@@ -22,7 +22,7 @@
     </select>
     
     <!--  메뉴조회 (2dept)  -->
-    <select id="menuList_dept2" parameterType="hashmap" resultType="hashmap">
+    <select id="menuListDept2" parameterType="hashmap" resultType="hashmap">
     
     	SELECT 1 AS MENU_LEVEL
     		  ,T1.MENU_CD	

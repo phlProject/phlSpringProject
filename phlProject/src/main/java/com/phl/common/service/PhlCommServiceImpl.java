@@ -27,8 +27,8 @@ public class PhlCommServiceImpl implements PhlCommService {
 	
 	/* 메뉴조회 (2dept) */
 	@Override
-    public List<CommandMap> menuList_dept2(Map<String, Object> map) throws Exception {
-        return phlCommDAO.menuList_dept2(map);
+    public List<CommandMap> menuListDept2(Map<String, Object> map) throws Exception {
+        return phlCommDAO.menuListDept2(map);
     }
 	
 }

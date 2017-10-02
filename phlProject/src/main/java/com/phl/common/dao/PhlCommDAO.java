@@ -19,7 +19,7 @@ public class PhlCommDAO extends AbstractDAO {
 	
 	/* 메뉴조회 (2dept) */
 	@SuppressWarnings("unchecked")
-    public List<CommandMap> menuList_dept2(Map<String, Object> map) throws Exception{
-        return (List<CommandMap>)selectList("phl/common.menuList_dept2", map);
+    public List<CommandMap> menuListDept2(Map<String, Object> map) throws Exception{
+        return (List<CommandMap>)selectList("phl/common.menuListDept2", map);
     }
 }
