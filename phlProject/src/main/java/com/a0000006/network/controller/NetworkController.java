@@ -1,6 +1,7 @@
 package com.a0000006.network.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,21 @@ public class NetworkController {
 	@RequestMapping(value="/a0000006/network/juvenileEduIntro.do")
 	public ModelAndView juvenileEduIntro(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000006/network/juvenileEduIntro");
+		
+		mv.addObject("view", "/a0000006/network/juvenileEduIntro.do");
         
         return mv;
-    }  
+    }
+	
+	/* 청소년 네트워크 */
+	@RequestMapping(value="/a0000006/network/networkBoard.do")
+	public ModelAndView networkBoard(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000006/network/networkBoard");
+        
+		System.out.println(request.getAttribute("preView"));
+		
+		mv.addObject("preView", request.getAttribute("preView"));
+		
+        return mv;
+    } 
 }

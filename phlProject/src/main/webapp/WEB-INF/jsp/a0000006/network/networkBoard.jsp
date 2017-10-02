@@ -3,15 +3,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="/js/a0000006/tabMenu.js"></script>
-<title>교육나눔 꿈두레 - 청소년 네트워크 소개</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="content">
 		<div class="tabmenu">
 		    <ul>
 		        <li class="tab1">
-		        	<a href="#link"><img src="/img/tab-3-off.png" alt="메뉴01" /></a>
+		        	<!-- <a href="#link"> -->
+		        	<a href="${preView}">
+		        		<img src="/img/tab-3-off.png" alt="메뉴01" />
+		        	</a>
 		            <ul class="tabcontent">
 		                <li><a href="#"></a>
 		                <div class="tab-cont3">
@@ -24,13 +26,16 @@
 		        </li>
 		        <li class="tab2">
 		        	<!-- <a href="#link"> -->
-		        	<a href="/a0000006/network/networkBoard.do?preView=${view}">
+		        	<a href="/a0000006/network/networkBoard.do">
 		        		<img src="/img/tab-4-off.png" alt="메뉴02" />
 		        	</a>
 		            <ul class="tabcontent">
 		                <li><a href="#"></a>
 		               		 <div class="tab-cont3">
 								<h3 class="cont1-1">게시판</h3>
+								<div id="boardDiv">
+									123123								
+								</div>
 							</div>
 		                </li>
 		            </ul>
