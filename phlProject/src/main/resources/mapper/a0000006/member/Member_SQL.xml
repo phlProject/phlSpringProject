@@ -5,7 +5,7 @@
     
     <!-- 로그인(ID,PW CHECK) -->
     <select id="idPwCheck" parameterType="hashmap" resultType="hashmap">
-    	SELECT MEM_PW
+    	SELECT CAST(AES_DECRYPT(UNHEX(MEM_PW) , "pkhl") AS CHAR) AS MEM_PW
     	      ,USE_YN
     	FROM BSNS_MEMBER
     	WHERE 1=1
@@ -32,7 +32,7 @@
     		  BSNS_CODE
     		  ,MEM_SN
     		  ,MEM_ID
-    	 	  ,AES_DECRYPT(UNHEX(MEM_PW), "pkhl") AS MEM_PW
+    	 	  ,CAST(AES_DECRYPT(UNHEX(MEM_PW) , "pkhl") AS CHAR) AS MEM_PW
     	 	  ,MEM_NM
     	 	  ,MEM_GBN_CD
     	 	  ,(SELECT DETAIL_CODE_NM

@@ -5,25 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>교육나눔 꿈두레</title>
-</head>
-<body>	
 
+</head>
+
+<body>	
 	<div id="content" align="center">
 		<div id="loginform">
-		<p>Login</p>	
+		<p>Login</p>
 		<form id="loginActionForm">
 			<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}">
-			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" /> <br/>
-			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD"/>
+			<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" onkeypress="if(event.keyCode == 13){fn_loginVal();}" /> <br/>
+			<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD" onkeypress="if(event.keyCode == 13){fn_loginVal();}" />
 		</form>
 		<br/><br/>
+		
 		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> <br/><br/><br/>
 		
 		<c:choose>
 			<c:when test="${resultValue=='ID_ERROR'}">* 존재하지 않는 아이디입니다. </c:when>
 			<c:when test="${resultValue=='PW_ERROR'}">* 비밀번호가 일치하지 않습니다. </c:when>
 			<c:when test="${resultValue=='ID_STANDBY'}">* 권한 승인 대기중입니다. </c:when>
-			
 		</c:choose>
 		
 		</div>
