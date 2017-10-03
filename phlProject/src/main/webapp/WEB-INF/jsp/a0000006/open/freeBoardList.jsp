@@ -42,9 +42,9 @@
 						</tr>
 					</c:if>
 					<c:if test="${not empty freeBoardList}">
-						<c:forEach items="${freeBoardList}" var="row">
+						<c:forEach items="${freeBoardList}" var="row" varStatus="status">
 							<tr>
-								<td></td>
+								<td>${totalListCount - ( ( requestPageNumber -1 ) * countPerPage + status.index)}</td>
 								<td><a href="javascript:fn_freeBoardView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
 								<td>${row.MEM_NM}</td>
 								<td>${row.REG_DT}</td>
