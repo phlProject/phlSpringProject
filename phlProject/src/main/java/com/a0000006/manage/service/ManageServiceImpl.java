@@ -29,11 +29,11 @@ Logger log = Logger.getLogger(this.getClass());
         return manageDAO.memList(map);
     }
 
-	/* 회원 활성화 비활성화 수정 */
+	/* 활성화/비활성화 수정 */
 	@Override
-	public String memUpdateActive(Map<String, Object> map) throws Exception {
+	public String memActiveYn(Map<String, Object> map) throws Exception {
 		try {
-			manageDAO.memUpdateActive(map);
+			manageDAO.memActiveYn(map);
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,4 +41,15 @@ Logger log = Logger.getLogger(this.getClass());
 		}
 	}
 	
+	/* 권한 승인/해제 수정 */
+	@Override
+	public String memAuthorYn(Map<String, Object> map) throws Exception {
+		try {
+			manageDAO.memAuthorYn(map);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
 }

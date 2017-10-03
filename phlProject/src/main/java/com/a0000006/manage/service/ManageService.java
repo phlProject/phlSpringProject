@@ -11,7 +11,9 @@ public interface ManageService {
 	/* 회원리스트 */
 	List<Map<String, Object>> memList(Map<String, Object> map) throws Exception;
 	
-	/* 회원 활성화 비활성화 수정 */
-	String memUpdateActive(Map<String, Object> map) throws Exception;
+	/* 활성화/비활성화 수정 */
+	String memActiveYn(Map<String, Object> map) throws Exception;
 	
+	/* 권한 승인/해제 수정 */
+	String memAuthorYn(Map<String, Object> map) throws Exception;
 }

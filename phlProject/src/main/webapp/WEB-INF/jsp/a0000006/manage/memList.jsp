@@ -50,37 +50,62 @@
 		}
 	}
 	
-	function memManager(remark, memSn){
-		
-		if(remark == "S"){
-			alert("레이어 예정");
-		}else{
-			if(remark == "Y"){
-				if(!confirm("* 해당하는 ID를 비활성화하시겠습니까?")){
-					return;
-				}
-			}else if(remark == "N"){
-				if(!confirm("* 해당하는 ID를 활성화하시겠습니까?")){
-					return;
-				}
+	/* 활성화/비활성화 수정 */
+	function memActiveYn(remark, memSn){
+
+		if(remark == "Y"){
+			if(!confirm("* 해당하는 ID를 비활성화하시겠습니까?")){
+				return;
 			}
-			
-			
-			var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
-			var input2 = $("<input>").attr("type", "hidden").attr("name", "memSn").attr("id", "memSn").val(memSn);
-			
-			var postUrl = "/a0000006/manage/memUpdateActive.do";
-			$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
-				if(data.result == "success" ){
-					alert("수정되었습니다.");
-					ComSubmit('mem_Form','/a0000006/manage/memList.do');
-				} else{
-					alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
-					return;
-				}
-			});
-			
+		}else if(remark == "N"){
+			if(!confirm("* 해당하는 ID를 활성화하시겠습니까?")){
+				return;
+			}
 		}
+		
+		var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
+		var input2 = $("<input>").attr("type", "hidden").attr("name", "memSn").attr("id", "memSn").val(memSn);
+		
+
+		var postUrl = "/a0000006/manage/memActiveYn.do";
+		$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
+			if(data.result == "success" ){
+				alert("수정되었습니다.");
+				ComSubmit('mem_Form','/a0000006/manage/memList.do');
+			} else{
+				alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
+				return;
+			}
+		});
+	}
+	
+	/* 권한 승인/해제 수정 */
+	function memAuthorYn(remark, memSn){
+
+		if(remark == "Y"){
+			if(!confirm("* 해당하는 ID를 '선생님' 권한을 해제 하시겠습니까?")){
+				return;
+			}
+		}else if(remark == "S"){
+			if(!confirm("* 해당하는 ID를 '선생님' 권한을 승인 하시겠습니까?")){
+				return;
+			}
+		}
+		
+		var input1 = $("<input>").attr("type", "hidden").attr("name", "remark").attr("id", "remark").val(remark);
+		var input2 = $("<input>").attr("type", "hidden").attr("name", "memSn").attr("id", "memSn").val(memSn);
+		
+
+		var postUrl = "/a0000006/manage/memAuthorYn.do";
+		$.post(postUrl, $("#mem_Form").append($(input1)).append($(input2)).serialize(), function(data){
+			if(data.result == "success" ){
+				alert("수정되었습니다.");
+				ComSubmit('mem_Form','/a0000006/manage/memList.do');
+			} else{
+				alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
+				return;
+			}
+		});
 	}
 </script>
 </head>
@@ -142,16 +167,19 @@
 		              <td>${row.MEM_GBN_CD_NM}</td>
 		              <td>${row.REMARK_NM}</td>
 		              <td width="10%">
-		              	<c:if test="${row.USE_YN == 'N'}">
-		              		<input type="button" value="활성화" onclick="memManager('N','${row.MEM_SN}')" class="button">
+		              	<c:if test="${row.MEM_GBN_CD != 'G01002' && row.USE_YN == 'N'}">
+		              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
 		              	</c:if>
-		              	<c:if test="${row.USE_YN == 'Y'}">
-		              		<input type="button" value="비활성화" onclick="memManager('Y','${row.MEM_SN}')" class="button">
+		              	<c:if test="${row.MEM_GBN_CD != 'G01002' && row.USE_YN == 'Y'}">
+		              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
 		              	</c:if>
 		              </td>
 		              <td width="10%">
-		              	<c:if test="${row.USE_YN == 'S'}">
-		              		<input type="button" value="권한승인" onclick="memManager('S','${row.MEM_SN}')" class="button">
+		              	<c:if test="${row.MEM_GBN_CD == 'G01002' && row.USE_YN == 'S'}">
+		              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
+		              	</c:if>
+		              	<c:if test="${row.MEM_GBN_CD == 'G01002' && row.USE_YN == 'Y'}">
+		              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
 		              	</c:if>
 		              </td>
 		        </tr>
