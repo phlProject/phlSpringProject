@@ -17,7 +17,7 @@
                         http://www.springframework.org/schema/task/spring-task.xsd">
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2"/>
+        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
         <property name="username" value="pkhl2"/>
         <property name="password" value="kosta88!"/>
     </bean>
