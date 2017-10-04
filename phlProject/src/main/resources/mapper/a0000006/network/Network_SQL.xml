@@ -3,5 +3,128 @@
  
 <mapper namespace="a0000006/network">
     
+    <!-- 네트워크게시판 > 조회 > Count -->
+	<select id="networkBoardListCnt" parameterType="hashmap" resultType="java.lang.Integer">
+	SELECT COUNT(AA.BOARD_SN)
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+	</select>
     
+	<!-- 네트워크게시판 > 조회 -->
+	<select id="networkBoardList" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM /* 게시판_구분_코드_명 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY AA.BOARD_SN DESC
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
+	
+	<!-- 네트워크게시판 > 상세 폼 -->
+	<select id="networkBoardView" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 */
+			  ,AA.BOARD_SN			/* 게시판_일련번호*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
+			  ,AA.SUBJECT			/* 제목 */
+			  ,AA.CONTENT			/* 내용 */
+			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+		FROM BSNS_BOARD	AA							/* 업체_게시판 */
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_SN = #{boardSn}
+	</select>	
+	
+	<!-- 네트워크게시판 > 등록 -->
+	<insert id="insertNetworkBoard" parameterType="hashmap">
+			INSERT INTO BSNS_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENT
+				,REG_ID
+				,REG_DT
+			)VALUES(
+				 #{bsnsCode}
+				,#{boardGbnCd}
+				,#{subject}
+				,#{editor}
+				,'aa'
+				,now()
+			)
+	</insert>
+	
+	<!-- 네트워크게시판 > 수정 -->
+	<update id="updateNetworkBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD AA 					/* 업체_게시판 */
+		   SET AA.SUBJECT 		= #{subject}
+		      ,AA.CONTENT 		= #{editor}
+		      ,AA.MOD_ID 		= 'aa'
+		      ,AA.MOD_DT 		= now()
+		 WHERE 1=1
+		   AND AA.BSNS_CODE = #{bsnsCode}
+		   AND AA.BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 네트워크게시판 > 삭제 -->
+	<update id="deleteNetworkBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET USE_YN = 'N'
+			  ,MOD_ID = 'aa'
+		      ,MOD_DT = now()
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	<!-- 네트워크게시판 > 일련번호 조회 -->
+	<select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+	
 </mapper>

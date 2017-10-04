@@ -303,8 +303,6 @@ public class OpenController {
 		
 		String result = openService.updateFreeBoard(commandMap.getMap());
 		
-		String resultFlYn = "success"; // 파일 등록 성공여부
-		
 		mv.addObject("result", result);  	
 		
 		return mv;

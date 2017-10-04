@@ -22,4 +22,10 @@ public class PhlCommDAO extends AbstractDAO {
     public List<CommandMap> menuListDept2(Map<String, Object> map) throws Exception{
         return (List<CommandMap>)selectList("phl/common.menuListDept2", map);
     }
+	
+	/* 메뉴조회 (3dept) */
+	@SuppressWarnings("unchecked")
+    public List<CommandMap> menuListDept3(Map<String, Object> map) throws Exception{
+        return (List<CommandMap>)selectList("phl/common.menuListDept3", map);
+    }
 }
