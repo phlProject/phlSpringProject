@@ -58,7 +58,7 @@
 		<div class="bookView">
 			<div class="bookView-btn">
 				<a href="javascript:fn_deleteMemRegist();" id="deleteMember">회원탈퇴</a>
-				<a href="" id="mainIndex">메인</a>
+				<a href="/a0000006/mainIndex.do" id="mainIndex">메인</a>
 				<a href="javascript:fn_updateMemRegist();" id="updateMemRegist">수정</a>
 			</div>
 		</div>
