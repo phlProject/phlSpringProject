@@ -84,20 +84,25 @@
     
     <!-- 마이페이지 수정 -->
     <update id="updateMemRegist" parameterType="hashmap">
-    	<![CDATA[
+    	
     	UPDATE BSNS_MEMBER
+    	<![CDATA[
     	SET   MEM_PW	= HEX(AES_ENCRYPT(#{memPw}, "pkhl"))
+    	]]>
     		, MEM_NM	= #{memNm}
     		, MEM_EMAIL	= #{memEmail}
     		, MEM_GBN_CD= #{memGbnCd}
     		, MEM_PHONE	= #{memPhone}
     		, MOD_DT	= now()
     		, MOD_ID	= #{sessionId}
+    		<if test="memGbnCd == 'G01002'">
+    		,USE_YN 	= 'S'
+    		</if>
     	WHERE 1=1
     	  AND BSNS_CODE = #{bsnsCode}
     	  AND MEM_ID    = #{memId}
     	  AND MEM_SN    = #{memSn}
-		]]>
+		
     </update>
     
     <!-- 회원 탈퇴 -->
