@@ -95,9 +95,6 @@
     		, MEM_PHONE	= #{memPhone}
     		, MOD_DT	= now()
     		, MOD_ID	= #{sessionId}
-    		<if test="memGbnCd == 'G01002'">
-    		,USE_YN 	= 'S'
-    		</if>
     	WHERE 1=1
     	  AND BSNS_CODE = #{bsnsCode}
     	  AND MEM_ID    = #{memId}
