@@ -110,7 +110,7 @@
     	  AND BSNS_CODE = #{bsnsCode}
     	  AND MEM_ID    = #{memId}
     	  AND MEM_SN    = #{memSn}
-    </update>
+    </update> 
     
     <!-- 아이디 중복체크  -->
 	<select id="idDupChk" parameterType="hashmap" resultType="int">
