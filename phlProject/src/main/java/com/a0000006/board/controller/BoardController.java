@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.board.service.BoardService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilFile;
 import com.phl.util.CmmnUtilPaging;
 
@@ -22,6 +23,10 @@ import com.phl.util.CmmnUtilPaging;
 public class BoardController {
 
 	Logger log = Logger.getLogger(this.getClass());
+	
+	/* 공통 */
+	@Resource(name="phlCommService")
+	private PhlCommService phlCommService;
 	
 	@Resource(name="BoardService")
 	private BoardService boardService;
@@ -98,6 +103,9 @@ public class BoardController {
 	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
+		
+		// 공통 > 게시판 조회수 증가
+		phlCommService.boardHitCount(commandMap.getMap());
 		
 		// 책소개 > 상세
 		List<Map<String,Object>> bookView = boardService.bookView(commandMap.getMap());
@@ -481,6 +489,9 @@ public class BoardController {
 	public ModelAndView eduDataView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardView");
+		
+		// 공통 > 게시판 조회수 증가
+		phlCommService.boardHitCount(commandMap.getMap());
 		
 		List<Map<String,Object>> dataView = boardService.dataView(commandMap.getMap());
 		

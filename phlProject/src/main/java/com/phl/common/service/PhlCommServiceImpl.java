@@ -37,4 +37,10 @@ public class PhlCommServiceImpl implements PhlCommService {
         return phlCommDAO.menuListDept3(map);
     }
 	
+	/* 게시판 조회수 증가 */
+	@Override
+	public void boardHitCount(Map<String, Object> map) throws Exception {
+		phlCommDAO.boardHitCount(map);
+	}
+	
 }

@@ -117,4 +117,14 @@
 			AND T3.USE_YN = 'Y'
 	   ORDER BY ORDR ASC, MENU_CD
     </select>
+    
+    
+    <!-- 게시판 조회수 증가  -->
+    <update id="boardHitCount" parameterType="hashmap">
+    	UPDATE BSNS_BOARD
+		   SET HIT_COUNT = HIT_COUNT + 1
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+    </update>
 </mapper>

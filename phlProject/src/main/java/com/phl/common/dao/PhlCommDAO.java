@@ -28,4 +28,9 @@ public class PhlCommDAO extends AbstractDAO {
     public List<CommandMap> menuListDept3(Map<String, Object> map) throws Exception{
         return (List<CommandMap>)selectList("phl/common.menuListDept3", map);
     }
+	
+	/* 게시판 조회수 증가 */
+	public void boardHitCount(Map<String, Object> map) throws Exception{
+        update("phl/common.boardHitCount", map);
+    }
 }
