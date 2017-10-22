@@ -190,11 +190,18 @@ function fn_insertMemRegist(){
 	if(!fn_validation()){
 		return;
 	}
+
+	if($.trim($("#memGbnCd").val()) == "G01030"){
+		if ( !confirm(" * 회원 구분을 '선생님'으로 선택 시 관리자의 권한승인을 받을 때까지 로그인이 불가능합니다. 계속 하시겠습니까?") ){
+			return false;
+		}
+	}
 	
 	var postUrl = "/a0000006/member/insertMemRegist.do";
 	$.post(postUrl, $("#memRegist_Form").serialize(), function(data){
 		if(data.result == "success" ){
-			alert("환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
+			alert("" +
+					"환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
 			ComSubmit('memRegist_Form','/a0000006/member/memLoginForm.do');
 		} else{
 			alert("회원 가입에 실패하였습니다. 관리자에게 문의해주세요.");
@@ -233,6 +240,21 @@ function fn_loginVal(){
 
 /* 마이페이지 S */
 
+
+
+// 정보 변경 여부를 확인할 전역 변수
+var is_input_changed = false;
+
+
+$(document).ready(function(){
+	
+	// 정보 변경이 있었을 경우 true 로 바꿔줌.
+	$("input, select").change(function(){
+		is_input_changed = true;
+	});
+	
+});
+
 // 마이페이지 유효성
 function fn_updateMemValid(){
 	
@@ -264,7 +286,7 @@ function fn_updateMemValid(){
 		return false;
 	}
 	
-	if(memPw != confMemPw && confMemPw != ""){
+	if(memPw.val() != confMemPw.val() && confMemPw.val() != ""){
 		alert(" * 비밀번호가 일치하지 않습니다. 다시 입력해주세요. ");
 		confMemPw.focus();
 		return false;
@@ -288,8 +310,10 @@ function fn_updateMemValid(){
 		return false;
 	}
 	
-	if($.trim(memGbnCd.val()) == "G01002"){
-		alert(" * 선생님을 선택 시 권한승인시까지 로그인이 불가능합니다. ");
+	if($.trim(memGbnCd.val()) == "G01030"){
+		if ( !confirm(" * 회원 구분을 '선생님'으로 선택 시 관리자의 권한승인을 받을 때까지 로그인이 불가능합니다. 계속 하시겠습니까?") ){
+			return false;
+		}
 	}
 	
 	if($.trim(memPhone.val()) == ""){
@@ -297,16 +321,41 @@ function fn_updateMemValid(){
 		memPhone.focus();
 		return false;
 	}
+	
+	
+	
+	// 1. 정보 수정이 있었을 경우에만 수정 쿼리를 탐.
+	if ( is_input_changed ) {
+		fn_updateMemRegist();
+	
+	// 2. 정보 수정이 없었을 경우에는 로그인 페이지로 이동.
+	}else{
+		alert("수정할 내용이 없습니다.");
+	}
+	
 }
 
 // 마이페이지 수정
 function fn_updateMemRegist(){
 
+	var memGbnCd = $.trim( $("#memGbnCd").val() );
+	
+	
 	var postUrl = "/a0000006/member/updateMemRegist.do";
 	$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 		if(data.result == "success" ){
+			
 			alert("수정되었습니다.");
-			ComSubmit('memMypage_Form','/a0000006/member/memMyPage.do');
+			
+			// 선생님으로 권한 변경을 신청한 경우 : 로그아웃
+			if ( memGbnCd == 'G01030' ){
+				ComSubmit('memMypage_Form','/a0000006/member/logoutAction.do');
+			// 단순 정보 변경일 경우 마이 페이지 홈으로 이동
+			} else {
+				ComSubmit('memMypage_Form','/a0000006/member/memMyPage.do');
+			}
+			
+			
 		} else{
 			alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
 			return;

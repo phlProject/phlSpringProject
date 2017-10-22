@@ -132,9 +132,9 @@
 					</span>
 					<span id="spanAuthor">
 						<select id="searchAuthor" name="searchAuthor">
-							<option value="G01001" <c:if test="${searchAuthor eq 'G01001'}">selected</c:if>>학생</option>
-							<option value="G01002" <c:if test="${searchAuthor eq 'G01002'}">selected</c:if>>선생님</option>
-							<option value="G01003" <c:if test="${searchAuthor eq 'G01003'}">selected</c:if>>기타</option>
+							<option value="G01010" <c:if test="${searchAuthor eq 'G01010'}">selected</c:if>>손님</option>
+							<option value="G01020" <c:if test="${searchAuthor eq 'G01020'}">selected</c:if>>학생</option>
+							<option value="G01030" <c:if test="${searchAuthor eq 'G01030'}">selected</c:if>>선생님</option>
 							<option value="G01998" <c:if test="${searchAuthor eq 'G01998'}">selected</c:if>>홈페이지관리자</option>
 						</select>
 					</span>
@@ -167,18 +167,18 @@
 		              <td>${row.MEM_GBN_CD_NM}</td>
 		              <td>${row.REMARK_NM}</td>
 		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD != 'G01002' && row.USE_YN == 'N'}">
+		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
 		              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
 		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD != 'G01002' && row.USE_YN == 'Y'}">
+		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
 		              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
 		              	</c:if>
 		              </td>
 		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD == 'G01002' && row.USE_YN == 'S'}">
+		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
 		              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
 		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD == 'G01002' && row.USE_YN == 'Y'}">
+		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
 		              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
 		              	</c:if>
 		              </td>

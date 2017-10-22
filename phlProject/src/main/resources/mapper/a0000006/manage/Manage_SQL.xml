@@ -104,7 +104,7 @@
 			,USE_YN = #{saveremark}
      	   	</if>
      	   	<if test='saveremark == "S"'>
-     	   	,MEM_GBN_CD = 'G01003'
+     	   	,MEM_GBN_CD = 'G01010'
      	   	</if>
      	WHERE 1=1
      	  AND BSNS_CODE = #{bsnsCode}

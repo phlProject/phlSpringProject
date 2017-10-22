@@ -63,7 +63,7 @@
     		, MEM_PHONE
     		, REG_DT
     		, REG_ID
-    		<if test="memGbnCd == 'G01002'">
+    		<if test="memGbnCd == 'G01030'">
     		, USE_YN
 			</if>
     	)VALUES(
@@ -76,7 +76,7 @@
     		, #{memPhone}
     		, now()
     		, #{memId}
-    		<if test="memGbnCd == 'G01002'">
+    		<if test="memGbnCd == 'G01030'">
     		, 'S'
 			</if>
     	)
@@ -95,6 +95,9 @@
     		, MEM_PHONE	= #{memPhone}
     		, MOD_DT	= now()
     		, MOD_ID	= #{sessionId}
+    		<if test="memGbnCd == 'G01030'">
+    		, USE_YN	= 'S'
+			</if>
     	WHERE 1=1
     	  AND BSNS_CODE = #{bsnsCode}
     	  AND MEM_ID    = #{memId}

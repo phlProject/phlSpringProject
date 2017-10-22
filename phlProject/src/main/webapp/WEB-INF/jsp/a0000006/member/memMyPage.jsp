@@ -14,7 +14,7 @@
 		
 		<table class="mytab">
 			<tr>
-				<th>아이디 </th>			
+				<th>아이디 </th>
 				<td>
 					${myPageInfo.MEM_ID}
 					<input type="hidden" id="bsnsCode" 	name="bsnsCode" 	value="${sessionScope.bsnsCode}">
