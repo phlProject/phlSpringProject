@@ -138,6 +138,10 @@ public class TeacherController {
 		
 		ModelAndView mv = new ModelAndView("/a0000006/teacher/joinView");
 		
+		// 공통 > 게시판 조회수 증가
+		phlCommService.boardHitCount(commandMap.getMap());
+		
+		
 		// 참여게시판 > 상세
 		List<Map<String,Object>> joinView = teacherService.joinView(commandMap.getMap());
 		

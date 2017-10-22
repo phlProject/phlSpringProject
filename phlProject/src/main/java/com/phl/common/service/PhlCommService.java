@@ -15,4 +15,7 @@ public interface PhlCommService {
 	
 	/* 메뉴조회 (3dept) */
 	List<CommandMap> menuListDept3(Map<String, Object> map) throws Exception;
+	
+	/* 게시판 조회수 증가 */
+	void boardHitCount(Map<String, Object> map) throws Exception;
 }

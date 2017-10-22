@@ -85,7 +85,8 @@
         </div><!-- #camera_wrap_1 -->	
       </div>
 	  <div id="main_content">
-	  	<div class="content-1">	
+	  	
+	  	<!-- <div class="content-1">	
 	  		<img src="/img/back.jpg"  width="250" height="150"/>
 			<div class="main-like">
 				<div class="count"><a href="#">view</a></div>
@@ -150,7 +151,9 @@
 	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. 
 	        Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. 
 	       </p>
-      	</div>
+      	</div> -->
+      	
+      	
       </div>
       <div id="main_sidebar">
       	<div class="sidebar-1">
@@ -164,12 +167,6 @@
       	<div class="sidebar-3">
       		<a href="#"><img src="/img/books.jpg" alt="books"></a>
       	</div>
-        <!-- <h3>Sidebar</h3>
-        <ul>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Ipsum</a></li>
-          <li><a href="#">Dolor</a></li>
-        </ul> -->
       </div>
 </body>
 </html>

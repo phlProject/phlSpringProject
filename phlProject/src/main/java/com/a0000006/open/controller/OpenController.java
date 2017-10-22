@@ -14,12 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.open.service.OpenService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilPaging;
 
 @Controller
 public class OpenController {
 
 	Logger log = Logger.getLogger(this.getClass());
+	
+	/* 공통 */
+	@Resource(name="phlCommService")
+	private PhlCommService phlCommService;
 	
 	@Resource(name="openService")
 	private OpenService openService;
@@ -241,6 +246,9 @@ public class OpenController {
 	public ModelAndView freeBoardView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/a0000006/open/freeBoardView");
+		
+		// 공통 > 게시판 조회수 증가
+		phlCommService.boardHitCount(commandMap.getMap());
 		
 		// 책소개 > 상세
 		List<Map<String,Object>> freeBoardView = openService.freeBoardView(commandMap.getMap());
