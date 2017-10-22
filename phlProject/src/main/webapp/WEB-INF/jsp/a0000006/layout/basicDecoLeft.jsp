@@ -15,6 +15,7 @@
 <script src="/js/a0000006/member.js"></script>
 <script src="/js/a0000006/open.js"></script>
 <script src="/js/a0000006/teacher.js"></script>
+<script src="/js/a0000006/network.js"></script>
 <script src="/js/phl/phl_common.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" />

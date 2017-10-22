@@ -56,6 +56,65 @@
 				 AND T1.USE_YN = 'Y'
 				 AND T2.USE_YN = 'Y'
 	   ORDER BY ORDR ASC, MENU_CD
-	   
+    </select>
+    
+    <!--  메뉴조회 (3dept)  -->
+    <select id="menuListDept3" parameterType="hashmap" resultType="hashmap">
+    
+    	SELECT 1 AS MENU_LEVEL
+    		  ,T1.MENU_CD	
+    		  ,T1.UPPER_MENU_CD
+    		  ,T1.MENU_NM
+    		  ,T1.MENU_TY_CD
+    		  ,T1.ORDR
+    		  ,T1.MENU_LINK
+    	FROM PKHL_SYS_MENU T1
+    	WHERE 1=1
+    	  AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
+    	  AND T1.USE_YN = 'Y'
+    	  AND T1.BSNS_CODE = #{bsnsCode}
+    	  
+	   	UNION ALL
+	   	
+	    SELECT 2 AS MENU_LEVEL
+			  ,T2.MENU_CD
+	   	      ,T2.UPPER_MENU_CD
+	   	      ,T2.MENU_NM
+	   	      ,T2.MENU_TY_CD
+	   	      ,T1.ORDR
+	   	      ,T2.MENU_LINK
+	   	  FROM PKHL_SYS_MENU T1
+	   	      ,PKHL_SYS_MENU T2
+	   	  WHERE 1=1
+	   	    AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
+	   	    AND T1.MENU_CD = T2.UPPER_MENU_CD 
+	   	    AND T1.BSNS_CODE = T2.BSNS_CODE
+    	 	AND T1.BSNS_CODE = #{bsnsCode}
+		 	AND T1.USE_YN = 'Y'
+		  	AND T2.USE_YN = 'Y'
+				 
+		UNION ALL
+	   	
+	    SELECT 3 AS MENU_LEVEL
+			  ,T3.MENU_CD
+	   	      ,T3.UPPER_MENU_CD
+	   	      ,T3.MENU_NM
+	   	      ,T3.MENU_TY_CD
+	   	      ,T1.ORDR
+	   	      ,T3.MENU_LINK
+	   	  FROM PKHL_SYS_MENU T1
+	   	      ,PKHL_SYS_MENU T2
+	   	      ,PKHL_SYS_MENU T3
+	   	  WHERE 1=1
+	   	    AND NOT EXISTS (SELECT 1 FROM PKHL_SYS_MENU WHERE MENU_CD = T1.UPPER_MENU_CD)
+	   	    AND T1.MENU_CD 	 = T2.UPPER_MENU_CD 
+	   	    AND T1.BSNS_CODE = T2.BSNS_CODE
+	   	    AND T2.MENU_CD 	 = T3.UPPER_MENU_CD 
+	   	    AND T2.BSNS_CODE = T3.BSNS_CODE
+	    	AND T1.BSNS_CODE = #{bsnsCode}
+			AND T1.USE_YN = 'Y'
+			AND T2.USE_YN = 'Y'
+			AND T3.USE_YN = 'Y'
+	   ORDER BY ORDR ASC, MENU_CD
     </select>
 </mapper>

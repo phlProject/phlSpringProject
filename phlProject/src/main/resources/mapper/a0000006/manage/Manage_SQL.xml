@@ -84,14 +84,31 @@
         LIMIT #{limitFirst}, #{limitSecond} 
      </select>
     
-     <update id="memUpdateActive" parameterType="hashmap">
-     	UPDATE BSNS_MEMBER
+    <!-- 활성화/비활성화 수정 -->
+	<update id="memActiveYn" parameterType="hashmap">
+		UPDATE BSNS_MEMBER
      	SET USE_YN = #{saveremark}
      	   ,MOD_ID = #{sessionId}
      	   ,MOD_DT = now()
      	WHERE 1=1
      	  AND BSNS_CODE = #{bsnsCode}
-     	  AND MEM_SN = #{mem_sn}
-     </update>
+     	  AND MEM_SN = #{memSn}
+	</update>
+	
+	<!-- 권한 승인/해제 수정-->
+	<update id="memAuthorYn" parameterType="hashmap">
+		UPDATE BSNS_MEMBER
+     	SET	 MOD_ID = #{sessionId}
+     	   	,MOD_DT = now()
+     	   	<if test='saveremark == "Y"'>
+			,USE_YN = #{saveremark}
+     	   	</if>
+     	   	<if test='saveremark == "S"'>
+     	   	,MEM_GBN_CD = 'G01003'
+     	   	</if>
+     	WHERE 1=1
+     	  AND BSNS_CODE = #{bsnsCode}
+     	  AND MEM_SN = #{memSn}
+	</update>
 </mapper>
 

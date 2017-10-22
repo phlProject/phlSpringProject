@@ -226,6 +226,11 @@ public class OpenController {
 		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
 		mv.addObject("freeBoardList", 	freeBoardList);	// 자유게시판 리스트
 		
+		// 게시글 번호 보여 줄 시 추가
+		mv.addObject("totalListCount",  	totalListCount);	// 전체 레코드 수
+		mv.addObject("countPerPage",    	countPerPage);		// 한 페이지당 보여지는 레코드 수
+		mv.addObject("requestPageNumber", 	requestPageNumber); // 현재 페이지 번호
+		
 		mv.addObject("item", commandMap.getMap());
 		
 		return mv; 
@@ -297,8 +302,6 @@ public class OpenController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		String result = openService.updateFreeBoard(commandMap.getMap());
-		
-		String resultFlYn = "success"; // 파일 등록 성공여부
 		
 		mv.addObject("result", result);  	
 		

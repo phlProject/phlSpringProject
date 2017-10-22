@@ -22,8 +22,13 @@ public class ManageDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("a0000006/manage.memList", map);
     }
 	
-	/* 회원 활성화 비활성화 수정 */
-	public void memUpdateActive(Map<String, Object> map) throws Exception{
-	    update("a0000006/manage.memUpdateActive", map);
+	/* 활성화/비활성화 수정 */
+	public void memActiveYn(Map<String, Object> map) throws Exception{
+	    update("a0000006/manage.memActiveYn", map);
+	}
+	
+	/* 권한 승인/해제 수정 */
+	public void memAuthorYn(Map<String, Object> map) throws Exception{
+	    update("a0000006/manage.memAuthorYn", map);
 	}
 }

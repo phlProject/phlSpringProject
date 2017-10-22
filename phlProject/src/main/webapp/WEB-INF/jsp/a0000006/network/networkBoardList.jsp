@@ -9,7 +9,7 @@
 <body>
 	<div id="content">
 		<h3 class="cont-title">${item.boardGbnCdNm}</h3>
-		<form id="freeBoardList_Form">
+		<form id="networkBoardList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
 			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.sessionId}" >	<!-- 세션_ID -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
@@ -23,7 +23,7 @@
 					<option value="searchSubCon"  	 <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+내용</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
-				<input type="button" value="검색" onclick="fn_freeBoardList();" class="button">
+				<input type="button" value="검색" onclick="fn_networkBoardList();" class="button">
 			</div>
 			<br/>
 			
@@ -36,16 +36,16 @@
 						<th>날짜</th>
 						<th>조회수</th>
 					</tr>
-					<c:if test="${empty freeBoardList}">
+					<c:if test="${empty networkBoardList}">
 						<tr>
 							<td colspan="6">조회 된 내용이 없습니다.</td>
 						</tr>
 					</c:if>
-					<c:if test="${not empty freeBoardList}">
-						<c:forEach items="${freeBoardList}" var="row" varStatus="status">
+					<c:if test="${not empty networkBoardList}">
+						<c:forEach items="${networkBoardList}" var="row" varStatus="status">
 							<tr>
 								<td>${totalListCount - ( ( requestPageNumber -1 ) * countPerPage + status.index)}</td>
-								<td><a href="javascript:fn_freeBoardView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
+								<td><a href="javascript:fn_networkBoardView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
 								<td>${row.MEM_NM}</td>
 								<td>${row.REG_DT}</td>
 								<td>${row.HIT_COUNT}</td>
@@ -55,20 +55,20 @@
 				</table>
 				
 				<div class="bookForm">
-					<a href="javascript:fn_freeBoardFormI();" id="joinFormI">신규등록</a>
+					<a href="javascript:fn_networkBoardFormI();" id="joinFormI">신규등록</a>
 				</div>
 				
 				<div class="mem_paging">
 					<c:if test="${beginPageNum > 10}">
-						<a href="<c:out value="/a0000006/open/freeBoardList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+						<a href="<c:out value="/a0000006/network/networkBoardList.do?boardGbnCd=${item.boardGbnCd}&requestPageNumber=${beginPageNum-1}"/>">◀</a>
 					</c:if>
 					
 					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-						<a href="<c:out value="/a0000006/open/freeBoardList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+						<a href="<c:out value="/a0000006/network/networkBoardList.do?boardGbnCd=${item.boardGbnCd}&requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
 					</c:forEach>
 					
 					<c:if test="${endPageNum < totalPageCount}">
-						<a href="<c:out value="/a0000006/open/freeBoardList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+						<a href="<c:out value="/a0000006/network/networkBoardList.do?boardGbnCd=${item.boardGbnCd}&requestPageNumber=${endPageNum+1}"/>">▶</a>
 					</c:if>
 				</div>
 			</div>

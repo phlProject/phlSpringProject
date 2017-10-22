@@ -120,6 +120,11 @@ public class TeacherController {
 		mv.addObject("joinList", 		joinList);		// 책소개 리스트
 		mv.addObject("teacherGbnList",  teacherGbnList);// 공통코드(교사학교카테고리)
 		
+		// 게시글 번호 보여 줄 시 추가
+		mv.addObject("totalListCount",  	totalListCount);	// 전체 레코드 수
+		mv.addObject("countPerPage",    	countPerPage);		// 한 페이지당 보여지는 레코드 수
+		mv.addObject("requestPageNumber", 	requestPageNumber); // 현재 페이지 번호
+		
 		mv.addObject("item", commandMap.getMap());
 		
 		System.out.println(commandMap.getMap());

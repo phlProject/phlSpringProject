@@ -41,25 +41,24 @@
 			</c:if>
 		</c:forEach>
 		
-		<!-- 해당하는 메뉴로 active 추후 예정 -->
-        <ul>
-			<c:forEach var="row_dept1" items="${menuList}" varStatus="status">
-				<c:if test="${row_dept1.MENU_LEVEL eq '1'}">
+		<ul>
+			<c:forEach var="row_dept2" items="${menuList}" varStatus="status">
+				<c:if test="${row_dept2.MENU_LEVEL eq '2' && fn:contains(row_dept2.MENU_LINK, urlPath)}">
 					<li>
-						<h3>${row_dept1.MENU_NM}</h3>
-						<ul>
-							<c:forEach var="row_dept2" items="${menuList}" varStatus="status">
-								<c:if test="${(row_dept2.MENU_LEVEL eq '2') && (row_dept1.MENU_CD eq row_dept2.UPPER_MENU_CD) }">
-									<li>
-										<a href="javascript:TopMenuMove('${row_dept2.MENU_LINK}')">${row_dept2.MENU_NM}</a>
-									</li>
-								</c:if>
-							</c:forEach>
-						</ul>
-					</li>
+						<a href="javascript:TopMenuMove('${row_dept2.MENU_LINK}')"><h3>${row_dept2.MENU_NM}</h3></a>
+					</li> 
+					<c:forEach var="row_dept3" items="${menuList}" varStatus="status">
+						<c:if test="${row_dept3.MENU_LEVEL eq '3' && 
+									  fn:contains(row_dept3.MENU_LINK, urlPath) && 
+									  row_dept2.MENU_CD eq row_dept3.UPPER_MENU_CD}">
+							<li>
+								<a href="javascript:TopMenuMove('${row_dept3.MENU_LINK}')"> - ${row_dept3.MENU_NM}</a>
+							</li> 
+						</c:if>
+					</c:forEach>
 				</c:if>
 			</c:forEach>
-		</ul>
+		</ul> 
 	</div>
 </body>
 </html>

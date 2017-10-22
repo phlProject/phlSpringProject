@@ -74,14 +74,14 @@ public class ManageController {
         return mv;
     }
 	
-	/* 회원 활성화 비활성화 수정 */
-	@RequestMapping(value="/a0000006/manage/memUpdateActive.do")
-	public ModelAndView memUpdateActive(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	
+	/* 활성화/비활성화 수정 */
+	@RequestMapping(value="/a0000006/manage/memActiveYn.do")
+	public ModelAndView memActiveYn(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		String saveremark = "";
-		
 		if(commandMap.get("remark").equals("Y")){
 			saveremark = "N";
 		}else{
@@ -89,8 +89,29 @@ public class ManageController {
 		}
 		
 		commandMap.put("saveremark", saveremark);
-		System.out.println(commandMap.getMap());
-		String result = manageService.memUpdateActive(commandMap.getMap());
+		String result = manageService.memActiveYn(commandMap.getMap());
+		
+		mv.addObject("result", result); 
+		
+		return mv;
+	}
+	
+	
+	/* 권한 승인/해제 수정 */
+	@RequestMapping(value="/a0000006/manage/memAuthorYn.do")
+	public ModelAndView memAuthorYn(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		String saveremark = "";
+		if(commandMap.get("remark").equals("Y")){
+			saveremark = "S";
+		}else{
+			saveremark = "Y";
+		}
+		
+		commandMap.put("saveremark", saveremark);
+		String result = manageService.memAuthorYn(commandMap.getMap());
 		
 		mv.addObject("result", result); 
 		

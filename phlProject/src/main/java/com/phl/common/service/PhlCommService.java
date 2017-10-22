@@ -12,4 +12,7 @@ public interface PhlCommService {
 	
 	/* 메뉴조회 (2dept) */
 	List<CommandMap> menuListDept2(Map<String, Object> map) throws Exception;
+	
+	/* 메뉴조회 (3dept) */
+	List<CommandMap> menuListDept3(Map<String, Object> map) throws Exception;
 }

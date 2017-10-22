@@ -13,8 +13,8 @@
 			<p>회원가입</p>	
 			<form id="memRegist_Form" name="memRegist_Form">
 				<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}"> <!-- 업체_코드 -->
-				<input type="hidden" id="usableIdYn" value="N"> <!-- ID 사용 여부 -->
-				
+				<input type="hidden" id="useableIdYn" 	value="N"> <!-- ID 사용 여부 -->
+				<input type="hidden" id="suitableIdYn" 	value="N"><!-- ID 적합 여부 -->
 					<table>
 						<tr>
 							<th>아이디 </th>

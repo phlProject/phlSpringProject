@@ -76,9 +76,9 @@
 						</tr>
 					</c:if>
 					<c:if test="${not empty joinList}">
-						<c:forEach items="${joinList}" var="row">
+						<c:forEach items="${joinList}" var="row" varStatus="status">
 							<tr>
-								<td></td>
+								<td>${totalListCount - ( ( requestPageNumber -1 ) * countPerPage + status.index)}</td>
 								<td>${row.BOARD_GBN_CD_NM}</td>
 								<td><a href="javascript:fn_joinView('${row.BOARD_SN}')">${row.SUBJECT}</a></td>
 								<td>${row.MEM_NM}</td>
