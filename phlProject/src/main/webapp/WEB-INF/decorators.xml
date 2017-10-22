@@ -10,7 +10,6 @@
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
 		<pattern>*/main*</pattern>		<!-- main -->
-		<pattern>*/member*</pattern>	<!-- 회원 -->
 	</decorator>
 	
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
@@ -21,9 +20,11 @@
 		<pattern>*/teacher*</pattern> 			<!-- 교사학교 -->
 		<pattern>*/network*</pattern>			<!-- 네트워크 활동 -->
 		<pattern>*/board*</pattern> 			<!-- 게시판 -->
-		<pattern>*/open*</pattern>				<!-- 열린마당 -->
-		
-		
+		<pattern>*/open*</pattern>				<!-- 열린마당 -->		
+	</decorator>
+	
+	<decorator name="indexLayoutHLF" page="/WEB-INF/jsp/a0000006/layout/basicDecoFull.jsp">
+		<pattern>*/member*</pattern>	<!-- 회원 -->	
 	</decorator>
 	
 	<!-- Header -->
