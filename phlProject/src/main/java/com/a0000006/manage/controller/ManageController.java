@@ -28,13 +28,23 @@ public class ManageController {
 	@RequestMapping(value="/a0000006/manage/memList.do")
 	public ModelAndView selectMemList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
        
+		// 한글깨짐 방지
+		request.setCharacterEncoding("utf-8"); 
+		
 		ModelAndView mv = new ModelAndView("/a0000006/manage/memList");
         
-        // 전체 리스트 Count
+		/* 업체코드 - A0000006 (꿈두레) */
+		if(commandMap.get("bsnsCode") == null){
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
+		}
+		
+        // 관리자 페이지 > 전체 회원 수 
         int totalListCount = manageService.memListCnt(commandMap.getMap());
         
         // 요청 페이지 번호
  		int requestPageNumber = 1;	
+ 		
+ 		// 요청 페이지 번호가 있을 시 해당 페이지 이동
  		if(request.getParameter("requestPageNumber") != null){
  			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
  		}

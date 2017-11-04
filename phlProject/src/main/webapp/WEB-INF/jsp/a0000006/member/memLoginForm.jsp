@@ -19,7 +19,10 @@
 		</form>
 		<br/><br/>
 		
-		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> <br/><br/><br/>
+		<a href="javascript:fn_loginVal()" id="loginAction" >로그인</a> 
+		
+		<br/><br/><br/>
+		<a href="javascript:fn_idPwdSearch()"> 아이디 / 비밀번호 찾기 </a>
 		
 		<c:choose>
 			<c:when test="${resultValue=='ID_ERROR'}">* 존재하지 않는 아이디입니다. </c:when>
