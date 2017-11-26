@@ -10,53 +10,50 @@
 	<!-- 일정 - 리스트 -->
 	<select id="scheduleList" parameterType="hashmap" resultType="hashmap">
    
-      SELECT   BSNS_CODE
-            , SCHEDULE_SN
-            , SCHEDULE_DT
-            , ST_HOUR
-            , END_HOUR
-            , SUBJECT
-            , CONTENT
-            , REG_DT
-            , REG_ID
-            , MOD_DT
-            , MOD_ID
+		SELECT   BSNS_CODE
+            	, SCHEDULE_SN
+            	, SCHEDULE_DT
+            	, ST_HOUR
+	            , END_HOUR
+	            , SUBJECT
+	            , CONTENT
+	            , REG_DT
+	            , REG_ID
+	            , MOD_DT
+	            , MOD_ID
             
-      FROM   BSNS_SCHEDULE
-      WHERE   1=1
-            AND USE_YN = 'Y'
-            AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
-            AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
-      
+      	FROM   BSNS_SCHEDULE
+      	WHERE   1=1
+          AND USE_YN = 'Y'
+          AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
+          AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
 	</select>
 
    	<!-- 일정 - 등록 -->
    	<insert id="insertSchedule" parameterType="hashmap">
-      INSERT INTO 
-         BSNS_SCHEDULE (
-               BSNS_CODE
-               , SCHEDULE_DT
-               , ST_HOUR
-               , END_HOUR
-               , SUBJECT
-               , CONTENT
-               , REG_ID
-               , REG_DT
-               , MOD_ID
-               , MOD_DT
-         ) VALUES (
-               
-               #{bsnsCode}
-               , #{scheduleDt}
-               , #{stHour}
-               , #{endHour}
-               , #{subject}
-               , #{content}
-               , #{sessionId}
-               , now()
-               , #{sessionId}
-               , now()
-         )
+      	INSERT INTO BSNS_SCHEDULE (
+	               	 BSNS_CODE
+	               , SCHEDULE_DT
+	               , ST_HOUR
+	               , END_HOUR
+	               , SUBJECT
+	               , CONTENT
+	               , REG_ID
+	               , REG_DT
+	               , MOD_ID
+	               , MOD_DT
+      	) VALUES (
+	               	 #{bsnsCode}
+	               , #{scheduleDt}
+	               , #{stHour}
+	               , #{endHour}
+	               , #{subject}
+	               , #{content}
+	               , #{sessionId}
+	               , now()
+	               , #{sessionId}
+	               , now()
+       	)
    	</insert>
    
    	<!-- 일정 - 상세 -->
@@ -82,12 +79,12 @@
 	<update id="updateSchedule" parameterType="hashmap">
 		UPDATE	BSNS_SCHEDULE
 		SET		SCHEDULE_DT = #{scheduleDt}
-				, ST_HOUR = #{stHour}
-				, END_HOUR = #{endHour}
-				, SUBJECT = #{subject}
-				, CONTENT = #{content}
-				, MOD_DT = now()
-				, MOD_ID = #{sessionId}
+				, ST_HOUR 	= #{stHour}
+				, END_HOUR 	= #{endHour}
+				, SUBJECT 	= #{subject}
+				, CONTENT 	= #{content}
+				, MOD_DT	= now()
+				, MOD_ID 	= #{sessionId}
 		WHERE	SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
@@ -98,15 +95,37 @@
 		WHERE	SCHEDULE_SN = #{scheduleSn}
 	</delete>
 	
-	<!-- 일정 - 대관 장소 목록 ( 삭제예정 ) -->
-	<select id="placeList" parameterType="hashmap" resultType="hashmap">
-		SELECT	CMMN_CODE
-				, DETAIL_CODE_NM
-		FROM	PKHL_SYS_CMMN_CODE
-		WHERE	1=1
-				AND USE_YN = 'Y'
-				AND CL_CODE = 'P01'
-		ORDER BY CMMN_CODE
+	
+	
+	<!--  일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 ) -->
+	<select id="selectPeriodSchedule" parameterType="hashmap" resultType="hashmap">
+		SELECT  BSNS_CODE
+		    	, SCHEDULE_SN
+		    	, SCHEDULE_DT
+		    	, ST_HOUR
+		    	, END_HOUR
+		    	, SUBJECT
+		FROM BSNS_SCHEDULE
+		WHERE 1=1
+		  AND USE_YN = 'Y'
+		  
+		  <if test='searchPeriod =="today"'>
+		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d')
+		  </if>
+		  
+		  <if test='searchPeriod =="week"'>
+		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') 
+		      BETWEEN DATE_FORMAT(now(),'%Y%m%d') 
+		   	  AND
+		      DATE_FORMAT(ADDDATE(NOW(), INTERVAL 7 DAY),'%Y%m%d')
+		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m') = DATE_FORMAT(now(),'%Y%m')
+		  </if>
+		  
+		   
+		  <if test='searchPeriod =="month"'>
+		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') 
+		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m') = DATE_FORMAT(now(),'%Y%m')
+          </if>
 	</select>
 	
 	<!-- /****************************** 일   정  종료  ******************************/ -->
@@ -118,7 +137,7 @@
 	
 	<!-- 자유게시판 > 조회 > Count -->
 	<select id="freeBoardListCnt" parameterType="hashmap" resultType="java.lang.Integer">
-	SELECT COUNT(AA.BOARD_SN)
+		SELECT COUNT(AA.BOARD_SN)
 		FROM BSNS_BOARD	AA							/* 업체_게시판 */
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
