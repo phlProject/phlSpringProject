@@ -86,11 +86,12 @@ public class OpenServiceImple implements OpenService {
 		}
 	}
 
-	// 일정 - 대관 장소 목록 ( 삭제 예정 )
+	// 일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 )
 	@Override
-	public List<CommandMap> placeList(Map<String, Object> map) {
-		return openDAO.placeList(map);
+	public List<CommandMap> selectPeriodSchedule(Map<String, Object> map) throws Exception {
+		return openDAO.selectPeriodSchedule(map);
 	}
+		
 	
 	
 	/****************************** 일   정  종료  ******************************/

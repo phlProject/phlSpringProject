@@ -42,10 +42,11 @@ public class OpenDAO extends AbstractDAO{
 		
 	}
 	
-	// 일정 - 대관 장소 목록 ( 삭제 예정 )
+
+	// 일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 )
 	@SuppressWarnings("unchecked")
-	public List<CommandMap> placeList(Map<String, Object> map) {
-		return (List<CommandMap>)selectList("a0000006/open.placeList", map);
+	public List<CommandMap> selectPeriodSchedule(Map<String, Object> map) throws Exception{
+		return (List<CommandMap>)selectList("a0000006/open.selectPeriodSchedule", map); 	
 	}
 	
 	

@@ -26,8 +26,9 @@ public interface OpenService {
 	// 일정 - 삭제
 	String deleteSchedule(Map<String, Object> map) throws Exception;
 
-	// 일정 - 대관 장소 목록 ( 삭제 예정 )
-	List<CommandMap> placeList(Map<String, Object> map);
+	
+	// 일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 )
+	List<CommandMap> selectPeriodSchedule(Map<String, Object> map) throws Exception;
 	
 	
 	/****************************** 일   정  종료  ******************************/
