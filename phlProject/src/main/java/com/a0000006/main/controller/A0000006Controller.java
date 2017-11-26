@@ -33,11 +33,13 @@ public class A0000006Controller {
         session.setAttribute("bsnsCode","A0000006");
         
         commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
-        
-        // 메뉴조회
-        List<CommandMap> menuList = phlCommService.menuListDept3(commandMap.getMap());
-        
-        session.setAttribute("menuList", menuList);
+
+        if(session.getAttribute("menuList") == null){
+        	// 메뉴조회
+	        List<CommandMap> menuList = phlCommService.menuListDept3(commandMap.getMap());
+	        
+	        session.setAttribute("menuList", menuList);  
+        }
         
         return mv;
     }     
