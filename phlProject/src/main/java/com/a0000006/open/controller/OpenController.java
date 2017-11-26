@@ -40,9 +40,9 @@ public class OpenController {
 		
 		//현재 년도, 월, 일
 		java.util.Calendar cal = java.util.Calendar.getInstance();
-		int toYear = cal.get( cal.YEAR );
+		int toYear 	= cal.get( cal.YEAR );
 		int toMonth = cal.get( cal.MONTH ) + 1;
-		int toDay = cal.get( cal.DATE );
+		int toDay 	= cal.get( cal.DATE );
 		mv.addObject("toYear", toYear);
 		mv.addObject("toMonth", toMonth);
 		mv.addObject("toDay", toDay);
@@ -52,11 +52,6 @@ public class OpenController {
 		map.put("toMonth", toMonth);
 		map.put("toDay", toDay);
 
-		// 대관 장소 목록 ( 삭제 예정 )
-		List<CommandMap> placeList = openService.placeList(map);
-		mv.addObject("placeList", placeList);
-		
-		
 		// 스케줄 목록
 		List<CommandMap> scheduleList = openService.scheduleList(map);
 		mv.addObject("scheduleList", scheduleList);
@@ -75,9 +70,9 @@ public class OpenController {
 
 		//현재 년도, 월, 일
 		java.util.Calendar cal = java.util.Calendar.getInstance();
-		int toYear = cal.get( cal.YEAR );
+		int toYear 	= cal.get( cal.YEAR );
 		int toMonth = cal.get( cal.MONTH ) + 1;
-		int toDay = cal.get( cal.DATE );
+		int toDay 	= cal.get( cal.DATE );
 		mv.addObject("toYear", toYear);
 		mv.addObject("toMonth", toMonth);
 		mv.addObject("toDay", toDay);
