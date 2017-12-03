@@ -57,14 +57,14 @@ public class MemberController {
         	if(queryUseYn.equals("Y")){
 	        	/* 해당하는 아이디, 비밀번호 일치 시 */
 		        if(queryPw != null && queryPw.equals(commandMap.get("memPw"))){
-		        	resultValue = "SUCCESS";
+
 		        	/* 로그인 정보 */
 		        	List<Map<String,Object>> loginInfo = memberService.loginInfo(commandMap.getMap());
 		
 		        	session.setAttribute("loginInfo", loginInfo.get(0));
 		        	session.setAttribute("sessionId", loginInfo.get(0).get("MEM_ID"));
 		        	
-		        	mv.setViewName("/a0000006/mainIndex");
+		        	mv.setViewName("redirect:/a0000006/mainIndex.do");
 		        }else{
 		        	/* 비밀번호 오류 */
 		        	resultValue = "PW_ERROR";
@@ -119,7 +119,7 @@ public class MemberController {
 	/* 로그아웃 */
 	@RequestMapping(value="/a0000006/member/logoutAction.do")
 	public ModelAndView logoutAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-        ModelAndView mv = new ModelAndView("/a0000006/mainIndex");
+        ModelAndView mv = new ModelAndView("redirect:/a0000006/mainIndex.do");
         
         /* 로그인정보만 세션제거 */
         session.removeAttribute("loginInfo");
@@ -204,5 +204,32 @@ public class MemberController {
 		
 		mv.addObject("result", result);  		
 		return mv;
+	}
+	
+	/* 아이디/비밀번호 찾기 폼 */
+	@RequestMapping(value="/a0000006/member/memSearchForm.do")
+	public ModelAndView memSearchForm(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("/a0000006/member/memSearchForm");
+		
+		return mv;
+		
+	}
+	
+	/* 아이디/비밀번호 찾기 */
+	@RequestMapping(value="/a0000006/member/memInfoSearch.do")
+	public ModelAndView memInfoSearch(CommandMap commandMap, HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		String memInfo = memberService.memInfoSearch(commandMap.getMap());
+		
+		if(!memInfo.isEmpty()){
+			mv.addObject("result", "success");
+			mv.addObject("memInfo", memInfo);
+		}
+		  
+		
+        return mv;
 	}
 }

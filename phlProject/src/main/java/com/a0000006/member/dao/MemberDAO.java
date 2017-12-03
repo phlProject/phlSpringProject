@@ -48,5 +48,9 @@ public class MemberDAO extends AbstractDAO {
     public int idDupChk(Map<String, Object> map) throws Exception{
         return (Integer) selectOne("a0000006/member.idDupChk", map);
     }
-    
+ 
+    /* 아이디/비밀번호 찾기 */
+	public String memInfoSearch(Map<String, Object> map) throws Exception{
+		return (String) selectOne("a0000006/member.memInfoSearch", map);
+	}
 }

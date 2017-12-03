@@ -124,5 +124,26 @@
 		  AND BSNS_CODE = #{bsnsCode}
 	</select>
     
+    <select id="memInfoSearch" parameterType="hashmap" resultType="java.lang.String">
+    	SELECT 
+    			<if test='memSearchGb == "id"'>
+    			MEM_ID
+    			</if>
+				<if test='memSearchGb == "pw"'>
+    			CAST(AES_DECRYPT(UNHEX(MEM_PW) , "pkhl") AS CHAR) AS MEM_PW
+    			</if>    			
+    	  FROM BSNS_MEMBER
+    	 WHERE 1=1
+    	   <if test='memSearchGb == "id"'>
+    	   AND MEM_NM 		= #{memNm}
+    	   AND MEM_PHONE	= #{memPhone}
+    	   </if>
+    	   
+    	   <if test='memSearchGb == "pw"'>
+    	   AND MEM_NM 		= #{memNm}
+    	   AND MEM_PHONE	= #{memPhone}
+    	   AND MEM_ID		= #{memId}
+    	   </if>
+    </select>
 </mapper>
 

@@ -79,4 +79,9 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.idDupChk(map);
     }
 	
+	/* 아이디/비밀번호 찾기 */
+	@Override
+	public String memInfoSearch(Map<String, Object> map) throws Exception {
+		return memberDAO.memInfoSearch(map);
+	}
 }

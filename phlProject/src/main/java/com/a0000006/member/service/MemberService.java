@@ -28,4 +28,6 @@ public interface MemberService {
 	/* 아이디 중복체크 */
 	public int idDupChk(Map<String, Object> map) throws Exception;
 	
+	/* 아이디/비밀번호 찾기 */
+	String memInfoSearch(Map<String, Object> map) throws Exception;
 }
