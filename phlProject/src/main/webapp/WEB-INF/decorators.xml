@@ -7,34 +7,35 @@
 		<pattern>/*.json</pattern>
 	</excludes>
     
+    
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>*/main*</pattern>		<!-- main -->
-		<pattern>*/member/loginAction*</pattern> 
-		<pattern>*/member/logoutAction*</pattern> 
+		<pattern>*/main*</pattern>			<!-- main -->
 	</decorator>
+	
 	
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
 	<decorator name="indexLayoutHLBF" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
-		<pattern>*/member/memMyPage*</pattern> 	<!--회원정보수정-->
-		<pattern>*/manage*</pattern> 			<!-- 관리자 -->
-		<pattern>*/intro*</pattern> 			<!-- 교육나눔꿈두레 -->
-		<pattern>*/teacher*</pattern> 			<!-- 교사학교 -->
-		<pattern>*/network*</pattern>			<!-- 네트워크 활동 -->
-		<pattern>*/board*</pattern> 			<!-- 게시판 -->
-		<pattern>*/open*</pattern>				<!-- 열린마당 -->		
+		<pattern>*/intro/*</pattern> 		<!-- 교육나눔꿈두레	-->
+		<pattern>*/teacher/*</pattern> 		<!-- 교사학교 		-->
+		<pattern>*/network/*</pattern>		<!-- 네트워크 활동 	-->
+		<pattern>*/board/*</pattern> 		<!-- 자료실 		-->
+		<pattern>*/open/*</pattern>			<!-- 열린마당 		-->
+		
+		<pattern>*/member/*</pattern> 		<!-- 회원정보수정	-->
+		<pattern>*/manage/*</pattern> 		<!-- 관리자		-->
 	</decorator>
 	
-	<decorator name="indexLayoutHLF" page="/WEB-INF/jsp/a0000006/layout/basicDecoFull.jsp">
-		<pattern>*/member/mem*</pattern>	<!-- 회원 -->	
-	</decorator>
 	
-	<!-- Header -->
+	<!-- TopDefault -->
+	<decorator name="topDefault" page="/WEB-INF/jsp/a0000006/layout/topDefault.jsp"/>
+	<!-- TopLeft 	-->
+	<decorator name="topLeft" page="/WEB-INF/jsp/a0000006/layout/topLeft.jsp"/>
+	<!-- Header 	-->
 	<decorator name="header" page="/WEB-INF/jsp/a0000006/layout/header.jsp"/>
-	<!-- Left -->
+	<!-- Left 		-->
 	<decorator name="left" page="/WEB-INF/jsp/a0000006/layout/left.jsp"/>
-	<!-- footer -->
+	<!-- footer 	-->
 	<decorator name="footer" page="/WEB-INF/jsp/a0000006/layout/footer.jsp"/>
-	
 	
 </decorators>
