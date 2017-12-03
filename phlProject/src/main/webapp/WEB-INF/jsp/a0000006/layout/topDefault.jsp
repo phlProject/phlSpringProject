@@ -9,7 +9,14 @@
 <script src="/js/common.js"></script>
 <script src="/js/a0000006/member.js"></script>
 <script src="/js/phl/phl_common.js"></script>
+<script src="/js/controller.js"></script>
+
+
+
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/css/unit.css" />
+<link rel='stylesheet' id='camera-css'  href='/css/camera.css' type='text/css' media='all'> 
 
 </head>

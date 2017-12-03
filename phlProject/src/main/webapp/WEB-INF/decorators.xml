@@ -10,7 +10,7 @@
     
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>*/main*</pattern>			<!-- main -->
+		<pattern>*/mainIndex*</pattern>			<!-- main -->
 	</decorator>
 	
 	
