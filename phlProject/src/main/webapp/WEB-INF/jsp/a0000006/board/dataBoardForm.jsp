@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>교육나눔 꿈두레</title>
 
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/resources/editor/js/HuskyEZCreator.js"></script>
-	<script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/resources/editor/js/HuskyEZCreator.js"></script>
+
+<script>
     $(function(){
 		
     	/* Smart Editor 사용 */
@@ -64,56 +60,52 @@
         	});
         });
     }); 
-	</script>
-</head>
+</script>
 
-	<body>
-		<form id="dataList_Form">
-			<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">		<!-- 검색구분 -->
-			<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
-			<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
-			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
-			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
-			<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
-			<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
-		</form>
-		
-		<div id="content">
-			<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->	
-			<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
-			
-			<h3 class="book-title">${item.boardGbnCdNm} 등록/수정</h3>
-			<br/><br/>
-			<!-- Editor_Form -->
-			<form id="editor_Form">
-				<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
-				<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
-				<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
-				<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
-				<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
-				<input type="hidden" id="flNm" 			name="flNm"				value="${dataView.FL_NM}">			<!-- 파일 명 -->
-			    <input type="hidden" id="flPath" 		name="flPath"			value="${dataView.FL_PATH}">		<!-- 파일 경로 -->
-			    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${dataView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
-			    <input type="hidden" id="uploadYn" 		name="uploadYn" 		value="N">							<!-- 업로드 여부 -->
-			    <br/><br/><br/>
-				<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${dataView.SUBJECT}">
-				<br/><br/>
-				<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${dataView.CONTENT}</textarea>
-			</form>
-			
-			<!-- Upload_Form -->
-			<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
-				<div class="book-Form">
-					<input type="file" id="uploadFile" name="uploadFile">
-					<input type="hidden" id="sPath" name="sPath" value="/board/publi/">
-				</div>
-			</form>
-			<div class="bookView">	
-				<div class="bookView-btn">
-					<a href="#" id="fn_saveData" >저장</a>
-					<a href="javascript:fn_dataList();" id="dataList">목록</a>
-				</div>
-			</div>		
+<form id="dataList_Form">
+	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}">		<!-- 검색구분 -->
+	<input type="hidden" id="searchWord" 	name="searchWord" 		value="${item.searchWord}">			<!-- 검색어 -->
+	<input type="hidden" id="bsnsCode"      name="bsnsCode"         value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
+	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+	<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
+	<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
+	<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
+</form>
+
+<div id="content">
+	<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->	
+	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
+	
+	<h3 class="book-title">${item.boardGbnCdNm} 등록/수정</h3>
+	<br/><br/>
+	<!-- Editor_Form -->
+	<form id="editor_Form">
+		<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
+		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+		<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
+		<input type="hidden" id="boardSn" 		name="boardSn"			value="${dataView.BOARD_SN}">		<!-- 게시판_번호 -->
+		<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${dataView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
+		<input type="hidden" id="flNm" 			name="flNm"				value="${dataView.FL_NM}">			<!-- 파일 명 -->
+	    <input type="hidden" id="flPath" 		name="flPath"			value="${dataView.FL_PATH}">		<!-- 파일 경로 -->
+	    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${dataView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
+	    <input type="hidden" id="uploadYn" 		name="uploadYn" 		value="N">							<!-- 업로드 여부 -->
+	    <br/><br/><br/>
+		<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${dataView.SUBJECT}">
+		<br/><br/>
+		<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${dataView.CONTENT}</textarea>
+	</form>
+	
+	<!-- Upload_Form -->
+	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
+		<div class="book-Form">
+			<input type="file" id="uploadFile" name="uploadFile">
+			<input type="hidden" id="sPath" name="sPath" value="/board/publi/">
 		</div>
-	</body>
-</html>
+	</form>
+	<div class="bookView">	
+		<div class="bookView-btn">
+			<a href="#" id="fn_saveData" >저장</a>
+			<a href="javascript:fn_dataList();" id="dataList">목록</a>
+		</div>
+	</div>		
+</div>
