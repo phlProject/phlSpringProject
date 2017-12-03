@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -108,98 +101,95 @@
 		});
 	}
 </script>
-</head>
-<body>
-	<div id="content">
-		<form id="mem_Form">	
-			<input type="hidden" value="${sessionScope.bsnsCode}" 	id="bsnsCode" 	name="bsnsCode" >
-			<input type="hidden" value="${sessionScope.sessionId}"  id="sessionId" 	name="sessionId" >
-			
-			<h3 class="my-title">회원관리</h3>
-			
-				<div class="search-2">
-				<!-- 검색조건 -->
-					<select id="searchSelect" name="searchSelect" onchange="searchChange()">
-						<option value="searchId" 		<c:if test="${searchSelect eq 'searchId'}">selected</c:if>>아이디</option>
-						<option value="searchNm" 		<c:if test="${searchSelect eq 'searchNm'}">selected</c:if>>이름</option>
-						<option value="searchEmail"  	<c:if test="${searchSelect eq 'searchEmail'}">selected</c:if>>이메일</option>
-						<option value="searchPhone"  	<c:if test="${searchSelect eq 'searchPhone'}">selected</c:if>>연락처</option>
-						<option value="searchAuthor"  	<c:if test="${searchSelect eq 'searchAuthor'}">selected</c:if>>권한</option>
-						<option value="searchRemark"  	<c:if test="${searchSelect eq 'searchRemark'}">selected</c:if>>계정상태</option>
+
+<div id="content">
+	<form id="mem_Form">	
+		<input type="hidden" value="${sessionScope.bsnsCode}" 	id="bsnsCode" 	name="bsnsCode" >
+		<input type="hidden" value="${sessionScope.sessionId}"  id="sessionId" 	name="sessionId" >
+		
+		<h3 class="my-title">회원관리</h3>
+		
+			<div class="search-2">
+			<!-- 검색조건 -->
+				<select id="searchSelect" name="searchSelect" onchange="searchChange()">
+					<option value="searchId" 		<c:if test="${searchSelect eq 'searchId'}">selected</c:if>>아이디</option>
+					<option value="searchNm" 		<c:if test="${searchSelect eq 'searchNm'}">selected</c:if>>이름</option>
+					<option value="searchEmail"  	<c:if test="${searchSelect eq 'searchEmail'}">selected</c:if>>이메일</option>
+					<option value="searchPhone"  	<c:if test="${searchSelect eq 'searchPhone'}">selected</c:if>>연락처</option>
+					<option value="searchAuthor"  	<c:if test="${searchSelect eq 'searchAuthor'}">selected</c:if>>권한</option>
+					<option value="searchRemark"  	<c:if test="${searchSelect eq 'searchRemark'}">selected</c:if>>계정상태</option>
+				</select>
+				<span id="spanWord">
+					<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
+				</span>
+				<span id="spanAuthor">
+					<select id="searchAuthor" name="searchAuthor">
+						<option value="G01010" <c:if test="${searchAuthor eq 'G01010'}">selected</c:if>>손님</option>
+						<option value="G01020" <c:if test="${searchAuthor eq 'G01020'}">selected</c:if>>학생</option>
+						<option value="G01030" <c:if test="${searchAuthor eq 'G01030'}">selected</c:if>>선생님</option>
+						<option value="G01998" <c:if test="${searchAuthor eq 'G01998'}">selected</c:if>>홈페이지관리자</option>
 					</select>
-					<span id="spanWord">
-						<input type="text" id="searchWord" name="searchWord" value="${searchWord}">
-					</span>
-					<span id="spanAuthor">
-						<select id="searchAuthor" name="searchAuthor">
-							<option value="G01010" <c:if test="${searchAuthor eq 'G01010'}">selected</c:if>>손님</option>
-							<option value="G01020" <c:if test="${searchAuthor eq 'G01020'}">selected</c:if>>학생</option>
-							<option value="G01030" <c:if test="${searchAuthor eq 'G01030'}">selected</c:if>>선생님</option>
-							<option value="G01998" <c:if test="${searchAuthor eq 'G01998'}">selected</c:if>>홈페이지관리자</option>
-						</select>
-					</span>
-					<span id="spanRemark">
-						<select id="searchRemark" name="searchRemark">
-							<option value="Y" <c:if test="${searchRemark eq 'Y'}">selected</c:if>>활성화</option>
-							<option value="N" <c:if test="${searchRemark eq 'N'}">selected</c:if>>비활성화</option>
-							<option value="S" <c:if test="${searchRemark eq 'S'}">selected</c:if>>승인대기</option>
-						</select>
-					</span>
-					<input type="button" value="검색" onclick="searchBtn();" class="button">
-				</div>
-			<div class="memtab">	
-			<table>			
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>연락처</th>
-					<th>권한</th>
-					<th>계정상태</th>
-					<th colspan="3">비고</th>
-				</tr>
-			<c:forEach items="${memList}" var="row">
-				<tr>
-		              <td>${row.MEM_ID}</td>
-		              <td>${row.MEM_NM}</td>
-		              <td>${row.MEM_EMAIL}</td>
-		              <td>${row.MEM_PHONE}</td>
-		              <td>${row.MEM_GBN_CD_NM}</td>
-		              <td>${row.REMARK_NM}</td>
-		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
-		              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
-		              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              </td>
-		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
-		              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
-		              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              </td>
-		        </tr>
-			</c:forEach>
-			</table>	
-				<div class="mem_paging">
-					<c:if test="${beginPageNum > 10}">
-						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
-					</c:if>
-					
-					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
-					</c:forEach>
-					
-					<c:if test="${endPageNum < totalPageCount}">
-						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
-					</c:if>
-				</div>
+				</span>
+				<span id="spanRemark">
+					<select id="searchRemark" name="searchRemark">
+						<option value="Y" <c:if test="${searchRemark eq 'Y'}">selected</c:if>>활성화</option>
+						<option value="N" <c:if test="${searchRemark eq 'N'}">selected</c:if>>비활성화</option>
+						<option value="S" <c:if test="${searchRemark eq 'S'}">selected</c:if>>승인대기</option>
+					</select>
+				</span>
+				<input type="button" value="검색" onclick="searchBtn();" class="button">
 			</div>
-		</form>
-	</div>
-</body>
-</html>
+		<div class="memtab">	
+		<table>			
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>연락처</th>
+				<th>권한</th>
+				<th>계정상태</th>
+				<th colspan="3">비고</th>
+			</tr>
+		<c:forEach items="${memList}" var="row">
+			<tr>
+	              <td>${row.MEM_ID}</td>
+	              <td>${row.MEM_NM}</td>
+	              <td>${row.MEM_EMAIL}</td>
+	              <td>${row.MEM_PHONE}</td>
+	              <td>${row.MEM_GBN_CD_NM}</td>
+	              <td>${row.REMARK_NM}</td>
+	              <td width="10%">
+	              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
+	              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
+	              	</c:if>
+	              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
+	              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
+	              	</c:if>
+	              </td>
+	              <td width="10%">
+	              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
+	              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
+	              	</c:if>
+	              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
+	              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
+	              	</c:if>
+	              </td>
+	        </tr>
+		</c:forEach>
+		</table>	
+			<div class="mem_paging">
+				<c:if test="${beginPageNum > 10}">
+					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+				</c:if>
+				
+				<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
+					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+				</c:forEach>
+				
+				<c:if test="${endPageNum < totalPageCount}">
+					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+				</c:if>
+			</div>
+		</div>
+	</form>
+</div>
