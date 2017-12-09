@@ -22,7 +22,7 @@ import com.phl.util.CmmnUtilPaging;
 @Controller
 public class BoardController {
 
-	Logger log = Logger.getLogger(this.getClass());
+	Logger log = Logger.getLogger(this.getClass()); 
 	
 	/* 공통 */
 	@Resource(name="phlCommService")
