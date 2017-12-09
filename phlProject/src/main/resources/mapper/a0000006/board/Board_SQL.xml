@@ -111,6 +111,7 @@
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
 			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+			  ,AA.REG_ID			/* 등록_ID */
 			  ,AB.BOOK_WRITER		/* 책_지은이 */
 			  ,AB.BOOK_PUBLISHER 	/* 책_출판사 */
 			  ,AB.BOOK_PRICE		/* 책_가격 */
