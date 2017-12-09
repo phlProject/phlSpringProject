@@ -154,7 +154,7 @@
 				,#{boardGbnCd}
 				,#{subject}
 				,#{editor}
-				,'aa'
+				,#{sessionId}
 				,now()
 			)
 	</insert>
@@ -176,7 +176,7 @@
 			,#{bookWriter}
 			,#{bookPublisher}
 			,#{bookPrice}
-			,'aa'
+			,#{sessionId}
 			,now()
 		)
 	</insert>
@@ -193,9 +193,9 @@
 		      ,AB.BOOK_WRITER 	= #{bookWriter}
 		      ,AB.BOOK_PUBLISHER= #{bookPublisher}
 		      ,AB.BOOK_PRICE	= #{bookPrice}
-		      ,AA.MOD_ID 		= 'aa'
+		      ,AA.MOD_ID 		= #{sessionId}
 		      ,AA.MOD_DT 		= now()
-		      ,AB.MOD_ID 		= 'aa'
+		      ,AB.MOD_ID 		= #{sessionId}
 		      ,AB.MOD_DT 		= now()
 		 WHERE 1=1
 		   AND AA.BSNS_CODE = #{bsnsCode}
@@ -207,7 +207,7 @@
 	<update id="deleteBook"  parameterType="hashmap">
 		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
-			  ,MOD_ID = 'aa'
+			  ,MOD_ID = #{sessionId}
 		      ,MOD_DT = now()
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
@@ -342,6 +342,7 @@
 			  ,AA.SUBJECT			/* 제목 */
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
+			  ,AA.REG_ID			/* 등록_ID */
 			  ,AB.BOARD_FL_SN		/* 게시판_파일_일련번호 */
 			  ,AB.ORIGIN_FL_NM		/* 원본_파일_명 */
 			  ,AB.FL_NM				/* 파일_명 */
@@ -372,8 +373,7 @@
 				,#{subject}
 				,#{editor}
 				,now()
-				,'aa'
-				<!--,#{sessionId}-->
+				,#{sessionId}
 			)
 	</insert>
 	
@@ -383,7 +383,7 @@
 		   SET SUBJECT = #{subject}
 		      ,CONTENT = #{editor}
 		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,MOD_ID = #{sessionId}
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
@@ -394,7 +394,7 @@
 		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
 		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,MOD_ID = #{sessionId}
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
@@ -429,8 +429,7 @@
 			,#{flNm}
 			,#{flPath}
 			,now()
-			,'aa'
-			<!--,#{sessionId}-->
+			,#{sessionId}
 		)
 	</insert>
 	
@@ -451,8 +450,7 @@
 			,#{flNm}
 			,#{flPath}
 			,now()
-			,'aa'
-			<!--,#{sessionId}-->
+			,#{sessionId}
 		)
 	</insert>
 	
@@ -461,28 +459,28 @@
 	<update id="updateBoardFl"  parameterType="hashmap">
 		UPDATE BSNS_BOARD_FL
 		   SET ORIGIN_FL_NM = #{originFlNm}
-		      ,FL_NM = #{flNm}
-		      ,FL_PATH = #{flPath}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,FL_NM 		= #{flNm}
+		      ,FL_PATH 		= #{flPath}
+		      ,MOD_DT	 	= now()
+		      ,MOD_ID 		= #{sessionId}
 		 WHERE 1=1 
-		   AND BSNS_CODE = #{bsnsCode}
-		   AND BOARD_SN  = #{boardSn}
-		   AND BOARD_FL_SN = #{boardFlSn}
+		   AND BSNS_CODE 	= #{bsnsCode}
+		   AND BOARD_SN  	= #{boardSn}
+		   AND BOARD_FL_SN 	= #{boardFlSn}
 	</update>
 	
 	<!-- 게시판 공통 > 파일 수정 (이미지) -->
 	<update id="updateBoardImg"  parameterType="hashmap">
 		UPDATE BSNS_BOARD_IMG
 		   SET ORIGIN_FL_NM = #{originFlNm}
-		      ,FL_NM = #{flNm}
-		      ,FL_PATH = #{flPath}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,FL_NM 		= #{flNm}
+		      ,FL_PATH 		= #{flPath}
+		      ,MOD_DT 		= now()
+		      ,MOD_ID 		= #{sessionId}
 		 WHERE 1=1 
-		   AND BSNS_CODE = #{bsnsCode}
-		   AND BOARD_SN  = #{boardSn}
-		   AND BOARD_FL_SN = #{boardFlSn}
+		   AND BSNS_CODE 	= #{bsnsCode}
+		   AND BOARD_SN  	= #{boardSn}
+		   AND BOARD_FL_SN 	= #{boardFlSn}
 	</update>
 	
 	<!-- 게시판 공통 > 파일 다운로드 > 조회 -->

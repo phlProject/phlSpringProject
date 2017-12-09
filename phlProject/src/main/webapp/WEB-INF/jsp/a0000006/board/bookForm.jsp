@@ -22,10 +22,6 @@
 		//저장버튼 클릭이벤트
 		$("#fn_saveBook").click(function() {
 
-			/* if(!bookValidation()){
-				return;
-			} */
-
 			var msg = "";
 			var postUrl = "";
 
@@ -62,17 +58,18 @@
 
 <!-- 목록이동_Form -->
 <form id="bookList_Form">
-	<input type="hidden" id="searchSelect" 	name="searchSelect" value="${item.searchSelect}"> 		<!-- 검색구분 -->
-	<input type="hidden" id="searchWord" 	name="searchWord"	value="${item.searchWord}">	  		<!-- 검색어 -->
-	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
-	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
-	<input type="hidden" id="boardSn" 		name="boardSn" 		value="${bookView.BOARD_SN}">		<!-- 게시판_번호 -->
-	<input type="hidden" id="boardFlSn" 	name="boardFlSn"	value="${bookView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
+	<input type="hidden" id="searchSelect" 	name="searchSelect" 	value="${item.searchSelect}"> 		<!-- 검색구분 -->
+	<input type="hidden" id="searchWord" 	name="searchWord"		value="${item.searchWord}">	  		<!-- 검색어 -->
+	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 		value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
+	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+	<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
+	<input type="hidden" id="boardSn" 		name="boardSn" 			value="${bookView.BOARD_SN}">		<!-- 게시판_번호 -->
+	<input type="hidden" id="boardFlSn" 	name="boardFlSn"		value="${bookView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
 </form>
 
 <div id="content">
-	
-	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
+	<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
+	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
 
 	<h3 class="book-title">${item.boardGbnCdNm} 작성</h3>
 
@@ -90,7 +87,7 @@
 		<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}"> 	<!-- 세션_업체코드 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 		<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"	value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
-		<input type="hidden" id="regId" 		name="regId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
+		<input type="hidden" id="sessionId" 	name="sessionId"	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 		<input type="hidden" id="boardSn" 		name="boardSn"		value="${bookView.BOARD_SN}">		<!-- 게시판_번호 -->
 		<input type="hidden" id="boardFlSn" 	name="boardFlSn"	value="${bookView.BOARD_FL_SN}">	<!-- 게시판_파일_번호 -->
 		<input type="hidden" id="flNm" 			name="flNm" 		value="${bookView.FL_NM}">			<!-- 파일 명 -->

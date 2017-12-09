@@ -22,12 +22,8 @@
         //저장버튼 클릭이벤트
         $("#fn_saveData").click(function(){
             
-        	/* if(!pulbiValidation()){
-        		return;
-        	} */
-        	
-        	var msg = "";
-        	var postUrl = "";
+        	var msg 		= "";
+        	var postUrl 	= "";
         	
         	if($("#newYn").val() == "Y"){
         		msg = "저장하시겠습니까?";
@@ -41,8 +37,8 @@
         		return;
         	}
         	
-        	// 파일업로드 ( if문으로 에러처리 잡기 )
-        	fn_uploadFile();
+        	// 파일업로드
+        	fn_uploadFile(); 
         	
             // id가 smarteditor인 textarea에 에디터에서 대입
             editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
