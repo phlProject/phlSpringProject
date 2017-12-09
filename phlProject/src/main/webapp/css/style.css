@@ -73,13 +73,15 @@ line-height: 1.2em; height: 4.1em; }
 #left_content { width: 880px; margin-bottom: 20px; float: right; }
 #left_sidebar { background : #f5f5f5; width: 200px; margin-top: 15px; margin-bottom: 20px; float: left; box-shadow: 0 5px 15px 1 rgba(0, 0, 0, 0.6), 0 0 200px 1px rgba(255, 255, 255, 0.5); }      
 #left_sidebar h2 { color: #fff; text-align: center; font-weight: 400; padding: 20px 0; background: #a6bf38; }           
-#left_sidebar h3 { font-family: "Nanum Gothic", sans-serif; font-size: 15px; font-weight: 400; line-height: 34px; padding: 8px 10px; cursor: pointer; background: #fff; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;/*background: linear-gradient(#003040, #002535); */ } 
-#left_sidebar h3:hover { background:#d6e0e2; }
+#left_sidebar h3 { font-family: "Nanum Gothic", sans-serif; color:#000; font-size: 15px; font-weight: 400; line-height: 34px; padding: 8px 10px; cursor: pointer; background: #fff; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;/*background: linear-gradient(#003040, #002535); */ } 
+/* #left_sidebar h3:hover { background:#d6e0e2; } */
 #left_sidebar h3 a { color:#333; }
-#left_sidebar ul ul li a { color :#333; font-size:13px; line-height:27px; display:block; padding:5px 15px; -webkit-transition: all 0.15s; -moz-transition: all 0.15s; -o-transition: all 0.15s; -ms-transition: all 0.15s; transition: all 0.15s; }
+#left_sidebar h5 { color :#333; font-size:14px; line-height:27px; display:block; padding:7px 15px; border-bottom:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd; }
+#left_sidebar h5 a { color:#333; font-weight:200;}
+#left_sidebar h5:hover { background:#d6e0e2; }
 #left_sidebar ul ul { display:none; } 
 /* #left_sidebar li.active ul { display:block; }  */
-#left_sidebar li.active h3 a {color:#a6bf38;	}
+#left_sidebar li.active h3 a {color:#a6bf38;}
 #left_sidebar li.active ul li:FIRST-CHILD a{ color:#a6bf38; }
 /* left CSS 끝 */
 
@@ -436,7 +438,7 @@ line-height: 1.2em; height: 4.1em; }
 
 
 /* 회원가입 */
-#register { margin:100px 0; width: 50%; border: 1px solid #ddd; height: 650px; }
+#register { margin:100px 0; width: 50%; border: 1px solid #ddd; height: 610px; }
 #register p { background:#d6e0e2; color:#4d4d4f; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle;}
 #register input,select{ width: 220px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:10px;}
 #register table { margin:20px; text-align: center; border-top:2px solid #e5e5e5; }
@@ -589,7 +591,7 @@ line-height: 1.2em; height: 4.1em; }
 
 
 /* 신청 및 문의 - 장소대관 */
-.btn-holder { width:80%; float:left; padding: 10px 0;}
+.btn-holder { width:100%; float:left; padding: 10px 0; text-align: center;}
 .btn a { float:left; width:100px; background-color:#660f57; color:#fff; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:20px; text-align:center; }
 #buttonDiv { display: inline-block; margin-left:135px; }
 #buttonDiv a{ width:80px; background-color:#4d4d4f; color:#fff; font-weight:500; font-size:13px; padding:10px 3px; float:left; text-align:center; border-left:10px solid #fefefd; text-align: center;}
@@ -597,17 +599,21 @@ line-height: 1.2em; height: 4.1em; }
 
 
 #calendar table {border-collapse: collapse;}
-#calendar table thead td {height: 30px; font-weight: bold; text-align: center;/*  background: #ccc; */}    
+#calendar table thead td {height: 30px; text-align: center;	background: #EAEAEA;} /* 요일 */   
 #calendar table td {border: solid 1px #999; padding:5px;}
-#calendar table td.date-cell {height: 70px; text-align: left; vertical-align: top; color:#333; /* font-weight:bold; */}
-#calendar table td.this-month {cursor:pointer;}
-#calendar table td.holiday {/* background: #ddd; */ color:#333; font-weight:bold;}
-#calendar table td.sun {color: red; /* background: #ddd; */}
-#calendar table td.sat {color: blue; /* background: #ddd; */}
+#calendar table td.date-cell {height: 70px; text-align: left; vertical-align: top; color:#333; }
+#calendar table td.this-month {}
+#calendar table td.holiday {color:#333; font-weight:bold;}
+#calendar table td.sun {color: #CC3333 	}	/* 일요일 */
+#calendar table td.sat {color: #3366CC; }	/* 토요일 */
+#calendar table td.workday{ background: #F5F3D8; font: bold;} /* 일정있는 날 */
+#calendar table td.today {border: 2px solid #9DBDEC; background: #E6F0F9; }	/* 오늘 날짜 */
+
 #calendar table td.not-this-month {background: #fff; color: #999;}
+#calendar table td span.schudulDate{cursor:pointer;}
 /* #calendar table thead td.sun {background: #ccc;}
 #calendar table thead td.sat {background: #ccc;} */
-#calendar table .holiTxt {}
+#calendar table td span.holiTxt {cursor:pointer;}
 #currentDate {font-family: Malgun Gothic; font-size: 26px; color:#333; padding: 0px 30px 20px 30px; display: inline-block;}
 #btnPrev {vertical-align:top;}
 #btnNext {vertical-align:top;}
