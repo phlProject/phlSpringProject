@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 
+	자유 게시판 리스트
+	등록 - 손님 이상 ( G01010 ) 
+	읽기 - 모두
+ -->
+<c:set var="authYn" value="N"/>
+<c:if test="${loginInfo.MEM_GBN_CD ge 'G01010'}">
+	<c:set var="authYn" value="Y"/>
+</c:if>
+
 <div id="content">
 	<h3 class="cont-title">${item.boardGbnCdNm}</h3>
 	<form id="freeBoardList_Form">
@@ -48,9 +58,12 @@
 				</c:if>
 			</table>
 			
-			<div class="bookForm">
-				<a href="javascript:fn_freeBoardFormI();" id="joinFormI">신규등록</a>
-			</div>
+			<!-- 권한 Y 일 경우 신규등록 -->
+			<c:if test="${authYn eq 'Y'}">		
+				<div class="bookForm">
+					<a href="javascript:fn_freeBoardFormI();" id="joinFormI">신규등록</a>
+				</div>
+			</c:if>
 			
 			<div class="mem_paging">
 				<c:if test="${beginPageNum > 10}">

@@ -22,10 +22,6 @@
 		//저장버튼 클릭이벤트
 		$("#fn_saveFreeBoard").click(function() {
 
-			/* if(!bookValidation()){
-				return;
-			} */
-
 			var msg = "";
 			var postUrl = "";
 

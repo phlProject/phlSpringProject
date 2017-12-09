@@ -3,7 +3,8 @@
 
 <!-- 
 	자료 게시판 리스트
-	신규등록 - 선생님 이상 ( G01030 ) 
+	등록 - 선생님 이상 ( G01030 )
+	읽기 - 모두 
  -->
 <c:set var="authYn" value="N"/>
 <c:if test="${loginInfo.MEM_GBN_CD ge 'G01030'}">
