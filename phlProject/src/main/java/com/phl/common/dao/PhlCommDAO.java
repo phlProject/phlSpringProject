@@ -34,8 +34,4 @@ public class PhlCommDAO extends AbstractDAO {
         update("phl/common.boardHitCount", map);
     }
 	
-	/* 게시판 일련번호 조회 */
-	public int selectboardSn() throws Exception{
-	    return (Integer) selectOne("phl/common.selectboardSn");
-	}
 }
