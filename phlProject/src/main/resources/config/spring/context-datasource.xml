@@ -17,8 +17,17 @@
                         http://www.springframework.org/schema/task/spring-task.xsd">
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
-        <property name="username" value="pkhl2"/>
+        
+        <!-- 주석치며 사용 -->
+        
+        <!-- 운영 서버 -->
+        <!-- <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
+        <property name="username" value="pkhl2"/> -->
+        
+        <!-- 테스트 서버 -->
+        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhledu?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
+        <property name="username" value="pkhledu"/>
+        
         <property name="password" value="kosta88!"/>
         <property name="defaultAutoCommit" value="true" />
 		<!-- validationQuery:유효 검사용 쿼리( 1개 이상의 row를 반환하는 쿼리를 넣어주면 된다. ) -->
