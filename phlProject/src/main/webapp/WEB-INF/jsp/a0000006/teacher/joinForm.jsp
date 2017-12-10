@@ -4,58 +4,14 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/resources/editor/js/HuskyEZCreator.js"></script>
 
-<script>
-	$(function() {
-		
-		// Smart Editor 사용 Script
-		var editor_object = [];
-		nhn.husky.EZCreator.createInIFrame({
-			oAppRef : editor_object,
-			elPlaceHolder : "editor",
-			sSkinURI : "/resources/editor/SmartEditor2Skin.html",
-			htParams : {
-				bUseToolbar : true,			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseVerticalResizer : true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseModeChanger : true,		// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			}
-		});
-		
-		//저장버튼 클릭이벤트
-		$("#fn_saveJoin").click(function() {
-
-			var msg = "";
-			var postUrl = "";
-
-			if ($("#newYn").val() == "Y") {
-				msg = "저장하시겠습니까?";
-				postUrl = "/a0000006/teacher/insertJoin.do";
-			} else if ($("#newYn").val() == "N") {
-				msg = "수정하시겠습니까?";
-				postUrl = "/a0000006/teacher/updateJoin.do";
-			}
-
-			if (!confirm(msg)) {
-				return;
-			}
-
-			// Smart Editor 사용 Script ( textarea id = 'editor' )
-			editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
-
-			$.post(postUrl, $("#editor_Form").serialize(), function(data) {
-				if (data.result == "success") {
-					alert("등록되었습니다.");
-					if ($("#newYn").val() == "Y")
-						$("#boardSn").val(data.boardSn);
-					ComSubmit('joinList_Form', '/a0000006/teacher/joinView.do');
-				} else {
-					alert("실패하였습니다. 관리자에게 문의해주세요.");
-					ComSubmit('joinList_Form', '/a0000006/teacher/joinList.do');
-					return;
-				}
-			});
-		});
-	});
-</script>
+<!-- 
+	참여 게시판 등록/수정
+	등록 - 선생님 이상
+ -->
+<c:set var="authYn" value="N"/>
+<c:if test="${loginInfo.MEM_GBN_CD ge 'G01030'}">
+	<c:set var="authYn" value="Y"/>
+</c:if>
 
 <!-- 목록이동_Form -->
 <form id="joinList_Form">
@@ -104,3 +60,89 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(function() {
+		
+		// Smart Editor 사용 Script
+		var editor_object = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : editor_object,
+			elPlaceHolder : "editor",
+			sSkinURI : "/resources/editor/SmartEditor2Skin.html",
+			htParams : {
+				bUseToolbar : true,			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseVerticalResizer : true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseModeChanger : true,		// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+			}
+		});
+		
+		//저장버튼 클릭이벤트
+		$("#fn_saveJoin").click(function() {
+
+			// 유효성 체크
+			if(!fn_valid()){
+				return;
+			}
+        	
+			// Smart Editor 사용 Script ( textarea id = 'editor' ) / 유효성 체크
+			editor_object.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+			var editor = $.trim($("#editor").val());
+
+			if( editor == ""  || editor == null || editor == '&nbsp;' || editor == '<p>&nbsp;</p>')  {
+	             alert("내용을 입력 해주세요.");
+	             editor_object.getById["editor"].exec("FOCUS"); //포커싱
+	             return;
+	        }
+			
+			var msg = "";
+			var postUrl = "";
+
+			if ($("#newYn").val() == "Y") {
+				msg = "저장하시겠습니까?";
+				postUrl = "/a0000006/teacher/insertJoin.do";
+			} else if ($("#newYn").val() == "N") {
+				msg = "수정하시겠습니까?";
+				postUrl = "/a0000006/teacher/updateJoin.do";
+			}
+
+			if (!confirm(msg)) {
+				return;
+			}
+
+			$.post(postUrl, $("#editor_Form").serialize(), function(data) {
+				if (data.result == "success") {
+					alert("등록되었습니다.");
+					if ($("#newYn").val() == "Y")
+						$("#boardSn").val(data.boardSn);
+					ComSubmit('joinList_Form', '/a0000006/teacher/joinView.do');
+				} else {
+					alert("실패하였습니다. 관리자에게 문의해주세요.");
+					ComSubmit('joinList_Form', '/a0000006/teacher/joinList.do');
+					return;
+				}
+			});
+		});
+	});
+	
+	// 유효성 검사
+	function fn_valid(){
+		
+		var authYn 			= '<c:out value="${authYn}" escapeXml="false"/>'; // 등록 권한
+		var subject 		= $("#subject").val();			// 책제목
+		
+		if(authYn == "N"){
+			alert("등록/수정 할 권한이 없습니다.");
+			return false;
+		}
+		
+		if($.trim(subject) == null || $.trim(subject) == ""){
+			alert("제목을 입력 해주세요.");
+			$("#subject").focus();
+			return false;
+		}
+		
+		return true;
+		
+	}
+</script>

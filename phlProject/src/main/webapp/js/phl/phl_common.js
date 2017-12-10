@@ -1,5 +1,5 @@
 /* 파일 업로드 */
-function fn_uploadFile(){
+function gfn_uploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);
 	$.ajax({
         type : 'post',
@@ -18,8 +18,15 @@ function fn_uploadFile(){
         },
         error : function(error) {
             alert("파일 업로드에 실패하였습니다.");
-            console.log(error);
-            console.log(error.status);
         }
     });
 }
+
+$(function() {
+	
+	// onKeyUp - 숫자만
+	$(".onKeyOnlyNumber").keyup(function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');
+	});
+	
+});
