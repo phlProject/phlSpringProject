@@ -66,7 +66,8 @@ function fn_saveJoinRe(){
 					boardSn		: $("#boardSn").val(),		// 게시판 번호
 					boardReSn	: $("#boardReSn").val(),	// 게시판 댓글 번호
 					boardReType : $("#boardReType").val(),	// 게시판 댓글 타입
-					content		: $("#contents").val()		// 게시판 내용
+					content		: $("#contents").val(),		// 게시판 내용
+					sessionId	: $("#sessionId").val()		// 세션 ID 
 				},
 		dataType : "json",
 		success : function(data){

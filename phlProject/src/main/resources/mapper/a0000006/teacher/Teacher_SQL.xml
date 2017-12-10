@@ -122,7 +122,7 @@
 				,#{teacherGbnCd}
 				,#{subject}
 				,#{editor}
-				,'aa'
+				,#{sessionId}
 				,now()
 			)
 	</insert>
@@ -130,11 +130,11 @@
     <!-- 참여게시판 > 수정 -->
 	<update id="updateJoin"  parameterType="hashmap">
 		UPDATE BSNS_BOARD
-		   SET SUBJECT = #{subject}
-		      ,CONTENT = #{editor}
+		   SET SUBJECT 		= #{subject}
+		      ,CONTENT 		= #{editor}
 		      ,BOARD_GBN_CD = #{teacherGbnCd}
-		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,MOD_DT 		= now()
+		      ,MOD_ID 		= #{sessionId}
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
@@ -145,7 +145,7 @@
 		UPDATE BSNS_BOARD
 		   SET USE_YN = 'N'
 		      ,MOD_DT = now()
-		      ,MOD_ID = 'aa'
+		      ,MOD_ID = #{sessionId}
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}

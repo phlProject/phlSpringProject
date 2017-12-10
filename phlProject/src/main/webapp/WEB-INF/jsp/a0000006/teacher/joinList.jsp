@@ -26,6 +26,16 @@
 	}
 </script>
 
+<!-- 
+	참여 게시판 리스트
+	등록 - 선생님 이상 ( G01030 )
+	읽기 - 모두 
+ -->
+<c:set var="authYn" value="N"/>
+<c:if test="${loginInfo.MEM_GBN_CD ge 'G01030'}">
+	<c:set var="authYn" value="Y"/>
+</c:if>
+
 <div id="content">
 	<h3 class="my-title">참여게시판 - 조회</h3>
 	<form id="joinList_Form">
@@ -83,9 +93,12 @@
 				</c:if>
 			</table>
 			
-			<div class="bookForm">
-				<a href="javascript:fn_joinFormI();" id="joinFormI">신규등록</a>
-			</div>
+			<!-- 권한 Y 일 경우 신규등록 -->
+			<c:if test="${authYn eq 'Y'}">
+				<div class="bookForm">
+					<a href="javascript:fn_joinFormI();" id="joinFormI">신규등록</a>
+				</div>
+			</c:if>
 			
 			<div class="mem_paging">
 				<c:if test="${beginPageNum > 10}">

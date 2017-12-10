@@ -18,6 +18,7 @@
 	<input type="hidden" id="boardSn" 		name="boardSn" 			value="${freeBoardView.BOARD_SN}">	<!-- 게시판 번호 -->
 	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 	<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
+	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
 
 <div id="content">
