@@ -127,4 +127,9 @@
 		   AND BSNS_CODE = #{bsnsCode}
 		   AND BOARD_SN  = #{boardSn}
     </update>
+    
+    <!-- 게시판 일련번호 조회 -->
+    <select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
 </mapper>

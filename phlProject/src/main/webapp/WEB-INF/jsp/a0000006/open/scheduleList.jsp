@@ -4,6 +4,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- 
+	자료 게시판 리스트
+	등록/수정/삭제 - 선생님 이상 ( G01030 )
+	읽기 - 모두 
+ -->
+<c:set var="authYn" value="N"/>
+<c:if test="${loginInfo.MEM_GBN_CD ge 'G01030'}">
+	<c:set var="authYn" value="Y"/>
+</c:if>
+
 <jsp:useBean id="toYear" class="java.util.Date" />
 <jsp:useBean id="toMonth" class="java.util.Date" />
 <jsp:useBean id="toDay" class="java.util.Date" />
@@ -270,7 +280,11 @@
 				}
 				
 				arrTable.push('<td class="' + sClass + workClass + '">' 
-						    + '<span class="schudulDate" onclick="schduleLayer('+day0+')">'+ day0 +'</span>'
+						    + '<span class="schudulDate"');
+				if('${authYn}' == 'Y'){
+					arrTable.push('onclick="schduleLayer('+day0+')"');
+				}
+				arrTable.push( '>'+ day0 + '</span>'
 						    + '<br/>' + spanTag + '</td>');
 				
 				oStartDt.setDate(oStartDt.getDate() + 1);
