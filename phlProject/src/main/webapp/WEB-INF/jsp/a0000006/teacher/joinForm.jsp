@@ -130,7 +130,8 @@
 		
 		var authYn 			= '<c:out value="${authYn}" escapeXml="false"/>'; // 등록 권한
 		var subject 		= $("#subject").val();			// 책제목
-		
+		var teacherGbnCd	= $("#teacherGbnCd").val();
+
 		if(authYn == "N"){
 			alert("등록/수정 할 권한이 없습니다.");
 			return false;
@@ -139,6 +140,12 @@
 		if($.trim(subject) == null || $.trim(subject) == ""){
 			alert("제목을 입력 해주세요.");
 			$("#subject").focus();
+			return false;
+		}
+		
+		if($.trim(teacherGbnCd) == null || $.trim(teacherGbnCd) == ""){
+			alert("카테고리를 선택 해주세요.");
+			$("#teacherGbnCd").focus();
 			return false;
 		}
 		
