@@ -11,7 +11,6 @@ a { text-decoration:none; }
 img { border:0; }
 table { border-collapse: collapse; }
 
-
 /*헤더*/
 #header { width:100%; margin:0 auto; background-color:#a6bf38; z-index:10; /*padding:20px; margin-bottom:20px; border-bottom:2px solid #5e7b38; border:1px solid #bcbcbc; */ }
 /*로고*/
