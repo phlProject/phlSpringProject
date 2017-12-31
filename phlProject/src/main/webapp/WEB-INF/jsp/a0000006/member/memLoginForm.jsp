@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div id="content" align="center">
+<div id="content">
+	<h3 class="login-title">Login</h3>
 	<div id="loginform">
-	<p>Login</p>
 	<form id="loginActionForm">
 		<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}">
 		<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" onkeypress="if(event.keyCode == 13){fn_loginVal();}" /> <br/>

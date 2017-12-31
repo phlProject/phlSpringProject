@@ -35,7 +35,7 @@ nav ul li:hover ul { display: block; }
 
 /* content 및  main*/
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
-#content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; min-height: 100%; }
+#content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; /*min-height: 100%;*/ }
 #main_content { width:830px; margin:0 auto; float:left; }
 .content-1 { position: relative; display:inline-block; width:250px; height:320px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
  margin-bottom: 24px; margin-right: 24px; float: left;  border: 1px solid #bcbcbc;}
@@ -427,6 +427,8 @@ line-height: 1.2em; height: 4.1em; }
 #main_footer { max-width:1100px; margin:0px auto; }
 #footer-1 { float: left; }
 #footer-2 { float: left; font-size: 13px; color: gray; padding: 10px 30px; }
+#footer-2 a { color: gray; }
+#footer-2 a:hover { color: #660F57; } 
 #footer-3 { width:100%; height:70px; color:#7b7b7b; background-color:#3d3d3d; font-size: 13px; text-align:center;}
 #footer-3 p { padding-top:20px;}
 
@@ -450,10 +452,11 @@ line-height: 1.2em; height: 4.1em; }
 
 
 /* 로그인 */
-#loginform { margin: 125px 0; width:380px; height: 280px; font-size:15px; font-weight:bold; border:1px solid #ddd; /* border-radius: 7px; */}
-#loginform p { background:#d6e0e2; color:#4d4d4f; font-size: 25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; /* border-radius: 7px 7px 0 0; */}
-#loginform input { margin-top: 20px; width: 220px; height: 35px; border:1px solid #ddd; margin-right: 20px; }
-#loginform a { color:#fff; background: #4d4d4f;  padding:15px 90px; margin-left:22px; }
+#loginform { margin:80px 0 30px; border-top:2px solid #e9e6e4; text-align:center; /* width:380px; height: 280px; margin: 125px 0;  border:1px solid #ddd;  border-radius: 7px; */}
+.login-title { font-size:28px; color:#444; line-height:1.2em; padding-top:25px; font-weight:500; float:left; }
+#loginform p {  color:#4d4d4f; font-size:25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; /* background:#d6e0e2; border-radius: 7px 7px 0 0; */}
+#loginform input { margin-top: 25px; width: 220px; height: 35px; border:1px solid #ddd; }
+#loginform a { color:#fff; background: #4d4d4f;  padding:5px 102px; margin-left:10px; font-size:20px; font-weight: 500; }
 #loginform img { vertical-align: middle; padding-left:10px;}
 
 
