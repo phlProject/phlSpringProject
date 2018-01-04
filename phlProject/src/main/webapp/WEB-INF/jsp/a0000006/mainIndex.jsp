@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
@@ -52,8 +53,19 @@
 	</div>
 </div>
 
-<div id="main_content">
-	<div class="content-1">	
+<div class="content">
+	<div id="tab_menu">	
+		<ul id="tab">
+			<li class="on"><a href="javascript:void(0);" 	id="tabScheduleToday" 	name="tabScheduleToday">오늘</a></li>
+			<li><a href="javascript:void(0);" 				id="tabScheduleWeek"	name="tabScheduleWeek">이번주</a></li>
+			<li><a href="javascript:void(0);" 				id="tabScheduleMonth" 	name="tabScheduleMonth">이번달</a></li>
+		</ul>
+	</div>
+	
+	<div id="main_calendar">
+		<form id="calendarForm" name="calendarForm" method="post" action="#;">
+			<iframe id="ifrmCalendar" name="ifrmCalendar" frameborder="0" hspace="0" vspace="0" width="100%" height="800" scrolling="no"></iframe>
+		</form>
 	</div>
 </div>
   
@@ -73,3 +85,24 @@
 		</a>
 	</div>
 </div>
+
+<script type="text/javascript">
+		
+	window.onload = function() {
+		$("#calendarForm").attr({action:'<c:url value="/mngtsys/itsm/aops/incidentmng/requst/iframeRequstRcept.do"/>' ,method:'post', target:'ifrmProgrs'}).submit();
+	};
+
+	$(function(){
+		$("#tabScheduleToday").click(function(){
+			alert(1);
+		});	
+
+		$("#tabScheduleWeek").click(function(){
+			alert(2);
+		});	
+		
+		$("#tabScheduleMonth").click(function(){
+			alert(3);
+		});	
+	});
+</script>
