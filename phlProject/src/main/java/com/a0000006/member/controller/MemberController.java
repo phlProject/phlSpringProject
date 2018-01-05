@@ -187,20 +187,18 @@ public class MemberController {
         return mv;
 	}
 	
-	/* 아이디 중복체크 */
-	@RequestMapping(value="/a0000006/member/idDupChk.do")
-	public ModelAndView idDupChk(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	/* 회원 중복체크 */
+	@RequestMapping(value="/a0000006/member/memDupChk.do")
+	public ModelAndView memDupChk(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("jsonView");
-		
-		int id_Chk = memberService.idDupChk(commandMap.getMap());
+
+		int dupCnt = memberService.memDupChk(commandMap.getMap());
 		String result = "";
 		
-		if(id_Chk == 0){
-			result = "success";
-		}else{
-			result = "fail";
-		}
+		if(dupCnt == 0)	result = "success";
+		else result = "fail";
+		
 		
 		mv.addObject("result", result);  		
 		return mv;

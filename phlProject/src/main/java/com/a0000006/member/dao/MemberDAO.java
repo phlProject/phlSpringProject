@@ -44,9 +44,9 @@ public class MemberDAO extends AbstractDAO {
 	    update("a0000006/member.deleteMemRegist", map);
 	}
 	
-	/* 아이디 중복체크 */
-    public int idDupChk(Map<String, Object> map) throws Exception{
-        return (Integer) selectOne("a0000006/member.idDupChk", map);
+	/* 회원 중복체크 */
+    public int memDupChk(Map<String, Object> map) throws Exception{
+        return (Integer) selectOne("a0000006/member.memDupChk", map);
     }
  
     /* 아이디/비밀번호 찾기 */

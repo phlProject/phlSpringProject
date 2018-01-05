@@ -1,90 +1,107 @@
 /* 회원등록  S */
 
-// 아이디 변경 체크
-function changedId(){
-	
-	// 아이디가 변경되었을 때 useableIdYn 값을 'N'으로 변경함으로써 아이디 중복검사를 다시 하게 함.
-	// 영문소문자와 숫자로만 이루어져야한다.
-    // 첫 글자는 반드시 영문 소문자, 4~12자로 이루어지고, 숫자가 하나 이상 포함되어야 한다. 
-    // \d : [0-9]와 같다.       {n,m} : n에서 m까지 글자수
+// 회원 정보 변경 체크
+function memValidChk(param){
     
-	var id = document.getElementById('memId');
-	if(id.value == ""){
-		$("#idDupText").text("아이디를 입력해주세요.");
-		$("#suitableIdYn").val("N");
-		return false;
+	var data = document.getElementById(param);
+	
+	if(param == "memId"){ // 영문 소문자 시작, 숫자 포함, 4~12자
+		if(data.value == ""){
+			$("#memIdDupText").text("아이디를 입력해주세요.");
+			$("#memIdSuitYn").val("N");
+			return false;
+		}
+		if(!chk(/^[a-z][a-z\d]{3,11}$/, data, "영문 소문자로 시작하고 숫자가 포함 된  4~12자여야합니다.", param)){
+			$("#memIdSuitYn").val("N");
+	    	return false;
+	    }
+	    if(!chk(/[0-9]/, data, "반드시 숫자가 하나 이상 포함되어야 합니다.", param)){
+	    	$("#memIdSuitYn").val("N");
+	    	return false;
+	    }
+	}else if(param == "memEmail"){ // 이메일 형식 (***@***.***)
+		if(data.value == ""){
+			$("#memEmailDupText").text("이메일을 입력해주세요.");
+			$("#memEmailSuitYn").val("N");
+			return false;
+		}
+		if(!chk(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/, data, "이메일 형식이 올바르지 않습니다. 다시 작성해주세요.", param)){
+			$("#memIdSuitYn").val("N");
+	    	return false;
+	    }
 	}
-	if(!chk(/^[a-z][a-z\d]{3,11}$/, id, 
-    		"영문 소문자로 시작하고 숫자가 포함 된  4~12자여야합니다.")){
-		$("#suitableIdYn").val("N");
-    	return false;
-    }
-    if(!chk(/[0-9]/, id, 
-    		"반드시 숫자가 하나 이상 포함되어야 합니다.")){
-    	$("#suitableIdYn").val("N");
-    	return false;
-    }
-
-    $("#suitableIdYn").val("Y");
-	$("#useableIdYn").val("N");
-	$("#idDupText").text("");
+	
+    $("#" + param + "SuitYn").val("Y");
+	$("#" + param + "UseYn").val("N");
+	$("#" + param + "DupText").text("");
 	
 	return true;
 }
 
-// ID 유효성 체크
-function chk(re, e, msg) {
-    if (re.test(e.value)) {
-    	return true;
-    }
-    $("#idDupText").text(msg);
-    e.focus();
-    return false;
-}
+// 회원 중복 검사
+function memDupChk(param){
 	
-// 아이디 중복 검사
-function idDupChk(){
-	
-	// 아이디 유효성검사
-	if(!changedId()){
+	if(!memValidChk(param)){
 		return;
 	}
 	
+	var paramTxt = "";
+	if(param == "memId") 		 paramTxt = "아이디";
+	else if(param == "memEmail") paramTxt = "이메일";
+	
 	$.ajax({
-		url		: "/a0000006/member/idDupChk.do",
+		url		: "/a0000006/member/memDupChk.do",
 		type 	: "post",
 		data : {
-					memId : $("#memId").val(),
+					paramName: param,
+					paramVal : $("#"+param).val(),
 					bsnsCode : $("#bsnsCode").val()
 				},
 		dataType : "json",
 		success : function(data){
 			if(data.result == "success"){
-				$("#idDupText").text("사용할 수 있는 아이디입니다.");
-				$("#useableIdYn").val("Y");
+				$("#" + param + "DupText").text("사용 할 수 있는 " + paramTxt + "입니다.");
+				$("#" + param + "UseYn").val("Y");
 			}else if(data.result == "fail"){
-				$("#idDupText").text("중복된 아이디입니다. 다른 아이디를 입력해주세요.");
-				$("#memId").focus();
+				$("#" + param + "DupText").text("중복 된 " + paramTxt + "입니다.");
+				$("#" + param).focus();
 			}
 		}
 	});
 }
 
+//ID 유효성 체크
+function chk(re, e, msg, param) {
+	if (re.test(e.value)) return true;
+    
+    $("#" + param + "DupText").text(msg);
+    e.focus();
+    return false;
+}
+
+
 // 회원가입 유효성 검사
 function fn_validation(){
 	
 	var memId 			= $("#memId");			// 아이디
-	var suitableIdYn	= $("#suitableIdYn");	// 아이디 적합성 여부
-	var useableIdYn 	= $("#useableIdYn");	// 아이디 중복 검사 여부
+	var memIdUseYn 		= $("#memIdUseYn");		// 아이디 중복 검사 여부 
+	var memIdSuitYn		= $("#memIdSuitYn");	// 아이디 적합성 여부
+	
 	var memPw 			= $("#memPw");			// 비밀번호
 	var confMemPw 		= $("#confMemPw");		// 비밀번호 확인
-	var memNm 			= $("#memNm");			// 이름
-	var memEmail 		= $("#memEmail");		// 이메일
-	var memGbnCd 		= $("#memGbnCd");		// 회원 구분
-	var memPhone 		= $("#memPhone");		// 전화번호
 	
-	var memIdEx			= /^[a-z][a-z\d]{3,11}$/;
+	var memNm 			= $("#memNm");			// 이름
+	
+	var memEmail 		= $("#memEmail");		// 이메일
+	var memEmailUseYn 	= $("#memEmailUseYn");	// 이메일 중복 검사 여부
+	var memEmailSuitYn	= $("#memEmailSuitYn");	// 이메일 적합성 여부
+	
+	var memGbnCd 		= $("#memGbnCd");		// 회원 구분
+	var memPhone 		= $("#memPhone");		// 휴대폰번호
+	
+	var memIdExt		= /^[a-z][a-z\d]{3,11}$/;
 	var memPwExt		= /^[a-zA-Z0-9]{8,12}$/;
+	var memEmailExt		= /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	
 	if($.trim(memId.val()) == ""){
 		alert(" * 아이디를 입력해주세요. ");
@@ -93,13 +110,13 @@ function fn_validation(){
 	}
 	
 	// 아이디 적합성 여부
-	if( ($.trim(suitableIdYn.val()) == "N") || !memIdEx.test(memId.val())){
+	if( ($.trim(memIdSuitYn.val()) == "N") || !memIdExt.test(memId.val())){
 		alert(" * 아이디가 적합하지 않습니다. \n 영문 소문자로 시작하고 숫자가 포함 된 4~12자여야합니다.");
 		return false;
 	}
 	
 	// 아이디 중복 검사 여부 
-	if($.trim(useableIdYn.val()) == "N"){
+	if($.trim(memIdUseYn.val()) == "N"){
 		alert(" * 아이디 중복검사를 해주세요.");
 		return false;
 	}
@@ -134,9 +151,16 @@ function fn_validation(){
 		return false;
 	}
 	
-	// 이메일 형식 체크
-	if(!emailCheck()){
+	// 이메일 적합성 여부
+	if( ($.trim(memEmailSuitYn.val()) == "N") || !memEmailExt.test(memEmail.val()) ){
+		alert("이메일형식이 올바르지 않습니다. 다시 입력해주세요.");
 		memEmail.focus();
+		return false;
+	}
+	
+	// 이메일 중복 검사 여부 
+	if($.trim(memEmailUseYn.val()) == "N"){
+		alert(" * 이메일 중복검사를 해주세요.");
 		return false;
 	}
 	
@@ -155,25 +179,12 @@ function fn_validation(){
 	return true;
 }
 
-// 이메일 정규식
-function emailCheck() {		
-
-	var email = $.trim($("#memEmail").val());
-	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
-	//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
-	if(!exptext.test(email)){
-		alert("이 메일형식이 올바르지 않습니다. 다시 작성해주세요.");
-		return false;
-	}
-	return true;
-}
 
 // 비밀번호 확인 체크
 function confirmPw(){
-	var memPw = $("#memPw").val();
-	var confMemPw = $("#confMemPw").val();
-	if(memPw != confMemPw && confMemPw != ""){
+	var memPw 		= $("#memPw").val();
+	var confMemPw 	= $("#confMemPw").val();
+	if(confMemPw != "" && memPw != confMemPw){
 		$("#confPwText").text("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		$("#confMemPw").val("");
 		$("#confMemPw").focus();
@@ -183,6 +194,7 @@ function confirmPw(){
 	}
 	return true;
 }
+
 
 // 회원 등록
 function fn_insertMemRegist(){
@@ -200,8 +212,7 @@ function fn_insertMemRegist(){
 	var postUrl = "/a0000006/member/insertMemRegist.do";
 	$.post(postUrl, $("#memRegist_Form").serialize(), function(data){
 		if(data.result == "success" ){
-			alert("" +
-					"환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
+			alert("환영합니다. 회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
 			ComSubmit('memRegist_Form','/a0000006/member/memLoginForm.do');
 		} else{
 			alert("회원 가입에 실패하였습니다. 관리자에게 문의해주세요.");
@@ -211,6 +222,7 @@ function fn_insertMemRegist(){
 }
 
 /* 회원등록  E */
+
 
 
 
@@ -232,7 +244,6 @@ function fn_loginVal(){
 	}
 	
 	ComSubmit('loginActionForm','/a0000006/member/loginAction.do');
-	
 }
 
 /* 로그인 E */
@@ -244,7 +255,6 @@ function fn_loginVal(){
 
 // 정보 변경 여부를 확인할 전역 변수
 var is_input_changed = false;
-
 
 $(document).ready(function(){
 	
@@ -261,7 +271,6 @@ function fn_updateMemValid(){
 	var memPw 			= $("#memPw");			// 비밀번호
 	var confMemPw 		= $("#confMemPw");		// 비밀번호 확인
 	var memNm 			= $("#memNm");			// 이름
-	var memEmail 		= $("#memEmail");		// 이메일
 	var memGbnCd 		= $("#memGbnCd");		// 회원 구분
 	var memPhone 		= $("#memPhone");		// 전화번호
 	
@@ -298,18 +307,6 @@ function fn_updateMemValid(){
 		return;
 	}
 	
-	if($.trim(memEmail.val()) == ""){
-		alert(" * 이메일을 입력해주세요. ");
-		memEmail.focus();
-		return;
-	}
-	
-	// 이메일 형식 체크
-	if(!emailCheck()){
-		memEmail.focus();
-		return;
-	}
-	
 	if($.trim(memGbnCd.val()) == "G01030"){
 		if ( !confirm(" * 회원 구분을 '선생님'으로 선택 시 관리자의 권한승인을 받을 때까지 로그인이 불가능합니다. 계속 하시겠습니까?") ){
 			return;
@@ -321,7 +318,6 @@ function fn_updateMemValid(){
 		memPhone.focus();
 		return;
 	}
-	
 	
 	
 	// 1. 정보 수정이 있었을 경우에만 수정 쿼리를 탐.
@@ -354,7 +350,6 @@ function fn_updateMemRegist(){
 					ComSubmit('memMypage_Form','/a0000006/member/memMyPage.do');
 				}
 				
-				
 			} else{
 				alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
 				return;
@@ -367,11 +362,6 @@ function fn_updateMemRegist(){
 function fn_deleteMemRegist(){
 	
 	if(confirm("회원 탈퇴 하시겠습니까?")){
-		
-		//ComSubmit('memMypage_Form','/a0000006/mem/deleteMemRegist.do');
-		
-		//alert("탈퇴 처리 되었습니다.");
-		
 		var postUrl = "/a0000006/member/deleteMemRegist.do";
 		$.post(postUrl, $("#memMypage_Form").serialize(), function(data){
 			if(data.result == "success" ){

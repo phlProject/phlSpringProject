@@ -90,7 +90,6 @@
     	SET   MEM_PW	= HEX(AES_ENCRYPT(#{memPw}, "pkhl"))
     	]]>
     		, MEM_NM	= #{memNm}
-    		, MEM_EMAIL	= #{memEmail}
     		, MEM_GBN_CD= #{memGbnCd}
     		, MEM_PHONE	= #{memPhone}
     		, MOD_DT	= now()
@@ -115,13 +114,18 @@
     	  AND MEM_SN    = #{memSn}
     </update> 
     
-    <!-- 아이디 중복체크  -->
-	<select id="idDupChk" parameterType="hashmap" resultType="int">
+    <!-- 회원 중복체크  -->
+	<select id="memDupChk" parameterType="hashmap" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM BSNS_MEMBER
 		WHERE 1=1
-    	  AND MEM_ID = #{memId}
-		  AND BSNS_CODE = #{bsnsCode}
+	      AND BSNS_CODE = #{bsnsCode}
+	      <if test="paramName == 'memId'">
+	      AND MEM_ID 	= #{paramVal}
+	      </if>
+	      <if test="paramName == 'memEmail'">
+	      AND MEM_EMAIL = #{paramVal} 
+	      </if>
 	</select>
     
     <select id="memInfoSearch" parameterType="hashmap" resultType="java.lang.String">

@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<th>이메일 </th>
-			<td><input type="text" value="${myPageInfo.MEM_EMAIL}" id="memEmail" name="memEmail"></td>
+			<td>${myPageInfo.MEM_EMAIL}</td>
 		</tr>
 		
 		<tr>

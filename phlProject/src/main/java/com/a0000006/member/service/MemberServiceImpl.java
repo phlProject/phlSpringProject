@@ -73,10 +73,10 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
-	/* 아이디 중복체크 */
+	/* 회원 중복체크 */
 	@Override
-    public int idDupChk(Map<String, Object> map) throws Exception {
-        return memberDAO.idDupChk(map);
+    public int memDupChk(Map<String, Object> map) throws Exception {
+        return memberDAO.memDupChk(map);
     }
 	
 	/* 아이디/비밀번호 찾기 */

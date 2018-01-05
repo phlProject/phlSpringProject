@@ -25,8 +25,8 @@ public interface MemberService {
 	/* 회원탈퇴 */
 	String deleteMemRegist(Map<String, Object> map) throws Exception;
 	
-	/* 아이디 중복체크 */
-	public int idDupChk(Map<String, Object> map) throws Exception;
+	/* 회원 중복체크 */
+	public int memDupChk(Map<String, Object> map) throws Exception;
 	
 	/* 아이디/비밀번호 찾기 */
 	String memInfoSearch(Map<String, Object> map) throws Exception;
