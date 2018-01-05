@@ -109,23 +109,21 @@
 		WHERE 1=1
 		  AND USE_YN = 'Y'
 		  
-		  <if test='searchPeriod =="today"'>
-		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d')
+		  <if test='searchPeriod == "today"'>
+		  AND SCHEDULE_DT = CURDATE()
 		  </if>
 		  
-		  <if test='searchPeriod =="week"'>
-		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') 
-		      BETWEEN DATE_FORMAT(now(),'%Y%m%d') 
-		   	  AND
-		      DATE_FORMAT(ADDDATE(NOW(), INTERVAL 7 DAY),'%Y%m%d')
-		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m') = DATE_FORMAT(now(),'%Y%m')
+		  <if test='searchPeriod == "week"'>
+		  AND SCHEDULE_DT BETWEEN ADDDATE(CURDATE(), -WEEKDAY(CURDATE()))  
+		      			  AND  	  ADDDATE(CURDATE(), 6-WEEKDAY(CURDATE()))
 		  </if>
 		  
-		   
-		  <if test='searchPeriod =="month"'>
-		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m%d') 
-		  AND DATE_FORMAT(SCHEDULE_DT,'%Y%m') = DATE_FORMAT(now(),'%Y%m')
+		  <if test='searchPeriod == "month"'>
+		  AND SCHEDULE_DT BETWEEN ADDDATE(CURDATE(), 1-DAYOFMONTH(CURDATE())) 
+		                  AND 	  LAST_DAY(CURDATE())
           </if>
+         ORDER BY SCHEDULE_DT
+                 ,SCHEDULE_SN
 	</select>
 	
 	<!-- /****************************** 일   정  종료  ******************************/ -->

@@ -63,8 +63,9 @@
 	</div>
 	
 	<div id="main_calendar">
-		<form id="calendarForm" name="calendarForm" method="post" action="#;">
-			<iframe id="ifrmCalendar" name="ifrmCalendar" frameborder="0" hspace="0" vspace="0" width="100%" height="800" scrolling="no"></iframe>
+		<form id="scheduleForm" name="scheduleForm" method="post" action="#;">
+			<input type="hidden" name="searchPeriod" id="searchPeriod" value="today">
+			<iframe id="ifrmSchedule" name="ifrmSchedule" frameborder="1" hspace="0" vspace="0" width="100%" height="100" scrolling="auto"></iframe>
 		</form>
 	</div>
 </div>
@@ -87,22 +88,29 @@
 </div>
 
 <script type="text/javascript">
-		
+	
 	window.onload = function() {
-		$("#calendarForm").attr({action:'<c:url value="/mngtsys/itsm/aops/incidentmng/requst/iframeRequstRcept.do"/>' ,method:'post', target:'ifrmProgrs'}).submit();
+		$("#scheduleForm").attr({action:"/a0000006/open/iframePeriodList.do" ,method:'post', target:'ifrmSchedule'}).submit();
 	};
 
+	// 일정기간 탭 클릭 
 	$(function(){
 		$("#tabScheduleToday").click(function(){
-			alert(1);
+			fn_scheduleChange("today");
 		});	
 
 		$("#tabScheduleWeek").click(function(){
-			alert(2);
+			fn_scheduleChange("week");
 		});	
 		
 		$("#tabScheduleMonth").click(function(){
-			alert(3);
+			fn_scheduleChange("month");
 		});	
 	});
+	
+	// 탭 전환 
+	function fn_scheduleChange(strPeriod){
+		$("#searchPeriod").val(strPeriod);
+		$("#scheduleForm").attr({action:"/a0000006/open/iframePeriodList.do" ,method:'post', target:'ifrmSchedule'}).submit();
+	}
 </script>

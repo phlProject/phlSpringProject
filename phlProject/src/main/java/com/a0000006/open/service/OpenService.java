@@ -26,7 +26,6 @@ public interface OpenService {
 	// 일정 - 삭제
 	String deleteSchedule(Map<String, Object> map) throws Exception;
 
-	
 	// 일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 )
 	List<CommandMap> selectPeriodSchedule(Map<String, Object> map) throws Exception;
 	

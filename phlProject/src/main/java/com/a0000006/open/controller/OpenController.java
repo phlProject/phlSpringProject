@@ -160,6 +160,24 @@ public class OpenController {
 		
 	}
 	
+	// 일정 - 기간 별 일정 ( 오늘 / 이번 주 / 이번 달 )
+	@RequestMapping(value="/a0000006/open/iframePeriodList.do")
+	public ModelAndView iframePeriodList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("/a0000006/open/iframePeriodList");
+		
+		Map<String, Object> map = commandMap.getMap();
+
+		// 일정 리스트
+		List<CommandMap> periodList = openService.selectPeriodSchedule(map);
+		mv.addObject("periodList", periodList);
+		
+		return mv;
+		
+	}
+	
+	
+	
 	/****************************** 일   정  종료  ******************************/
 	/*********************************************************************/
 	

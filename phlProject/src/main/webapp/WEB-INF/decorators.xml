@@ -26,6 +26,10 @@
 		<pattern>*/manage/*</pattern> 		<!-- 관리자		-->
 	</decorator>
 	
+	<!-- no decorator -->
+	<decorator name="indexLayoutEmpty" page="/WEB-INF/jsp/a0000006/layout/basicDecoEmpty.jsp">
+		<pattern>*/iframe*</pattern>
+	</decorator>
 	
 	<!-- TopDefault -->
 	<decorator name="topDefault" page="/WEB-INF/jsp/a0000006/layout/topDefault.jsp"/>
