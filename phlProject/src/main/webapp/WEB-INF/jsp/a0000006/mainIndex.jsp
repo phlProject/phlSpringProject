@@ -68,6 +68,13 @@
 			<iframe id="ifrmSchedule" name="ifrmSchedule" frameborder="1" hspace="0" vspace="0" width="100%" height="100" scrolling="auto"></iframe>
 		</form>
 	</div>
+	<table>
+		<c:forEach var="rows" items="${bookList}" varStatus="status">
+			<tr>
+				<td>${rows.SUBJECT}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </div>
   
 <div id="main_sidebar">

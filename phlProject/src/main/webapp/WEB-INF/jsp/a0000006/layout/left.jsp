@@ -23,7 +23,7 @@
 	
 	<!-- 로그인 / 회원가입 / 아이디,비밀번호 찾기 -->
 	<c:if test="${ fn:contains(url, '/member/') && !fn:contains(url, '/memMyPage') }">
-		<h2>꿈두레</h2>
+		<h2>교육나눔꿈두레</h2>
 		<ul>
 			<li><a href="javascript:TopMenuMove('/a0000006/member/memLoginForm.do');" id="memLoginForm">로그인</a></li>
 			<li><a href="javascript:TopMenuMove('/a0000006/member/memSearchForm.do');" id="memSearchForm">아이디/비밀번호 찾기</a></li>

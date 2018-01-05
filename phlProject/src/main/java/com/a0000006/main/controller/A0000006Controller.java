@@ -1,6 +1,7 @@
 package com.a0000006.main.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.a0000006.board.service.BoardService;
 import com.phl.common.CommandMap;
 import com.phl.common.service.PhlCommService;
 
@@ -22,6 +24,11 @@ public class A0000006Controller {
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	/* 자료실 */
+	@Resource(name="BoardService")
+	private BoardService boardService;
+	
 	
 	
 	/* 메인화면 */
@@ -40,6 +47,13 @@ public class A0000006Controller {
 	        
 	        session.setAttribute("menuList", menuList);  
         }
+        
+        // 자료실 조회
+        commandMap.put("boardGbnCd", "B01001");	// 게시판_코드 : 책소개 
+        commandMap.put("selectWhere", "main");
+        List<Map<String,Object>> bookList = boardService.bookList(commandMap.getMap());
+        
+        mv.addObject("bookList", bookList);
         
         return mv;
     }     

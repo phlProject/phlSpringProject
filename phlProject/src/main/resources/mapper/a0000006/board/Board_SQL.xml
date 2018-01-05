@@ -78,6 +78,7 @@
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
 		  AND AA.BOARD_GBN_CD = #{boardGbnCd}
+		  
 		  <if test="searchSelect != '' or searchSelect != null">
 		  	<choose>
 			 	<when test='searchSelect == "searchSubject"'>
@@ -97,8 +98,18 @@
 			 	</when>
 		  	</choose>
 		  </if>
-		ORDER BY AA.BOARD_SN DESC
-		LIMIT #{limitFirst}, #{limitSecond}
+		  
+		<choose>
+			<when test="selectWhere == 'main'">
+				ORDER BY AA.LIKE_COUNT DESC
+				        ,AA.BOARD_SN DESC
+				LIMIT 0, 3
+			</when>
+			<otherwise>
+				ORDER BY AA.BOARD_SN DESC
+				LIMIT #{limitFirst}, #{limitSecond}
+			</otherwise>
+		</choose>
 	</select>
 
 
