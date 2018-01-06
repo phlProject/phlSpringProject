@@ -150,32 +150,37 @@
 				<th>계정상태</th>
 				<th colspan="3">비고</th>
 			</tr>
-		<c:forEach items="${memList}" var="row">
-			<tr>
-	              <td>${row.MEM_ID}</td>
-	              <td>${row.MEM_NM}</td>
-	              <td>${row.MEM_EMAIL}</td>
-	              <td>${row.MEM_PHONE}</td>
-	              <td>${row.MEM_GBN_CD_NM}</td>
-	              <td>${row.REMARK_NM}</td>
-	              <td width="10%">
-	              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
-	              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
-	              	</c:if>
-	              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
-	              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
-	              	</c:if>
-	              </td>
-	              <td width="10%">
-	              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
-	              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
-	              	</c:if>
-	              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
-	              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
-	              	</c:if>
-	              </td>
-	        </tr>
-		</c:forEach>
+			<c:if test="${empty memList}">
+				<tr>
+					<td colspan="9">조회 된 내용이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:forEach items="${memList}" var="row">
+				<tr>
+		              <td>${row.MEM_ID}</td>
+		              <td>${row.MEM_NM}</td>
+		              <td>${row.MEM_EMAIL}</td>
+		              <td>${row.MEM_PHONE}</td>
+		              <td>${row.MEM_GBN_CD_NM}</td>
+		              <td>${row.REMARK_NM}</td>
+		              <td width="10%">
+		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
+		              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
+		              	</c:if>
+		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
+		              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
+		              	</c:if>
+		              </td>
+		              <td width="10%">
+		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
+		              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
+		              	</c:if>
+		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
+		              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
+		              	</c:if>
+		              </td>
+		        </tr>
+			</c:forEach>
 		</table>	
 			<div class="mem_paging">
 				<c:if test="${beginPageNum > 10}">

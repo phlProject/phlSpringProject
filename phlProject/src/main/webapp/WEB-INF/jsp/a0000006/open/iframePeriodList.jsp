@@ -11,9 +11,12 @@
 		<td>내용</td>
 	</tr>
 	<c:if test="${empty periodList}">
-		조회 된 일정이 없습니다.
+		<tr>
+			<td colspan="3">조회 된 일정이 없습니다.</td>
+		</tr>
 	</c:if>
 	<c:forEach var="rows" items="${periodList}" varStatus="status">
+		
 		<tr>
 			<td>${rows.SCHEDULE_DT}</td>
 			<td>${rows.ST_HOUR}시 ~ ${rows.END_HOUR}시</td>
