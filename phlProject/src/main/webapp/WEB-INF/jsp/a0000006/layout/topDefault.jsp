@@ -15,6 +15,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
 <link rel="stylesheet" href="/css/common.css" />
 <link rel="stylesheet" href="/css/unit.css" />
 <link rel='stylesheet' id='camera-css'  href='/css/camera.css' type='text/css' media='all'> 
