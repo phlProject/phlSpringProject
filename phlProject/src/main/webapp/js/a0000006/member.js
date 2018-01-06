@@ -430,6 +430,7 @@ $(document).ready(function() {
 	
 });
 
+// 찾기 유효성 검사
 function fn_searchValid(searchData){
 	
 	var memId 			= $("#memId");			// 아이디
