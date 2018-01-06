@@ -1,4 +1,36 @@
-/* 회원등록  S */
+/**
+ *	로그인
+ *	회원가입
+ *	마이페이지
+ *	아이디/비밀번호 찾기
+ */
+
+/*************************** 로그인 Start ***************************/
+
+//로그인 유효성
+function fn_loginVal(){
+	
+	if($("#memId").val() == ""){
+		alert(" * 아이디를 입력해주세요. ");
+		$("#memId").focus();
+		return;
+	}
+	
+	if($("#memPw").val() == ""){
+		alert(" * 비밀번호를 입력해주세요. ");
+		$("#memPw").focus();
+		return;
+	}
+	
+	ComSubmit('loginActionForm','/a0000006/member/loginAction.do');
+}
+
+/*************************** 로그인 End ***************************/
+
+
+
+
+/*************************** 회원가입 Start ***************************/
 
 // 회원 정보 변경 체크
 function memValidChk(param){
@@ -11,11 +43,11 @@ function memValidChk(param){
 			$("#memIdSuitYn").val("N");
 			return false;
 		}
-		if(!chk(/^[a-z][a-z\d]{3,11}$/, data, "영문 소문자로 시작하고 숫자가 포함 된  4~12자여야합니다.", param)){
+		if(!chkText(/^[a-z][a-z\d]{3,11}$/, data, "영문 소문자로 시작하고 숫자가 포함 된  4~12자여야합니다.", param)){
 			$("#memIdSuitYn").val("N");
 	    	return false;
 	    }
-	    if(!chk(/[0-9]/, data, "반드시 숫자가 하나 이상 포함되어야 합니다.", param)){
+	    if(!chkText(/[0-9]/, data, "반드시 숫자가 하나 이상 포함되어야 합니다.", param)){
 	    	$("#memIdSuitYn").val("N");
 	    	return false;
 	    }
@@ -25,7 +57,7 @@ function memValidChk(param){
 			$("#memEmailSuitYn").val("N");
 			return false;
 		}
-		if(!chk(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/, data, "이메일 형식이 올바르지 않습니다. 다시 작성해주세요.", param)){
+		if(!chkText(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/, data, "이메일 형식이 올바르지 않습니다. 다시 작성해주세요.", param)){
 			$("#memIdSuitYn").val("N");
 	    	return false;
 	    }
@@ -70,8 +102,8 @@ function memDupChk(param){
 	});
 }
 
-//ID 유효성 체크
-function chk(re, e, msg, param) {
+// 유효성 Text 체크
+function chkText(re, e, msg, param) {
 	if (re.test(e.value)) return true;
     
     $("#" + param + "DupText").text(msg);
@@ -221,35 +253,13 @@ function fn_insertMemRegist(){
 	});
 }
 
-/* 회원등록  E */
+/*************************** 회원가입 End ***************************/
 
 
 
 
-/* 로그인 S */
 
-//로그인 유효성
-function fn_loginVal(){
-	
-	if($("#memId").val() == ""){
-		alert(" * 아이디를 입력해주세요. ");
-		$("#memId").focus();
-		return;
-	}
-	
-	if($("#memPw").val() == ""){
-		alert(" * 비밀번호를 입력해주세요. ");
-		$("#memPw").focus();
-		return;
-	}
-	
-	ComSubmit('loginActionForm','/a0000006/member/loginAction.do');
-}
-
-/* 로그인 E */
-
-
-/* 마이페이지 S */
+/*************************** 마이페이지 Start ***************************/
 
 // 정보 변경 여부를 확인할 전역 변수
 var is_input_changed = false;
@@ -289,12 +299,6 @@ function fn_updateMemValid(){
 	
 	if($.trim(confMemPw.val()) == ""){
 		alert(" * 비밀번호 확인란을 입력해주세요. ");
-		confMemPw.focus();
-		return;
-	}
-	
-	if(memPw.val() != confMemPw.val() && confMemPw.val() != ""){
-		alert(" * 비밀번호가 일치하지 않습니다. 다시 입력해주세요. ");
 		confMemPw.focus();
 		return;
 	}
@@ -373,4 +377,59 @@ function fn_deleteMemRegist(){
 	}
 }
 
-/* 마이페이지 E */
+/*************************** 마이페이지 End ***************************/
+
+
+
+/*************************** 아이디/비밀번호 찾기 Start ***************************/
+
+
+/* 아이디 / 비밀번호 찾기 S */
+$(document).ready(function() {
+	
+	// 아이디 찾기 검색 클릭
+	$('#btnIdSearch').click(function(){
+		
+		var postUrl = "/a0000006/member/memInfoSearch.do";
+		
+		$.post(postUrl, $("#idSearchForm").serialize(), function(data){
+			if(data.result == "Y" ){
+				$("#memSearchId").text("회원님의 아이디는 ' " + data.memInfo + " ' 입니다.");
+			}else{
+				$("#memSearchId").text("일치하는 정보가 없습니다.");
+				return;
+			}
+		});
+		
+	});
+	
+	
+	// 비밀번호 찾기 검색 클릭
+	$('#btnPwSearch').click(function(){
+		
+		var postUrl = "/a0000006/member/memInfoSearch.do";
+		
+		$.post(postUrl, $("#pwSearchForm").serialize(), function(data){
+			if(data.result == "Y" ){
+				$("#memSearchPw").text("회원님의 비밀번호는 ' " + data.memInfo + " ' 입니다.");
+			}else{
+				$("#memSearchPw").text("일치하는 정보가 없습니다.");
+				return;
+			}
+		});
+		
+	});
+	
+});
+
+// 정보 초기화
+function memInfoInit(){
+	$("input[name='memNm']").val("");
+	$("input[name='memEmail']").val("");
+	$("#memId").val("");
+	$("#memSearchId").text("");
+	$("#memSearchPw").text("");
+}
+
+
+/*************************** 아이디/비밀번호 찾기 End ***************************/
