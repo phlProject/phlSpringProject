@@ -8,7 +8,7 @@
 	<tr>
 		<td>일자</td>
 		<td>시간</td>
-		<td>내용</td>
+		<td>제목</td>
 	</tr>
 	<c:if test="${empty periodList}">
 		<tr>

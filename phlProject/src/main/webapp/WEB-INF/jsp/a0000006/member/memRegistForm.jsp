@@ -27,8 +27,8 @@
 					<tr>
 					    <th>비밀번호 확인</th>
 					    <td>
-						    <input type="password" id="confMemPw" name="confMemPw" placeholder="비밀번호확인" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/>
-						    <span id="confPwText" style="color:red; font-size:12px; padding:20px;"></span>
+					    <input type="password" id="confMemPw" name="confMemPw" placeholder="비밀번호확인" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/>
+					    <span id="confPwText" style="color:red; font-size:12px; padding:20px;"></span>
 					    </td>
 					</tr>
 					<tr>	

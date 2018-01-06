@@ -390,13 +390,17 @@ $(document).ready(function() {
 	// 아이디 찾기 검색 클릭
 	$('#btnIdSearch').click(function(){
 		
+		if(!fn_searchValid('idSearchForm')){
+			return;
+		}
+		
 		var postUrl = "/a0000006/member/memInfoSearch.do";
 		
 		$.post(postUrl, $("#idSearchForm").serialize(), function(data){
 			if(data.result == "Y" ){
-				$("#memSearchId").text("회원님의 아이디는 ' " + data.memInfo + " ' 입니다.");
+				$("#memIdSearch").text("회원님의 아이디는 ' " + data.memInfo + " ' 입니다.");
 			}else{
-				$("#memSearchId").text("일치하는 정보가 없습니다.");
+				$("#memIdSearch").text("일치하는 정보가 없습니다.");
 				return;
 			}
 		});
@@ -407,13 +411,17 @@ $(document).ready(function() {
 	// 비밀번호 찾기 검색 클릭
 	$('#btnPwSearch').click(function(){
 		
+		if(!fn_searchValid('pwSearchForm')){
+			return;
+		}
+		
 		var postUrl = "/a0000006/member/memInfoSearch.do";
 		
 		$.post(postUrl, $("#pwSearchForm").serialize(), function(data){
 			if(data.result == "Y" ){
-				$("#memSearchPw").text("회원님의 비밀번호는 ' " + data.memInfo + " ' 입니다.");
+				$("#memPwSearch").text("회원님의 비밀번호는 ' " + data.memInfo + " ' 입니다.");
 			}else{
-				$("#memSearchPw").text("일치하는 정보가 없습니다.");
+				$("#memPwSearch").text("일치하는 정보가 없습니다.");
 				return;
 			}
 		});
@@ -422,14 +430,31 @@ $(document).ready(function() {
 	
 });
 
-// 정보 초기화
-function memInfoInit(){
-	$("input[name='memNm']").val("");
-	$("input[name='memEmail']").val("");
-	$("#memId").val("");
-	$("#memSearchId").text("");
-	$("#memSearchPw").text("");
-}
+function fn_searchValid(searchData){
+	
+	var memId 			= $("#memId");			// 아이디
+	var memNm 			= $("#"+searchData+" input[name='memNm']");		// 이름
+	var memEmail 		= $("#"+searchData+" input[name='memEmail']"); 	// 이메일
 
+	if($.trim(memId.val()) == "" && searchData == "pwSearchForm"){
+		alert(" * 아이디를 입력해주세요. ");
+		memId.focus();
+		return false;
+	}
+	
+	if($.trim(memNm.val()) == ""){
+		alert(" * 이름을 입력해주세요. ");
+		memNm.focus();
+		return false;
+	}
+	
+	if($.trim(memEmail.val()) == ""){
+		alert(" * 이메일을 입력해주세요. ");
+		memEmail.focus();
+		return false;
+	}
+	
+	return true;
+}
 
 /*************************** 아이디/비밀번호 찾기 End ***************************/

@@ -71,7 +71,8 @@
 	<table>
 		<c:forEach var="rows" items="${bookList}" varStatus="status">
 			<tr>
-				<td>${rows.SUBJECT}</td>
+				<td>이미지 :<img src="${row.FL_PATH}/${row.FL_NM}"></td>
+				<td>좋아요 : ${row.LIKE_COUNT}</td>
 			</tr>
 		</c:forEach>
 	</table>
