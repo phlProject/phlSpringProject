@@ -220,13 +220,13 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		
+		String result  = "N";
 		String memInfo = memberService.memInfoSearch(commandMap.getMap());
 		
-		if(!memInfo.isEmpty()){
-			mv.addObject("result", "success");
-			mv.addObject("memInfo", memInfo);
-		}
-		  
+		if(memInfo != null) result = "Y";
+		
+		mv.addObject("result", result);
+		mv.addObject("memInfo", memInfo);
 		
         return mv;
 	}

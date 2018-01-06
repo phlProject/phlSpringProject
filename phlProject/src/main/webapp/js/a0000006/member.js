@@ -251,8 +251,6 @@ function fn_loginVal(){
 
 /* 마이페이지 S */
 
-
-
 // 정보 변경 여부를 확인할 전역 변수
 var is_input_changed = false;
 

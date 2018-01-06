@@ -6,7 +6,7 @@
 	<div id="loginform">
 	<form id="loginActionForm">
 		<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}">
-		<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" onkeypress="if(event.keyCode == 13){fn_loginVal();}" /><br/>
+		<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" onkeypress="if(event.keyCode == 13){fn_loginVal();}"  onkeydown="engNumber(this)" style="text-transform: lowercase;"/><br/>
 		<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD" onkeypress="if(event.keyCode == 13){fn_loginVal();}" />
 	</form>
 	<br/>

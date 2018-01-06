@@ -10,10 +10,10 @@
 			var postUrl = "/a0000006/member/memInfoSearch.do";
 			
 			$.post(postUrl, $("#idSearchForm").serialize(), function(data){
-				if(data.result == "success" ){
+				if(data.result == "Y" ){
 					$("#memSearchId").text("회원님의 아이디는 ' " + data.memInfo + " ' 입니다.");
-				} else{
-					alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
+				}else{
+					$("#memSearchId").text("일치하는 정보가 없습니다.");
 					return;
 				}
 			});
@@ -27,11 +27,10 @@
 			var postUrl = "/a0000006/member/memInfoSearch.do";
 			
 			$.post(postUrl, $("#pwSearchForm").serialize(), function(data){
-				if(data.result == "success" ){
+				if(data.result == "Y" ){
 					$("#memSearchPw").text("회원님의 비밀번호는 ' " + data.memInfo + " ' 입니다.");
-					//ComSubmit('mem_Form','/a0000006/manage/memList.do');
-				} else{
-					alert("수정에 실패하였습니다. 관리자에게 문의해주세요.");
+				}else{
+					$("#memSearchPw").text("일치하는 정보가 없습니다.");
 					return;
 				}
 			});
@@ -63,7 +62,7 @@
 							<form id="idSearchForm" name="idSearchForm">
 								<input type="hidden" id="memSearchGb" name="memSearchGb" value="id">
 								이름	: <input type="text" id="memNm" name="memNm"> <br/>
-								휴대폰	: <input type="text" id="memPhone" name="memPhone"> <br/>
+								이메일	: <input type="text" id="memEmail" name="memEmail" placeholder="이메일" onkeydown="notHangeul(this)"> <br/>
 								<input type="button" id="btnIdSearch" name="btnIdSearch" value="찾기">
 								<span id="memSearchId" style="color:red; font-size:12px;"></span>
 							</form>
@@ -80,9 +79,9 @@
 							<h3 class="cont1-1">비밀번호 찾기</h3><br/>
 							<form id="pwSearchForm" name="pwSearchForm">
 								<input type="hidden" id="memSearchGb" name="memSearchGb" value="pw">
-								아이디	: <input type="text" id="memId" name="memId"> <br/>
+								아이디	: <input type="text" id="memId" name="memId" onkeydown="engNumber(this)" style="text-transform: lowercase;"> <br/>
 								이름	: <input type="text" id="memNm" name="memNm"> <br/>
-								휴대폰	: <input type="text" id="memPhone" name="memPhone"> <br/>
+								이메일	: <input type="text"id="memEmail" name="memEmail" placeholder="이메일" onkeydown="notHangeul(this)"> <br/>
 								<input type="button" id="btnPwSearch" name="btnPwSearch" value="찾기">
 								<span id="memSearchPw" style="color:red; font-size:12px;"></span>
 							</form>

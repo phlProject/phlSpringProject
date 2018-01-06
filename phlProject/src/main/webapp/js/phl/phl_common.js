@@ -22,11 +22,27 @@ function gfn_uploadFile(){
     });
 }
 
-$(function() {
-	
-	// onKeyUp - 숫자만
-	$(".onKeyOnlyNumber").keyup(function () { 
-	    this.value = this.value.replace(/[^0-9]/g,'');
+/* input Type 제어 */
+
+// 영어, 숫자 입력 가능 ( 대/소문자 css 제어 : text-transform )
+function engNumber(obj){
+	$(obj).keyup(function(event){ 
+		if (!(event.keyCode >=37 && event.keyCode<=40)) {
+			$(this).val($(this).val().replace(/[^a-z0-9]/gi,""));
+		}
 	});
-	
-});
+}
+
+// 숫자만 입력 가능 (전화번호)
+function onlyNumber(obj) {
+	$(obj).keyup(function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	}); 
+}
+
+//한글 불가 (이메일)
+function notHangeul(obj){
+	$(obj).keyup(function(){
+		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,""));
+	});
+}
