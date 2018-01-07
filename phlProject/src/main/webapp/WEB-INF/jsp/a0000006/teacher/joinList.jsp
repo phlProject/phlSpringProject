@@ -40,7 +40,7 @@
 
 	<h3 id="default_title">참여게시판</h3>
 	
-	<div id="default_form">
+	<div id="default_list_form">
 		<form id="joinList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >		<!-- 세션_업체코드 -->
 			<input type="hidden" id="sessionId"    	name="sessionId"       	value="${sessionScope.sessionId}" >		<!-- 세션_ID -->

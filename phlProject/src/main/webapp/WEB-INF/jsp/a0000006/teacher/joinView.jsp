@@ -29,15 +29,22 @@
 	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
 	
+	
 <div id="content">
-	<!-- <h3 class="cont-title">상세</h3> -->
-	<p class="book-view02">제목 : ${joinView.SUBJECT}</p>
+
+	<div id="default_view_form">
+		<h3 id="default_view_title">${joinView.SUBJECT}</h3>
+	</div>
+	
+	
+	<div id="default_view">
 		카테고리 :
-		<select id="teacherGbnCd" name="teacherGbnCd">
+		<select id="default_Select" name="default_Select">
 			<option value="${joinView.BOARD_GBN_CD}">${joinView.BOARD_GBN_CD_NM}</option>
-		</select>
-		
-	<br>${joinView.CONTENT}			
+		</select>	
+	</div>
+	
+	${joinView.CONTENT}			
 </div>
 
 
