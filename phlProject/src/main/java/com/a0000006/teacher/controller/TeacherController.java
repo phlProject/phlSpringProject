@@ -66,7 +66,7 @@ public class TeacherController {
 		ModelAndView mv = new ModelAndView("/a0000006/teacher/joinList");
 		
 		// 공통코드 - T01 : 교사학교과정
-	    commandMap.put("cl_code", "T01");
+	    commandMap.put("clCode", "T01");
 	    
 	    // 공통코드(교사학교과정)
 	    List<CommandMap> teacherGbnList = phlCommService.selectCommCode(commandMap.getMap());
@@ -161,7 +161,7 @@ public class TeacherController {
 		ModelAndView mv = new ModelAndView("/a0000006/teacher/joinForm");
 
 		// 공통코드 - T01 : 교사학교과정
-	    commandMap.put("cl_code", "T01");
+	    commandMap.put("clCode", "T01");
 	    
 	    // 공통코드(교사학교과정)
 	    List<CommandMap> teacherGbnList = phlCommService.selectCommCode(commandMap.getMap());
@@ -199,7 +199,7 @@ public class TeacherController {
 		ModelAndView mv = new ModelAndView("/a0000006/teacher/joinForm");
 		
 		// 공통코드 - T01 : 교사학교과정
-	    commandMap.put("cl_code", "T01");
+	    commandMap.put("clCode", "T01");
 	    
 	    // 공통코드(교사학교과정)
 	    List<CommandMap> teacherGbnList = phlCommService.selectCommCode(commandMap.getMap());

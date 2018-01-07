@@ -13,11 +13,11 @@
     	 WHERE 1=1
     	   AND USE_YN = 'Y'
    		   AND BSNS_CODE = #{bsnsCode}
-   		   <if test="cl_code != null" >
-   		   	AND CL_CODE = #{cl_code}
+   		   <if test="clCode != null" >
+   		   	AND CL_CODE = #{clCode}
    		   </if>
-   		   <if test="not_detail_code != null" >
-   		   	AND DETAIL_CODE NOT IN (${not_detail_code})
+   		   <if test="notDetailCode != null" >
+   		   	AND DETAIL_CODE NOT IN (${notDetailCode})
    		   </if>
     </select>
     
