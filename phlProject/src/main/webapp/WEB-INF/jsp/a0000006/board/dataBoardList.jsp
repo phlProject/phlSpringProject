@@ -36,7 +36,6 @@
 				</c:if>
 				
 				<c:if test="${not empty dataList}">
-<<<<<<< HEAD
 					<div class="public">
 						
 						<c:forEach items="${dataList}" var="row" varStatus="status">
@@ -55,16 +54,6 @@
 								<div class="public-view">
 									<a href="javascript:fn_dataView('${row.BOARD_SN}')">View</a>
 								</div>
-=======
-				<div class="public">
-					
-					<c:forEach items="${dataList}" var="row" varStatus="status">
-						<div class="public-list">
-							<div class="public-img">
-								<a href="javascript:fn_dataView('${row.BOARD_SN}')">
-								<img src="/img/word.png" alt="word"> 
-								</a>
->>>>>>> branch 'master' of https://github.com/phlProject/phlSpringProject.git
 							</div>
 							
 							<c:if test="${status.count%4 != 0}">
