@@ -33,6 +33,16 @@ nav ul ul li a:hover { color: #fff; }
 nav ul li:hover ul { display: block; }
 
 
+/*메인일정탭*/
+#tab_menu ul li { float:left; font-size:15px; font-weight:bold; padding:10px; border:1px solid #ddd; background-color:#fff;}
+#tab_menu ul li a { display: block; font-size: 14px; font-weight: 500; color:#000; }
+#tab_menu ul li a:hover { color: gray; }
+
+/*메인일정탭박스*/
+#main_calendar frame { border: 1px solid #ddd; }
+.calendar_tb th{ background-color: #ddd; font-family:"Noto Sans KR", sans-serif; }
+
+
 /* content 및  main*/
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
 #content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; /*min-height: 100%;*/ }
@@ -401,7 +411,7 @@ line-height: 1.2em; height: 4.1em; }
 .public-down { position:relative; float:left; background-color:#f8f8f8; width: 95px; text-align: center; padding:9px 0; font-weight:500; /* border-right: 1px solid #e5e5e5 */ color: #777; font-size:13px;}
 .public-view { position:relative; float:left; background-color:#f8f8f8; width: 94px; text-align: center; padding:9px 0; font-weight:500;  border-left: 1px solid #e5e5e5;  color: #777;  font-size:13px;}
 .public-view a { color:#777; }
-
+.public-img img {width:190px; height: 150px;}
 
 
 @media screen and (max-width:700px) {
