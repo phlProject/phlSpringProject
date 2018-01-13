@@ -31,13 +31,6 @@
 		SELECT AA.BSNS_CODE			/* 업체_코드 */
 			  ,AA.BOARD_SN			/* 게시판_일련번호*/
 			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드 */
-			  ,(SELECT PSCC.DETAIL_CODE_NM 
-			  	  FROM PKHL_SYS_CMMN_CODE PSCC
-			  	 WHERE 1=1
-			  	   AND PSCC.USE_YN = 'Y'
-			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
-			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
-			   ) AS BOARD_GBN_CD_NM /* 게시판_구분_코드_명 */
 			  ,AA.SUBJECT			/* 제목 */
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */

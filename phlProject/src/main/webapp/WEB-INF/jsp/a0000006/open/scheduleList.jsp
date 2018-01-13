@@ -29,7 +29,6 @@
 	<input type="hidden" name="scheduleSn" 	id="scheduleSn">										<!-- 일정_일련번호 	-->
 	<input type="hidden" name="regId" 		id="regId">												<!-- 등록_ID		-->
 			
-	
 	<!-- 일정 등록/상세 레이어 -->
 	<div id="insertFormPop" class="insertLayer" style="display:none;">
 		<div id="popName">일정 등록</div>

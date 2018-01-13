@@ -17,6 +17,11 @@ public class PhlCommDAO extends AbstractDAO {
         return (List<CommandMap>)selectList("phl/common.selectCommCode", map);
     }
 	
+	@SuppressWarnings("unchecked")
+    public String selectCommCodeOne(Map<String, Object> map) throws Exception{
+		return (String) selectOne("phl/common.selectCommCodeOne", map);
+    }
+	
 	/* 메뉴조회 (2dept) */
 	@SuppressWarnings("unchecked")
     public List<CommandMap> menuListDept2(Map<String, Object> map) throws Exception{

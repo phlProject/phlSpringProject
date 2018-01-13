@@ -21,6 +21,16 @@
    		   </if>
     </select>
     
+    <!--  -->
+    <select id="selectCommCodeOne" parameterType="hashmap" resultType="java.lang.String">
+    	SELECT DETAIL_CODE_NM
+    	FROM PKHL_SYS_CMMN_CODE
+    	 WHERE 1=1
+    	   AND USE_YN = 'Y'
+   		   AND BSNS_CODE = #{bsnsCode}
+   		   AND CMMN_CODE = #{cmmnCode}
+    </select>
+    
     <!--  메뉴조회 (2dept)  -->
     <select id="menuListDept2" parameterType="hashmap" resultType="hashmap">
     

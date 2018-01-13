@@ -107,6 +107,9 @@
 						<a href="<c:out value="/a0000006/teacher/joinList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
 					</c:if>
 					
+					<c:if test="${endPageNum eq 0}">
+						<a>${requestPageNumber}</a>
+					</c:if>
 					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
 						<a href="<c:out value="/a0000006/teacher/joinList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
 					</c:forEach>

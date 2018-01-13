@@ -80,6 +80,10 @@ public class NetworkController {
 		if(commandMap.get("bsnsCode") == null){
 			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
+
+		// 게시판 명 ( 네트워크활동 )
+		commandMap.put("cmmnCode", commandMap.get("boardGbnCd"));
+		commandMap.put("boardGbnCdNm", phlCommService.selectCommCodeOne(commandMap.getMap()));
 		
 		// 자유게시판 > 조회 > 카운트
 		int totalListCount = networkService.networkBoardListCnt(commandMap.getMap());
