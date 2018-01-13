@@ -232,6 +232,199 @@ public class BoardController {
 	/*********************************************************************/
 	/********************** 자 료 공 통 시작 (교육, 정책, 기타 ) **********************/
 	
+	/* 자료공통  > 조회 ( 교육,정책,기타 ) */
+	@RequestMapping(value="/a0000006/board/dataList.do")
+	public ModelAndView dataList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardList");
+		
+		/* 업체코드 - A0000006 (꿈두레) */
+		if(commandMap.get("bsnsCode") == null){
+			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
+		}
+		
+		// 게시판 명 ( 자료실 )
+		commandMap.put("cmmnCode", commandMap.get("boardGbnCd"));
+		commandMap.put("boardGbnCdNm", phlCommService.selectCommCodeOne(commandMap.getMap()));
+		
+		// 자료공통 > 조회 > Count
+		int totalListCount = boardService.dataListCnt(commandMap.getMap());		
+		
+		// 요청 페이지 번호
+		int requestPageNumber = 1;	
+		
+		// 요청 페이지 번호가 있을 시 해당 페이지 이동
+		if(request.getParameter("requestPageNumber") != null){
+			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
+		}
+
+		// 페이지당 리스트 갯수
+		int countPerPage = 8;
+		
+		/* 
+		 ** 페이징 계산 ** 
+		 * 
+		 * 파라미터 : 전체리스트 Count, 요청페이지번호, 페이지당리스트갯수
+		 * pagingData[0] = 전체 페이지수
+		 * pagingData[1] = FirstRow ( Limit 사용 용도 )
+		 * pagingData[2] = EndRow	( Limit 사용 용도 )
+		 * pagingData[3] = 첫 페이지 번호
+		 * pagingData[4] = 끝 페이지 번호
+		 * 
+		 */
+		int pagingData[] = CmmnUtilPaging.paginData(totalListCount, requestPageNumber, countPerPage);
+		
+		commandMap.put("limitFirst", 	pagingData[1]-1);
+		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
+		
+		// 간행물 > 조회
+		List<Map<String,Object>> dataList = boardService.dataList(commandMap.getMap());
+		
+		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
+		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
+		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
+		mv.addObject("dataList", 		dataList);		// 자료 리스트
+		
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 상세 폼 */
+	@RequestMapping(value="/a0000006/board/dataView.do")
+	public ModelAndView eduDataView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardView");
+		
+		// 공통 > 게시판 조회수 증가
+		phlCommService.boardHitCount(commandMap.getMap());
+		
+		List<Map<String,Object>> dataView = boardService.dataView(commandMap.getMap());
+		
+		mv.addObject("item", commandMap.getMap());
+		mv.addObject("dataView", dataView.get(0));
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 신규등록 폼 */
+	@RequestMapping(value="/a0000006/board/dataFormI.do")
+	public ModelAndView eduDataFormI(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardForm");
+
+		commandMap.put("newYn", "Y"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 등록 */
+	@RequestMapping(value="/a0000006/board/insertData.do")
+	public ModelAndView insertEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		int boardSn = boardService.insertData(commandMap.getMap());
+		
+		commandMap.put("boardSn", boardSn);
+		
+		// 게시판 공통 > 파일 등록  ( 'file' / 'image' )
+		String resultFlYn = boardService.insertBoardAttach(commandMap.getMap(), "file");
+		
+		if(boardSn > 0){
+			mv.addObject("result", "success");  	
+		}else{
+			mv.addObject("result", "fail");
+		}
+	
+		mv.addObject("boardSn", boardSn);
+		mv.addObject("resultFlYn", resultFlYn);
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 수정 폼 */
+	@RequestMapping(value="/a0000006/board/dataFormU.do")
+	public ModelAndView eduDataFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardForm");
+
+		List<Map<String,Object>> dataView = boardService.dataView(commandMap.getMap());
+		
+		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
+		mv.addObject("item", commandMap.getMap());
+		mv.addObject("dataView", dataView.get(0));
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 수정 */
+	@RequestMapping(value="/a0000006/board/updateData.do")
+	public ModelAndView updateEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		String result = boardService.updateData(commandMap.getMap());
+		
+		String resultFlYn = "success"; // 파일 등록 성공여부
+		
+		if(commandMap.get("uploadYn").equals("Y")){
+			// 게시판 > 파일 등록  ( 'file' / 'image' )
+			resultFlYn = boardService.updateBoardAttach(commandMap.getMap(), "image");
+		}
+		
+		mv.addObject("resultFlYn", resultFlYn);  
+		mv.addObject("result", result);  	
+		
+		return mv;
+	}
+	
+	
+	/* 자료공통 > 삭제 */
+	@RequestMapping(value="/a0000006/board/deleteData.do")
+	public ModelAndView deleteEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		String result = boardService.deleteData(commandMap.getMap());
+		
+		mv.addObject("result", result);  	
+		
+		return mv;
+	}
+	
+	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
+	/*********************************************************************/
+	
+	
+	/*********************************************************************/
+	/***************************** 게시판 공통 시작  *****************************/
+
+	/* 게시판 공통 > 파일다운로드 > 조회 */
+	@RequestMapping(value="/a0000006/board/downloadFile.do")
+	public void fldownloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		commandMap.put("bsnsCode", request.getParameter("bsnsCode"));
+		commandMap.put("boardSn", request.getParameter("boardSn"));
+		commandMap.put("boardFlSn", request.getParameter("boardFlSn"));
+		
+		List<Map<String,Object>> boardFlList = boardService.boardFlList(commandMap.getMap());
+		
+		commandMap.put("originFlNm", boardFlList.get(0).get("ORIGIN_FL_NM"));
+		commandMap.put("flNm", boardFlList.get(0).get("FL_NM"));
+		commandMap.put("flPath", boardFlList.get(0).get("FL_PATH"));
+		//request.setAttribute("fullSubPath", session.getAttribute("bsnsCode")+"/board/book/");
+		
+		CmmnUtilFile.downloadFile(commandMap, request, response);
+	}
+	
+	/***************************** 게시판 공통 종료 *****************************/	
+	/*********************************************************************/
+	
+	
 	/* 교육자료  > 조회 */
 	@RequestMapping(value="/a0000006/board/eduDataList.do")
 	public ModelAndView eduDataList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
@@ -419,199 +612,4 @@ public class BoardController {
 		
 		return mv;
 	}
-	
-	
-	/* 자료공통  > 조회 */
-	@RequestMapping(value="/a0000006/board/dataList.do")
-	public ModelAndView dataList(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		
-		request.setCharacterEncoding("UTF-8");
-		
-		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardList");
-		
-		/* 업체코드 - A0000006 (꿈두레) */
-		if(commandMap.get("bsnsCode") == null){
-			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
-		}
-		
-		String boardGbnCdNm = "";
-		if(commandMap.get("boardGbnCd").equals("B01002")) 		boardGbnCdNm = "교육자료";
-		else if(commandMap.get("boardGbnCd").equals("B01003"))	boardGbnCdNm = "정책자료";
-		else if(commandMap.get("boardGbnCd").equals("B01004"))	boardGbnCdNm = "기타자료";
-		commandMap.put("boardGbnCdNm", boardGbnCdNm);
-		
-		// 자료공통 > 조회 > Count
-		int totalListCount = boardService.dataListCnt(commandMap.getMap());		
-		
-		// 요청 페이지 번호
-		int requestPageNumber = 1;	
-		
-		// 요청 페이지 번호가 있을 시 해당 페이지 이동
-		if(request.getParameter("requestPageNumber") != null){
-			requestPageNumber = Integer.parseInt(request.getParameter("requestPageNumber"));
-		}
-
-		// 페이지당 리스트 갯수
-		int countPerPage = 8;
-		
-		/* 
-		 ** 페이징 계산 ** 
-		 * 
-		 * 파라미터 : 전체리스트 Count, 요청페이지번호, 페이지당리스트갯수
-		 * pagingData[0] = 전체 페이지수
-		 * pagingData[1] = FirstRow ( Limit 사용 용도 )
-		 * pagingData[2] = EndRow	( Limit 사용 용도 )
-		 * pagingData[3] = 첫 페이지 번호
-		 * pagingData[4] = 끝 페이지 번호
-		 * 
-		 */
-		int pagingData[] = CmmnUtilPaging.paginData(totalListCount, requestPageNumber, countPerPage);
-		
-		commandMap.put("limitFirst", 	pagingData[1]-1);
-		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
-		
-		// 간행물 > 조회
-		List<Map<String,Object>> dataList = boardService.dataList(commandMap.getMap());
-		
-		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
-		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
-		mv.addObject("totalPageCount",	pagingData[0]);	// 전체 페이지 번호
-		mv.addObject("dataList", 		dataList);		// 자료 리스트
-		
-		mv.addObject("item", commandMap.getMap());
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 상세 폼 */
-	@RequestMapping(value="/a0000006/board/dataView.do")
-	public ModelAndView eduDataView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		
-		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardView");
-		
-		// 공통 > 게시판 조회수 증가
-		phlCommService.boardHitCount(commandMap.getMap());
-		
-		List<Map<String,Object>> dataView = boardService.dataView(commandMap.getMap());
-		
-		mv.addObject("item", commandMap.getMap());
-		mv.addObject("dataView", dataView.get(0));
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 신규등록 폼 */
-	@RequestMapping(value="/a0000006/board/dataFormI.do")
-	public ModelAndView eduDataFormI(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardForm");
-
-		commandMap.put("newYn", "Y"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
-		mv.addObject("item", commandMap.getMap());
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 등록 */
-	@RequestMapping(value="/a0000006/board/insertData.do")
-	public ModelAndView insertEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("jsonView");
-		
-		int boardSn = boardService.insertData(commandMap.getMap());
-		
-		commandMap.put("boardSn", boardSn);
-		
-		// 게시판 공통 > 파일 등록  ( 'file' / 'image' )
-		String resultFlYn = boardService.insertBoardAttach(commandMap.getMap(), "file");
-		
-		if(boardSn > 0){
-			mv.addObject("result", "success");  	
-		}else{
-			mv.addObject("result", "fail");
-		}
-	
-		mv.addObject("boardSn", boardSn);
-		mv.addObject("resultFlYn", resultFlYn);
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 수정 폼 */
-	@RequestMapping(value="/a0000006/board/dataFormU.do")
-	public ModelAndView eduDataFormU(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardForm");
-
-		List<Map<String,Object>> dataView = boardService.dataView(commandMap.getMap());
-		
-		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
-		mv.addObject("item", commandMap.getMap());
-		mv.addObject("dataView", dataView.get(0));
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 수정 */
-	@RequestMapping(value="/a0000006/board/updateData.do")
-	public ModelAndView updateEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("jsonView");
-		
-		String result = boardService.updateData(commandMap.getMap());
-		
-		String resultFlYn = "success"; // 파일 등록 성공여부
-		
-		if(commandMap.get("uploadYn").equals("Y")){
-			// 게시판 > 파일 등록  ( 'file' / 'image' )
-			resultFlYn = boardService.updateBoardAttach(commandMap.getMap(), "image");
-		}
-		
-		mv.addObject("resultFlYn", resultFlYn);  
-		mv.addObject("result", result);  	
-		
-		return mv;
-	}
-	
-	
-	/* 자료공통 > 삭제 */
-	@RequestMapping(value="/a0000006/board/deleteData.do")
-	public ModelAndView deleteEduData(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("jsonView");
-		
-		String result = boardService.deleteData(commandMap.getMap());
-		
-		mv.addObject("result", result);  	
-		
-		return mv;
-	}
-	
-	/********************** 자 료 공 통 종료 (교육, 정책, 기타 ) **********************/
-	/*********************************************************************/
-	
-	
-	/*********************************************************************/
-	/***************************** 게시판 공통 시작  *****************************/
-
-	/* 게시판 공통 > 파일다운로드 > 조회 */
-	@RequestMapping(value="/a0000006/board/downloadFile.do")
-	public void fldownloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-		commandMap.put("bsnsCode", request.getParameter("bsnsCode"));
-		commandMap.put("boardSn", request.getParameter("boardSn"));
-		commandMap.put("boardFlSn", request.getParameter("boardFlSn"));
-		
-		List<Map<String,Object>> boardFlList = boardService.boardFlList(commandMap.getMap());
-		
-		commandMap.put("originFlNm", boardFlList.get(0).get("ORIGIN_FL_NM"));
-		commandMap.put("flNm", boardFlList.get(0).get("FL_NM"));
-		commandMap.put("flPath", boardFlList.get(0).get("FL_PATH"));
-		//request.setAttribute("fullSubPath", session.getAttribute("bsnsCode")+"/board/book/");
-		
-		CmmnUtilFile.downloadFile(commandMap, request, response);
-	}
-	
-	/***************************** 게시판 공통 종료 *****************************/	
-	/*********************************************************************/
 }
