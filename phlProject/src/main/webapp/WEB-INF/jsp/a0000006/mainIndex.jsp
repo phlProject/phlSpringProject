@@ -66,17 +66,18 @@
 	<div id="main_calendar">
 		<form id="scheduleForm" name="scheduleForm" method="post" action="#;">
 			<input type="hidden" name="searchPeriod" id="searchPeriod" value="today">
-			<iframe id="ifrmSchedule" name="ifrmSchedule" frameborder="1" hspace="0" vspace="0" width="820" height="130" border="1px solid #ddd" scrolling="auto"></iframe> <!--   -->
+			<iframe id="ifrmSchedule" name="ifrmSchedule" style="border-width:1px; border-color:rgb(221,221,221); hspace:0; vspace:0; width:801; height:130; scrolling:auto;"></iframe> <!--   -->
 		</form>
 	</div>
-	<table>
+	
 		<c:forEach var="rows" items="${bookList}" varStatus="status">
-			<tr>
-				<td>이미지 :<img src="${row.FL_PATH}/${row.FL_NM}"></td>
-				<td>좋아요 : ${row.LIKE_COUNT}</td>
-			</tr>
+			<div class="content-1">
+				<img src="${row.FL_PATH}/${row.FL_NM}">
+				<div class="like">
+				좋아요 : ${row.LIKE_COUNT}
+				</div>
+			</div>
 		</c:forEach>
-	</table>
 
   </div>
 	<div id="main_sidebar">

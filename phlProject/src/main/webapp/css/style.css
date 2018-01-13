@@ -38,18 +38,15 @@ nav ul li:hover ul { display: block; }
 #tab_menu ul li a { display: block; font-size: 14px; font-weight: 500; color:#000; }
 #tab_menu ul li a:hover { color: gray; }
 
-/*메인일정탭박스*/
-#main_calendar frame { border: 1px solid #ddd; }
-.calendar_tb th{ background-color: #ddd; font-family:"Noto Sans KR", sans-serif; }
 
 
 /* content 및  main*/
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
 #content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; /*min-height: 100%;*/ }
 #main_content { width:830px; margin:0 auto; float:left; }
-.content-1 { position: relative; display:inline-block; width:250px; height:320px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
- margin-bottom: 24px; margin-right: 24px; float: left;  border: 1px solid #bcbcbc;}
-
+.content-1 { position: relative; display:inline-block; width:250px; height:187px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
+ margin-top:24px; margin-bottom: 24px; margin-right: 24px; float: left;  border: 1px solid #bcbcbc;}
+.content-1 img { width: 250px; height:150px; }
 .content-1 h3 { position: relative; font-size:17px; font-weight:400; margin-top:50px; color:#222; }
 .content-1 h3 a { font-size:17px; font-weight:400; color:#222; padding:3px 20px; }
 .content-1 h3:hover a { color:#660F57; }
@@ -58,11 +55,12 @@ display: -webkit-box; -webkit-line-clamp: 3; /* 라인수 */ -webkit-box-orient:
 line-height: 1.2em; height: 4.1em; }
 
 .box-cont { width:241px; border: 1px solid #c1c1c1; float:left; height:350px; margin:20px; }
-.main-like { position: absolute; float: left; top:150px; width:250px;  }
+/* .main-like { position: absolute; float: left; top:150px; width:250px;  }
 .main-like > .count { position: relative; float: left; width:124px; border-right:1px solid #fff; padding:9px 0; background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold; }
 .main-like > .like { position: relative; float: left; width:125px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 .main-like > .count a, .main-like > .like a{ color:#fff; }
-.main-like > .count:hover a, .main-like .like:hover{ color:#222; }
+.main-like > .count:hover a, .main-like .like:hover{ color:#222; } */
+.like { position: absolute; float: left; width:250px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 
 #main_sidebar { width:260px; margin-bottom:20px; float:right; /* border:1px solid #bcbcbc; */}
 #main_sidebar h3 { color:#4d4d4f; padding:10px 20px;} 
