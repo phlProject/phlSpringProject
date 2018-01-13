@@ -44,7 +44,7 @@
 						<div class="public-list">
 							<div class="public-img">
 								<a href="javascript:fn_dataView('${row.BOARD_SN}')">
-								 Image
+								<img src="/img/word.png" alt="word"> 
 								</a>
 							</div>
 							

@@ -54,18 +54,19 @@
 </div>
 
 <div class="content">
+  <div id="main_content">
 	<div id="tab_menu">	
 		<ul id="tab">
 			<li class="on"><a href="javascript:void(0);" 	id="tabScheduleToday" 	name="tabScheduleToday">오늘</a></li>
-			<li><a href="javascript:void(0);" 				id="tabScheduleWeek"	name="tabScheduleWeek">이번주</a></li>
-			<li><a href="javascript:void(0);" 				id="tabScheduleMonth" 	name="tabScheduleMonth">이번달</a></li>
+			<li class="on_1"><a href="javascript:void(0);" 				id="tabScheduleWeek"	name="tabScheduleWeek">이번주</a></li>
+			<li class="on_2"><a href="javascript:void(0);" 				id="tabScheduleMonth" 	name="tabScheduleMonth">이번달</a></li>
 		</ul>
 	</div>
 	
 	<div id="main_calendar">
 		<form id="scheduleForm" name="scheduleForm" method="post" action="#;">
 			<input type="hidden" name="searchPeriod" id="searchPeriod" value="today">
-			<iframe id="ifrmSchedule" name="ifrmSchedule" frameborder="1" hspace="0" vspace="0" width="100%" height="100" scrolling="auto"></iframe>
+			<iframe id="ifrmSchedule" name="ifrmSchedule" frameborder="1" hspace="0" vspace="0" width="820" height="130" border="1px solid #ddd" scrolling="auto"></iframe> <!--   -->
 		</form>
 	</div>
 	<table>
@@ -76,22 +77,23 @@
 			</tr>
 		</c:forEach>
 	</table>
-</div>
-  
-<div id="main_sidebar">
-	<div class="sidebar-1">
-		<a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">
-			<img src="/img/sidebar7.png"  alt="sponsor"/>      		
-		</a>
-	</div>
-	
-	<div class="sidebar-2">
-	</div>
-	
-	<div class="sidebar-3">
-		<a href="#">
-			<img src="/img/books.jpg" alt="books">
-		</a>
+
+  </div>
+	<div id="main_sidebar">
+		<div class="sidebar-1">
+			<a href="javascript:TopMenuMove('/a0000006/intro/sponsor.do');">
+				<img src="/img/sidebar7.png"  alt="sponsor"/>      		
+			</a>
+		</div>
+		
+		<div class="sidebar-2">
+		</div>
+		
+		<div class="sidebar-3">
+			<a href="#">
+				<img src="/img/books.jpg" alt="books">
+			</a>
+		</div>
 	</div>
 </div>
 
@@ -103,16 +105,25 @@
 
 	// 일정기간 탭 클릭 
 	$(function(){
+		$(".on").css('background','#bdb8ac');
 		$("#tabScheduleToday").click(function(){
 			fn_scheduleChange("today");
+			$(".on").css('background','#bdb8ac');
+			$(".on_1").css('background','#fff');
+			$(".on_2").css('background','#fff');
 		});	
 
 		$("#tabScheduleWeek").click(function(){
 			fn_scheduleChange("week");
+			$(".on").css('background','#fff');
+			$(".on_1").css('background','#bdb8ac');
+			$(".on_2").css('background','#fff');
 		});	
 		
 		$("#tabScheduleMonth").click(function(){
-			fn_scheduleChange("month");
+			$(".on").css('background','#fff');
+			$(".on_1").css('background','#fff');
+			$(".on_2").css('background','#bdb8ac');
 		});	
 	});
 	

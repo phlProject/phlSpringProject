@@ -3,12 +3,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+.calendar_tb th{ background-color: #ddd; font-family:"Noto Sans KR", sans-serif; }
+</style>
 
-<table>
+<table class="calendar_tb">
 	<tr>
-		<td>일자</td>
-		<td>시간</td>
-		<td>제목</td>
+		<th>일자</th>
+		<th>시간</th>
+		<th>제목</th>
 	</tr>
 	<c:if test="${empty periodList}">
 		<tr>
