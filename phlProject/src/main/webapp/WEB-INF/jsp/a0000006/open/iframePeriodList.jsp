@@ -21,7 +21,6 @@
 		</tr>
 	</c:if>
 	<c:forEach var="rows" items="${periodList}" varStatus="status">
-		
 		<tr>
 			<td>${rows.SCHEDULE_DT}</td>
 			<td>${rows.ST_HOUR}시 ~ ${rows.END_HOUR}시</td>

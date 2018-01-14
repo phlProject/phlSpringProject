@@ -58,8 +58,8 @@
 	<div id="tab_menu">	
 		<ul id="tab">
 			<li class="on"><a href="javascript:void(0);" 	id="tabScheduleToday" 	name="tabScheduleToday">오늘</a></li>
-			<li class="on_1"><a href="javascript:void(0);" 				id="tabScheduleWeek"	name="tabScheduleWeek">이번주</a></li>
-			<li class="on_2"><a href="javascript:void(0);" 				id="tabScheduleMonth" 	name="tabScheduleMonth">이번달</a></li>
+			<li class="on_1"><a href="javascript:void(0);" 	id="tabScheduleWeek"	name="tabScheduleWeek">이번주</a></li>
+			<li class="on_2"><a href="javascript:void(0);" 	id="tabScheduleMonth" 	name="tabScheduleMonth">이번달</a></li>
 		</ul>
 	</div>
 	
@@ -70,11 +70,11 @@
 		</form>
 	</div>
 	
-		<c:forEach var="rows" items="${bookList}" varStatus="status">
+		<c:forEach var="row" items="${bookList}" varStatus="status">
 			<div class="content-1">
 				<img src="${row.FL_PATH}/${row.FL_NM}">
 				<div class="like">
-				좋아요 : ${row.LIKE_COUNT}
+				좋아요 ${row.LIKE_COUNT}
 				</div>
 			</div>
 		</c:forEach>
@@ -122,6 +122,7 @@
 		});	
 		
 		$("#tabScheduleMonth").click(function(){
+			fn_scheduleChange("month");
 			$(".on").css('background','#fff');
 			$(".on_1").css('background','#fff');
 			$(".on_2").css('background','#bdb8ac');
