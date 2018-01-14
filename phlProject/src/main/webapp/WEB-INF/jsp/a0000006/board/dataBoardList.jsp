@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 
 	자료 게시판 리스트
@@ -26,14 +27,52 @@
 				<c:if test="${empty dataList}">
 					<center><h4>조회 된 내용이 없습니다.</h4></center>
 				</c:if>
+				
+				<c:if test="${not empty dataList}">
+					<div class="image8_data_form">
+						<c:forEach items="${dataList}" var="row" varStatus="status">
+							<div class="image8_data_list">
+								<div class="image8_data_img">
+									<a href="javascript:fn_dataView('${row.BOARD_SN}')">
+										<c:set var="fnExt" value="${fn:split(row.FL_NM,'.')}"/>
+										<c:choose>
+											<c:when test="${fnExt[1] eq 'xls' || fnExt[1] eq 'xlsx'}">
+												<img src="/img/docu/excel.png">
+											</c:when>
+											<c:when test="${fnExt[1] eq 'ppt' || fnExt[1] eq 'pptx'}">
+												<img src="/img/docu/excel.png">
+											</c:when>
+											<c:when test="${fnExt[1] eq 'doc' || fnExt[1] eq 'docx'}">
+												<img src="/img/docu/excel.png">
+											</c:when>
+											<c:when test="${fnExt[1] eq 'pdf'}">
+												<img src="/img/docu/excel.png">
+											</c:when>
+											<c:when test="${fnExt[1] eq 'hwp'}">
+												<img src="/img/docu/excel.png">
+											</c:when>
+										</c:choose>
+									</a>
+								</div>
+								<div class="image8_data_title">
+									${row.SUBJECT}
+								</div>
+								<div class="image8_data_down">
+									<a href="javascript:fn_boardFlDown('${row.BSNS_CODE}','${row.BOARD_SN}','${row.BOARD_FL_SN}');">Download</a>
+								</div>
+								<div class="image8_data_view">
+									<a href="javascript:fn_dataView('${row.BOARD_SN}')">View</a>
+								</div>
+							</div>
+							<c:if test="${status.count%4 != 0}">
+								<div class="image8_data_blank"></div>
+							</c:if>
+						</c:forEach>
+					</div>
+				</c:if>
 			</div>
 			<%-- <div class="book-tab">
 			
-				<c:if test="${empty dataList}">
-					<div class="bookList">
-						<center><h4>조회 된 내용이 없습니다.</h4></center>
-					</div>
-				</c:if>
 				
 				<c:if test="${not empty dataList}">
 					<div class="public">
