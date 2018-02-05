@@ -95,6 +95,22 @@ line-height: 1.2em; height: 4.1em; }
 #left_sidebar li.active ul li:FIRST-CHILD a{ color:#a6bf38; }
 /* left CSS 끝 */
 
+
+/*아이디/비번찾기*/
+.content-2 { margin-top:30px; }
+.idsearch { position: relative; float: left; width: 41%; height: auto; padding-left:30px; }
+.idsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px; }
+.idsearch form { border:1px; font-size:14px; font-weight:bold; color:#555;}
+.idsearch input[type="text"] { width:200px; height: 30px; margin:0 15 20; border:1px solid #ddd; }
+
+.idsearch input[type="button"], .pwsearch input[type="button"] { width:273px; height:34px; background-color:#cadbde; border:3px solid #cadbde; color:#000040; font-weight:700; }
+.pwsearch { position: relative; float: left; width: 41%; padding-left:61px; border-left :1px solid #ddd;}
+.pwsearch form { border:1px; font-size:14px; font-weight:bold; color:#555;}
+.pwsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px;}
+.pwsearch input[type="text"], .pwsearch input[type="text"] { width:200px; height: 30px; margin:0 15 20; border:1px solid #ddd; }
+
+
+
 /* 마이페이지 */
 .my-title { width:100%; margin:15px 0 20px; font-size: 22px; color:#333; font-weight:500; line-height: 1.2em; padding:22px; float:left; background-color: #faf7f3; border-top:2px solid #e9e6e4; border-bottom:1px solid #e9e6e4; text-align:left;}
 .mytab { width:90%; border-top:2px solid #888; }
@@ -102,6 +118,8 @@ line-height: 1.2em; height: 4.1em; }
 .mytab td { width:65%; height:45px; text-align: left; font-size: 13px; font-weight: normal; padding:3px 10px; border-bottom: 1px solid #ddd; }
 .mytab input { width:300px; height: 30px; border: 1px solid #ddd;}
 .mytab select { width:300px; height: 30px; border: 1px solid #ddd; margin:0; }
+
+
 
 
 /* 회원관리  */
@@ -412,7 +430,8 @@ line-height: 1.2em; height: 4.1em; }
 .public-img img {width:190px; height: 150px;}
 
 
-@media screen and (max-width:700px) {
+
+/* @media screen and (max-width:700px) {
 	#container { width:auto; margin:0 10px 0 10px; }
 	#content { float:none; width:auto; }
     #main_content { float:none; width:auto; }
@@ -425,8 +444,7 @@ line-height: 1.2em; height: 4.1em; }
     #logo img { width:165px; height: 85px;}
     .book-left { float:none; width:auto; }
     .book-right { float:none; width:auto; }
-}
-
+} */
 
 
 
@@ -469,6 +487,9 @@ line-height: 1.2em; height: 4.1em; }
 #loginform input[type="password"]{ margin: 12 0; width: 220px; height: 35px; border:1px solid #ddd; }
 #loginform a { color:#fff; background: #4d4d4f;  padding:5px 102px; margin-left:10px; font-size:20px; font-weight: 500; }
 #loginform img { vertical-align: middle; padding-left:10px;}
+
+
+
 
 
 /* divWrap */

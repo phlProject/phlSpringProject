@@ -15,6 +15,7 @@
 	});
 </script>
 
+
 </head>
 <body>
 	<form id="indexForm" method="post" action="/a0000006/mainIndex.do">
