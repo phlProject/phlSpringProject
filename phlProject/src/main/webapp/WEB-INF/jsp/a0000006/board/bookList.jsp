@@ -41,7 +41,9 @@
 				<c:forEach items="${bookList}" var="row">
 					<div class="bookList">
 						<div class="book-left">
-							<img src="${row.FL_PATH}/${row.FL_NM}" width="200" height="135">
+							<div class="imgBox">
+								<img src="${row.FL_PATH}/${row.FL_NM}">
+							</div>
 							<div class="book-like">
 								<div class="count"><a href="javascript:fn_bookView('${row.BOARD_SN}')">view</a></div>
 								<div class="like">♥&nbsp;&nbsp;${row.LIKE_COUNT}</div>

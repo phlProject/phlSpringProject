@@ -72,7 +72,9 @@
 	
 		<c:forEach var="row" items="${bookList}" varStatus="status">
 			<div class="content-1">
-				<img src="${row.FL_PATH}/${row.FL_NM}">
+				<div class="imgBox">
+					<img src="${row.FL_PATH}/${row.FL_NM}">
+				</div>
 				<div class="like">
 				좋아요 ${row.LIKE_COUNT}
 				</div>

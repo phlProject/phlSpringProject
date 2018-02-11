@@ -44,9 +44,11 @@ nav ul li:hover ul { display: block; }
 #container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
 #content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; /*min-height: 100%;*/ }
 #main_content { width:830px; margin:0 auto; float:left; }
-.content-1 { position: relative; display:inline-block; width:250px; height:187px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
- margin-top:24px; margin-bottom: 24px; margin-right: 24px; float: left;  border: 1px solid #bcbcbc;}
-.content-1 img { width: 250px; height:150px; }
+.content-1 {	position: relative; display:inline-block; 
+				width:180px; height:270px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
+				margin : 24px 24px 24px 0px;
+ 				float: left;  border: 1px solid #bcbcbc;}
+.content-1 .imgBox { width: 180px; height:230px; }
 .content-1 h3 { position: relative; font-size:17px; font-weight:400; margin-top:50px; color:#222; }
 .content-1 h3 a { font-size:17px; font-weight:400; color:#222; padding:3px 20px; }
 .content-1 h3:hover a { color:#660F57; }
@@ -60,7 +62,7 @@ line-height: 1.2em; height: 4.1em; }
 .main-like > .like { position: relative; float: left; width:125px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 .main-like > .count a, .main-like > .like a{ color:#fff; }
 .main-like > .count:hover a, .main-like .like:hover{ color:#222; } */
-.like { position: absolute; float: left; width:250px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
+.like { position: absolute; float: left; width:180px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 
 #main_sidebar { width:260px; margin-bottom:20px; float:right; /* border:1px solid #bcbcbc; */}
 #main_sidebar h3 { color:#4d4d4f; padding:10px 20px;} 
@@ -379,8 +381,9 @@ line-height: 1.2em; height: 4.1em; }
 .book-Form #uploadFile { height:28px; color:#444; border: 1px solid #d6e0e2; margin-top: 10px;}
 #editor_Form input { width:92%; height:28px; border:1px solid #ddd; }
 #editor_Form h3	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; }
+
 /* 책소개 - 이미지 */
-.imgBox { width:250px; height:200px; background-color: #f5f5f5; border:none;}
+.imgBox { width:200px; height:250px; background-color: #f5f5f5; border:none;}
 .imgBox img { width: 100%; height:100%; }
 
 
@@ -393,13 +396,13 @@ line-height: 1.2em; height: 4.1em; }
 .book-tab { width:830px; margin-top:68px; border-top:2px solid #e9e6e4; }
 .bookList { border-bottom:2px solid #e9e6e4; padding:22px 0;}
 .bookList { color:#333; /* text-align:center; */ }
-.book-left { position:relative; border:1px solid #e9e6e4; width:200px; height:160px; margin-right:20px; display:inline-block; float:left;}
-.book-left > .book-like { position: absolute; float: left; top:125px; width:200px;  }
+.book-left { position:relative; border:1px solid #e9e6e4; width:200px; height:250px; margin-right:20px; display:inline-block; float:left;}
+.book-left > .book-like { position: absolute; float: left; top:250px; width:200px;  }
 .book-left > .book-like > .count { position: relative; float: left; width:100px;  padding:8px 0; background-color: #EAD7C9; color:#fff; font-size:13px; text-align: center; font-weight: bold; }
 .book-left > .book-like > .like { position: relative; float: left; width:100px; padding:8px 0;  background-color: #D67C7C; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 .book-left > .book-like > .count a, .book-left > .book-like > .like a{ color:#fff; }
 .book-left > .book-like > .count:hover a, .book-left > .book-like > .like:hover{ color:#222; }
-.book-right { width:600px; height:160px; display:inline-block; overflow:hidden;}
+.book-right { width:600px; height:280px; display:inline-block; overflow:hidden;}
 .book-right a { font-size:17px; color:#222; font-weight:500; }
 .book-right a:hover { color:#660f57; }
 .book-right hr { margin-top:5px;}
