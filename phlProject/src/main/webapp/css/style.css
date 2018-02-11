@@ -388,7 +388,7 @@ line-height: 1.2em; height: 4.1em; }
 .cont-title { width:200px; font-size:28px; color:#444; line-height:1.2em; padding:25px; font-weight:500; float:left;}
 .search { float:right; padding:30px; }
 #searchSelect { width:110px; margin:0; }
-.search input { width:160px; height:30px; border:1px solid #ddd; }
+.search input { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .search .button { width:80px; height:30px; background-color:#660f57; border:1px solid #660f57; color:#fff; font-weight:700; cursor:pointer;}
 .book-tab { width:830px; margin-top:68px; border-top:2px solid #e9e6e4; }
 .bookList { border-bottom:2px solid #e9e6e4; padding:22px 0;}
