@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#default_title {width:100%; font-size:28px; color:#444; line-height:1.2em; padding-top:25px; font-weight:500; float:left; }
+#default_title { font-size:28px; color:#444; line-height:1.2em; padding-top:25px; font-weight:500; float:left; }
 #default_list_form {margin:80px 0 30px; border-top:2px solid #e9e6e4; text-align:center; }
 
 #default_view_title {width:100%; font-size:28px; color:#444; line-height:1.2em; padding:25px 0px; font-weight:500; float:left; vertical-align: middle;}
@@ -22,7 +22,7 @@
 
 .default_regbtn a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
 
-.default_search { float:right; margin: 10px 0px; }
+.default_search { float:right; margin:30px; }
 .default_search input { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search #searchSelect{ width:110px;}
