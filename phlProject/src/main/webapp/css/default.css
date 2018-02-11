@@ -27,14 +27,8 @@
 .default_search input { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search #searchSelect{ width:110px;}
+
 .default_search .button { width:80px; height:30px; background-color:#660f57; border:1px solid #660f57; color:#fff; font-weight:700; cursor:pointer;}
-
-.default_search_top { float:right; margin:30px; }
-.default_search_top input { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
-.default_search_top select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
-.default_search_top #searchSelect{ width:110px;}
-.default_search_top .button { width:80px; height:30px; background-color:#660f57; border:1px solid #660f57; color:#fff; font-weight:700; cursor:pointer;}
-
 
 
 
