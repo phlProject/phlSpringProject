@@ -42,7 +42,9 @@
 		</c:choose>
 	</p>
 	<div class="view">
-		<img src="${bookView.FL_PATH}/${bookView.FL_NM}" width="100%" height="auto">
+		<div class="imgBox">
+			<img src="${bookView.FL_PATH}/${bookView.FL_NM}">
+		</div>
 	</div>
 		 <p class="detail">지은이&nbsp;:&nbsp;${bookView.BOOK_WRITER}&nbsp;&nbsp;|&nbsp;&nbsp;출판사&nbsp;:&nbsp;${bookView.BOOK_PUBLISHER}&nbsp;&nbsp;|&nbsp;&nbsp;가격&nbsp;:&nbsp;${bookView.BOOK_PRICE} </p>
 		 <hr color="#dddddd" size="0.2">
