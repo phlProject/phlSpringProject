@@ -107,21 +107,21 @@
 	// 일정기간 탭 클릭 
 	$(function(){
 		$(".on").css('background','#bdb8ac');
-		$("#tabScheduleToday").click(function(){
+		$(".on").click(function(){
 			fn_scheduleChange("today");
 			$(".on").css('background','#bdb8ac');
 			$(".on_1").css('background','#fff');
 			$(".on_2").css('background','#fff');
 		});	
 
-		$("#tabScheduleWeek").click(function(){
+		$(".on_1").click(function(){
 			fn_scheduleChange("week");
 			$(".on").css('background','#fff');
 			$(".on_1").css('background','#bdb8ac');
 			$(".on_2").css('background','#fff');
 		});	
 		
-		$("#tabScheduleMonth").click(function(){
+		$(".on_2").click(function(){
 			fn_scheduleChange("month");
 			$(".on").css('background','#fff');
 			$(".on_1").css('background','#fff');

@@ -23,7 +23,7 @@ table { border-collapse: collapse; }
 .site-header > nav { float: right; width: 680px; }
 nav ul { float: right; }
 nav ul li { float:left; font-size:15px; font-weight:bold; padding: 0 10px; }
-nav ul li a { color: #fff; display: block; padding: 20px 5px; font-size: 14px; font-weight: 500;}
+nav ul li a { color: #fff; display: block; padding: 20px 5px; font-size: 14px; }
 nav ul li a:hover { color: #000000; }
 nav ul ul { display: none; position: absolute; background: #fff; z-index:70; box-shadow:0px 0px 8px rgba(0,0,0,0.15); }
 nav ul ul li { float:none;  border-bottom: 1px solid #ddd; }
@@ -34,7 +34,7 @@ nav ul li:hover ul { display: block; }
 
 
 /*메인일정탭*/
-#tab_menu ul li { float:left; font-size:15px; font-weight:bold; padding:10px; border:1px solid #ddd; background-color:#fff;}
+#tab_menu ul li { float:left; font-size:15px; font-weight:bold; padding:10px; border:1px solid #ddd; background-color:#fff; cursor:pointer}
 #tab_menu ul li a { display: block; font-size: 14px; font-weight: 500; color:#000; }
 #tab_menu ul li a:hover { color: gray; }
 
@@ -99,14 +99,14 @@ line-height: 1.2em; height: 4.1em; }
 /*아이디/비번찾기*/
 .content-2 { margin-top:30px; }
 .idsearch { position: relative; float: left; width: 41%; height: auto; padding-left:30px; }
-.idsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px; }
+.idsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px; border-bottom: 2px solid #c6d9dc; margin-right :50px;}
 .idsearch form { border:1px; font-size:14px; font-weight:bold; color:#555;}
 .idsearch input[type="text"] { width:200px; height: 30px; margin:0 15 20; border:1px solid #ddd; }
 
-.idsearch input[type="button"], .pwsearch input[type="button"] { width:273px; height:34px; background-color:#cadbde; border:3px solid #cadbde; color:#000040; font-weight:700; }
+.idsearch input[type="button"], .pwsearch input[type="button"] { width:273px; height:34px; background-color:#4d4d4f; border:3px solid #4d4d4f; color:#fff; font-weight:700; }
 .pwsearch { position: relative; float: left; width: 41%; padding-left:61px; border-left :1px solid #ddd;}
 .pwsearch form { border:1px; font-size:14px; font-weight:bold; color:#555;}
-.pwsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px;}
+.pwsearch h3 { font-size:25px; color:#444; line-height:1.2em; font-weight:bold; padding-top:25px; padding-bottom:10px; border-bottom: 2px solid #c6d9dc; margin-right :50px;}
 .pwsearch input[type="text"], .pwsearch input[type="text"] { width:200px; height: 30px; margin:0 15 20; border:1px solid #ddd; }
 
 
@@ -384,7 +384,7 @@ line-height: 1.2em; height: 4.1em; }
 
 /*책소개  - bookList*/
 .cont-title { width:200px; font-size:28px; color:#444; line-height:1.2em; padding:25px; font-weight:500; float:left;}
-.search { float:right; padding:20px; }
+.search { float:right; padding:30px; }
 #searchSelect { width:110px; margin:0; }
 .search input { width:160px; height:28px; border:1px solid #ddd; }
 .search .button { width:80px; height:34px; background-color:#660f57; border:3px solid #660f57; color:#fff; font-weight:700; }
