@@ -16,14 +16,14 @@
 
 	<h3 id="default_title">${item.boardGbnCdNm}</h3>
 	
-	<div class="default_search">
-					<select id="searchSelect" name="searchSelect">
-						<option value="searchSubject" <c:if test="${item.searchSelect eq 'searchSubject'}">selected</c:if>>제목</option>
-						<option value="searchContent" <c:if test="${item.searchSelect eq 'searchContent'}">selected</c:if>>내용</option>
-						<option value="searchSubCon"  <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+내용</option>
-					</select>
-					<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
-					<input type="button" value="검색" onclick="fn_dataList();" class="button">
+	<div class="default_search_top">
+		<select id="searchSelect" name="searchSelect">
+			<option value="searchSubject" <c:if test="${item.searchSelect eq 'searchSubject'}">selected</c:if>>제목</option>
+			<option value="searchContent" <c:if test="${item.searchSelect eq 'searchContent'}">selected</c:if>>내용</option>
+			<option value="searchSubCon"  <c:if test="${item.searchSelect eq 'searchSubCon'}">selected</c:if>>제목+내용</option>
+		</select>
+		<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
+		<input type="button" value="검색" onclick="fn_dataList();" class="button">
 	</div>
 	
 	<div id="defalut_image8_list_form">
