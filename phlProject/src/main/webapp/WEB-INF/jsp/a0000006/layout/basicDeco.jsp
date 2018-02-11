@@ -5,7 +5,7 @@
 <page:applyDecorator id="topDefault" name="topDefault"/>
 <deco:head />
 
-<body>
+<body oncontextmenu="return false">
 	
 	<page:applyDecorator id="header" name="header"/>
 	

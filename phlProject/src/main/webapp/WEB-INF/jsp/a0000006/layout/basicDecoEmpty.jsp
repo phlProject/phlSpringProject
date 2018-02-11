@@ -4,6 +4,6 @@
 
 <deco:head />
 
-<body>
+<body oncontextmenu="return false">
 	<deco:body/>
 </body>
