@@ -103,7 +103,7 @@
 			<when test="selectWhere == 'main'">
 				ORDER BY AA.LIKE_COUNT DESC
 				        ,AA.BOARD_SN DESC
-				LIMIT 0, 3
+				LIMIT 0, 4
 			</when>
 			<otherwise>
 				ORDER BY AA.BOARD_SN DESC
