@@ -17,12 +17,13 @@
 .default_list td { height:35px; text-align: center; font-size: 12px; padding:2px 10px; border:1px solid #ddd; }
 .default_list a { color:#D67C7C; }
 .default_list a:hover { color:#660F57; }
+.default_list .button{ color:#888; font-weight:500; font-size:12px; padding:2px 5px;  text-align:center; border:2px solid #ddd;}
 
 #default_view #default_Select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 16px; margin:10px 0px;}
 
 .default_regbtn a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:30px; text-align:center; }
 
-.default_search { float:right; margin:30px; }
+.default_search { float:right; margin:15px; }
 .default_search input { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 12px; margin:0; }
 .default_search #searchSelect{ width:110px;}
@@ -45,3 +46,4 @@
 .image8_data_view { position:relative; float:left; background-color:#f8f8f8; width: 94px; text-align: center; padding:9px 0; font-weight:500;  border-left: 1px solid #e5e5e5;  color: #777;  font-size:13px;}
 .image8_data_view a { color:#777; }
 .image8_data_img img {width:190px; height: 150px;}
+

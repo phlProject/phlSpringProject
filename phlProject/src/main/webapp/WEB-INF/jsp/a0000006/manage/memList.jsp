@@ -103,14 +103,17 @@
 </script>
 
 <div id="content">
-	<form id="mem_Form">	
-		<input type="hidden" value="${sessionScope.bsnsCode}" 	id="bsnsCode" 	name="bsnsCode" >
-		<input type="hidden" value="${sessionScope.sessionId}"  id="sessionId" 	name="sessionId" >
-		
-		<h3 class="my-title">회원관리</h3>
-		
-			<div class="search-2">
-			<!-- 검색조건 -->
+	
+	<h3 id="default_title">회원관리</h3>
+	
+	<div id="default_list_form">
+	
+		<form id="mem_Form">	
+			<input type="hidden" value="${sessionScope.bsnsCode}" 	id="bsnsCode" 	name="bsnsCode" >
+			<input type="hidden" value="${sessionScope.sessionId}"  id="sessionId" 	name="sessionId" >
+			
+			<div class="default_search">
+				<!-- 검색조건 -->
 				<select id="searchSelect" name="searchSelect" onchange="searchChange()">
 					<option value="searchId" 		<c:if test="${searchSelect eq 'searchId'}">selected</c:if>>아이디</option>
 					<option value="searchNm" 		<c:if test="${searchSelect eq 'searchNm'}">selected</c:if>>이름</option>
@@ -137,64 +140,68 @@
 						<option value="S" <c:if test="${searchRemark eq 'S'}">selected</c:if>>승인대기</option>
 					</select>
 				</span>
-				<input type="button" value="검색" onclick="searchBtn();" class="button">
+				<input type="button" class="button" value="검색" onclick="searchBtn();">
 			</div>
-		<div class="memtab">	
-		<table>			
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>이메일</th>
-				<th>연락처</th>
-				<th>권한</th>
-				<th>계정상태</th>
-				<th colspan="3">비고</th>
-			</tr>
-			<c:if test="${empty memList}">
-				<tr>
-					<td colspan="9">조회 된 내용이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:forEach items="${memList}" var="row">
-				<tr>
-		              <td>${row.MEM_ID}</td>
-		              <td>${row.MEM_NM}</td>
-		              <td>${row.MEM_EMAIL}</td>
-		              <td>${row.MEM_PHONE}</td>
-		              <td>${row.MEM_GBN_CD_NM}</td>
-		              <td>${row.REMARK_NM}</td>
-		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
-		              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
-		              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              </td>
-		              <td width="10%">
-		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
-		              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
-		              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
-		              	</c:if>
-		              </td>
-		        </tr>
-			</c:forEach>
-		</table>	
-			<div class="mem_paging">
-				<c:if test="${beginPageNum > 10}">
-					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
-				</c:if>
-				
-				<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
-				</c:forEach>
-				
-				<c:if test="${endPageNum < totalPageCount}">
-					<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
-				</c:if>
+			
+			<div class="default_list">	
+				<table>			
+					<tr>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>이메일</th>
+						<th>연락처</th>
+						<th>권한</th>
+						<th>계정상태</th>
+						<th colspan="3">비고</th>
+					</tr>
+					<c:if test="${empty memList}">
+						<tr>
+							<td colspan="9">조회 된 내용이 없습니다.</td>
+						</tr>
+					</c:if>
+					<c:forEach items="${memList}" var="row">
+						<tr>
+				              <td>${row.MEM_ID}</td>
+				              <td>${row.MEM_NM}</td>
+				              <td>${row.MEM_EMAIL}</td>
+				              <td>${row.MEM_PHONE}</td>
+				              <td>${row.MEM_GBN_CD_NM}</td>
+				              <td>${row.REMARK_NM}</td>
+				              <td width="10%">
+				              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'N'}">
+				              		<input type="button" value="활성화" 	onclick="memActiveYn('N','${row.MEM_SN}')" class="button">
+				              	</c:if>
+				              	<c:if test="${row.MEM_GBN_CD != 'G01030' && row.USE_YN == 'Y'}">
+				              		<input type="button" value="비활성화" 	onclick="memActiveYn('Y','${row.MEM_SN}')" class="button">
+				              	</c:if>
+				              </td>
+				              <td width="10%">
+				              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'S'}">
+				              		<input type="button" value="권한승인" onclick="memAuthorYn('S','${row.MEM_SN}')" class="button">
+				              	</c:if>
+				              	<c:if test="${row.MEM_GBN_CD == 'G01030' && row.USE_YN == 'Y'}">
+				              		<input type="button" value="권한해제" onclick="memAuthorYn('Y','${row.MEM_SN}')" class="button">
+				              	</c:if>
+				              </td>
+				        </tr>
+					</c:forEach>
+				</table>	
+				<div class="default_paging">
+					<c:if test="${beginPageNum > 10}">
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+					</c:if>
+					<c:if test="${endPageNum eq 0}">
+						<a>${requestPageNumber}</a>
+					</c:if>
+					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+					</c:forEach>
+					
+					<c:if test="${endPageNum < totalPageCount}">
+						<a href="<c:out value="/a0000006/manage/memList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+					</c:if>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
