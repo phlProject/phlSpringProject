@@ -78,6 +78,12 @@
 				<div class="like">
 				좋아요 ${row.LIKE_COUNT}
 				</div>
+				<div>
+					책제목 ${row.SUBJECT}
+					지은이 ${row.BOOK_WRITER}
+					출판사 ${row.BOOK_PUBLISHER}
+					줄거리 ${row.CONTENT}
+				</div>
 			</div>
 		</c:forEach>
 
