@@ -6,8 +6,8 @@
 	<div id="loginform">
 	<form id="loginActionForm">
 		<input type="hidden" id="bsnsCode" name="bsnsCode" value="${sessionScope.bsnsCode}">
-		<img src="/img/id.jpg" alt="id">&nbsp;&nbsp;<input type="text" id="memId" name="memId" placeholder="ID" onkeypress="if(event.keyCode == 13){fn_loginVal();}"  onkeydown="engNumber(this)" style="text-transform: lowercase;"/><br/>
-		<img src="/img/pw.jpg" alt="pw">&nbsp;&nbsp;<input type="password" id="memPw" name="memPw" placeholder="PASSWORD" onkeypress="if(event.keyCode == 13){fn_loginVal();}" />
+		<img src="/img/id.jpg" alt="id" class="mr5"><input type="text" 		id="memId" name="memId" class="pl5" placeholder="아이디" 		onkeypress="if(event.keyCode == 13){fn_loginVal();}"  onkeydown="engNumber(this)" style="text-transform: lowercase;"/><br/>
+		<img src="/img/pw.jpg" alt="pw" class="mr5"><input type="password" 	id="memPw" name="memPw" class="pl5" placeholder="비밀번호" 	onkeypress="if(event.keyCode == 13){fn_loginVal();}" />
 	</form>
 	<br/>
 	
