@@ -21,8 +21,6 @@
 	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 		value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
 	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 	<input type="hidden" id="boardSn" 		name="boardSn" 			value="${joinView.BOARD_SN}">		<!-- 게시판_번호 -->
-	
-	
 </form>
 
 <div id="content">
@@ -55,8 +53,8 @@
 	<!-- 버튼  -->
 	<div class="bookView">
 		<div class="bookView-btn">
-			<a href="#" id="fn_saveJoin">저장</a> 
-			<a href="javascript:fn_joinList();" id="joinList">목록</a>
+			<a href="javascript:fn_joinList();" id="joinList">취소</a>
+			<a href="#" id="fn_saveJoin">등록</a> 
 		</div>
 	</div>
 </div>
@@ -99,7 +97,7 @@
 			var postUrl = "";
 
 			if ($("#newYn").val() == "Y") {
-				msg = "저장하시겠습니까?";
+				msg = "등록하시겠습니까?";
 				postUrl = "/a0000006/teacher/insertJoin.do";
 			} else if ($("#newYn").val() == "N") {
 				msg = "수정하시겠습니까?";
