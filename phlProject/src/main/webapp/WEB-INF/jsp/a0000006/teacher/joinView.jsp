@@ -109,10 +109,10 @@
 </div>
 <div class="bookView">	
 	<div class="bookView-btn">
-		<c:if test="${authYn eq 'Y'}">
-			<a href="javascript:fn_joinFormU();" 	id="joinFormU">수정</a>
-			<a href="javascript:fn_deleteJoin();" 	id="deleteJoin">삭제</a>
-		</c:if>		
 		<a href="javascript:fn_joinList();" 	id="joinList">목록</a>
+		<c:if test="${authYn eq 'Y'}">
+			<a href="javascript:fn_deleteJoin();" 	id="deleteJoin">삭제</a>
+			<a href="javascript:fn_joinFormU();" 	id="joinFormU">수정</a>
+		</c:if>		
 	</div>
 </div>
