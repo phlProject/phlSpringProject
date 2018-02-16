@@ -13,32 +13,32 @@
 			
 				<table>
 					<tr>
-						<th>아이디 </th>
+						<th>아이디</th>
 					    <td>
-						     <input type="text" id="memId" name="memId" placeholder="아이디" onchange="javascript:memValidChk(this.name);" onkeydown="engNumber(this)" style="text-transform: lowercase;"/>
+						     <input type="text" id="memId" name="memId" class="pl5"	placeholder="아이디" onchange="javascript:memValidChk(this.name);" onkeydown="engNumber(this)" style="text-transform: lowercase;"/>
 							 <input type="button" value="아이디 중복검사" onclick="memDupChk('memId')">
 							 <span id="memIdDupText" style="color:red; font-size:12px; padding:20px;"></span>
 						</td>
 					</tr>
 				    <tr>
 						<th>비밀번호</th>
-						<td><input type="password" id="memPw" name="memPw" placeholder="비밀번호" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/></td>
+						<td><input type="password" id="memPw" name="memPw" class="pl5"	placeholder="비밀번호" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/></td>
 					</tr>
 					<tr>
 					    <th>비밀번호 확인</th>
 					    <td>
-					    <input type="password" id="confMemPw" name="confMemPw" placeholder="비밀번호확인" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/>
+					    <input type="password" id="confMemPw" name="confMemPw" class="pl5"	placeholder="비밀번호확인" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/>
 					    <span id="confPwText" style="color:red; font-size:12px; padding:20px;"></span>
 					    </td>
 					</tr>
 					<tr>	
 						<th>이 름</th>
-						<td><input type="text" id="memNm" name="memNm" placeholder="이 름" /></td>
+						<td><input type="text" id="memNm" name="memNm" class="pl5"	placeholder="이 름" /></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" id="memEmail" name="memEmail" placeholder="이메일" onchange="javascript:memValidChk(this.name);" onkeydown="notHangeul(this)"/>
+							<input type="text" id="memEmail" name="memEmail" class="pl5"	placeholder="이메일" onchange="javascript:memValidChk(this.name);" onkeydown="notHangeul(this)"/>
 							<input type="button" value="이메일 중복검사" onclick="memDupChk('memEmail')">
 							<span id="memEmailDupText" style="color:red; font-size:12px; padding:20px;"></span>
 						</td>
@@ -47,16 +47,16 @@
 						<th>회원 구분</th>
 						<td>
 						<select id="memGbnCd" name="memGbnCd">
-							<option value="">선택</option>	
+							<option value="" class="pl5" >선택</option>	
 							<c:forEach items="${memGbnList}" var="rows">
-								<option value="${rows.CMMN_CODE}">${rows.DETAIL_CODE_NM}</option>
+								<option value="${rows.CMMN_CODE}" class="pl5">${rows.DETAIL_CODE_NM}</option>
 							</c:forEach>
 						</select>
 						</td>
 					</tr>
 					<tr>
 						<th>핸드폰</th>
-						<td><input type="text" id="memPhone" name="memPhone" placeholder="핸드폰( - 제외 )" maxlength="11" onkeydown="onlyNumber(this)"/></td>
+						<td><input type="text" id="memPhone" name="memPhone" class="pl5" placeholder="핸드폰( - 제외 )" maxlength="11" onkeydown="onlyNumber(this)"/></td>
 					</tr>
 				</table>
 		</form>
