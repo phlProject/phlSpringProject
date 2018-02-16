@@ -13,7 +13,7 @@
 
 <div id="content">
 
-	<h3 id="default_title">${item.boardGbnCdNm}</h3>
+	<h3 id="default_title">${item.boardGbnCdNm} 게시판</h3>
 
 	<div id="default_list_form">
 	

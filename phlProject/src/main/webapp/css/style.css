@@ -454,13 +454,13 @@ line-height: 1.2em; height: 4.1em; }
 
 
 /*풋터*/
-#footer { clear:both; padding:20px 20px 20px 20px; border-top:1px solid #f4ede3; background-color:#f9f5f0; height:160px; }
+#footer { clear:both; padding:20px 20px 20px 20px; border-top:1px solid #f4ede3; background-color:#f9f5f0; height:40px; }
 #main_footer { max-width:1100px; margin:0px auto; }
 #footer-1 { float: left; }
 #footer-2 { float: left; font-size: 13px; color: gray; padding: 10px 30px; }
 #footer-2 a { color: gray; }
 #footer-2 a:hover { color: #660F57; } 
-#footer-3 { width:100%; height:70px; color:#7b7b7b; background-color:#3d3d3d; font-size: 13px; text-align:center;}
+#footer-3 { width:100%; height:60px; color:#7b7b7b; background-color:#3d3d3d; font-size: 13px; text-align:center;}
 #footer-3 p { padding-top:20px;}
 
 
