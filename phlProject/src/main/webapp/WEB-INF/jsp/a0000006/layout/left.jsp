@@ -33,9 +33,9 @@
 	
 	<!-- 마이페이지 / 관리자페이지 -->
 	<c:if test="${ fn:contains(url, '/member/memMyPage') || fn:contains(urlPath, 'manage') }">
-		<h2>마이페이지</h2>
+		<h2>나의 정보</h2>
 		<ul>
-			<li><a href="javascript:TopMenuMove('/a0000006/member/memMyPage.do');" id="memMyPage">마이페이지</a></li>
+			<li><a href="javascript:TopMenuMove('/a0000006/member/memMyPage.do');" id="memMyPage">나의 정보</a></li>
 			<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
 			<c:if test="${loginInfo.MEM_GBN_CD eq 'G01998' || loginInfo.MEM_GBN_CD eq 'G01999'}">
 			<li><a href="javascript:TopMenuMove('/a0000006/manage/memList.do');" id="memList">관리자화면</a></li>

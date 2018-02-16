@@ -20,10 +20,7 @@
 							
 							<ul>
 								<li>
-									<a href="javascript:TopMenuMove('/a0000006/member/memMyPage.do');" id="memMyPage">마이페이지</a>
-								</li>
-								<li>
-									<a href="javascript:TopMenuMove('/a0000006/member/logoutAction.do');" id="logoutAction">로그아웃</a>
+									<a href="javascript:TopMenuMove('/a0000006/member/memMyPage.do');" id="memMyPage">나의 정보</a>
 								</li>
 								<!-- 관리자만 관리자모드 사용 가능 ( G01998 : 홈페이지 관리자 / G01999 : PHL 관리자 ) -->
 								<c:if test="${loginInfo.MEM_GBN_CD eq 'G01998' || loginInfo.MEM_GBN_CD eq 'G01999'}">
@@ -31,6 +28,9 @@
 										<a href="javascript:TopMenuMove('/a0000006/manage/memList.do');" id="memList">관리자화면</a>
 									</li>
 								</c:if>
+								<li>
+									<a href="javascript:TopMenuMove('/a0000006/member/logoutAction.do');" id="logoutAction">로그아웃</a>
+								</li>
 							</ul>
 						</li>
 						
