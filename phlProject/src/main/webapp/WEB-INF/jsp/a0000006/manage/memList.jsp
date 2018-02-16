@@ -146,12 +146,12 @@
 			<div class="default_list">	
 				<table>			
 					<tr>
-						<th>아이디</th>
-						<th>이름</th>
-						<th>이메일</th>
-						<th>연락처</th>
-						<th>권한</th>
-						<th>계정상태</th>
+						<th width="100px">아이디</th>
+						<th width="80px">이름</th>
+						<th width="250px">이메일</th>
+						<th width="100px">연락처</th>
+						<th width="75px">권한</th>
+						<th width="75px">계정상태</th>
 						<th colspan="3">비고</th>
 					</tr>
 					<c:if test="${empty memList}">

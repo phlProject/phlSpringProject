@@ -69,12 +69,12 @@
 			<div class="default_list">
 				<table>
 					<tr>
-						<th>번호</th>
-						<th>카테고리</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>날짜</th>
-						<th>조회수</th>
+						<th width="35px">번호</th>
+						<th width="120px">카테고리</th>
+						<th width="*">제목</th>
+						<th width="80px">글쓴이</th>
+						<th width="80px">날짜</th>
+						<th width="50px">조회수</th>
 					</tr>
 					<c:if test="${empty joinList}">
 						<tr>
@@ -95,13 +95,6 @@
 					</c:if>
 				</table>
 				
-				<!-- 권한 Y 일 경우 신규등록 -->
-				<c:if test="${authYn eq 'Y'}">
-					<div class="default_regbtn">
-						<a href="javascript:fn_joinFormI();" id="joinFormI">신규등록</a>
-					</div>
-				</c:if>
-				
 				<div class="default_paging">
 					<c:if test="${beginPageNum > 10}">
 						<a href="<c:out value="/a0000006/teacher/joinList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
@@ -119,10 +112,14 @@
 					</c:if>
 				</div>
 				
+				<!-- 권한 Y 일 경우 신규등록 -->
+				<c:if test="${authYn eq 'Y'}">
+					<div class="default_regbtn">
+						<a href="javascript:fn_joinFormI();" id="joinFormI">신규등록</a>
+					</div>
+				</c:if>
+				
 			</div>
-			
 		</form>
-		
 	</div>
-	
 </div>
