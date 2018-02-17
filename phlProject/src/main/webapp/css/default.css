@@ -48,5 +48,10 @@
 .image8_data_img img {width:190px; height: 150px;}
 
 
-#default_editor_Form input { width:92%; height:28px; border:1px solid #ddd; }
-#default_editor_Form h3	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; letter-spacing: 2%; margin-right: 2%;}
+#default_editor_Form h3	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; padding-left:5px; letter-spacing: 4px; margin-right: 2%;}
+#default_editor_Form input { width:92%; height:28px; border:1px solid #ddd; margin-bottom: 1%;}
+
+.default_btnDiv { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}
+.default_btn 	{ display: inline-block; }
+.default_btn a 	{ width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:left; margin-top:30px; border-left:3px solid #fff; text-align: center;}
+

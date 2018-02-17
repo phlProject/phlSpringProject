@@ -28,15 +28,15 @@
 	</div>
 	
 	${freeBoardView.CONTENT}
-	 
+
 </div>
 
-<div class="bookView">	
-	<div class="bookView-btn">
-		<a href="javascript:fn_freeBoardList();" 	id="freeBoardList">목록</a>
+<div class="default_btnDiv">	
+	<div class="default_btn">
 		<c:if test="${authYn eq 'Y'}">
-		<a href="javascript:fn_deleteFreeBoard();" 	id="deleteFreeBoard">삭제</a>
-		<a href="javascript:fn_freeBoardFormU();" 	id="freeBoardFormU">수정</a>
+			<a href="javascript:fn_freeBoardFormU();" 	id="freeBoardFormU">수정</a>
+			<a href="javascript:fn_deleteFreeBoard();" 	id="deleteFreeBoard">삭제</a>
 		</c:if>		
+		<a href="javascript:fn_freeBoardList();" 	id="freeBoardList">목록</a>
 	</div>
 </div>
