@@ -86,7 +86,7 @@ line-height: 1.2em; height: 4.1em; }
 #left_sidebar h3 { font-family: "Nanum Gothic", sans-serif; color:#000; font-size: 15px; font-weight: 400; line-height: 34px; cursor: pointer; background: #fff; } 
 #left_sidebar li { font-family: "Nanum Gothic", sans-serif; color:#000; font-size: 15px; font-weight: 400; line-height: 34px; padding: 8px 10px; cursor: pointer; background: #fff; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;/*background: linear-gradient(#003040, #002535); */ } 
 /* #left_sidebar h3:hover { background:#d6e0e2; } */
-#left_sidebar a { color:#333; font-family: "Nanum Gothic", sans-serif; color:#000; font-size: 15px; font-weight: 400; line-height: 34px; cursor: pointer; background: #fff;}
+#left_sidebar a { display:block; color:#333; font-family: "Nanum Gothic", sans-serif; color:#000; font-size: 15px; font-weight: 400; line-height: 34px; cursor: pointer; background: #fff;}
 #left_sidebar h5 { color :#333; font-size:14px; line-height:27px; display:block; padding:7px 15px; border-bottom:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd; }
 /* #left_sidebar a:hover { color:#768727; font-weight:700;} */
 #left_sidebar h5:hover { background:#d6e0e2; }
@@ -490,8 +490,8 @@ line-height: 1.2em; height: 4.1em; }
 #loginform { margin:80px 0 30px; border-top:2px solid #e9e6e4; text-align:center; /* width:380px; height: 280px; margin: 125px 0;  border:1px solid #ddd;  border-radius: 7px; */}
 .login-title { font-size:28px; color:#444; line-height:1.2em; padding-top:25px; font-weight:500; float:left; }
 #loginform p {  color:#4d4d4f; font-size:25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; /* background:#d6e0e2; border-radius: 7px 7px 0 0; */}
-#loginform input[type="text"]{ margin-top: 32px; width: 220px; height: 35px; border:1px solid #ddd; }
-#loginform input[type="password"]{ margin: 12 0; width: 220px; height: 35px; border:1px solid #ddd; }
+#loginform input[type="text"]{ margin-top: 32px; width: 220px; height: 35px; border:1px solid #ddd; font-size: 12px;}
+#loginform input[type="password"]{ margin: 12 0; width: 220px; height: 35px; border:1px solid #ddd; font-size: 12px; }
 #loginform a { color:#fff; background: #4d4d4f;  padding:5px 102px; margin-left:10px; font-size:20px; font-weight: 500; }
 #loginform img { vertical-align: middle; padding-left:10px;}
 
