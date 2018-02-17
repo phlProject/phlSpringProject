@@ -32,7 +32,7 @@
 
 
 
-#defalut_image8_list_form { margin-top:80px;  text-align:center; }
+#defalut_image8_list_form { margin-top:90px;  text-align:center; }
 .defalut_image8_list { position: relative; float: left; width:100%; border-top:2px solid #e9e6e4; border-bottom:2px solid #e9e6e4; padding: 20px 0px; margin-bottom: 20px;}
 
 
@@ -55,3 +55,4 @@
 .default_btn 	{ display: inline-block; }
 .default_btn a 	{ width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:left; margin-top:30px; border-left:3px solid #fff; text-align: center;}
 
+#default_detail_Form { border: 1px solid #e9e6e4; width:100%; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; min-height: 70%;}
