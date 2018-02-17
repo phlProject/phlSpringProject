@@ -40,8 +40,8 @@
 					<tr>
 						<th width="35px">번호</th>
 						<th width="*">제목</th>
-						<th width="80px">글쓴이</th>
-						<th width="80px">날짜</th>
+						<th width="80px">작성자</th>
+						<th width="80px">작성일시</th>
 						<th width="50px">조회수</th>
 					</tr>
 					<c:if test="${empty freeBoardList}">

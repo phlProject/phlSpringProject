@@ -19,6 +19,7 @@
 	<input type="hidden" id="searchWord" 	name="searchWord"	value="${item.searchWord}">	  		<!-- 검색어 -->
 	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
 	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+	<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"	value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 	<input type="hidden" id="boardSn" 		name="boardSn" 		value="${freeBoardView.BOARD_SN}">	<!-- 게시판_번호 -->
 </form>
 
@@ -44,8 +45,8 @@
 	<!-- 버튼  -->
 	<div class="bookView">
 		<div class="bookView-btn">
-			<a href="#" id="fn_saveFreeBoard">저장</a> <a
-				href="javascript:fn_freeBoardList();" id="freeBoardList">목록</a>
+			<a href="javascript:fn_freeBoardList();" id="freeBoardList">취소</a>
+			<a href="#" id="fn_saveFreeBoard">등록</a> 
 		</div>
 	</div>
 </div>
@@ -88,7 +89,7 @@
 			var postUrl = "";
 
 			if ($("#newYn").val() == "Y") {
-				msg = "저장하시겠습니까?";
+				msg = "등록하시겠습니까?";
 				postUrl = "/a0000006/open/insertFreeBoard.do";
 			} else if ($("#newYn").val() == "N") {
 				msg = "수정하시겠습니까?";

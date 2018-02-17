@@ -22,21 +22,21 @@
 </form>
 
 <div id="content">
-	<h3 class="cont-title">${item.boardGbnCdNm}</h3>
-	<p class="book-view">
-		제목 : ${freeBoardView.SUBJECT}
-	</p>
+
+	<div id="default_view_form">
+		<h3 id="default_view_title">${freeBoardView.SUBJECT}</h3>
+	</div>
 	
-	 <hr color="#dddddd" size="0.2">
-	 <br>${freeBoardView.CONTENT}
+	${freeBoardView.CONTENT}
 	 
-	<div class="bookView">	
-		<div class="bookView-btn">
-			<c:if test="${authYn eq 'Y'}">
-			<a href="javascript:fn_freeBoardFormU();" 	id="freeBoardFormU">수정</a>
-			<a href="javascript:fn_deleteFreeBoard();" 	id="deleteFreeBoard">삭제</a>
-			</c:if>		
-			<a href="javascript:fn_freeBoardList();" 	id="freeBoardList">목록</a>
-		</div>
+</div>
+
+<div class="bookView">	
+	<div class="bookView-btn">
+		<a href="javascript:fn_freeBoardList();" 	id="freeBoardList">목록</a>
+		<c:if test="${authYn eq 'Y'}">
+		<a href="javascript:fn_deleteFreeBoard();" 	id="deleteFreeBoard">삭제</a>
+		<a href="javascript:fn_freeBoardFormU();" 	id="freeBoardFormU">수정</a>
+		</c:if>		
 	</div>
 </div>

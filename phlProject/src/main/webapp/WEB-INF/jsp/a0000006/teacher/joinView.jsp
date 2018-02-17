@@ -99,10 +99,8 @@
 					</tr>
 				</table>
 				<br/>
-				<center>
 				<a href="javascript:fn_saveJoinRe()" id="saveJoinRe"><span id="regNm">등&nbsp;&nbsp;록</span></a>
 				<a href="javascript:fn_cancelJoinRe()" id="cancelJoinRe"><span id="canNm">취&nbsp;&nbsp;소</span></a>
-				</center>
 			</div>
 		</c:if>
 	</div>
