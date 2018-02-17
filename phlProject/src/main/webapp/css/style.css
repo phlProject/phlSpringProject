@@ -141,7 +141,7 @@ line-height: 1.2em; height: 4.1em; }
 
 /* 교육나눔꿈두레 메뉴 css */
 .contents {
-	margin:80px 0 30px;
+	margin:90px 0 30px;
 	padding:35px 0 50px;
 	border-top:2px solid #e9e6e4;
 	border-bottom:1px solid #dcd8d4;
@@ -151,7 +151,7 @@ line-height: 1.2em; height: 4.1em; }
 	color:#444;
 }
 .contents2 {
-	margin:80px 0 30px;
+	margin:90px 0 30px;
 	padding:20px 0 0;
 	border-top:2px solid #e9e6e4;
 	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
@@ -164,7 +164,7 @@ line-height: 1.2em; height: 4.1em; }
 	font-size:28px;
     color:#444;
     line-height:1.2em;
-    padding:25px 0 25px;
+    padding:30px 0 30px;
     font-weight:500;
     float:left;
 }
@@ -263,7 +263,7 @@ line-height: 1.2em; height: 4.1em; }
 
 /* 교사학교 메뉴 css */
 .contents1 {
-	margin:80px 0 10px;
+	margin:90px 0 10px;
 	padding:35px 0 30px;
 	border-top:2px solid #e9e6e4;
 	border-bottom:2px solid #dcd8d4;
@@ -302,7 +302,7 @@ line-height: 1.2em; height: 4.1em; }
 	line-height:1.3;
 }
 .cont8 {
-	font-size:17px;
+	font-size:23px;
 	color:#837147;
 	font-weight: bold;
 	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
