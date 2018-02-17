@@ -35,8 +35,8 @@ nav ul li:hover ul { display: block; }
 
 /*메인일정탭*/
 #tab_menu ul li { float:left; font-size:15px; font-weight:bold; padding:10px; border:1px solid #ddd; background-color:#fff; cursor:pointer}
-#tab_menu ul li a { display: block; font-size: 14px; font-weight: 500; color:#000; }
-#tab_menu ul li a:hover { color: gray; }
+#tab_menu ul li a { display: block; font-size: 14px; font-weight: 500; color:#222; }
+#tab_menu ul li a:hover { color: #5c697c; }
 
 
 
@@ -48,7 +48,15 @@ nav ul li:hover ul { display: block; }
 				width:180px; height:270px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
 				margin : 24px 24px 24px 0px;
  				float: left;  border: 1px solid #bcbcbc;}
-.content-1 .imgBox { width: 180px; height:230px; }
+.book_intro{ width:380px; position: relative; height:270px; overflow:hidden; box-shadow: 3px 3px 3px 0px lightgray;
+				margin : 24px 29px 24px 0px;
+ 				float: left;  border: 1px solid #bcbcbc; }
+.book_intro .imgBox { display:inline-block; width:189px; height:270px; float: left; border-right:1px solid #ddd;}
+.book_intro .book_summary { width:190px; height:231px; float: left; }
+.book_intro .book_summary h3{ font-size:17px; color:#222; font-weight:500; padding:12px 12px; }
+.like { padding:10px 0; background-color:#5c697c; width: 190px; color:#fff; font-size:13px; text-align: center; font-weight: bold; float: right; }
+.p_one { font-size:13px; color:#797979; line-height:1.2em; padding:5px 15px; max-height:90px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
+.book_summary p { font-size:13px; color:#333; line-height:1.2em; margin-top:4px; padding:6px 10px; max-height:90px;; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:3; word-wrap:break-word; }
 .content-1 h3 { position: relative; font-size:17px; font-weight:400; margin-top:50px; color:#222; }
 .content-1 h3 a { font-size:17px; font-weight:400; color:#222; padding:3px 20px; }
 .content-1 h3:hover a { color:#660F57; }
@@ -62,7 +70,7 @@ line-height: 1.2em; height: 4.1em; }
 .main-like > .like { position: relative; float: left; width:125px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
 .main-like > .count a, .main-like > .like a{ color:#fff; }
 .main-like > .count:hover a, .main-like .like:hover{ color:#222; } */
-.like { position: absolute; float: left; width:180px;   padding:9px 0;  background-color: #bdb8ac; color:#fff; font-size:13px; text-align: center; font-weight: bold;  }
+
 
 #main_sidebar { width:260px; margin-bottom:20px; float:right; /* border:1px solid #bcbcbc; */}
 #main_sidebar h3 { color:#4d4d4f; padding:10px 20px;} 

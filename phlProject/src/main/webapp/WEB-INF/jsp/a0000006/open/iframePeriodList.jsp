@@ -5,8 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .calendar_tb { font-family:"Noto Sans KR", sans-serif; }
-.calendar_tb th{ background-color: #a6bf38; width:270px; height:30px;  font-size:14px; }
-.calendar_tb td { background-color: #dbe6a8; font-size:12px; height:30px; text-align: center; }
+.calendar_tb th{ background-color: #b1bf4d; width:270px; height:30px;  font-size:14px; color:#fff;}
+.calendar_tb td { background-color: #dfdfdf; font-size:12px; height:30px; text-align: center; }
 </style>
 
 <table class="calendar_tb">

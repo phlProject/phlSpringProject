@@ -54,6 +54,7 @@
 </div>
 
 <div class="content">
+  <div>
   <div id="main_content">
 	<div id="tab_menu">	
 		<ul id="tab">
@@ -66,25 +67,26 @@
 	<div id="main_calendar">
 		<form id="scheduleForm" name="scheduleForm" method="post" action="#;">
 			<input type="hidden" name="searchPeriod" id="searchPeriod" value="today">
-			<iframe id="ifrmSchedule" name="ifrmSchedule" style="border-width:1px; border-color:rgb(221,221,221); hspace:0; vspace:0; width:801; height:130; scrolling:auto;"></iframe> <!--   -->
+			<iframe id="ifrmSchedule" name="ifrmSchedule" style="border-width:1px; border-color:rgb(221,221,221); hspace:0; vspace:0; width:792; height:130; scrolling:auto;"></iframe> <!--   -->
 		</form>
 	</div>
 	
 		<c:forEach var="row" items="${bookList}" varStatus="status">
-			<div class="content-1">
-				<div class="imgBox">
-					<img src="${row.FL_PATH}/${row.FL_NM}">
+				<div class="book_intro">
+					<div class="imgBox">
+						<img src="${row.FL_PATH}/${row.FL_NM}">
+					</div>
+					<div class="book_summary">
+						<h3>${row.SUBJECT}</h3> <!-- 책제목 -->
+						<hr color="#e2d318" size="0.3" width="170px">
+						<p class="p_one">지은이 : ${row.BOOK_WRITER}&nbsp;|&nbsp;
+						출판사 : ${row.BOOK_PUBLISHER}</p>
+						${row.CONTENT}<!-- 줄거리 -->
+					</div>
+					<div class="like">
+						좋아요  : ${row.LIKE_COUNT}
+					</div>
 				</div>
-				<div class="like">
-				좋아요 ${row.LIKE_COUNT}
-				</div>
-				<div>
-					책제목 ${row.SUBJECT}
-					지은이 ${row.BOOK_WRITER}
-					출판사 ${row.BOOK_PUBLISHER}
-					줄거리 ${row.CONTENT}
-				</div>
-			</div>
 		</c:forEach>
 
   </div>
@@ -104,6 +106,7 @@
 			</a>
 		</div>
 	</div>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -114,10 +117,10 @@
 
 	// 일정기간 탭 클릭 
 	$(function(){
-		$(".on").css('background','#bdb8ac');
+		$(".on").css('background','#4f98b9');
 		$(".on").click(function(){
 			fn_scheduleChange("today");
-			$(".on").css('background','#bdb8ac');
+			$(".on").css('background','#4f98b9');
 			$(".on_1").css('background','#fff');
 			$(".on_2").css('background','#fff');
 		});	
@@ -125,7 +128,7 @@
 		$(".on_1").click(function(){
 			fn_scheduleChange("week");
 			$(".on").css('background','#fff');
-			$(".on_1").css('background','#bdb8ac');
+			$(".on_1").css('background','#4f98b9');
 			$(".on_2").css('background','#fff');
 		});	
 		
@@ -133,7 +136,7 @@
 			fn_scheduleChange("month");
 			$(".on").css('background','#fff');
 			$(".on_1").css('background','#fff');
-			$(".on_2").css('background','#bdb8ac');
+			$(".on_2").css('background','#4f98b9');
 		});	
 	});
 	
