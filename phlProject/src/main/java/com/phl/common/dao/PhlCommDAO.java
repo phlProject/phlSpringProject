@@ -34,6 +34,11 @@ public class PhlCommDAO extends AbstractDAO {
         return (List<CommandMap>)selectList("phl/common.menuListDept3", map);
     }
 	
+	/* 게시판 이전 다음 페이지 번호 */
+	public String selectBoardSn(Map<String, Object> map) throws Exception{
+        return (String) selectOne("phl/common.selectBoardSn", map);
+    }
+	
 	/* 게시판 조회수 증가 */
 	public void boardHitCount(Map<String, Object> map) throws Exception{
         update("phl/common.boardHitCount", map);

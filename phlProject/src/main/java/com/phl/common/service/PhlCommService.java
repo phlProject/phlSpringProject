@@ -18,6 +18,9 @@ public interface PhlCommService {
 	/* 메뉴조회 (3dept) */
 	List<CommandMap> menuListDept3(Map<String, Object> map) throws Exception;
 	
+	/* 게시판 이전 다음 페이지 번호 */
+	String selectBoardSn(Map<String, Object> map) throws Exception;
+	
 	/* 게시판 조회수 증가 */
 	void boardHitCount(Map<String, Object> map) throws Exception;
 }

@@ -297,6 +297,9 @@ public class BoardController {
 	@RequestMapping(value="/a0000006/board/dataView.do")
 	public ModelAndView eduDataView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
+		// 2018.02.17 : 이전글, 다음글 로 인해 추가
+		commandMap.put("moveBoardSn",request.getParameter("moveBoardSn"));
+		
 		ModelAndView mv = new ModelAndView("/a0000006/board/dataBoardView");
 		
 		// 공통 > 게시판 조회수 증가

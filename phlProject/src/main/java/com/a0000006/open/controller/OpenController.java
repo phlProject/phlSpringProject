@@ -258,6 +258,9 @@ public class OpenController {
 	@RequestMapping(value="/a0000006/open/freeBoardView.do")
 	public ModelAndView freeBoardView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
+		// 2018.02.17 : 이전글, 다음글 로 인해 추가
+		commandMap.put("moveBoardSn",request.getParameter("moveBoardSn"));
+		
 		ModelAndView mv = new ModelAndView("/a0000006/open/freeBoardView");
 		
 		// 공통 > 게시판 조회수 증가

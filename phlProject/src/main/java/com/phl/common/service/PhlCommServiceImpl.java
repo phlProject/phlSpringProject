@@ -42,6 +42,12 @@ public class PhlCommServiceImpl implements PhlCommService {
         return phlCommDAO.menuListDept3(map);
     }
 	
+	/* 게시판 이전 다음 페이지 번호 */
+	@Override
+	public String selectBoardSn(Map<String, Object> map) throws Exception {
+		return phlCommDAO.selectBoardSn(map);
+	}
+	
 	/* 게시판 조회수 증가 */
 	@Override
 	public void boardHitCount(Map<String, Object> map) throws Exception {

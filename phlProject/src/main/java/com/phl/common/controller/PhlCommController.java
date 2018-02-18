@@ -29,7 +29,6 @@ public class PhlCommController {
 	@RequestMapping(value="/a0000006/mem/selectCommCode.do")
 	public ModelAndView selectCommCode(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView();
-        System.out.println("test");
         List<CommandMap> commList = phlCommService.selectCommCode(commandMap.getMap());
         mv.addObject("commList", commList);
         return mv;
@@ -54,6 +53,24 @@ public class PhlCommController {
 		}else{
 			mv.addObject("result", "fail");
 		}
+		return mv;
+	}
+	
+	/* 게시판 이전 다음 페이지 번호 */
+	@RequestMapping(value="/phl/pageMove.do")
+	public ModelAndView pageMove(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		String result = "N";
+		
+		commandMap.put("move", request.getParameter("move"));
+		String boardSn = phlCommService.selectBoardSn(commandMap.getMap());
+		
+		if(boardSn != null &&!boardSn.isEmpty()){
+			result = boardSn;
+		}
+		mv.addObject("result", result);  	
+		
 		return mv;
 	}
 }
