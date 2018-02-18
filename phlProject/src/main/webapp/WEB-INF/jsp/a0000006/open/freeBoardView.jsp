@@ -21,18 +21,30 @@
 	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
 
-<div id="content">
-
-	<div id="default_view_form">
-		<h3 id="default_view_title">${freeBoardView.SUBJECT}</h3>
+<div id="default_detail_Form">
+	<div style="height:40px;">
+		<div class="default_detail_Form_div1">
+			<span class="default_detail_subject">${freeBoardView.SUBJECT}</span> 
+			<span class="default_detail_boardGbn"> | ${item.boardGbnCdNm}</span>
+		</div>
+		<div class="default_detail_Form_div2">
+			<span class="default_detail_regDt">${freeBoardView.REG_DT}</span>
+		</div>
 	</div>
 	
-	${freeBoardView.CONTENT}
-
+	<hr style="border: 1px dotted  #e9e6e4;">
+	
+	<div class="default_detail_Form_div3">
+		${freeBoardView.CONTENT}
+	</div>
 </div>
 
 <div class="default_btnDiv">	
-	<div class="default_btn">
+	<div class="default_btn default_floatL">
+		<a href="javascript:fn_pageMoveFree('pre');" 	id="preDetail">이전 글</a>
+		<a href="javascript:fn_pageMoveFree('after');" 	id="aftDetail">다음 글</a>
+	</div>
+	<div class="default_btn default_floatR">
 		<c:if test="${authYn eq 'Y'}">
 			<a href="javascript:fn_freeBoardFormU();" 	id="freeBoardFormU">수정</a>
 			<a href="javascript:fn_deleteFreeBoard();" 	id="deleteFreeBoard">삭제</a>
