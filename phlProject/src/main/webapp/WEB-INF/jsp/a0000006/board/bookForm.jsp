@@ -25,10 +25,12 @@
 </form>
 
 <div id="content">
-	<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
-	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
+	
+	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 
-	<h3 class="book-title">${item.boardGbnCdNm} 작성</h3>
+	<div id="default_view_form">
+		<h3 id="default_view_title">${item.boardGbnCdNm} 등록</h3>
+	</div>
 
 	<!-- Upload_Form -->
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
@@ -42,7 +44,7 @@
 	</form>
 
 	<!-- Editor_Form -->
-	<form id="editor_Form">
+	<form id="default_editor_Form" name="default_editor_Form">
 		<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}"> 	<!-- 세션_업체코드 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 		<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"	value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
@@ -54,23 +56,23 @@
 		<input type="hidden" id="originFlNm" 	name="originFlNm"	value="${bookView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 		<input type="hidden" id="uploadYn" 		name="uploadYn" 	value="N">							<!-- 업로드 여부 -->
 		
-		<h3>책제목 :</h3>
-		<input type="text" id="subject" 		name="subject" 			size="40" value="${bookView.SUBJECT}"><br/><br/>
-		<h3>지은이 : </h3>
-		<input type="text" id="bookWriter" 		name="bookWriter" 		size="40" value="${bookView.BOOK_WRITER}"><br/><br/>
-		<h3>출판사 : </h3>
-		<input type="text" id="bookPublisher" 	name="bookPublisher" 	size="40" value="${bookView.BOOK_PUBLISHER}"><br/><br/>
-		<h3>가 &nbsp;&nbsp; 격 : </h3>
-		<input type="text" id="bookPrice" 		name="bookPrice" 		size="40" value="${bookView.BOOK_PRICE}" class="onKeyOnlyNumber"><br/><br/>
+		<h4>책제목</h4>
+		<input type="text" id="subject" 		name="subject" 			size="40" value="${bookView.SUBJECT}" style="width:90%">
+		<h4>지은이</h4>
+		<input type="text" id="bookWriter" 		name="bookWriter" 		size="40" value="${bookView.BOOK_WRITER}" style="width:90%">
+		<h4>출판사</h4>
+		<input type="text" id="bookPublisher" 	name="bookPublisher" 	size="40" value="${bookView.BOOK_PUBLISHER}" style="width:90%">
+		<h4 style="letter-spacing: 6px;">가 격</h4>
+		<input type="text" id="bookPrice" 		name="bookPrice" 		size="40" value="${bookView.BOOK_PRICE}" class="onKeyOnlyNumber" style="width:90%">
 		
 		<textarea id="editor" name="editor" style="height: 300px; width: 90%" rows="10" cols="30">${bookView.CONTENT}</textarea>
 	</form>
 	
 	<!-- 버튼  -->
-	<div class="bookView">
-		<div class="bookView-btn">
-			<a href="#" id="fn_saveBook">저장</a> <a
-				href="javascript:fn_bookList();" id="bookList">목록</a>
+	<div class="default_btnDiv">
+		<div class="default_btn">
+			<a href="#" id="fn_saveBook">등록</a> 
+			<a href="javascript:fn_bookList();" id="bookList">목록</a>
 		</div>
 	</div>
 </div>
@@ -115,7 +117,7 @@
 			var postUrl = "";
 
 			if ($("#newYn").val() == "Y") {
-				msg = "저장하시겠습니까?";
+				msg = "등록하시겠습니까?";
 				postUrl = "/a0000006/board/insertBook.do";
 			} else if ($("#newYn").val() == "N") {
 				msg = "수정하시겠습니까?";
@@ -126,7 +128,7 @@
 				return;
 			}
 
-			$.post(postUrl, $("#editor_Form").serialize(), function(data) {
+			$.post(postUrl, $("#default_editor_Form").serialize(), function(data) {
 				if (data.result == "success" && data.resultFlYn == "success") {
 					alert("등록되었습니다.");
 					if ($("#newYn").val() == "Y")

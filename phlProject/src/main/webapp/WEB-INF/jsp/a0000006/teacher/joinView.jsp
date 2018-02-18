@@ -30,21 +30,6 @@
 	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
 	
-	
-<%-- <div id="content">
-	<div id="default_view_form">
-		<h3 id="default_view_title">${joinView.SUBJECT}</h3>
-	</div>
-	
-	
-	<div id="default_view">
-		카테고리 :
-		<select id="default_Select" name="default_Select">
-			<option value="${joinView.BOARD_GBN_CD}">${joinView.BOARD_GBN_CD_NM}</option>
-		</select>	
-	</div>
-	${joinView.CONTENT}			
-</div> --%>
 
 <div id="default_detail_Form">
 
@@ -71,10 +56,11 @@
 			<table>
 				<c:forEach items="${joinReList}" var="row">
 					<tr>
-						<td  width="80%">
+						<td width="80%">
 							<c:if test="${row.RE_LEVEL ne 1}">&nbsp;&nbsp;&nbsp; ⤷</c:if> 
-							${row.MEM_NM} | ${row.REG_DT}</td>
-						<td>
+							${row.MEM_NM} | ${row.REG_DT}
+						</td>
+						<td width="20%">
 							<c:if test="${commentAuthYn eq 'Y'}">
 								<!-- 세션 ID != 등록 ID -->
 								<c:if test="${loginInfo.MEM_ID ne row.MEM_ID}">

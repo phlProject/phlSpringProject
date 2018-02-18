@@ -115,6 +115,22 @@ function fn_bookLike(){
 }
 */
 
+function fn_pageMoveBook(move){
+	
+	var postUrl = "/phl/pageMove.do?move="+move;
+	
+	$.post(postUrl, $("#bookList_Form").serialize(), function(data){
+		if(data.result != "N" ){
+			ComSubmit('bookList_Form','/a0000006/board/bookView.do?moveBoardSn='+data.result);
+		}else{
+			if(move == "pre") 			alert("이전 글이 없습니다.");
+			else if(move == "after") 	alert("다음 글이 없습니다.");
+			return;
+		}
+	});
+}
+
+
 /***** 게시판 - 자료공통 *****/
 
 /* 자료공통 > 리스트 조회 */

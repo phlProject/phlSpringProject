@@ -132,6 +132,13 @@
 			  ,AC.FL_PATH			/* 이미지_경로 */
 			  ,AD.MEM_ID			/* 회원_ID */
 		  	  ,AD.LIKE_YN			/* 좋아요_사용여부 */
+		  	  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */
 		FROM BSNS_BOARD	AA							/* 업체_게시판 */
 		     LEFT OUTER JOIN BSNS_BOARD_BOOK AB		/* 업체_게시판_책소개 */
 			  ON AA.BSNS_CODE = AB.BSNS_CODE
@@ -147,7 +154,12 @@
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 	</select>	
 	
 

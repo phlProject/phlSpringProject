@@ -102,6 +102,9 @@ public class BoardController {
 	@RequestMapping(value="/a0000006/board/bookView.do")
 	public ModelAndView bookView(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		
+		// 2018.02.17 : 이전글, 다음글 로 인해 추가
+		commandMap.put("moveBoardSn",request.getParameter("moveBoardSn"));
+		
 		ModelAndView mv = new ModelAndView("/a0000006/board/bookView");
 		
 		// 공통 > 게시판 조회수 증가
@@ -244,7 +247,7 @@ public class BoardController {
 		if(commandMap.get("bsnsCode") == null){
 			commandMap.put("bsnsCode", session.getAttribute("bsnsCode"));
 		}
-		
+		System.out.println(commandMap.getMap());
 		// 게시판 명 ( 자료실 )
 		commandMap.put("cmmnCode", commandMap.get("boardGbnCd"));
 		commandMap.put("boardGbnCdNm", phlCommService.selectCommCodeOne(commandMap.getMap()));

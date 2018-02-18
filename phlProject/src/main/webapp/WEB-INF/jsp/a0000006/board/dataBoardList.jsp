@@ -26,14 +26,14 @@
 		<input type="button" value="검색" onclick="fn_dataList();" class="button">
 	</div>
 	
-	<div id="defalut_image8_list_form">
+	<div id="default_image8_list_form">
 	
 		<form id="dataList_Form">
 			<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
 			<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 			<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 			
-			<div class="defalut_image8_list">
+			<div class="default_image8_list">
 				<c:if test="${empty dataList}">
 					<center><h4>조회 된 내용이 없습니다.</h4></center>
 				</c:if>
