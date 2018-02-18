@@ -10,7 +10,7 @@
 	<page:applyDecorator id="header" name="header"/>
 	
 	<div id="bg">
-		<img src="/img/back-img.png" width="100%">
+		<img src="/img/back-img.png" width="100%" height="250px">
 	</div>
 	
 	<div id="container">	

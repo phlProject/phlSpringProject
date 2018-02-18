@@ -12,9 +12,9 @@ img { border:0; }
 table { border-collapse: collapse; }
 
 /*헤더*/
-#header { width:100%; margin:0 auto; background-color:#a6bf38; z-index:10; /*padding:20px; margin-bottom:20px; border-bottom:2px solid #5e7b38; border:1px solid #bcbcbc; */ }
+#header { position:relative; margin:0 auto; background:#a6bf38; /*z-index:10; padding:20px; margin-bottom:20px; border-bottom:2px solid #5e7b38; border:1px solid #bcbcbc; */ }
 /*로고*/
-.site-header { top: 0; height: 62px; width: 1100px; margin:0 auto; z-index:20;} 
+.site-header { position:relative; top: 0; height: 62px; width: 1100px; margin:0 auto; z-index:20;background:#a6bf38;} 
 .site-header > #logo { width: 420px; float: left; font: bold 20px Dotum;  vertical-align: middle; position: absolute; z-index: 80;}
 .site-header > #logo a{ color: #000000;}
 
@@ -41,7 +41,8 @@ nav ul li:hover ul { display: block; }
 
 
 /* content 및  main*/
-#container { max-width:1100px; margin:0px auto; /* overflow: hidden; padding:0 10px 0 10px; border:1px solid #bcbcbc;*/ }
+#container { clear:both; width:1100px; margin:0px auto; }
+/* #container { max-width:1100px; margin:0px auto;} */
 #content { width:830px; margin:0 auto; overflow:hidden;  padding-bottom:50px; position:relative; min-height: 70%; /*min-height: 100%;*/ }
 #main_content { width:830px; margin:0 auto; float:left; }
 .content-1 {	position: relative; display:inline-block; 
@@ -87,7 +88,7 @@ line-height: 1.2em; height: 4.1em; }
 .sidebar-3 { width:100%; text-align: center; margin-bottom: 24px; }
 .sidebar-3 img { width:100%; }
 /* left CSS 시작 */
-#bg { width:100%; height:250px; background-color: #f5f5f5; } 
+#bg { position:relative; height:250px; background: #f5f5f5; margin:0 auto; min-width: 1100px;} 
 #left_content { width: 880px; margin-bottom: 20px; float: right; }
 #left_sidebar { background : #f5f5f5; width: 200px; margin-top: 15px; margin-bottom: 20px; float: left; /*box-shadow: 0 5px 15px 1 rgba(0, 0, 0, 0.6), 0 0 200px 1px rgba(255, 255, 255, 0.5);*/ }      
 #left_sidebar h2 { color: #fff; text-align: center; font-weight: 400; padding: 20px 0; background: #a6bf38; }           
@@ -382,6 +383,7 @@ line-height: 1.2em; height: 4.1em; }
 .bookView02-btn a { width:80px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:13px; padding:10px 3px; float:right; margin-top:30px; text-align:center; border-left:3px solid #fff; text-align: center;}
 .memtab a { color:#D67C7C; }
 .memtab a:hover { color:#660F57; }
+.book-view a { color : #e2d318;}
 
 
 
@@ -464,13 +466,13 @@ line-height: 1.2em; height: 4.1em; }
 
 
 /*풋터*/
-#footer { clear:both; padding:20px 20px 20px 20px; border-top:1px solid #f4ede3; background-color:#f9f5f0; height:40px; }
+#footer { position:relative; clear:both; min-width:1100px; padding:20px 0 20px; border-top:1px solid #f4ede3; background:#f9f5f0; height:40px; }
 #main_footer { max-width:1100px; margin:0px auto; }
 #footer-1 { float: left; }
 #footer-2 { float: left; font-size: 13px; color: gray; padding: 10px 30px; }
 #footer-2 a { color: gray; }
 #footer-2 a:hover { color: #660F57; } 
-#footer-3 { width:100%; height:60px; color:#7b7b7b; background-color:#3d3d3d; font-size: 13px; text-align:center;}
+#footer-3 { position:relative; min-width:1100px; height:60px; color:#7b7b7b; background:#3d3d3d; font-size: 13px; text-align:center;}
 #footer-3 p { padding-top:20px;}
 
 
@@ -491,7 +493,7 @@ line-height: 1.2em; height: 4.1em; }
 #register table { width:100%; text-align: left; }
 #register th { width:14%; color:#505050; background:#f5f5f5; font-weight:500; font-size:12px; border-bottom:1px solid #e5e5e5; text-align: center;}
 #register td { width:86%; border-bottom:1px solid #e5e5e5; }
-#register a { color:#fff; background: #4d4d4f; padding:5px 102px; font-size:20px; font-weight:500; }
+#register a { color:#fff; background: #4d4d4f; padding:5px 105px; font-size:17px; font-weight:500; }
 
 
 /* 로그인 */
@@ -500,7 +502,7 @@ line-height: 1.2em; height: 4.1em; }
 #loginform p {  color:#4d4d4f; font-size:25px; padding:10px 0 10px; font-weight: 500; vertical-align: middle; /* background:#d6e0e2; border-radius: 7px 7px 0 0; */}
 #loginform input[type="text"]{ margin-top: 32px; width: 220px; height: 35px; border:1px solid #ddd; font-size: 12px;}
 #loginform input[type="password"]{ margin: 12 0; width: 220px; height: 35px; border:1px solid #ddd; font-size: 12px; }
-#loginform a { color:#fff; background: #4d4d4f;  padding:5px 102px; margin-left:10px; font-size:20px; font-weight: 500; }
+#loginform a { color:#fff; background: #4d4d4f;  padding:5px 105px; margin-left:10px; font-size:17px; font-weight: 500; }
 #loginform img { vertical-align: middle; padding-left:10px;}
 
 
