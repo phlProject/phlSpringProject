@@ -358,6 +358,13 @@
 			  ,AB.ORIGIN_FL_NM		/* 원본_파일_명 */
 			  ,AB.FL_NM				/* 파일_명 */
 			  ,AB.FL_PATH			/* 파일_경로 */
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD						AA	/* 업체_게시판 */
 		     LEFT OUTER JOIN BSNS_BOARD_FL	AB	/* 업체_게시판_파일 */
 		      ON AA.BSNS_CODE = AB.BSNS_CODE
@@ -366,7 +373,12 @@
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 	</select>	
 	
 	<!-- 자료공통 > 등록 --> 

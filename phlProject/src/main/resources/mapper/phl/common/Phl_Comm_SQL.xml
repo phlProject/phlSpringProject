@@ -128,6 +128,29 @@
 	   ORDER BY ORDR ASC, MENU_CD
     </select>
     
+    <!-- 게시판 이전 다음 페이지 번호 -->
+    <select id="selectBoardSn" parameterType="hashmap" resultType="java.lang.String">
+    	SELECT BOARD_SN
+    	FROM BSNS_BOARD
+    	WHERE 1=1
+    	  AND USE_YN = 'Y'
+    	  AND BSNS_CODE 	= #{bsnsCode}
+    	  AND BOARD_GBN_CD LIKE CONCAT('%',#{boardGbnCd},'%')
+    	  
+    	  <if test='move == "pre"'>
+	    	  <![CDATA[
+	    	  AND BOARD_SN < #{boardSn}
+	    	  ORDER BY BOARD_SN DESC
+	    	  ]]>
+    	  </if>
+    	  <if test='move == "after"'>
+	    	  <![CDATA[
+	    	  AND BOARD_SN > #{boardSn}
+	    	  ORDER BY BOARD_SN ASC
+	    	  ]]>
+    	  </if>
+    	  LIMIT 1
+    </select>
     
     <!-- 게시판 조회수 증가  -->
     <update id="boardHitCount" parameterType="hashmap">
@@ -135,7 +158,12 @@
 		   SET HIT_COUNT = HIT_COUNT + 1
 		 WHERE 1=1
 		   AND BSNS_CODE = #{bsnsCode}
+		   <if test='moveBoardSn == null'>
 		   AND BOARD_SN  = #{boardSn}
+		   </if>
+		   <if test='moveBoardSn != null'>
+		   AND BOARD_SN  = #{moveBoardSn}
+		   </if>
     </update>
     
 </mapper>

@@ -35,6 +35,13 @@
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
 			  ,AA.LIKE_COUNT		/* 좋아요 수 */
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y-%m-%d') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD	AA							/* 업체_게시판 */
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
@@ -66,11 +73,23 @@
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
 			  ,AA.REG_ID			/* 등록_ID */
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD	AA							/* 업체_게시판 */
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 	</select>	
 	
 	<!-- 네트워크게시판 > 등록 -->

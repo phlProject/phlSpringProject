@@ -41,7 +41,7 @@
 			  	 WHERE 1=1
 			  	   AND PSCC.USE_YN = 'Y'
 			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
-			  	   AND PSCC.CMMN_CODE 	 = AA.BOARD_GBN_CD
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
 			   ) AS BOARD_GBN_CD_NM 	/* 게시판_구분_코드_명 */
 			  ,AA.SUBJECT				/* 제목 */
 			  ,AA.HIT_COUNT				/* 조회 수 */
@@ -96,11 +96,23 @@
 			  ,AA.CONTENT			/* 내용 */
 			  ,AA.HIT_COUNT			/* 조회 수 */
 			  ,AA.REG_ID			/* 등록_아이디 */
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 */
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD	AA	
 		WHERE 1=1
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 	</select>
 	
 	
@@ -168,12 +180,18 @@
 			         AND BM.BSNS_CODE = AA.BSNS_CODE
 			         AND BM.MEM_ID = AA.REG_ID) AS MEM_NM
 				,AA.BOARD_RE_SN AS ORDR
+				,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD_RE AA
 		WHERE 1=1
 		  AND NOT EXISTS (SELECT 1 FROM BSNS_BOARD_RE WHERE BOARD_RE_SN = AA.BOARD_UP_RE_SN)
 		  AND AA.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 		  
 		UNION ALL
 		
@@ -191,6 +209,7 @@
 			         AND BM.BSNS_CODE = AB.BSNS_CODE
 			         AND BM.MEM_ID = AB.REG_ID) AS MEM_NM
 		      ,AA.BOARD_RE_SN AS ORDR
+		      ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD_RE AA
 			,BSNS_BOARD_RE AB
 		WHERE 1=1
@@ -199,7 +218,12 @@
 		  AND AA.USE_YN = 'Y'
 		  AND AB.USE_YN = 'Y'
 		  AND AA.BSNS_CODE = #{bsnsCode}
-		  AND AA.BOARD_SN = #{boardSn}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
 		  
 		ORDER BY ORDR, BOARD_RE_SN;
 	</select>
