@@ -20,6 +20,7 @@
 	<input type="hidden" id="selectCategory"name="selectCategory"	value="${item.selectCategory}">	  	<!-- 검색카테고리  -->
 	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 		value="${sessionScope.bsnsCode}">	<!-- 세션_업체코드 -->
 	<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
+	<input type="hidden" id="boardGbnCdNm" 	name="boardGbnCdNm"		value="${item.boardGbnCdNm}">		<!-- 게시판_구분_명 -->
 	<input type="hidden" id="boardSn" 		name="boardSn" 			value="${joinView.BOARD_SN}">		<!-- 게시판_번호 -->
 </form>
 
@@ -27,19 +28,21 @@
 	
 	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 	
-	<h3 class="book-title"> 작성</h3>
+	<div id="default_view_form">
+		<h3 id="default_view_title">참여게시판 등록</h3>
+	</div>
 	
 	
-	<form id="editor_Form">
+	<!-- Editor_Form -->
+	<form id="default_editor_Form" name="default_editor_Form">
 		<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}"> 	<!-- 세션_업체코드 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd" 	value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 		<input type="hidden" id="sessionId" 	name="sessionId"	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 		<input type="hidden" id="boardSn" 		name="boardSn"		value="${joinView.BOARD_SN}">		<!-- 게시판_번호 -->
 		
-		<h3 class="edit-02">제  &nbsp;&nbsp;목 :</h3> &nbsp;&nbsp;
+		<h3>제목</h3>
 		<input type="text" id="subject" name="subject" size="86" value="${joinView.SUBJECT}">
-	
-		<h3 class="edit-03">카테고리 :</h3>
+		<h3>카테고리 </h3>
 		<select id="teacherGbnCd" name="teacherGbnCd">
 			<option value="">선택</option>	
 			<c:forEach items="${teacherGbnList}" var="rows">
@@ -51,10 +54,10 @@
 	</form>
 	
 	<!-- 버튼  -->
-	<div class="bookView">
-		<div class="bookView-btn">
-			<a href="javascript:fn_joinList();" id="joinList">취소</a>
+	<div class="default_btnDiv">
+		<div class="default_btn">
 			<a href="#" id="fn_saveJoin">등록</a> 
+			<a href="javascript:fn_joinList();" id="joinList">취소</a>
 		</div>
 	</div>
 </div>
@@ -108,7 +111,7 @@
 				return;
 			}
 
-			$.post(postUrl, $("#editor_Form").serialize(), function(data) {
+			$.post(postUrl, $("#default_editor_Form").serialize(), function(data) {
 				if (data.result == "success") {
 					alert("등록되었습니다.");
 					if ($("#newYn").val() == "Y")

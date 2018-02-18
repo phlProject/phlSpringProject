@@ -25,13 +25,15 @@
 </form>
 
 <div id="content">
-	<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->	
-	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">
 	
-	<h3 class="book-title">${item.boardGbnCdNm} 등록/수정</h3>
-	<br/><br/>
+	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}">	<!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->	
+	
+	<div id="default_view_form">
+		<h3 id="default_view_title">${item.boardGbnCdNm} 등록</h3>
+	</div>
+	
 	<!-- Editor_Form -->
-	<form id="editor_Form">
+	<form id="default_editor_Form" name="default_editor_Form">
 		<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 -->
 		<input type="hidden" id="boardGbnCd" 	name="boardGbnCd"		value="${item.boardGbnCd}">			<!-- 게시판_구분 -->
 		<input type="hidden" id="sessionId"     name="sessionId"       	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
@@ -41,22 +43,23 @@
 	    <input type="hidden" id="flPath" 		name="flPath"			value="${dataView.FL_PATH}">		<!-- 파일 경로 -->
 	    <input type="hidden" id="originFlNm" 	name="originFlNm" 		value="${dataView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 	    <input type="hidden" id="uploadYn" 		name="uploadYn" 		value="N">							<!-- 업로드 여부 -->
-	    <br/><br/><br/>
-		<h3> 제목  :</h3>&nbsp;&nbsp;<input type="text" id="subject" name="subject" size="86" value="${dataView.SUBJECT}">
-		<br/><br/>
+	    
+	    <h3>제목</h3>
+		<input type="text" id="subject" name="subject" size="86" value="${dataView.SUBJECT}">
 		<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${dataView.CONTENT}</textarea>
 	</form>
 	
 	<!-- Upload_Form -->
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
-		<div class="book-Form">
-			<input type="file" id="uploadFile" name="uploadFile">
-			<input type="hidden" id="sPath" name="sPath" value="/board/data/">
+		<div class="default_detail_upload">
+			<input type="file" 	 id="uploadFile" name="uploadFile">
+			<input type="hidden" id="sPath" 	 name="sPath" value="/board/data/">
 		</div>
 	</form>
-	<div class="bookView">	
-		<div class="bookView-btn">
-			<a href="#" id="fn_saveData" >저장</a>
+	
+	<div class="default_btnDiv">
+		<div class="default_btn">
+			<a href="#" id="fn_saveData" >등록</a>
 			<a href="javascript:fn_dataList();" id="dataList">목록</a>
 		</div>
 	</div>		
@@ -100,7 +103,7 @@
         	var postUrl 	= "";
         	
         	if($("#newYn").val() == "Y"){
-        		msg = "저장하시겠습니까?";
+        		msg = "등록하시겠습니까?";
         		postUrl = "/a0000006/board/insertData.do";
         	}else if($("#newYn").val() == "N"){
         		msg = "수정하시겠습니까?";
@@ -114,7 +117,7 @@
         	// 파일업로드
         	gfn_uploadFile();
         	
-        	$.post(postUrl, $("#editor_Form").serialize(), function(data){
+        	$.post(postUrl, $("#default_editor_Form").serialize(), function(data){
         		if(data.result == "success" && data.resultFlYn == "success"){
         			alert("등록되었습니다.");
         			if($("#newYn").val() == "Y") $("#boardSn").val(data.boardSn);
