@@ -74,18 +74,18 @@
 			
 			<div class="default_paging">
 				<c:if test="${beginPageNum > 5}">
-					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>
+					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${beginPageNum-1}&boardGbnCd=${item.boardGbnCd}"/>">◀</a>
 				</c:if>
 						
 				<c:if test="${endPageNum eq 0}">
 					<a>1</a>
 				</c:if>	
 				<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${requestPageNumber}&boardGbnCd=${item.boardGbnCd}"/>">${requestPageNumber}</a>
 				</c:forEach>
 							
 				<c:if test="${endPageNum < totalPageCount}">
-					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${endPageNum+1}"/>">▶</a>
+					<a href="<c:out value="/a0000006/board/dataList.do?requestPageNumber=${endPageNum+1}&boardGbnCd=${item.boardGbnCd}"/>">▶</a>
 				</c:if>	
 			</div>	
 			
