@@ -156,6 +156,23 @@ function fn_deleteData(){
 	});
 }
 
+/* 자료공통 > 게시글 이동 */
+function fn_pageMoveData(move){
+	
+	var postUrl = "/phl/pageMove.do?move="+move;
+	
+	$.post(postUrl, $("#dataList_Form").serialize(), function(data){
+		if(data.result != "N" ){
+			ComSubmit('dataList_Form','/a0000006/board/dataView.do?moveBoardSn='+data.result);
+		}else{
+			if(move == "pre") 			alert("이전 글이 없습니다.");
+			else if(move == "after") 	alert("다음 글이 없습니다.");
+			return;
+		}
+	});
+}
+
+
 /***** 게시판 - 공통 *****/
 
 /* 게시판 공통 > 파일다운로드 */

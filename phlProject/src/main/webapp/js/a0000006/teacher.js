@@ -105,9 +105,9 @@ function fn_deleteJoinRe(boardReSn){
 
 /* 참여게시판 > 댓글 답변 변경 */
 function fn_insertJoinReRe(memNm, boardReSn){
-	$("#contents").val("@"+memNm);
+	/*$("#contents").val("@"+memNm);*/
 	$("#boardReSn").val(boardReSn);
-	$("#regNm").text("답변등록");
+	$("#regNm").text("답변");
 	$("#boardReType").val("insert");
 }
 
@@ -117,4 +117,20 @@ function fn_cancelJoinRe(){
 	$("#contents").val("");
 	$("#boardReType").val("insert");
 	$("#regNm").text("등록");
+}
+
+/* 참여게시판 > 게시글 이동 */
+function fn_pageMoveJoin(move){
+	
+	var postUrl = "/phl/pageMove.do?move="+move;
+	
+	$.post(postUrl, $("#joinList_Form").serialize(), function(data){
+		if(data.result != "N" ){
+			ComSubmit('joinList_Form','/a0000006/teacher/joinView.do?moveBoardSn='+data.result);
+		}else{
+			if(move == "pre") 			alert("이전 글이 없습니다.");
+			else if(move == "after") 	alert("다음 글이 없습니다.");
+			return;
+		}
+	});
 }

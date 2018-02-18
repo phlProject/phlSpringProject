@@ -38,3 +38,20 @@ function fn_deleteFreeBoard(){
 		}
 	});
 }
+
+/* 자유게시판 > 게시글 이동 */
+function fn_pageMoveFree(move){
+	
+	var postUrl = "/phl/pageMove.do?move="+move;
+	
+	$.post(postUrl, $("#freeBoardList_Form").serialize(), function(data){
+		if(data.result != "N" ){
+			ComSubmit('freeBoardList_Form','/a0000006/open/freeBoardView.do?moveBoardSn='+data.result);
+		}else{
+			if(move == "pre") 			alert("이전 글이 없습니다.");
+			else if(move == "after") 	alert("다음 글이 없습니다.");
+			return;
+		}
+	});
+}
+
