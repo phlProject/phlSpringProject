@@ -33,7 +33,7 @@
 
 <div id="default_detail_Form">
 
-	<div style="height:40px;">
+	<div style="height:73px;">
 		<div class="default_detail_Form_div1">
 			<span class="default_detail_subject">${joinView.SUBJECT}</span> 
 			<span class="default_detail_boardGbn"> | ${joinView.BOARD_GBN_CD_NM}</span>
@@ -53,6 +53,7 @@
 	
 	<div class="default_reply_Form">
 		<c:if test="${!empty joinReList}">
+			<br/>
 			<table>
 				<c:forEach items="${joinReList}" var="row">
 					<tr>
@@ -95,16 +96,22 @@
 				</tr>
 				<tr>
 					<td>
-						<textarea rows="7" cols="83" id="contents" name="contents" style="border:0.5px solid #ddd;"></textarea>
+						<textarea rows="7" cols="93.5" id="contents" name="contents" style="border:1px solid #ddd;"></textarea>
 						<input type="hidden" id="boardReSn" 	name="boardReSn" 	value="">
 						<input type="hidden" id="boardReType"	name="boardReType" 	value="insert">
 					</td>
-					<td rowspan="2">
+				</tr>
+				<tr>	
+					<td>
+						<br/>
+						<center>
 						<a href="javascript:fn_saveJoinRe()" 	id="saveJoinRe"><span id="regNm">등 록</span></a>
 						<a href="javascript:fn_cancelJoinRe()" 	id="cancelJoinRe"><span id="canNm">취 소</span></a>
+						</center>
 					</td>
 				</tr>
 			</table>
+			<br/>
 		</div>
 		</c:if>
 	</div>

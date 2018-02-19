@@ -24,8 +24,8 @@
 <div id="default_detail_Form">
 	<div style="height:40px;">
 		<div class="default_detail_Form_div1">
-			<span class="default_detail_subject">${networkBoardView.SUBJECT}</span> 
-			<span class="default_detail_boardGbn"> | ${item.boardGbnCdNm}</span>
+			<p class="default_detail_subject">${networkBoardView.SUBJECT}</p> 
+			<p class="default_detail_boardGbn"> |&nbsp; ${item.boardGbnCdNm}</p>
 		</div>
 		<div class="default_detail_Form_div2">
 			<span class="default_detail_regDt">${networkBoardView.REG_DT}</span>

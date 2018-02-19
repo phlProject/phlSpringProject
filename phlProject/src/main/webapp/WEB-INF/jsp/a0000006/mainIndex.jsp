@@ -117,10 +117,10 @@
 
 	// 일정기간 탭 클릭 
 	$(function(){
-		$(".on").css('background','#4f98b9');
+		$(".on").css('background','#D67C7C');
 		$(".on").click(function(){
 			fn_scheduleChange("today");
-			$(".on").css('background','#4f98b9');
+			$(".on").css('background','#D67C7C');
 			$(".on_1").css('background','#fff');
 			$(".on_2").css('background','#fff');
 		});	
@@ -128,7 +128,7 @@
 		$(".on_1").click(function(){
 			fn_scheduleChange("week");
 			$(".on").css('background','#fff');
-			$(".on_1").css('background','#4f98b9');
+			$(".on_1").css('background','#e2d318');
 			$(".on_2").css('background','#fff');
 		});	
 		
