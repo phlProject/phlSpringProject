@@ -209,7 +209,7 @@
 			         AND BM.BSNS_CODE = AB.BSNS_CODE
 			         AND BM.MEM_ID = AB.REG_ID) AS MEM_NM
 		      ,AA.BOARD_RE_SN AS ORDR
-		      ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
+		      ,DATE_FORMAT(AB.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 */	
 		FROM BSNS_BOARD_RE AA
 			,BSNS_BOARD_RE AB
 		WHERE 1=1
