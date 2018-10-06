@@ -10,36 +10,35 @@
     
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
-		<pattern>*/mainIndex*</pattern>			<!-- main -->
+		<pattern>*/a0000006/mainIndex*</pattern>	<!-- main 			-->
 	</decorator>
-	
 	
 	<!-- basic decorator ( Header + LEFT + body + footer ) -->
 	<decorator name="indexLayoutHLBF" page="/WEB-INF/jsp/a0000006/layout/basicDecoLeft.jsp">
-		<pattern>*/intro/*</pattern> 		<!-- 교육나눔꿈두레	-->
-		<pattern>*/teacher/*</pattern> 		<!-- 교사학교 		-->
-		<pattern>*/network/*</pattern>		<!-- 네트워크 활동 	-->
-		<pattern>*/board/*</pattern> 		<!-- 자료실 		-->
-		<pattern>*/open/*</pattern>			<!-- 열린마당 		-->
+		<pattern>*/a0000006/intro/*</pattern> 		<!-- 교육나눔꿈두레	-->
+		<pattern>*/a0000006/teacher/*</pattern> 	<!-- 교사학교 		-->
+		<pattern>*/a0000006/network/*</pattern>		<!-- 네트워크 활동 	-->
+		<pattern>*/a0000006/board/*</pattern> 		<!-- 자료실 			-->
+		<pattern>*/a0000006/open/*</pattern>		<!-- 열린마당 		-->
 		
-		<pattern>*/member/*</pattern> 		<!-- 회원정보수정	-->
-		<pattern>*/manage/*</pattern> 		<!-- 관리자		-->
+		<pattern>*/a0000006/member/*</pattern> 		<!-- 회원정보수정		-->
+		<pattern>*/a0000006/manage/*</pattern> 		<!-- 관리자			-->
 	</decorator>
 	
 	<!-- no decorator -->
 	<decorator name="indexLayoutEmpty" page="/WEB-INF/jsp/a0000006/layout/basicDecoEmpty.jsp">
-		<pattern>*/iframe*</pattern>
+		<pattern>*/a0000006/iframe*</pattern>
 	</decorator>
 	
 	<!-- TopDefault -->
-	<decorator name="topDefault" page="/WEB-INF/jsp/a0000006/layout/topDefault.jsp"/>
+	<decorator name="topDefault" 	page="/WEB-INF/jsp/a0000006/layout/topDefault.jsp"/>
 	<!-- TopLeft 	-->
-	<decorator name="topLeft" page="/WEB-INF/jsp/a0000006/layout/topLeft.jsp"/>
+	<decorator name="topLeft" 		page="/WEB-INF/jsp/a0000006/layout/topLeft.jsp"/>
 	<!-- Header 	-->
-	<decorator name="header" page="/WEB-INF/jsp/a0000006/layout/header.jsp"/>
+	<decorator name="header" 		page="/WEB-INF/jsp/a0000006/layout/header.jsp"/>
 	<!-- Left 		-->
-	<decorator name="left" page="/WEB-INF/jsp/a0000006/layout/left.jsp"/>
+	<decorator name="left" 			page="/WEB-INF/jsp/a0000006/layout/left.jsp"/>
 	<!-- footer 	-->
-	<decorator name="footer" page="/WEB-INF/jsp/a0000006/layout/footer.jsp"/>
+	<decorator name="footer" 		page="/WEB-INF/jsp/a0000006/layout/footer.jsp"/>
 	
 </decorators>
