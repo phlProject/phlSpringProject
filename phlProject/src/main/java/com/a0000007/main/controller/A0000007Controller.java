@@ -16,7 +16,8 @@ import com.phl.common.service.PhlCommService;
 public class A0000007Controller {
 
 	Logger log = Logger.getLogger(this.getClass());
-	
+	   
+	// push test
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
