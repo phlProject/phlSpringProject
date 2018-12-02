@@ -18,7 +18,11 @@
 
 </head>
 <body>
-	<form id="indexForm" method="post" action="/a0000006/mainIndex.do">
+	<!-- A0000006 - 꿈두레 --> 
+	<!-- <form id="indexForm" method="post" action="/a0000006/mainIndex.do"> -->
+	 
+	<!-- A0000007 - 두레꿈학교 -->
+	<form id="indexForm" method="post" action="/a0000007/mainIndex.do">
 </form>   
 </body>
 </html>
