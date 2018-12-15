@@ -8,6 +8,24 @@
 	</excludes>
     
     
+    
+    <!-- ************************************************************** --> 
+	<!-- 																-->
+	<!-- decoBasic 		: Header + Body + Footer						-->
+	<!-- decoBasicL 	: Header + Body + Footer + Left					-->
+	<!-- decoBasicR 	: Header + Body + Footer + Right				-->
+	<!-- decoBasicLR 	: Header + Body + Footer + Left + Right			-->
+	<!-- decoEmpty 		: No Decorator									-->
+	<!-- 																-->
+	<!-- 화면코드_Require	: 화면 필수 정보										-->
+	<!-- 화면코드_Header	: 화면 상단 정보										-->
+	<!-- 화면코드_Footer	: 화면 하단 정보										-->
+	<!-- 화면코드_Left		: 화면 좌 정보										-->
+	<!-- 화면코드_Right		: 화면 우 정보										-->
+	<!-- 																-->
+	<!-- ************************************************************** -->
+    
+    
     <!-- main decorator ( Header + body + footer ) -->
 	<decorator name="indexLayoutHBF" page="/WEB-INF/jsp/a0000006/layout/basicDeco.jsp">
 		<pattern>*/a0000006/mainIndex*</pattern>	<!-- main 			-->
@@ -40,5 +58,24 @@
 	<decorator name="left" 			page="/WEB-INF/jsp/a0000006/layout/left.jsp"/>
 	<!-- footer 	-->
 	<decorator name="footer" 		page="/WEB-INF/jsp/a0000006/layout/footer.jsp"/>
+	
+	
+	
+	
+	<!-- ************************************************************** --> 
+	<!-- 					A0000007 - 두레꿈 학교							-->
+	<!-- ************************************************************** -->
+	
+	<decorator name="decoBasic" page="/WEB-INF/jsp/a0000007/layout/decoBasic.jsp">
+		<pattern>*/a0000007/mainIndex.do</pattern>	
+	</decorator>
+	
+	<decorator name="decoEmpty" page="/WEB-INF/jsp/a0000007/layout/decoEmpty.jsp">
+		<pattern>*/a0000007/iframe*</pattern>	
+	</decorator>
+	
+	<decorator name="A0000007_Require" 	page="/WEB-INF/jsp/a0000007/layout/require.jsp"/>
+	<decorator name="A0000007_Header" 	page="/WEB-INF/jsp/a0000007/layout/header.jsp"/>
+	<decorator name="A0000007_Footer" 	page="/WEB-INF/jsp/a0000007/layout/footer.jsp"/>
 	
 </decorators>
