@@ -25,7 +25,7 @@ public class A0000007Controller {
 	@RequestMapping(value="/a0000007/mainIndex.do")
 	public ModelAndView mainIndex(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/a0000007/mainIndex");
-		
+		 
 		// 두레꿈학교 - A0000007
         session.setAttribute("bsnsCode", "A0000007");
         
