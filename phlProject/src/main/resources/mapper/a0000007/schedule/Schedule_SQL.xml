@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="a0000007/schedule">
+	
+	<!-- scheduleList ( 일정 조회  ) 2018.12.31 LJG -->
+	<select id="scheduleList" parameterType="hashmap" resultType="hashmap">
+		SELECT   BSNS_CODE
+            	, SCHEDULE_SN
+            	, SCHEDULE_DT
+            	, ST_HOUR
+	            , END_HOUR
+	            , SUBJECT
+	            , CONTENT
+	            , REG_DT
+	            , REG_ID
+	            , MOD_DT
+	            , MOD_ID
+            
+      	FROM   BSNS_SCHEDULE
+      	WHERE   1=1
+          AND USE_YN = 'Y'
+          AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
+          AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
+	</select>
+	
+	<!-- scheduleView ( 일정 상세조회  ) 2018.12.31 LJG -->
+	<select id="scheduleView" parameterType="hashmap" resultType="hashmap">
+		SELECT	BSNS_CODE
+				, SCHEDULE_SN
+				, SCHEDULE_DT
+				, ST_HOUR
+				, END_HOUR
+				, SUBJECT
+				, CONTENT
+				, REG_DT
+				, REG_ID
+				, MOD_DT
+				, MOD_ID
+		FROM	BSNS_SCHEDULE
+		WHERE	1=1
+				AND SCHEDULE_SN = #{scheduleSn}
+	</select>
+	
+	<!-- insertSchedule ( 일정 등록  ) 2018.12.31 LJG -->
+	<insert id="insertSchedule" parameterType="hashmap">
+      	INSERT INTO BSNS_SCHEDULE (
+	               	 BSNS_CODE
+	               , SCHEDULE_DT
+	               , ST_HOUR
+	               , END_HOUR
+	               , SUBJECT
+	               , CONTENT
+	               , REG_ID
+	               , REG_DT
+	               , MOD_ID
+	               , MOD_DT
+      	) VALUES (
+	               	 #{bsnsCode}
+	               , #{scheduleDt}
+	               , #{stHour}
+	               , #{endHour}
+	               , #{subject}
+	               , #{content}
+	               , #{sessionId}
+	               , now()
+	               , #{sessionId}
+	               , now()
+       	)
+   	</insert>
+	
+	<!-- updateSchedule ( 일정 수정  ) 2018.12.31 LJG -->
+	<update id="updateSchedule" parameterType="hashmap">
+		UPDATE	BSNS_SCHEDULE
+		SET		SCHEDULE_DT = #{scheduleDt}
+				, ST_HOUR 	= #{stHour}
+				, END_HOUR 	= #{endHour}
+				, SUBJECT 	= #{subject}
+				, CONTENT 	= #{content}
+				, MOD_DT	= now()
+				, MOD_ID 	= #{sessionId}
+		WHERE	SCHEDULE_SN = #{scheduleSn}	
+	</update>
+	
+	<!-- deleteSchedule ( 일정 삭제  ) 2018.12.31 LJG -->
+	<update id="deleteSchedule" parameterType="hashmap">
+		UPDATE	BSNS_SCHEDULE
+		SET		USE_YN		= 'N'
+				, MOD_DT	= now()
+				, MOD_ID 	= #{sessionId}
+		WHERE	SCHEDULE_SN = #{scheduleSn}	
+	</update>
+	
+</mapper>
