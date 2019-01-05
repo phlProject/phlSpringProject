@@ -152,7 +152,8 @@
     	  LIMIT 1
     </select>
     
-    <!-- 게시판 조회수 증가  -->
+
+    <!-- boardHitCount ( 공통 - 게시판 조회수 증가   ) 2018.12.31 LJG -->
     <update id="boardHitCount" parameterType="hashmap">
     	UPDATE BSNS_BOARD
 		   SET HIT_COUNT = HIT_COUNT + 1
@@ -166,4 +167,297 @@
 		   </if>
     </update>
     
+    
+    <!-- boardListCount ( 공통 - 게시판 카운트  ) 2018.12.31 LJG -->
+	<select id="boardListCount" parameterType="hashmap" resultType="java.lang.Integer">
+		SELECT COUNT(AA.BOARD_SN)
+		FROM BSNS_BOARD	AA
+		WHERE 1=1
+		  AND AA.USE_YN 		= 'Y'
+		  AND AA.BSNS_CODE 		= #{bsnsCode}
+		  AND AA.BOARD_GBN_CD 	= #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+	</select>
+	
+	<!-- boardList ( 공통 - 기본 게시판 조회  ) 2018.12.31 LJG -->
+	<select id="boardList" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE									/* 업체_코드 		*/
+			  ,AA.BOARD_SN									/* 게시판_일련번호	*/
+			  ,AA.BOARD_GBN_CD								/* 게시판_구분_코드 	*/
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM 						/* 게시판_구분_코드_명	*/
+			  ,AA.SUBJECT									/* 제목 			*/
+			  ,AA.CONTENT									/* 내용 			*/
+			  ,AA.HIT_COUNT									/* 조회 수 			*/
+			  ,AA.LIKE_COUNT								/* 좋아요 수 		*/
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 		*/
+			  ,DATE_FORMAT(AA.REG_DT,'%Y-%m-%d') AS REG_DT	/* 등록_일시 		*/		
+		FROM BSNS_BOARD	AA
+		WHERE 1=1
+		  AND AA.USE_YN 		= 'Y'
+		  AND AA.BSNS_CODE 		= #{bsnsCode}
+		  AND AA.BOARD_GBN_CD 	= #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY AA.BOARD_SN DESC
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
+	
+	<!-- boardView ( 공통 - 기본 게시판 상세 조회  ) 2018.12.31 LJG -->
+	<select id="boardView" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 		*/
+			  ,AA.BOARD_SN			/* 게시판_일련번호	*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드	*/
+			  ,AA.SUBJECT			/* 제목 			*/
+			  ,AA.CONTENT			/* 내용 			*/
+			  ,AA.HIT_COUNT			/* 조회 수 			*/
+			  ,AA.REG_ID			/* 등록_ID 		*/
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 				/* 회원_명 	*/
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 	*/	
+		FROM BSNS_BOARD	AA
+		WHERE 1=1
+		  AND AA.USE_YN 		= 'Y'
+		  AND AA.BSNS_CODE 		= #{bsnsCode}
+		  AND AA.BOARD_GBN_CD 	= #{boardGbnCd}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
+	</select>	
+    
+    <!-- selectboardSn ( 공통 - 일련번호 조회 ) 2018.12.31 LJG -->
+    <select id="selectboardSn" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+	
+    <!-- insertBoard ( 공통 - 기본 게시판 등록  ) 2018.12.31 LJG -->
+    <insert id="insertBoard" parameterType="hashmap">
+			INSERT INTO BSNS_BOARD(
+				 BSNS_CODE
+				,BOARD_GBN_CD
+				,SUBJECT
+				,CONTENT
+				,REG_ID
+				,REG_DT
+			)VALUES(
+				 #{bsnsCode}
+				,#{boardGbnCd}
+				,#{subject}
+				,#{editor}
+				,#{sessionId}
+				,now()
+			)
+	</insert>
+    
+    <!-- updateBoard ( 공통 - 기본 게시판 수정  ) 2018.12.31 LJG -->
+    <update id="updateBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD AA
+		   SET AA.SUBJECT 		= #{subject}
+		      ,AA.CONTENT 		= #{editor}
+		      ,AA.MOD_ID 		= #{sessionId}
+		      ,AA.MOD_DT 		= now()
+		 WHERE 1=1
+		   AND AA.BSNS_CODE = #{bsnsCode}
+		   AND AA.BOARD_SN  = #{boardSn}
+	</update>
+    
+    <!-- deleteBoard ( 공통 - 기본 게시판 삭제  ) 2018.12.31 LJG -->
+    <update id="deleteBoard"  parameterType="hashmap">
+		UPDATE BSNS_BOARD
+		   SET USE_YN = 'N'
+			  ,MOD_ID = #{sessionId}
+		      ,MOD_DT = now()
+		 WHERE 1=1
+		   AND BSNS_CODE = #{bsnsCode}
+		   AND BOARD_SN  = #{boardSn}
+	</update>
+	
+	
+	
+	<!-- atchBoardList ( 공통 - 첨부 게시판 조회  ) 2018.12.31 LJG -->
+	<select id="atchBoardList" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE									/* 업체_코드 		*/
+			  ,AA.BOARD_SN									/* 게시판_일련번호	*/
+			  ,AA.BOARD_GBN_CD								/* 게시판_구분_코드 	*/
+			  ,(SELECT PSCC.DETAIL_CODE_NM 
+			  	  FROM PKHL_SYS_CMMN_CODE PSCC
+			  	 WHERE 1=1
+			  	   AND PSCC.USE_YN = 'Y'
+			  	   AND PSCC.BSNS_CODE = AA.BSNS_CODE
+			  	   AND PSCC.CMMN_CODE = AA.BOARD_GBN_CD
+			   ) AS BOARD_GBN_CD_NM 						/* 게시판_구분_코드_명	*/
+			  ,AA.SUBJECT									/* 제목 			*/
+			  ,AA.CONTENT									/* 내용 			*/
+			  ,AA.HIT_COUNT									/* 조회 수 			*/
+			  ,AA.LIKE_COUNT								/* 좋아요 수 		*/
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 		/* 회원_명 		*/
+			  ,DATE_FORMAT(AA.REG_DT,'%Y-%m-%d') AS REG_DT	/* 등록_일시 		*/
+			  ,AB.BOARD_FL_SN		/* 게시판_파일_일련번호	*/
+			  ,AB.ORIGIN_FL_NM		/* 원본_파일_명 		*/
+			  ,AB.FL_NM				/* 파일_명 		*/
+			  ,AB.FL_PATH			/* 파일_경로 		*/		
+		FROM BSNS_BOARD	AA
+			 <if test='atch == "image"'>
+		 	 LEFT OUTER JOIN BSNS_BOARD_IMG	AB
+		 	 </if>
+		 	 <if test='atch == "file"'>
+		 	 LEFT OUTER JOIN BSNS_BOARD_FL	AB
+		 	 </if>	
+		       ON AA.BSNS_CODE = AB.BSNS_CODE
+		      AND AA.BOARD_SN  = AB.BOARD_SN
+		WHERE 1=1
+		  AND AA.USE_YN 		= 'Y'
+		  AND AA.BSNS_CODE 		= #{bsnsCode}
+		  AND AA.BOARD_GBN_CD 	= #{boardGbnCd}
+		  <if test="searchSelect != '' or searchSelect != null">
+		  	<choose>
+			 	<when test='searchSelect == "searchSubject"'>
+			 		AND AA.SUBJECT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchContent"'>
+			 		AND AA.CONTENT LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+			 	<when test='searchSelect == "searchSubCon"'>
+			 		AND CONCAT(AA.SUBJECT, AA.CONTENT) LIKE CONCAT('%',#{searchWord},'%')
+			 	</when>
+		  	</choose>
+		  </if>
+		ORDER BY AA.BOARD_SN DESC
+		LIMIT #{limitFirst}, #{limitSecond}
+	</select>
+	
+	
+	<!-- atchBoardView ( 공통 - 첨부 게시판 상세 조회  ) 2018.12.31 LJG -->
+	<select id="atchBoardView" parameterType="hashmap" resultType="hashmap">
+		SELECT AA.BSNS_CODE			/* 업체_코드 		*/
+			  ,AA.BOARD_SN			/* 게시판_일련번호	*/
+			  ,AA.BOARD_GBN_CD		/* 게시판_구분_코드	*/
+			  ,AA.SUBJECT			/* 제목 			*/
+			  ,AA.CONTENT			/* 내용 			*/
+			  ,AA.HIT_COUNT			/* 조회 수 			*/
+			  ,AA.REG_ID			/* 등록_ID 		*/
+			  ,(SELECT BM.MEM_NM
+			    FROM BSNS_MEMBER BM
+			    WHERE 1=1
+			      AND BM.USE_YN = 'Y'
+			      AND BM.BSNS_CODE = AA.BSNS_CODE
+			      AND BM.MEM_ID = AA.REG_ID) AS MEM_NM 				/* 회원_명 	*/
+			  ,DATE_FORMAT(AA.REG_DT,'%Y. %m. %d. %H:%i') AS REG_DT	/* 등록_일시 	*/	
+			  ,AB.BOARD_FL_SN		/* 게시판_파일_일련번호	*/
+			  ,AB.ORIGIN_FL_NM		/* 원본_파일_명 		*/
+			  ,AB.FL_NM				/* 파일_명 		*/
+			  ,AB.FL_PATH			/* 파일_경로 		*/
+		FROM BSNS_BOARD	AA
+		 	 <if test='atch == "image"'>
+		 	 LEFT OUTER JOIN BSNS_BOARD_IMG	AB
+		 	 </if>
+		 	 <if test='atch == "file"'>
+		 	 LEFT OUTER JOIN BSNS_BOARD_FL	AB
+		 	 </if>	
+		       ON AA.BSNS_CODE = AB.BSNS_CODE
+		      AND AA.BOARD_SN  = AB.BOARD_SN
+		WHERE 1=1
+		  AND AA.USE_YN = 'Y'
+		  AND AA.BSNS_CODE = #{bsnsCode}
+		  AND AA.BOARD_GBN_CD 	= #{boardGbnCd}
+		  <if test='moveBoardSn == null'>
+		  AND AA.BOARD_SN  = #{boardSn}
+		  </if>
+		  <if test='moveBoardSn != null'>
+		  AND AA.BOARD_SN  = #{moveBoardSn}
+		  </if>
+	</select>
+	
+	
+	<!-- insertBoardAtch ( 공통 - 첨부 파일 등록  ) 2018.12.31 LJG -->
+	<insert id="insertBoardAtch"  parameterType="hashmap">
+		<if test='atch == "image"'>
+		INSERT INTO BSNS_BOARD_IMG(
+		</if>
+		<if test='atch == "file"'>
+		INSERT INTO BSNS_BOARD_FL(
+		</if>
+			 BSNS_CODE
+			,BOARD_SN
+			,ORIGIN_FL_NM
+			,FL_NM
+			,FL_PATH
+			,REG_DT
+			,REG_ID
+		)VALUES(
+			 #{bsnsCode}
+			,#{boardSn}
+			,#{originFlNm}
+			,#{flNm}
+			,#{flPath}
+			,now()
+			,#{sessionId}
+		)
+	</insert>
+	
+	<!-- updateBoardAtch ( 공통 - 첨부 파일 수정  ) 2018.12.31 LJG -->
+	<update id="updateBoardAtch"  parameterType="hashmap">
+		<if test='atch == "image"'>
+		UPDATE BSNS_BOARD_IMG
+		</if>
+		<if test='atch == "file"'>
+		UPDATE BSNS_BOARD_FL
+		</if>
+		   SET ORIGIN_FL_NM = #{originFlNm}
+		      ,FL_NM 		= #{flNm}
+		      ,FL_PATH 		= #{flPath}
+		      ,MOD_DT	 	= now()
+		      ,MOD_ID 		= #{sessionId}
+		 WHERE 1=1 
+		   AND BSNS_CODE 	= #{bsnsCode}
+		   AND BOARD_SN  	= #{boardSn}
+		   AND BOARD_FL_SN 	= #{boardFlSn}
+	</update>
+	
+	<!-- deleteBoardAtch ( 공통 - 첨부 파일 삭제  ) 2018.12.31 LJG -->
 </mapper>
