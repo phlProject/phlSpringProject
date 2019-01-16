@@ -42,13 +42,33 @@ public class PhlCommServiceImpl implements PhlCommService {
         return phlCommDAO.menuListDept3(map);
     }
 	
-	/* 게시판 이전 다음 페이지 번호 */
+	
+	/**
+	 *  adminCheck ( 공통 - 관리자 로그인  ) 
+	 *	2018.12.31 LJG  
+	 */
 	@Override
-	public String selectBoardSn(Map<String, Object> map) throws Exception {
-		return phlCommDAO.selectBoardSn(map);
+    public List<Map<String, Object>> adminCheck(Map<String, Object> map) throws Exception {
+        return phlCommDAO.adminCheck(map);
+    }
+	
+	/**
+	 *  adminInfo ( 공통 - 관리자 정보  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+    public List<Map<String, Object>> adminInfo(Map<String, Object> map) throws Exception {
+        return phlCommDAO.adminInfo(map);
+    }
+	
+	/**
+	 *  moveBoardPage ( 공통 - 이전 다음 페이지 이동  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public String moveBoardPage(Map<String, Object> map) throws Exception {
+		return phlCommDAO.moveBoardPage(map);
 	}
-	
-	
 	
 	/**
 	 *  boardHitCount ( 공통 - 게시판 조회수 증가  ) 
@@ -81,8 +101,17 @@ public class PhlCommServiceImpl implements PhlCommService {
 	 *	2018.12.31 LJG  
 	 */
 	@Override
-    public Map<String, Object> boardView(Map<String, Object> map) throws Exception {
+    public List<Map<String, Object>> boardView(Map<String, Object> map) throws Exception {
         return phlCommDAO.boardView(map);
+    }
+	
+	/**
+	 *  boardReplyList ( 공통 - 게시판 댓글 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+    public List<Map<String, Object>> boardReplyList(Map<String, Object> map) throws Exception {
+        return phlCommDAO.boardReplyList(map);
     }
 	
 	/**
@@ -145,6 +174,107 @@ public class PhlCommServiceImpl implements PhlCommService {
 	
 	
 	/**
+	 *  boardNonMemList ( 공통 - 비회원 게시판 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+    public List<Map<String, Object>> boardNonMemList(Map<String, Object> map) throws Exception {
+        return phlCommDAO.boardNonMemList(map);
+    }
+	
+	/**
+	 *  boardNonMemView ( 공통 - 비회원 게시판 상세 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+    public List<Map<String, Object>> boardNonMemView(Map<String, Object> map) throws Exception {
+        return phlCommDAO.boardNonMemView(map);
+    }
+	
+	/**
+	 *  boardPwdCheck ( 공통 - 비회원 게시판 비밀번호 확인  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+    public List<Map<String, Object>> boardPwdCheck(Map<String, Object> map) throws Exception {
+        return phlCommDAO.boardPwdCheck(map);
+    }
+	
+	/**
+	 *  insertBoardNonMem ( 공통 - 비회원 게시판 등록  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public int insertBoardNonMem(Map<String, Object> map) throws Exception {
+		try 
+		{
+			phlCommDAO.insertBoard(map);
+			
+			// 게시판 공통 > 일련번호 조회
+			int boardSn = phlCommDAO.selectBoardSn();
+			
+			return boardSn;
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	/**
+	 *  insertBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 등록  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public void insertBoardNonMemDetail(Map<String, Object> map) throws Exception {
+		try {
+			phlCommDAO.insertBoardNonMemDetail(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 *  updateBoardNonMem ( 공통 - 비회원 게시판 수정  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public String updateBoardNonMem(Map<String, Object> map) throws Exception {
+		try 
+		{
+			phlCommDAO.updateBoard(map);
+			return "success";
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	/**
+	 *  deleteBoardNonMem ( 공통 - 비회원 게시판 삭제  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public String deleteBoardNonMem(Map<String, Object> map) throws Exception {
+		try 
+		{
+			phlCommDAO.deleteBoard(map);
+			return "success";
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	
+	
+	
+	/**
 	 *  atchBoardList ( 공통 - 첨부 게시판 조회  ) 
 	 *	2018.12.31 LJG  
 	 */
@@ -161,7 +291,7 @@ public class PhlCommServiceImpl implements PhlCommService {
 	 *	2018.12.31 LJG  
 	 */
 	@Override
-    public Map<String, Object> atchBoardView(Map<String, Object> map) throws Exception {
+    public List<Map<String, Object>> atchBoardView(Map<String, Object> map) throws Exception {
         return phlCommDAO.atchBoardView(map);
     }
 	
@@ -203,5 +333,34 @@ public class PhlCommServiceImpl implements PhlCommService {
 	 *  deleteBoardAtch ( 공통 - 첨부 파일 삭제  ) 
 	 *	2018.12.31 LJG  
 	 */
+	
+	
+	/**
+	 *  saveBoardReply ( 공통 - 게시판 댓글 등록/수정/삭제 ) 
+	 *	2018.12.31 LJG  
+	 */
+	@Override
+	public String saveBoardReply(Map<String, Object> map) throws Exception {
+		try {
+				if(map.get("boardReType").equals("insert"))
+				{
+					phlCommDAO.insertBoardReply(map);
+				}
+				else if(map.get("boardReType").equals("update"))
+				{
+					phlCommDAO.updateBoardReply(map);
+				}
+				else if(map.get("boardReType").equals("delete"))
+				{
+					phlCommDAO.deleteBoardReply(map);
+				}
+				
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 	
 }	

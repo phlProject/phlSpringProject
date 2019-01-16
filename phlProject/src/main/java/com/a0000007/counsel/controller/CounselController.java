@@ -31,7 +31,7 @@ public class CounselController {
 	
 	
 	/**
-	 *  counselList ( 상담신청 조회 - 기본 게시판 조회 ) 
+	 *  counselList ( 상담신청 조회 - 비회원 게시판 조회 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/counselList.do")
@@ -48,7 +48,7 @@ public class CounselController {
 			commandMap.put("bsnsCode",  session.getAttribute("bsnsCode"));
 		}
 		
-		// 게시판 구분 체크
+		// 게시판 구분 체크 ( 상담신청 )
 		if(commandMap.get("boardGbnCd") == null)
 		{
 			commandMap.put("boardGbnCd", "B01002");
@@ -86,7 +86,7 @@ public class CounselController {
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 		
 		// 공통 - 기본 게시판 조회
-		List<Map<String,Object>> boardList = phlCommService.boardList(commandMap.getMap());
+		List<Map<String,Object>> boardList = phlCommService.boardNonMemList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
 		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
@@ -104,7 +104,7 @@ public class CounselController {
 	}
 	
 	/**
-	 *  counselFormI ( 상담신청 상세 - 기본 게시판 신규 폼 ) 
+	 *  counselFormI ( 상담신청 상세 - 비회원 게시판 신규 폼 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/counselFormI.do")
@@ -118,7 +118,7 @@ public class CounselController {
 	}
 	
 	/**
-	 *  counselFormU ( 상담신청 상세 - 기본 게시판 수정 폼 ) 
+	 *  counselFormU ( 상담신청 상세 - 비회원 게시판 수정 폼 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/counselFormU.do")
@@ -126,17 +126,58 @@ public class CounselController {
 		ModelAndView mv = new ModelAndView("/a0000007/counsel/counselForm");
 		
 		// 공통 - 게시판 상세 조회
-		Map<String,Object> boardView = phlCommService.boardView(commandMap.getMap());
+		List<Map<String, Object>> boardView = phlCommService.boardNonMemView(commandMap.getMap());
 		
 		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
-		mv.addObject("boardView", 	boardView);
+		mv.addObject("boardView", 	boardView.get(0));
 		
 		return mv;
 	}
 	
 	/**
-	 *  counselView ( 상담신청 상세 - 기본 게시판 상세 ) 
+	 *  counselPwdCheck ( 상담신청 상세 - 비회원 게시판 비밀번호 확인 폼 ) 
+	 *	2018.12.31 LJG  
+	 */
+	@RequestMapping(value="/a0000007/counsel/counselPwdCheck.do")
+	public ModelAndView counselPwdCheck(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/a0000007/counsel/counselPwdCheck");
+		
+		mv.addObject("item", commandMap.getMap());
+		
+		return mv;
+	}
+	
+	/**
+	 *  counselPwdCheckAction ( 상담신청 상세 - 비회원 게시판 비밀번호 확인  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@RequestMapping(value="/a0000007/counsel/counselPwdCheckAction.do")
+	public ModelAndView counselPwdCheckAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("item", commandMap.getMap());
+		String resultValue = "";
+		
+		List<Map<String,Object>> boardPwdCheck = phlCommService.boardPwdCheck(commandMap.getMap());
+		
+		/* 해당하는 정보 존재시 */
+        if(boardPwdCheck.size() != 0){
+        	resultValue = "PW_OK";
+        }else{
+        	/* 비밀번호 오류 */
+        	resultValue = "PW_ERROR";
+        	
+        }	
+        mv.setViewName("/a0000007/counsel/counselPwdCheck");
+        mv.addObject("resultValue",resultValue);  
+		
+		return mv;
+	}
+	
+	
+	/**
+	 *  counselView ( 상담신청 상세 - 비회원 게시판 상세 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/counselView.do")
@@ -144,31 +185,34 @@ public class CounselController {
 
 		ModelAndView mv = new ModelAndView("/a0000007/counsel/counselView");
 		
-		commandMap.put("moveBoardSn",request.getParameter("moveBoardSn"));	// 이전 글, 다음 글
-		
 		// 공통 - 게시판 조회수 증가
 		phlCommService.boardHitCount(commandMap.getMap());
 		
 		// 공통 - 게시판 상세 조회
-		Map<String,Object> boardView = phlCommService.boardView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlCommService.boardNonMemView(commandMap.getMap());
 		
-		mv.addObject("item", 		commandMap.getMap());
-		mv.addObject("boardView", 	boardView);
+		// 공통 - 게시판 댓글 조회
+		List<Map<String,Object>> boardReplyList = phlCommService.boardReplyList(commandMap.getMap());
+		
+		mv.addObject("item", 			commandMap.getMap());
+		mv.addObject("boardView", 		boardView.get(0));
+		mv.addObject("boardReplyList", 	boardReplyList);
 		
 		return mv;
 	}
 	
 	/**
-	 *  insertCounsel ( 상담신청 상세 - 기본 게시판 등록 ) 
+	 *  insertCounsel ( 상담신청 상세 - 비회원 게시판 등록 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/insertCounsel.do")
 	public ModelAndView insertCounsel(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		int boardSn = phlCommService.insertBoard(commandMap.getMap());
+		int boardSn = phlCommService.insertBoardNonMem(commandMap.getMap());
 		commandMap.put("boardSn", boardSn);
-		
+
+		phlCommService.insertBoardNonMemDetail(commandMap.getMap());
 
 		if(boardSn > 0)
 		{
@@ -185,7 +229,7 @@ public class CounselController {
 	}
 	
 	/**
-	 *  updateCounsel ( 상담신청 상세 - 기본 게시판 수정 ) 
+	 *  updateCounsel ( 상담신청 상세 - 비회원 게시판 수정 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/updateCounsel.do")
@@ -200,7 +244,7 @@ public class CounselController {
 	}
 	
 	/**
-	 *  deleteCounsel ( 상담신청 상세 - 기본 게시판 삭제 ) 
+	 *  deleteCounsel ( 상담신청 상세 - 비회원 게시판 삭제 ) 
 	 *	2018.12.31 LJG  
 	 */
 	@RequestMapping(value="/a0000007/counsel/deleteCounsel.do")
@@ -214,4 +258,21 @@ public class CounselController {
 		return mv;
 	}
 	
+	/**
+	 *  saveCounselReply ( 상담신청 상세 - 비회원 게시판 댓글 등록/수정/삭제 ) 
+	 *	2018.12.31 LJG  
+	 */
+	@RequestMapping(value="/a0000007/counsel/saveCounselReply.do")
+	public ModelAndView saveCounselReply(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		commandMap.put("sessionId",session.getAttribute("sessionId"));
+		
+		try{
+			String result = phlCommService.saveBoardReply(commandMap.getMap());
+			mv.addObject("result", result);  	
+		}catch(Exception e){
+		}
+		return mv;
+	}
 }

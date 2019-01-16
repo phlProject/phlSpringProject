@@ -47,7 +47,7 @@ public class ProgramController {
 			commandMap.put("bsnsCode",  session.getAttribute("bsnsCode"));
 		}
 		
-		// 게시판 구분 체크
+		// 게시판 구분 체크 ( 활동 프로그램 )
 		if(commandMap.get("boardGbnCd") == null)
 		{
 			commandMap.put("boardGbnCd", "B01001");
@@ -131,11 +131,11 @@ public class ProgramController {
 		commandMap.put("atch", "image");
 		
 		// 공통 - 첨부 게시판 상세 조회
-		Map<String,Object> boardView = phlCommService.atchBoardView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlCommService.atchBoardView(commandMap.getMap());
 		
 		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
-		mv.addObject("boardView", 	boardView);
+		mv.addObject("boardView", 	boardView.get(0));
 		
 		return mv;
 	}
@@ -158,10 +158,10 @@ public class ProgramController {
 		commandMap.put("atch", "image");
 		
 		// 공통 - 게시판 상세 조회
-		Map<String,Object> boardView = phlCommService.atchBoardView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlCommService.atchBoardView(commandMap.getMap());
 		
 		mv.addObject("item", 		commandMap.getMap());
-		mv.addObject("boardView", 	boardView);
+		mv.addObject("boardView", 	boardView.get(0));
 		
 		return mv;
 	}

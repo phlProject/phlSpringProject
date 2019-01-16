@@ -64,7 +64,7 @@ public class PhlCommController {
 		String result = "N";
 		
 		commandMap.put("move", request.getParameter("move"));
-		String boardSn = phlCommService.selectBoardSn(commandMap.getMap());
+		String boardSn = phlCommService.moveBoardPage(commandMap.getMap());
 		
 		if(boardSn != null &&!boardSn.isEmpty()){
 			result = boardSn;
