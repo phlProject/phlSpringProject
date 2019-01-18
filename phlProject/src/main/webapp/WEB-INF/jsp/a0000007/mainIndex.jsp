@@ -24,7 +24,7 @@
 		일정
 	</div>
 
-	<div style="position: relative; float: left; cursor: pointer; border: 1px solid black;"	class="w20r h100r mr2d5r ml2d5r"	onclick="javascript:TopMenuMove('/a0000007/counsel/counselList.do')">
+	<div style="position: relative; float: left; cursor: pointer; border: 1px solid black;"	class="w20r h100r mr2d5r ml2d5r"	onclick="javascript:TopMenuMove('/a0000007/intro/introduce.do')">
 		4
 	</div>
 
