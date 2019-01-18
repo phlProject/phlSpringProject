@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script src="/js/jquery-1.11.1.min.js"></script>	<!-- 달력 디자인 필요 -->
-<!-- <script src="/js/jquery-ui.js"></script> -->
+<script src="/js/jquery-ui.js"></script>
 <!-- <script src="/js/common.js"></script> -->
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" /> <!-- 달력 디자인 필요 -->	
@@ -132,9 +132,9 @@
 	});
 	
 
-	var cList = new Array();
-	var pageLoad = false;
-	var calendar = new controller();
+	var cList 		= new Array();
+	var pageLoad 	= false;
+	var calendar 	= new controller();
 	
 	// 달력
 	calendar.init();
@@ -597,7 +597,6 @@
 	// 레이어 닫기
 	function closeLayer(objId){
 		$("#" + objId).css("display", "none");
-	   
 	}
 
 </script>
