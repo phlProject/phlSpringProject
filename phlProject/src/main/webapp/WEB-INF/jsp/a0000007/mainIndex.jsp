@@ -11,7 +11,9 @@
 <form id="topMenu_Form" name="topMenu_Form">
 	<input type="hidden" id="bsnsCode" 		name="bsnsCode" 	value="${sessionScope.bsnsCode}">
 </form>
- <div style="position: relative; float: left;" class="w80r h70r pr10r pl10r" >
+<br/><br/><br/>
+
+<div style="position: relative; float: left;" class="w80r h70r pr10r pl10r" >
 	<div style="position: relative; float: left; cursor: pointer; border: 1px solid black;" class="w20r h100r mr2d5r ml2d5r" 	onclick="javascript:TopMenuMove11('/a0000006/member/memMyPage.do')">
 		1
 	</div>
