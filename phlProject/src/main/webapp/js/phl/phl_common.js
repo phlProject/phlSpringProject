@@ -46,3 +46,14 @@ function notHangeul(obj){
 		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,""));
 	});
 }
+
+/**
+ *	gfnIsNull ( Null Check ) 
+ */
+function gfnIsNull(obj){
+	if($.trim(obj) == null ||  $.trim(obj) == "")
+	{
+		return false;
+	}
+	return true;
+}

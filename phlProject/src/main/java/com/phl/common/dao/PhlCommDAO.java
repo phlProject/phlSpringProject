@@ -34,11 +34,33 @@ public class PhlCommDAO extends AbstractDAO {
         return (List<CommandMap>)selectList("phl/common.menuListDept3", map);
     }
 	
-	/* 게시판 이전 다음 페이지 번호 */
-	public String selectBoardSn(Map<String, Object> map) throws Exception{
-        return (String) selectOne("phl/common.selectBoardSn", map);
+	
+	
+	/**
+	 *  adminCheck ( 공통 - 관리자 로그인  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> adminCheck(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/admin.adminCheck", map);
     }
 	
+	/**
+	 *  adminInfo ( 공통 - 관리자 정보  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> adminInfo(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/admin.adminInfo", map);
+    }
+	
+	/**
+	 *  moveBoardPage ( 공통 - 이전 다음 페이지 이동  ) 
+	 *	2018.12.31 LJG  
+	 */
+	public String moveBoardPage(Map<String, Object> map) throws Exception{
+        return (String) selectOne("phl/common.moveBoardPage", map);
+    }
 	
 	/**
 	 *  boardHitCount ( 공통 - 게시판 조회수 증가  ) 
@@ -70,8 +92,17 @@ public class PhlCommDAO extends AbstractDAO {
 	 *	2018.12.31 LJG  
 	 */
 	@SuppressWarnings("unchecked")
-    public Map<String, Object> boardView(Map<String, Object> map) throws Exception{
-        return (Map<String, Object>)selectList("phl/common.boardView", map);
+    public List<Map<String, Object>> boardView(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.boardView", map);
+    }
+	
+	/**
+	 *  boardReplyList ( 공통 - 게시판 댓글 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> boardReplyList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.boardReplyList", map);
     }
 	
 	/**
@@ -107,6 +138,41 @@ public class PhlCommDAO extends AbstractDAO {
 	}
 	
 	
+	/**
+	 *  boardNonMemList ( 공통 - 비회원 게시판 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> boardNonMemList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.boardNonMemList", map);
+    }
+	
+	/**
+	 *  boardPwdCheck ( 공통 - 비회원 게시판 비밀번호 확인  )
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> boardPwdCheck(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.boardPwdCheck", map);
+    }
+	
+	/**
+	 *  boardNonMemView ( 공통 - 비회원 게시판 상세 조회  ) 
+	 *	2018.12.31 LJG  
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> boardNonMemView(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.boardNonMemView", map);
+    }
+	
+	/**
+	 *  insertBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 등록  ) 
+	 *	2018.12.31 LJG  
+	 */
+	public void insertBoardNonMemDetail(Map<String, Object> map) throws Exception{
+	    insert("phl/common.insertBoardNonMemDetail", map);
+	}
+	
 	
 	/**
 	 *  atchBoardList ( 공통 - 첨부 게시판 조회  ) 
@@ -122,8 +188,8 @@ public class PhlCommDAO extends AbstractDAO {
 	 *	2018.12.31 LJG  
 	 */
 	@SuppressWarnings("unchecked")
-    public Map<String, Object> atchBoardView(Map<String, Object> map) throws Exception{
-        return (Map<String, Object>)selectList("phl/common.atchBoardView", map);
+    public List<Map<String, Object>> atchBoardView(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("phl/common.atchBoardView", map);
     }
 	
 	/**
@@ -147,5 +213,30 @@ public class PhlCommDAO extends AbstractDAO {
 	 *	2018.12.31 LJG  
 	 */
 	
+	
+	
+	/**
+	 *  insertBoardReply ( 공통 - 게시판 댓글 등록 ) 
+	 *	2018.12.31 LJG  
+	 */
+	public void insertBoardReply(Map<String, Object> map) throws Exception{
+		update("phl/common.insertBoardReply", map);
+	}
+	
+	/**
+	 *  updateBoardReply ( 공통 - 게시판 댓글 수정 ) 
+	 *	2018.12.31 LJG  
+	 */
+	public void updateBoardReply(Map<String, Object> map) throws Exception{
+		update("phl/common.updateBoardReply", map);
+	}
+	
+	/**
+	 *  deleteBoardReply ( 공통 - 게시판 댓글 삭제 ) 
+	 *	2018.12.31 LJG  
+	 */
+	public void deleteBoardReply(Map<String, Object> map) throws Exception{
+		update("phl/common.deleteBoardReply", map);
+	}
 	
 }
