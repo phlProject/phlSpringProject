@@ -2,15 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- 공통 빼기 S -->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/default.css" />
-
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/phl/phl_common.js"></script>
-<script src="/js/common.js"></script>
 <script src="/js/a0000007/counsel.js"></script>
-<!-- 공통 빼기 E -->
 
 
 <!-- 

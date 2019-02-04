@@ -4,13 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script src="/js/jquery-1.11.1.min.js"></script>	<!-- 달력 디자인 필요 -->
-<script src="/js/jquery-ui.js"></script>
-<!-- <script src="/js/common.js"></script> -->
 
-<link rel="stylesheet" type="text/css" href="/css/style.css" /> <!-- 달력 디자인 필요 -->	
-<!-- <link rel="stylesheet" type="text/css" href="/css/default.css" /> -->
-<!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" /> -->
 
 <!-- 
 	자료 게시판 리스트

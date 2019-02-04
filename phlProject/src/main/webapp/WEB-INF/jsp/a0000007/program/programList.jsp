@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- 공통 빼기 S -->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/default.css" />
-
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/common.js"></script>
 <script src="/js/a0000007/program.js"></script>
-<!-- 공통 빼기 E -->
 
 <!-- 
 	활동 프로그램 게시판

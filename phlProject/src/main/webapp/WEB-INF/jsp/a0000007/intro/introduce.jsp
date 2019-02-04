@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<!-- 공통 빼기 S -->
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/a0000006/tabMenu.js"></script> 
-
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/default.css" />
-<!-- 공통 빼기 E -->
+<script src="/js/a0000006/tabMenu.js"></script>
 
 <div id="content">
 	<div class="tabmenu">

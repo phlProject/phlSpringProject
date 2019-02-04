@@ -2,10 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="/js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/pkhl.css" />
-<script src="/js/common.js"></script>
 
 
 <form id="topMenu_Form" name="topMenu_Form">
