@@ -553,7 +553,7 @@
 		
 		$("#scheduleDt").val($("#toYear").val() + "-" + $("#toMonth").val() + "-" + $("#toDay").val());
 		$("#stHour").val("09");
-		$("#endHour").val("09");
+		$("#endHour").val("10");
 		
 		
 		$("#subject").val("");
