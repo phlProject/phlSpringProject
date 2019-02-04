@@ -67,11 +67,16 @@
 	<!-- ************************************************************** -->
 	
 	<decorator name="decoBasic" page="/WEB-INF/jsp/a0000007/layout/decoBasic.jsp">
-		<pattern>*/a0000007/mainIndex.do</pattern>	
+		<pattern>*/a0000007/intro/*</pattern>
+		<pattern>*/a0000007/counsel/*</pattern>
+		<pattern>*/a0000007/program/*</pattern>
+		<pattern>*/a0000007/schedule/*</pattern>
 	</decorator>
 	
 	<decorator name="decoEmpty" page="/WEB-INF/jsp/a0000007/layout/decoEmpty.jsp">
-		<pattern>*/a0000007/iframe*</pattern>	
+		<pattern>*/a0000007/mainIndex.do</pattern>
+		<pattern>*/a0000007/admin*</pattern>
+		<pattern>*/a0000007/iframe*</pattern>
 	</decorator>
 	
 	<decorator name="A0000007_Require" 	page="/WEB-INF/jsp/a0000007/layout/require.jsp"/>
