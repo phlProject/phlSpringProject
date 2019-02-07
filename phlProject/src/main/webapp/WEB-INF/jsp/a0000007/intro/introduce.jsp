@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="/js/a0000006/tabMenu.js"></script>
 
 <div id="content">
@@ -12,6 +13,8 @@
 		                <div class="tab-cont3">
 							<h3 class="cont1-1">소개(내용없음)</h3><br/>
 							소개(내용없음)
+							첨부파일 :  <a href="javascript:fn_boardFlDown('A0000007','1','1');"><c:out value="1"/></a>
+							
 						</div>
 					
 					</div>
