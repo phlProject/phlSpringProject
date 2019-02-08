@@ -27,11 +27,11 @@ function fn_deleteProgram(){
 		return;
 	}
 	
-	var postUrl = "/a0000006/board/deleteBook.do";
-	$.post(postUrl, $("#bookList_Form").serialize(), function(data){
+	var postUrl = "/a0000007/program/deleteProgram.do";
+	$.post(postUrl, $("#boardList_Form").serialize(), function(data){
 		if(data.result == "success" ){
 			alert("삭제되었습니다.");
-			ComSubmit('bookList_Form','/a0000006/board/bookList.do');
+			ComSubmit('boardList_Form','/a0000007/program/programList.do');
 		} else{
 			alert("실패하였습니다. 관리자에게 문의해주세요.");
 			return;

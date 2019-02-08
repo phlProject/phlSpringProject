@@ -22,6 +22,17 @@ function gfn_uploadFile(){
     });
 }
 
+/* 파일 다운로드 */
+function fn_downloadFile(bsnsCode, flSn){
+	var strUrl  = "/phl/comm/downloadFile.do";
+		strUrl += "?bsnsCode="+bsnsCode;
+		strUrl += "&&flSn="+flSn;
+	
+	document.location.href=strUrl;
+}
+
+
+
 /* input Type 제어 */
 
 // 영어, 숫자 입력 가능 ( 대/소문자 css 제어 : text-transform )

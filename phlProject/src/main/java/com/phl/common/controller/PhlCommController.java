@@ -68,7 +68,7 @@ public class PhlCommController {
 	public void downloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		commandMap.put("bsnsCode", 	request.getParameter("bsnsCode"));
-		commandMap.put("flSn", 		request.getParameter("boardFlSn"));
+		commandMap.put("flSn", 		request.getParameter("flSn"));
 		
 		List<Map<String,Object>> downloadFile = phlCommService.downloadFile(commandMap.getMap());
 		

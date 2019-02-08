@@ -135,7 +135,9 @@
 		      ,FL_PATH
 		FROM BSNS_FL
 		WHERE 1=1
-		  AND BSNS_CODE = ${bsnsCode}
-		  AND FL_SN		= ${flSn}
+		  AND BSNS_CODE = #{bsnsCode}
+		  <if test="flSn != null">
+		  AND FL_SN		= #{flSn}
+		  </if>
     </select>
 </mapper>
