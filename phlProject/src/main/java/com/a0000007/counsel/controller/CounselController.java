@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000007.counsel.service.CounselService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlBoardService;
 import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilPaging;
 
@@ -25,6 +26,9 @@ public class CounselController {
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	@Resource(name="phlBoardService")
+	private PhlBoardService phlBoardService;
 	
 	@Resource(name="/a0000007/counselService")
 	private CounselService counselService;
@@ -55,7 +59,7 @@ public class CounselController {
 		}
 		
 		// 공통 - 기본 게시판 카운트
-		int boardListCount = phlCommService.boardListCount(commandMap.getMap());
+		int boardListCount = phlBoardService.boardListCount(commandMap.getMap());
 		
 		// 요청 페이지 번호
 		int requestPageNumber = 1;	
@@ -86,7 +90,7 @@ public class CounselController {
 		commandMap.put("limitSecond",	pagingData[2]-pagingData[1]+1);
 		
 		// 공통 - 기본 게시판 조회
-		List<Map<String,Object>> boardList = phlCommService.boardNonMemList(commandMap.getMap());
+		List<Map<String,Object>> boardList = phlBoardService.boardNonMemList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
 		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
@@ -126,7 +130,7 @@ public class CounselController {
 		ModelAndView mv = new ModelAndView("/a0000007/counsel/counselForm");
 		
 		// 공통 - 게시판 상세 조회
-		List<Map<String, Object>> boardView = phlCommService.boardNonMemView(commandMap.getMap());
+		List<Map<String, Object>> boardView = phlBoardService.boardNonMemView(commandMap.getMap());
 		
 		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
@@ -159,7 +163,7 @@ public class CounselController {
 		mv.addObject("item", commandMap.getMap());
 		String resultValue = "";
 		
-		List<Map<String,Object>> boardPwdCheck = phlCommService.boardPwdCheck(commandMap.getMap());
+		List<Map<String,Object>> boardPwdCheck = phlBoardService.boardPwdCheck(commandMap.getMap());
 		
 		/* 해당하는 정보 존재시 */
         if(boardPwdCheck.size() != 0){
@@ -186,13 +190,13 @@ public class CounselController {
 		ModelAndView mv = new ModelAndView("/a0000007/counsel/counselView");
 		
 		// 공통 - 게시판 조회수 증가
-		phlCommService.boardHitCount(commandMap.getMap());
+		phlBoardService.boardHitCount(commandMap.getMap());
 		
 		// 공통 - 게시판 상세 조회
-		List<Map<String,Object>> boardView = phlCommService.boardNonMemView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlBoardService.boardNonMemView(commandMap.getMap());
 		
 		// 공통 - 게시판 댓글 조회
-		List<Map<String,Object>> boardReplyList = phlCommService.boardReplyList(commandMap.getMap());
+		List<Map<String,Object>> boardReplyList = phlBoardService.boardReplyList(commandMap.getMap());
 		
 		mv.addObject("item", 			commandMap.getMap());
 		mv.addObject("boardView", 		boardView.get(0));
@@ -209,10 +213,10 @@ public class CounselController {
 	public ModelAndView insertCounsel(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		int boardSn = phlCommService.insertBoardNonMem(commandMap.getMap());
+		int boardSn = phlBoardService.insertBoardNonMem(commandMap.getMap());
 		commandMap.put("boardSn", boardSn);
 
-		phlCommService.insertBoardNonMemDetail(commandMap.getMap());
+		phlBoardService.insertBoardNonMemDetail(commandMap.getMap());
 
 		if(boardSn > 0)
 		{
@@ -236,7 +240,7 @@ public class CounselController {
 	public ModelAndView updateCounsel(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		String result = phlCommService.updateBoard(commandMap.getMap());
+		String result = phlBoardService.updateBoard(commandMap.getMap());
 		
 		mv.addObject("result", result);
 		
@@ -251,7 +255,7 @@ public class CounselController {
 	public ModelAndView deleteCounsel(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 
-		String result = phlCommService.deleteBoard(commandMap.getMap());
+		String result = phlBoardService.deleteBoard(commandMap.getMap());
 		
 		mv.addObject("result", result);
 		
@@ -269,7 +273,7 @@ public class CounselController {
 		commandMap.put("sessionId",session.getAttribute("sessionId"));
 		
 		try{
-			String result = phlCommService.saveBoardReply(commandMap.getMap());
+			String result = phlBoardService.saveBoardReply(commandMap.getMap());
 			mv.addObject("result", result);  	
 		}catch(Exception e){
 		}

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -35,9 +36,12 @@ public class PhlCommController {
     }
 
 	
-	/* 파일 업로드 */
-	@RequestMapping(value="/phl/uploadFile.do")
-	public ModelAndView fileUpload(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+	/**
+	 *  uploadFile ( 공통 - 파일업로드 )
+	 *	2018.12.31 LJG  
+	 */
+	@RequestMapping(value="/phl/comm/uploadFile.do")
+	public ModelAndView uploadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
 		List<Map<String,Object>> fl_upload = new ArrayList<Map<String,Object>>();
@@ -56,21 +60,22 @@ public class PhlCommController {
 		return mv;
 	}
 	
-	/* 게시판 이전 다음 페이지 번호 */
-	@RequestMapping(value="/phl/pageMove.do")
-	public ModelAndView pageMove(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("jsonView");
+	/**
+	 *  downloadFile ( 공통 - 파일다운로드 )
+	 *	2018.12.31 LJG  
+	 */
+	@RequestMapping(value="/phl/comm/downloadFile.do")
+	public void downloadFile(CommandMap commandMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		commandMap.put("bsnsCode", 	request.getParameter("bsnsCode"));
+		commandMap.put("flSn", 		request.getParameter("flSn"));
 		
-		String result = "N";
+		List<Map<String,Object>> downloadFile = phlCommService.downloadFile(commandMap.getMap());
 		
-		commandMap.put("move", request.getParameter("move"));
-		String boardSn = phlCommService.moveBoardPage(commandMap.getMap());
+		commandMap.put("originFlNm", 	downloadFile.get(0).get("ORIGIN_FL_NM"));
+		commandMap.put("flNm", 			downloadFile.get(0).get("FL_NM"));
+		commandMap.put("flPath", 		downloadFile.get(0).get("FL_PATH"));
 		
-		if(boardSn != null &&!boardSn.isEmpty()){
-			result = boardSn;
-		}
-		mv.addObject("result", result);  	
-		
-		return mv;
+		CmmnUtilFile.downloadFile(commandMap, request, response);
 	}
 }

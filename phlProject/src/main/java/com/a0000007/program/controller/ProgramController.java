@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000007.program.service.ProgramService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlBoardService;
 import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilPaging;
 
@@ -25,6 +26,9 @@ public class ProgramController {
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	@Resource(name="phlBoardService")
+	private PhlBoardService phlBoardService;
 	
 	@Resource(name="/a0000007/programService")
 	private ProgramService programService;
@@ -54,7 +58,7 @@ public class ProgramController {
 		}
 		
 		// 공통 - 기본 게시판 카운트
-		int boardListCount = phlCommService.boardListCount(commandMap.getMap());
+		int boardListCount = phlBoardService.boardListCount(commandMap.getMap());
 		
 		// 요청 페이지 번호
 		int requestPageNumber = 1;	
@@ -88,7 +92,7 @@ public class ProgramController {
 		commandMap.put("atch", "image");
 		
 		// 공통 - 첨부 게시판 조회
-		List<Map<String,Object>> boardList = phlCommService.atchBoardList(commandMap.getMap());
+		List<Map<String,Object>> boardList = phlBoardService.atchBoardList(commandMap.getMap());
 		
 		mv.addObject("beginPageNum", 	pagingData[3]);	// 첫 페이지 번호
 		mv.addObject("endPageNum", 		pagingData[4]);	// 끝 페이지 번호
@@ -131,7 +135,7 @@ public class ProgramController {
 		commandMap.put("atch", "image");
 		
 		// 공통 - 첨부 게시판 상세 조회
-		List<Map<String,Object>> boardView = phlCommService.atchBoardView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlBoardService.atchBoardView(commandMap.getMap());
 		
 		commandMap.put("newYn", "N"); 		// 신규여부 ( Y : 신규등록 , N : 수정 )
 		mv.addObject("item", commandMap.getMap());
@@ -152,13 +156,13 @@ public class ProgramController {
 		commandMap.put("moveBoardSn",request.getParameter("moveBoardSn"));	// 이전 글, 다음 글
 		
 		// 공통 - 게시판 조회수 증가
-		phlCommService.boardHitCount(commandMap.getMap());
+		phlBoardService.boardHitCount(commandMap.getMap());
 		
 		// 추후 스크립트 처리 예정
 		commandMap.put("atch", "image");
 		
 		// 공통 - 게시판 상세 조회
-		List<Map<String,Object>> boardView = phlCommService.atchBoardView(commandMap.getMap());
+		List<Map<String,Object>> boardView = phlBoardService.atchBoardView(commandMap.getMap());
 		
 		mv.addObject("item", 		commandMap.getMap());
 		mv.addObject("boardView", 	boardView.get(0));
@@ -174,13 +178,13 @@ public class ProgramController {
 	public ModelAndView insertProgram(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		int boardSn = phlCommService.insertBoard(commandMap.getMap());
+		int boardSn = phlBoardService.insertBoard(commandMap.getMap());
 		commandMap.put("boardSn", boardSn);
 		
 		// 추후 스크립트 처리 예정
 		commandMap.put("atch", "image");
 		
-		String resultFlYn = phlCommService.insertBoardAtch(commandMap.getMap());
+		String resultFlYn = phlBoardService.insertBoardAtch(commandMap.getMap());
 
 		
 		if(boardSn > 0)
@@ -206,7 +210,7 @@ public class ProgramController {
 	public ModelAndView updateProgram(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		String result = phlCommService.updateBoard(commandMap.getMap());
+		String result = phlBoardService.updateBoard(commandMap.getMap());
 		
 		String resultFlYn = "success"; // 파일 등록 성공여부
 		
@@ -214,7 +218,7 @@ public class ProgramController {
 		commandMap.put("atch", "image");
 		
 		if(commandMap.get("uploadYn").equals("Y")){
-			resultFlYn = phlCommService.updateBoardAtch(commandMap.getMap());
+			resultFlYn = phlBoardService.updateBoardAtch(commandMap.getMap());
 		}
 		
 		mv.addObject("resultFlYn", 	resultFlYn);  
@@ -234,7 +238,7 @@ public class ProgramController {
 		// 추후 스크립트 처리 예정
 		commandMap.put("atch", "image");
 		
-		String result = phlCommService.deleteBoard(commandMap.getMap());
+		String result = phlBoardService.deleteBoard(commandMap.getMap());
 		
 		mv.addObject("result", result);
 		

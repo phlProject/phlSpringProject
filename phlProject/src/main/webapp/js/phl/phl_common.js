@@ -3,7 +3,7 @@ function gfn_uploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);
 	$.ajax({
         type : 'post',
-        url : "/phl/uploadFile.do",
+        url : "/phl/comm/uploadFile.do",
         data : formData,
         enctype: "multipart/form-data",
         async: false,
@@ -21,6 +21,17 @@ function gfn_uploadFile(){
         }
     });
 }
+
+/* 파일 다운로드 */
+function fn_downloadFile(bsnsCode, flSn){
+	var strUrl  = "/phl/comm/downloadFile.do";
+		strUrl += "?bsnsCode="+bsnsCode;
+		strUrl += "&&flSn="+flSn;
+	
+	document.location.href=strUrl;
+}
+
+
 
 /* input Type 제어 */
 

@@ -42,7 +42,7 @@ function fn_deleteFreeBoard(){
 /* 자유게시판 > 게시글 이동 */
 function fn_pageMoveFree(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#freeBoardList_Form").serialize(), function(data){
 		if(data.result != "N" ){

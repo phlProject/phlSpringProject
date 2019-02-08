@@ -117,7 +117,7 @@ function fn_bookLike(){
 
 function fn_pageMoveBook(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#bookList_Form").serialize(), function(data){
 		if(data.result != "N" ){
@@ -175,7 +175,7 @@ function fn_deleteData(){
 /* 자료공통 > 게시글 이동 */
 function fn_pageMoveData(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#dataList_Form").serialize(), function(data){
 		if(data.result != "N" ){

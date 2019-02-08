@@ -13,7 +13,12 @@
 		                <div class="tab-cont3">
 							<h3 class="cont1-1">소개(내용없음)</h3><br/>
 							소개(내용없음)
-							첨부파일 :  <a href="javascript:fn_boardFlDown('A0000007','1','1');"><c:out value="1"/></a>
+							첨부파일 :  
+							<c:forEach items="${fileList}" var="row" varStatus="status">
+								<br>
+								<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');">${row.ORIGIN_FL_NM}</a>
+							</c:forEach>
+							
 							
 						</div>
 					
