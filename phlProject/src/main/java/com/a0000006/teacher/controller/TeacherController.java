@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.teacher.service.TeacherService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlBoardService;
 import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilPaging;
 
@@ -25,6 +26,9 @@ public class TeacherController {
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	@Resource(name="phlBoardService")
+	private PhlBoardService phlBoardService;
 	
 	@Resource(name="teacherService")
 	private TeacherService teacherService;
@@ -142,7 +146,7 @@ public class TeacherController {
 		ModelAndView mv = new ModelAndView("/a0000006/teacher/joinView");
 		
 		// 공통 > 게시판 조회수 증가
-		phlCommService.boardHitCount(commandMap.getMap());
+		phlBoardService.boardHitCount(commandMap.getMap());
 		
 		
 		// 참여게시판 > 상세

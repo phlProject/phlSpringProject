@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.a0000006.network.service.NetworkService;
 import com.phl.common.CommandMap;
+import com.phl.common.service.PhlBoardService;
 import com.phl.common.service.PhlCommService;
 import com.phl.util.CmmnUtilPaging;
 
@@ -25,6 +26,9 @@ public class NetworkController {
 	/* 공통 */
 	@Resource(name="phlCommService")
 	private PhlCommService phlCommService;
+	
+	@Resource(name="phlBoardService")
+	private PhlBoardService phlBoardService;
 	
 	@Resource(name="networkService")
 	private NetworkService networkService;
@@ -146,7 +150,7 @@ public class NetworkController {
 		ModelAndView mv = new ModelAndView("/a0000006/network/networkBoardView");
 		
 		// 공통 > 게시판 조회수 증가
-		phlCommService.boardHitCount(commandMap.getMap());
+		phlBoardService.boardHitCount(commandMap.getMap());
 		
 		// 책소개 > 상세
 		List<Map<String,Object>> networkBoardView = networkService.networkBoardView(commandMap.getMap());

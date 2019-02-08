@@ -122,7 +122,7 @@ function fn_cancelJoinRe(){
 /* 참여게시판 > 게시글 이동 */
 function fn_pageMoveJoin(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#joinList_Form").serialize(), function(data){
 		if(data.result != "N" ){

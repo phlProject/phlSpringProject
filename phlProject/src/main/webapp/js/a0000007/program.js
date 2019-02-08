@@ -42,7 +42,7 @@ function fn_deleteProgram(){
 /* 활동 프로그램 이전/다음 이동 */
 function fn_pageMoveProgram(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#boardList_Form").serialize(), function(data){
 		if(data.result != "N" ){

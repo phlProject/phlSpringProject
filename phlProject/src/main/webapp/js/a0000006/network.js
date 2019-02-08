@@ -41,7 +41,7 @@ function fn_deleteNetworkBoard(){
 /* 네트워크게시판 > 게시글 이동 */
 function fn_pageMoveNetwork(move){
 	
-	var postUrl = "/phl/pageMove.do?move="+move;
+	var postUrl = "/phl/board/pageMove.do?move="+move;
 	
 	$.post(postUrl, $("#networkBoardList_Form").serialize(), function(data){
 		if(data.result != "N" ){

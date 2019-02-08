@@ -3,7 +3,7 @@ function gfn_uploadFile(){
 	var formData = new FormData($("#upload_Form")[0]);
 	$.ajax({
         type : 'post',
-        url : "/phl/uploadFile.do",
+        url : "/phl/comm/uploadFile.do",
         data : formData,
         enctype: "multipart/form-data",
         async: false,
