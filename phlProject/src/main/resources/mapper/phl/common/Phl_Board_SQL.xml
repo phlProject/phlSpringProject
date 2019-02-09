@@ -222,7 +222,7 @@
 			)VALUES(
 				 #{bsnsCode}
 				,#{boardGbnCd}
-				,IF(#{password} != NULL, HEX(AES_ENCRYPT(#{password}, "pkhl")), #{password})
+				,IF(#{password} != '', HEX(AES_ENCRYPT(#{password}, "pkhl")), #{password})
 				,#{subject}
 				,#{editor}
 				,#{sessionId}
@@ -237,7 +237,7 @@
 		      ,AA.CONTENT 		= #{editor}
 		      ,AA.MOD_ID 		= #{sessionId}
 		      ,AA.MOD_DT 		= now()
-		      ,AA.PASSWORD		= IF(#{password} != NULL, HEX(AES_ENCRYPT(#{password}, "pkhl")), #{password})
+		      ,AA.PASSWORD		= IF(#{password} != '', HEX(AES_ENCRYPT(#{password}, "pkhl")), #{password})
 		 WHERE 1=1
 		   AND AA.BSNS_CODE = #{bsnsCode}
 		   AND AA.BOARD_SN  = #{boardSn}
