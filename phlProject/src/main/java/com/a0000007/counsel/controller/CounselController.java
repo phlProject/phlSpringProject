@@ -158,23 +158,17 @@ public class CounselController {
 	 */
 	@RequestMapping(value="/a0000007/counsel/counselPwdCheckAction.do")
 	public ModelAndView counselPwdCheckAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("item", commandMap.getMap());
-		String resultValue = "";
-		
+		ModelAndView mv = new ModelAndView("jsonView");
+
 		List<Map<String,Object>> boardPwdCheck = phlBoardService.boardPwdCheck(commandMap.getMap());
 		
 		/* 해당하는 정보 존재시 */
         if(boardPwdCheck.size() != 0){
-        	resultValue = "PW_OK";
+        	mv.addObject("result","PW_OK");
         }else{
         	/* 비밀번호 오류 */
-        	resultValue = "PW_ERROR";
-        	
+        	mv.addObject("result","PW_ERROR");
         }	
-        mv.setViewName("/a0000007/counsel/counselPwdCheck");
-        mv.addObject("resultValue",resultValue);  
 		
 		return mv;
 	}
