@@ -6,18 +6,6 @@
 
 
 <script type="text/javascript">
-var resultValue = "";
-
-$( document ).ready(function() {
-	var resultValue = '<c:out value="${resultValue}"  escapeXml="false"/>';
-	var boardSn 	= '<c:out value="${item.boardSn}" escapeXml="false"/>';
-	
-	if(resultValue == "PW_OK")
-	{
-		fn_counselView(boardSn);
-	}
-});
-
 
 function fn_baordPwdCheck(){
 	
@@ -28,7 +16,27 @@ function fn_baordPwdCheck(){
 		return;
 	}
 	
-	ComSubmit('boardPwdCheckForm','/a0000007/counsel/counselPwdCheckAction.do');
+	$.ajax({
+		url		: "/a0000007/counsel/counselPwdCheckAction.do",
+		type 	: "post",
+		data : {
+					bsnsCode 	: $("#bsnsCode").val(),		// 사업코드
+					boardSn		: $("#boardSn").val(),		// 게시판 번호
+					boardGbnCd	: $("#boardGbnCd").val(),	// 게시판 구분
+					password	: $("#password").val()		// 게시판 비밀번호
+				},
+		dataType : "json",
+		success : function(data){
+			if(data.result == "PW_OK"){
+				ComSubmit('boardPwdCheckForm','/a0000007/counsel/counselView.do');
+			}else if(data.result == "PW_ERROR"){
+				alert("비밀번호가 일치하지 않습니다.");
+			}else{
+				alert("실패하였습니다. 관리자에게 문의해주세요.");
+				return;
+			}
+		}
+	});
 }
 </script>
 
@@ -55,10 +63,5 @@ function fn_baordPwdCheck(){
 		
 		<a href="javascript:fn_baordPwdCheck()" id="baordPwdCheck" >확인</a> <br><br>
 		<a href="javascript:fn_counselList();" 	id="counselList">목록</a>
-	
-		<c:choose>
-			<c:when test="${resultValue=='PW_ERROR'}">* 비밀번호가 일치하지 않습니다. </c:when>
-		</c:choose>
-	
 	</div>
 </div>
