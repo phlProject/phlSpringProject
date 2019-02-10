@@ -3,11 +3,17 @@
 /* 초기화 */
 * { margin:0 auto; padding:0; list-style:none; box-sizing: border-box; }
 html,body { height: 100%; font-family: "Nanum Gothic", sans-serif;}
-body { font-family:"Noto Sans KR", sans-serif; }
+body { font-family:"Noto Sans KR", sans-serif; 	overflow-y:hidden;}
 li { list-style:none; } 
 a { text-decoration:none; }
 img { border:0; }
 table { border-collapse: collapse; }
+.clear{clear: both;}
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 
 .heading{
@@ -16,7 +22,7 @@ table { border-collapse: collapse; }
 	background: #fff;
 	text-align: center;
 	color: #161616;
-	border-bottom:.25rem solid A6BF38;
+	border-bottom:.25rem solid #D77509;
 }
 
 
@@ -35,6 +41,7 @@ table { border-collapse: collapse; }
 	width: 100%;
 	height: auto;
 	background-image: url("/img/a0000007/bg-masthead.jpg");
+	background-repeat: no-repeat;
 	/* background: #F8F9FA; */
 	
 }
@@ -42,7 +49,7 @@ table { border-collapse: collapse; }
 
 #container{
 	margin:0 auto;
-	width: 1100px;
+	width: 1170px;
 }
 
 .menu_box{
@@ -51,7 +58,7 @@ table { border-collapse: collapse; }
 	min-height: 100%;
 	font-family: "Nanum Gothic", sans-serif;
 	text-align: center;
-	padding:200px 0;
+	padding:200px 0 0;
 }
 
 
@@ -60,13 +67,37 @@ table { border-collapse: collapse; }
 	display: inline-block;
 	position: relative;
 	margin: 1.2em 0 1em 0;
+	padding-top:50px;
 	width:250px;
-	height:380px;
+	height:360px;
 	background: #fff;
+	font-family: 'Nanum Pen Script', serif;
 	border:none;
 	text-decoration: none;
-	font-weight: 700;
-	color: #161616;
+	font-size: 30px;
+	color: #212529;
+	font-weight: 500;
+	border-radius: 5px;
+	border-bottom: 5px solid #B9B9B9;
+}
+
+.fontone{
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 13px;
+	color: #212529;
+	font-weight: 300;
+	padding-bottom:0px;
+}
+
+.fonttwo{
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 13px;
+	color: #828282;
+	font-weight: 300;
+}
+
+.button.cta:hover{
+	border-bottom: .25rem solid #D77509;
 }
 
 /* Float Shadow */
@@ -115,5 +146,8 @@ table { border-collapse: collapse; }
 
 .box{
 	float: left;
-	margin:0 10px;
+	margin:0 20px;
 }
+
+
+.foot1 {margin-top:100px; padding-top:400px; color:#222; font-weight:bold; font-size:13px;}

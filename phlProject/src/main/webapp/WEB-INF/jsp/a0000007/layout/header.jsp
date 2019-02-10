@@ -8,11 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="/css/DureStyle.css" />
 
   </head>
 
 	<!-- 헤더 -->
-	<div><a href="/a0000007/mainIndex.do">두레꿈</a></div>
+	<div class="header_logo"><a href="/a0000007/mainIndex.do"><img src="/img/a0000007/logo2.png"></a></a></div>
     <!-- Navigation -->
+    <div class="header_Menu">
+    	
+    </div>
     
      

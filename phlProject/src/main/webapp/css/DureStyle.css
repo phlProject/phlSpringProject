@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+
+.header_logo{
+	width: 100%;
+	height: 61px;
+	background: #F5BB00;
+	color: #161616;
+}
