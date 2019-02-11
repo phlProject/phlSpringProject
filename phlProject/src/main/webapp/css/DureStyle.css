@@ -1,9 +1,22 @@
 @CHARSET "UTF-8";
 
 
-.header_logo{
+.Dure_hd{
 	width: 100%;
 	height: 61px;
 	background: #F5BB00;
 	color: #161616;
+	float: left;
 }
+
+.Du_logo{
+	width: 40%;
+	padding-left:130px;
+	float: left;
+}
+
+.Du_menu{
+	width: 40%;
+	float: left;
+}
+
