@@ -1,44 +1,23 @@
 @CHARSET "UTF-8";
 
 
-.Dure_hd{
-	width: 100%;
-	height: 61px;
-	background: #F5BB00;
-	color: #161616;
-	float: left;
-}
-
-.Du_logo{
-	width: 40%;
-	padding-left:110px;
-	float: left;
-}
-
-.Du_menu{
-	width: 43%;
-	float: left;
-}
-
-.Du_menu nav ul li{
-	float:left; 
-	font-size:15px; 
-	font-weight:bold;
-	padding: 0 20px;
-}
-
-.Du_menu nav ul li a { 
-	color: #fff;
-	display: block;
-	padding: 20px 5px;
-	font-size: 15px;
-}
-
-.Du_menu nav ul li a:hover {
-	color: #fff;
-	font-weight: bold;
-}
-
-.Du_menu nav ul li:hover {
-	background: #D77509;
- }
+/*헤더메뉴*/
+.Dure_hd{ width: 100%; height: 61px; background: #F5BB00; color: #161616; float: left; }
+.Du_logo{ width: 40%; padding-left:110px; float: left; }
+.Du_menu{ width: 43%; float: left; }
+.Du_menu nav ul li{float:left; font-size:15px; font-weight:bold; padding: 0 20px; }
+.Du_menu nav ul li a { color: #fff; display: block; padding: 20px 5px; font-size: 15px; }
+.Du_menu nav ul li a:hover {color: #fff; font-weight: bold;}
+.Du_menu nav ul li:hover {background: #D77509;}
+ 
+ 
+ 
+ /*풋터*/
+.footer { position:relative; clear:both; min-width:1100px; padding:50px 0; border-top:1px solid #f4ede3; background:#f9f5f0; height:50px; }
+.main_footer { max-width:1100px; margin:0px auto; }
+.footer-1 { float: left; }
+.footer-2 { float: left; font-size: 13px; color: gray; padding: 10px 30px; }
+.footer-2 a { color: gray; }
+.footer-2 a:hover { color: #660F57; } 
+.footer-3 { position:relative; min-width:1100px; height:60px; color:#7b7b7b; background:#3d3d3d; font-size: 13px; text-align:center;}
+.footer-3 p { padding-top:20px;}
