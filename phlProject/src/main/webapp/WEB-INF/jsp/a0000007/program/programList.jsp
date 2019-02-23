@@ -16,6 +16,7 @@
 <div id="content">
 
 	<h3 id="default_title">활동 프로그램</h3>
+	<hr width="920px" color="#efefef">
 	
 	<form id="boardList_Form">
 		<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 	-->
@@ -46,14 +47,10 @@
 								<div class="imgBox">
 									<img src="${row.FL_PATH}/${row.FL_NM}">
 								</div>
-								<div class="default_image5_list_like">
-									<div class="count"><a href="javascript:fn_programView('${row.BOARD_SN}');">view</a></div>
-									<div class="like">♥&nbsp;&nbsp;${row.LIKE_COUNT}</div>
-								</div>
 							</div>
 							<div class="default_image5_list_right">
 								<a href="javascript:fn_programView('${row.BOARD_SN}');">${row.SUBJECT} </a>
-								<hr color="#e2d318" size="0.3">	
+								<hr width="700" color="#e2d318" size="0.3">	
 								<p class="default_image5_detail"></p>				
 								<p>${row.CONTENT}</p>
 							</div>

@@ -16,15 +16,15 @@ $(document).ready(function(){
                 // 모든탭 버튼에 있던 on 클래스를 빼고
                 // 현재 클릭한 탭메뉴 버튼에 on 클래스 추가
                 tabBtn.removeClass("on");
-                $(this).addClass("on");                 
+                $(this).addClass("on");  
                 // 탭버튼를 쭉 돌면서 on 클래스가 있는 버튼만 on 이미지로 바꾸고
                 // 나머지 버튼들은 off 이미지로 바꾼다.
                 tabBtn.each(function(){
                     var src;
                     var img = $(this).children("img");
                     if( $(this).hasClass("on") ){
-                        src = img.attr("src").replace("-off.", "-on.");
-                        
+                        src = img.attr("src").replace("-off.", "-on.");   
+                        $('h2' ).css( "color", "green" );
                     }else{
                         src = img.attr("src").replace("-on.", "-off.");
                     }

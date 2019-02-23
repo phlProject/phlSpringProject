@@ -17,6 +17,7 @@
 <div id="content">
 	
 	<h3 id="default_title">상담 신청</h3>
+	<hr width="920px" color="#efefef">
 	
 	<div id="default_list_form">
 		<form id="boardList_Form">

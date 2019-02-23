@@ -23,6 +23,7 @@
 	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
 
+<div id="content">
 <div id="default_detail_Form">
 	<div style="height:40px;">
 		<div class="default_detail_Form_div1">
@@ -64,4 +65,5 @@
 		</c:if>
 		<a href="javascript:fn_programList();" 	id="programList">목록</a>
 	</div>
+</div>
 </div>

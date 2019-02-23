@@ -5,7 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<div id="content">
 
+<h3 id="default_title">두레꿈 일정</h3>
+	<hr width="920px" color="#efefef">
 <!-- 
 	자료 게시판 리스트
 	등록/수정/삭제 	- 관리자
@@ -80,7 +83,7 @@
 	
    
 	<!-- 달력/날짜 표시 -->
-	<div class="divWrap mt15" id="monthDiv">
+	<div class="divWrap mt50" id="monthDiv">
 		
 		<!-- 날짜 표시 -->
 		<div class="btn-holder">    
@@ -96,6 +99,7 @@
 	
 </form>
 
+</div>
 
 <script type="text/javascript">
 

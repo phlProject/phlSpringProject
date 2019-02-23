@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="/js/a0000006/tabMenu.js"></script>
+<script src="/js/a0000007/tabMenu.js"></script>
 
 <div id="content">
 	<div class="tabmenu">
 	    <ul>
 	        <li class="tab1">
-	        	<a href="#link"><img src="/img/tab-1-off.png" alt="메뉴01" /></a>
+	        	<a href="#link"><h2>두레꿈 소개</h2></a>
 	            <ul class="tabcontent">
 	                <li><a href="#"></a>
 	                <div class="tab-cont">
 		                <div class="tab-cont3">
-							<h3 class="cont1-1">소개(내용없음)</h3><br/>
-							소개(내용없음)
-							첨부파일 :  
+							<h3 class="cont1-1"></h3><br/>
+							두레꿈소개 :(내용없음)<br/>
+							첨부파일 :  <br/>
 							<c:forEach items="${fileList}" var="row" varStatus="status">
-								<br>
-								<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');">${row.ORIGIN_FL_NM}</a>
+								<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');" class="button1">${row.ORIGIN_FL_NM}</a>
 							</c:forEach>
 							
 							
@@ -27,11 +26,11 @@
 	            </ul>
 	        </li>
 	        <li class="tab2">
-	        	<a href="#link"><img src="/img/tab-2-off.png" alt="메뉴02" /></a>
+	        	<a href="#link"><h2>학과 시간표</h2></a>
 	            <ul class="tabcontent">
 	                <li><a href="#"></a>
 	                <div class="tab-cont3">
-						<h3 class="cont1-1">학교 시간표</h3><br/>
+						<h3 class="cont1-1"></h3><br/><br/>
 							<table class="tab_table" style="text-align: center;"> 
 								<tr>
 									<td width="6%">교시</td>
@@ -123,3 +122,13 @@
 	    </ul>
 	</div>
 </div>
+<script>
+	$('.tab2 a h2').click(function(){
+		$('.tab2 a h2').css('color','#fff').css('background','#D67C7C').css('border-radius','4px 4px 0 0');
+		$('.tab1 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
+	});
+	$('.tab1 a h2').click(function(){
+		$('.tab1 a h2').css('color','#fff').css('background','#D67C7C').css('border-radius','4px 4px 0 0');
+		$('.tab2 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
+	});
+</script>
