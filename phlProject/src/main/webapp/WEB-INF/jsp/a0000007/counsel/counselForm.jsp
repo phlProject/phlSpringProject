@@ -28,9 +28,8 @@
 
 	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 	
-	<div id="default_view_form">
-		<h3 id="default_view_title">상담 등록</h3>
-	</div>
+		<h3 id="default_title">상담 등록</h3>
+		<hr width="920px" color="#efefef">
 	
 	<!-- Editor_Form -->
 	<form id="default_editor_Form" name="default_editor_Form">
@@ -39,17 +38,30 @@
 		<input type="hidden" id="sessionId" 	name="sessionId"	value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) 	-->
 		<input type="hidden" id="boardSn" 		name="boardSn"		value="${boardView.BOARD_SN}">		<!-- 게시판_번호 			-->
 		
-		<h3>작성자</h3>
-		<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}"><br/>
-		<h3>비밀번호</h3>
-		<input type="password" 	id="password" 	name="password" 	size="86" value="${boardView.PASSWORD}" onkeydown="engNumber(this)" maxlength="8"><br/>
-		<h3>연락처</h3>
-		<input type="text" 		id="phone" 		name="phone" 		size="86" value="${boardView.PHONE}" 	onkeydown="onlyNumber(this)" maxlength="12"><br/>
-		<h3>이메일</h3>
-		<input type="text" 		id="email" 		name="email" 		size="86" value="${boardView.EMAIL}" 	onkeydown="notHangeul(this)"><br/>
-		<h3>제목</h3>
-		<input type="text" 		id="subject" 	name="subject" 		size="86" value="${boardView.SUBJECT}">
-		<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${boardView.CONTENT}</textarea>
+		<div class="line_top">
+			<div class="line01">
+				<h3>작성자 : </h3> 
+				<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}">
+			</div>
+			<div class="line01">
+				<h3>비밀번호 : </h3> 
+				<input type="password" 	id="password" 	name="password" 	size="86" value="${boardView.PASSWORD}" onkeydown="engNumber(this)" maxlength="8">
+			</div>
+			<div class="line01">
+				<h3>연락처 : </h3>
+				<input type="text" 		id="phone" 		name="phone" 		size="86" value="${boardView.PHONE}" 	onkeydown="onlyNumber(this)" maxlength="12">
+			</div>
+			<div class="line01">
+				<h3>이메일  : </h3>
+				<input type="text" 		id="email" 		name="email" 		size="86" value="${boardView.EMAIL}" 	onkeydown="notHangeul(this)">
+			</div>
+			<div class="line01">
+				<h3>제목 : </h3>
+				<input type="text" 		id="subject" 	name="subject" 		size="86" value="${boardView.SUBJECT}">
+			</div>
+			</div>
+			<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${boardView.CONTENT}</textarea>
+		
 	</form>
 	
 	<!-- 버튼  -->

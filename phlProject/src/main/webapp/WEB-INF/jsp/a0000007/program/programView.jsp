@@ -46,7 +46,7 @@
 	</div>
 	
 	<p class="default_image5_detail">	</p>
-	<hr color="#dddddd" size="0.2">
+	
 	
 	<div class="default_detail_Form_div3">
 		${boardView.CONTENT}

@@ -34,7 +34,6 @@
 				<input type="text" id="searchWord" name="searchWord" value="${item.searchWord}">
 				<input type="button" class="button" value="검색" onclick="javascript:fn_counselList();">
 			</div>
-			<br/>
 			
 			<div class="default_list">
 				<table>

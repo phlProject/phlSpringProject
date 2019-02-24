@@ -4,7 +4,7 @@
 
 <script src="/js/a0000007/counsel.js"></script>
 
-
+<div id="content">
 <!-- 
 	상담신청 게시판 상세화면
 	댓글    등록/수정/삭제 	- 관리자
@@ -118,4 +118,7 @@
 		<a href="javascript:fn_deleteCounsel();" 	id="deleteCounsel">삭제</a>
 		<a href="javascript:fn_counselList();" 		id="counselList">목록</a>
 	</div>
+</div>
+
+
 </div>

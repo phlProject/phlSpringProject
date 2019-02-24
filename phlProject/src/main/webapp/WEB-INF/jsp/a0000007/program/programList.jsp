@@ -57,7 +57,7 @@
 						</div>
 					</c:forEach>
 				</c:if>
-				
+				<hr width="920px" color="#efefef">
 				<div class="default_paging">
 					<c:if test="${beginPageNum > 5}">
 						<a href="<c:out value="/a0000007/program/programList.do?requestPageNumber=${beginPageNum-1}"/>">◀</a>

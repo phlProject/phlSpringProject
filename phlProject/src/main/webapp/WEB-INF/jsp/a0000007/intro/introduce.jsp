@@ -124,11 +124,11 @@
 </div>
 <script>
 	$('.tab2 a h2').click(function(){
-		$('.tab2 a h2').css('color','#fff').css('background','#D67C7C').css('border-radius','4px 4px 0 0');
+		$('.tab2 a h2').css('color','#fff').css('background','#959CAC').css('border-radius','4px 4px 0 0');
 		$('.tab1 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
 	});
 	$('.tab1 a h2').click(function(){
-		$('.tab1 a h2').css('color','#fff').css('background','#D67C7C').css('border-radius','4px 4px 0 0');
+		$('.tab1 a h2').css('color','#fff').css('background','#959CAC').css('border-radius','4px 4px 0 0');
 		$('.tab2 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
 	});
 </script>
