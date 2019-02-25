@@ -41,7 +41,7 @@
 		<div class="line_top">
 			<div class="line01">
 				<h3>작성자 : </h3> 
-				<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}">
+				<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}" style="color:#000;background:#fff;">
 			</div>
 			<div class="line01">
 				<h3>비밀번호 : </h3> 

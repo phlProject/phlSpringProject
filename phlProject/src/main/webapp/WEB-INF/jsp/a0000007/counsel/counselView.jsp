@@ -62,8 +62,8 @@
 								</c:if>
 								<!-- 세션 ID == 등록 ID -->
 								<c:if test="${loginInfo.MEM_ID eq row.MEM_ID}">
-									<a href="javascript:fn_updateBoardReply('${row.BOARD_RE_SN}','${row.CONTENT}');" id="updateBoardReply">수정</a>
-									<a href="javascript:fn_deleteBoardReply('${row.BOARD_RE_SN}');" id="deleteBoardReply">삭제</a>
+									<a href="javascript:fn_updateBoardReply('${row.BOARD_RE_SN}','${row.CONTENT}');" id="updateBoardReply" class="mod">수정</a>
+									<a href="javascript:fn_deleteBoardReply('${row.BOARD_RE_SN}');" id="deleteBoardReply" class="del">삭제</a>
 								</c:if>
 							</c:if>
 						</td>
