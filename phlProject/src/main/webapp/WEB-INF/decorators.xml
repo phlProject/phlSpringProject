@@ -71,11 +71,11 @@
 		<pattern>*/a0000007/counsel/*</pattern>
 		<pattern>*/a0000007/program/*</pattern>
 		<pattern>*/a0000007/schedule/*</pattern>
+		<pattern>*/a0000007/admin*</pattern>
 	</decorator>
 	
 	<decorator name="decoEmpty" page="/WEB-INF/jsp/a0000007/layout/decoEmpty.jsp">
 		<pattern>*/a0000007/mainIndex.do</pattern>
-		<pattern>*/a0000007/admin*</pattern>
 		<pattern>*/a0000007/iframe*</pattern>
 	</decorator>
 	
