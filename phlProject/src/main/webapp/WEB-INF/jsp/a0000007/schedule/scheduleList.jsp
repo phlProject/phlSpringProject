@@ -497,6 +497,7 @@
 			$("#buttonDiv").css("margin-left", mgLeft);
 			
 			$("#popName").text("일정 상세");
+			centerLocation("insertFormPop");
 			$("#insertFormPop").css("display", "block");
 			
 		});
@@ -584,7 +585,7 @@
 		var contentWidth = $("#content").width()/2;
 		var objWidth = $(objName).width()/2;
 		
-		var tx = content.left + contentWidth - objWidth;
+		var tx = contentWidth - objWidth;//content.left + contentWidth - objWidth;
 		var ty = (($(window).height() - $(objName).outerHeight()) / 2) + $(window).scrollTop();
 	           
 		$(objName).css({
