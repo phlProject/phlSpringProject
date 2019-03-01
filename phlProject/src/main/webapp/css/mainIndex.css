@@ -9,15 +9,17 @@ a { text-decoration:none; }
 img { border:0; }
 table { border-collapse: collapse; }
 .clear{clear: both;}
+@font-face{
+	font-family:'Nanum Pen';
+	src:url(/font/NanumPenScript-Regular.ttf) format('truetype');
+	src:url(/font/NanumPen.woff) format('woff');
+}
 /* @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css); */
-@font-face{
-	font-family:"Nanum Pen";
-	src:url(/font/NanumPenScript-Regular.ttf)format('ttf');
-}
+
 
 
 
@@ -78,7 +80,7 @@ table { border-collapse: collapse; }
 	width:250px;
 	height:360px;
 	background: #fff;
-	font-family:'Nanum Pen';
+	font-family:Nanum Pen;
 	border:none;
 	text-decoration: none;
 	font-size: 30px;
