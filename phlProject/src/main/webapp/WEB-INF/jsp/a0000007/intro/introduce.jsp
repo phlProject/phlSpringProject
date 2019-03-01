@@ -13,9 +13,12 @@
 		                <div class="tab-cont3">
 							<h3 class="cont1-1"></h3><br/>
 							두레꿈소개 :(내용없음)<br/>
+							
 							첨부파일 :  <br/>
 							<c:forEach items="${fileList}" var="row" varStatus="status">
-								<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');" class="button1">${row.ORIGIN_FL_NM}</a>
+								<span style="position: relative; float: left; margin: 10px;">
+									<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');" class="button1">${row.ORIGIN_FL_NM}</a>
+								</span>
 							</c:forEach>
 							
 							

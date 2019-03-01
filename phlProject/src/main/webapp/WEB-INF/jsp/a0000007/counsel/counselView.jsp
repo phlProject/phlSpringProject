@@ -58,12 +58,12 @@
 							<c:if test="${commentAuthYn eq 'Y'}">
 								<!-- 세션 ID != 등록 ID -->
 								<c:if test="${loginInfo.MEM_ID ne row.MEM_ID}">
-									<a href="javascript:fn_insertBoardReReply('${row.MEM_NM}','${row.ORDR}');" id="insertBoardReReply">답글</a>
+									<a href="javascript:fn_insertBoardReReply('${row.MEM_NM}','${row.ORDR}');" id="insertBoardReReply" class="reply">답 글</a>
 								</c:if>
 								<!-- 세션 ID == 등록 ID -->
 								<c:if test="${loginInfo.MEM_ID eq row.MEM_ID}">
-									<a href="javascript:fn_updateBoardReply('${row.BOARD_RE_SN}','${row.CONTENT}');" id="updateBoardReply" class="mod">수정</a>
-									<a href="javascript:fn_deleteBoardReply('${row.BOARD_RE_SN}');" id="deleteBoardReply" class="del">삭제</a>
+									<a href="javascript:fn_updateBoardReply('${row.BOARD_RE_SN}','${row.CONTENT}');" id="updateBoardReply" class="mod">수 정</a>
+									<a href="javascript:fn_deleteBoardReply('${row.BOARD_RE_SN}');" id="deleteBoardReply" class="del">삭 제</a>
 								</c:if>
 							</c:if>
 						</td>

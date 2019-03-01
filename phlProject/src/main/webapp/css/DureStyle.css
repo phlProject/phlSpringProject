@@ -107,10 +107,10 @@ a.button1{
 
 a.button1{
   background:#615B72;
+  width:280px;
   margin-top: 20px;
-  padding: 20px 30px;
+  padding: 20px 0;
   display: block;
-  max-width: 235px;
   color:#fff;
   border:none;
   position:relative;
@@ -118,6 +118,8 @@ a.button1{
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+  text-align:center;
+  
 }
 a.button1:hover{
   background:#fff;
@@ -347,14 +349,6 @@ a.button1:hover:before,a.button1:hover:after{
 		margin:0 auto;
 		padding-bottom: 30px;
 }
-.reply {
-	font-size:16px;
-	color:#333333;
-	font-weight: 700;
-	font-family: "나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif;
-	line-height: 2;
-	padding: 10px 20px;
-}
 
 .reply-tb table{
 	width: 95%;
@@ -399,8 +393,10 @@ a.button1:hover:before,a.button1:hover:after{
 
 #insertJoinReRe, #updateJoinRe, #deleteJoinRe { background-color:#D3CBC3; border:3px solid #D3CBC3; color:#fff; padding:5px 15px; font-size:12px; font-weight:bold; margin-left:10px;}
 #regNm,#canNm { background:#D67C7C; color:#fff; border:3px solid #D67C7C; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
-.mod { background:#A6A6A6; color:#fff; border:3px solid #A6A6A6; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
-.del { background:#797979; color:#fff; border:3px solid #797979; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+#regNm:hover,#canNm:hover { background:#614F3A; color:#fff; border:3px solid #614F3A; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+.mod,.del,.reply { background:#E2A5A5; color:#222; border:3px solid #E2A5A5; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+.mod:hover,.del:hover,.reply:hover { background:#D67C7C; color:#fff; border:3px solid #D67C7C; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+.reply{float: right;}
 
 
 .book-view02 { margin-top:20px; font-size:23px; font-weight:500; padding:20px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:1px solid #e2d318; margin-bottom: 20px; } 

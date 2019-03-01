@@ -43,6 +43,7 @@ table { border-collapse: collapse; }
 	height: auto;
 	background-image: url("/img/a0000007/bg-masthead.jpg");
 	background-repeat: no-repeat;
+	background-size:cover;
 	/* background: #F8F9FA; */
 	
 }
