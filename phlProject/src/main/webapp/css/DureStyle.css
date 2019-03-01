@@ -393,7 +393,7 @@ a.button1:hover:before,a.button1:hover:after{
 
 #insertJoinReRe, #updateJoinRe, #deleteJoinRe { background-color:#D3CBC3; border:3px solid #D3CBC3; color:#fff; padding:5px 15px; font-size:12px; font-weight:bold; margin-left:10px;}
 #regNm,#canNm { background:#D67C7C; color:#fff; border:3px solid #D67C7C; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
-#regNm:hover,#canNm:hover { background:#614F3A; color:#fff; border:3px solid #614F3A; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
+/* #regNm:hover,#canNm:hover { background:#614F3A; color:#fff; border:3px solid #614F3A; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;} */
 .mod,.del,.reply { background:#E2A5A5; color:#222; border:3px solid #E2A5A5; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
 .mod:hover,.del:hover,.reply:hover { background:#D67C7C; color:#fff; border:3px solid #D67C7C; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
 .reply{float: right;}
