@@ -69,7 +69,8 @@
 			<tr>   
 				<th>일정 내용</th>
 				<td>
-					<input type="text" name="content" id="contents" class="w200">
+					<!-- <input type="text" name="content" id="contents" class="w200"> -->
+					<textarea rows="7" cols="30" name="content" id="contents" class="w200" style="margin:10px;"></textarea>
 				</td>
 			</tr>   
 			   
@@ -281,7 +282,7 @@
 				arrTable.push('<td class="' + sClass + workClass + '">' 
 						    + '<span class="schudulDate"');
 				if('${authYn}' == 'Y'){
-					arrTable.push('onclick="schduleLayer('+day0+')"');
+					arrTable.push('onclick="insertForm('+day0+')"');
 				}
 				arrTable.push( '>'+ day0 + '</span>'
 						    + '<br/>' + spanTag + '</td>');
@@ -495,6 +496,7 @@
 			$("#buttonDiv").html(html);
 			$("#buttonDiv").css("margin-left", mgLeft);
 			
+			$("#popName").text("일정 상세");
 			$("#insertFormPop").css("display", "block");
 			
 		});
@@ -562,24 +564,24 @@
 		
 		$("#subject").val("");
 		$("#contents").val("");
-		
+		$("#popName").text("일정 등록");
 		
 		centerLocation("insertFormPop");
 	}
 	
 	
 	// 레이어 호출
-	function schduleLayer(day){
+	/* function schduleLayer(day){
 		insertForm(day);
-	}
+	} */
 	
 	
 	// 레이어 위치
 	function centerLocation(obj){
 	    
 		var objName = "#" + obj;
-		var content = $("#left_content").offset();
-		var contentWidth = $("#left_content").width()/2;
+		var content = $("#content").offset();
+		var contentWidth = $("#content").width()/2;
 		var objWidth = $(objName).width()/2;
 		
 		var tx = content.left + contentWidth - objWidth;

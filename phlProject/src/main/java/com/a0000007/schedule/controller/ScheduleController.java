@@ -115,6 +115,9 @@ public class ScheduleController {
 		map.put("sessionId", 	session.getAttribute("sessionId"));
 		map.put("bsnsCode", 	session.getAttribute("bsnsCode"));
 		
+		String content = (String) map.get("content");
+		System.out.println(content);
+		
 		String result = scheduleService.insertSchedule(map);
 		
 		mv.addObject("result", 		result);
