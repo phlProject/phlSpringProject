@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
-#default_title { font-size:28px; color:#101010; line-height:1.2em; font-weight:500; float:left; padding-bottom:20px;}
+#default_title {position:relative; display:inline-block; font-family:"나눔고딕", "Nanum Gothic", Helvetica, Arial, sans-serif; line-height:17px; font-size:20px; color:#555;}
+#default_title h3{ font-size:22px; color:#fff; font-weight:600; background:#959CAC; padding:20px; border-radius:4px 4px 0 0;}
 #default_list_form { text-align:center; }
 
 #default_view_title {width:100%; font-size:28px; color:#444; line-height:1.2em; padding:20px 5px; font-weight:500; float:left; vertical-align: middle;}
@@ -80,6 +81,7 @@
 #default_editor_Form h3	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; padding-left:5px; letter-spacing: 4px; margin-right: 2%;}
 #default_editor_Form h4	{ display:inline-block; font-size:16px; color:#444; font-weight: 600; padding-left:5px; letter-spacing: 2px; margin-right: 2%;}
 #default_editor_Form input { width:750px; height:28px; border:1px solid #ddd; margin: 1%; float:right;}
+#default_editor_Form password { width:750px; height:28px; border:1px solid #ddd; margin: 1%; float:right;}
 #default_editor_Form select { }
 
 .default_floatR { float:right; }

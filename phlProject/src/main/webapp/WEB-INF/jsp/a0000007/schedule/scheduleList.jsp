@@ -6,9 +6,9 @@
 
 
 <div id="content">
-
-<h3 id="default_title">두레꿈 일정</h3>
-	<hr width="920px" color="#efefef">
+	
+	<div id="default_title"><h3>두레꿈 일정</h3></div>
+	<hr width="920px" color="#959CAC">
 <!-- 
 	자료 게시판 리스트
 	등록/수정/삭제 	- 관리자

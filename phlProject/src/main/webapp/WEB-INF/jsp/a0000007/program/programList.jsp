@@ -15,8 +15,8 @@
 
 <div id="content">
 
-	<h3 id="default_title">활동 프로그램</h3>
-	<hr width="920px" color="#efefef">
+	<div id="default_title"><h3>활동 프로그램</h3></div>
+	<hr width="920px" color="#959CAC">
 	
 	<form id="boardList_Form">
 		<input type="hidden" id="bsnsCode"    	name="bsnsCode"       	value="${sessionScope.bsnsCode}" >	<!-- 세션_업체코드 	-->

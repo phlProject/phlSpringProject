@@ -30,15 +30,15 @@
 	
 	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 
-	<div id="default_view_form">
-		<h3 id="default_view_title">활동 프로그램 등록</h3>
-	</div>
+	<div id="default_title"><h3>활동 프로그램 등록</h3></div>
+	<hr width="920px" color="#959CAC">
 	
 	<!-- Upload_Form -->
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
 		<div class="book-Form">
 			<div class="imgBox">
-				<img src="${boardView.FL_PATH}/${boardView.FL_NM}" name="mainImage" id="mainImage">
+				<img src="/img/a0000007/basic.jpg" name="mainImage" id="mainImage">
+				<%-- <img src="${boardView.FL_PATH}/${boardView.FL_NM}" name="mainImage" id="mainImage"> --%>
 			</div>
 			<input type="file" 		id="uploadFile" name="uploadFile" 	onchange="javascript:gfn_uploadFile();"> 
 			<input type="hidden" 	id="sPath" 		name="sPath" 		value="/program/">
@@ -58,9 +58,10 @@
 		<input type="hidden" id="originFlNm" 	name="originFlNm"	value="${boardView.ORIGIN_FL_NM}">	<!-- 파일 원본명 -->
 		<input type="hidden" id="uploadYn" 		name="uploadYn" 	value="N">		
 		
-		<h4>제목</h4>
-		<input type="text" id="subject" 		name="subject" 			size="40" value="${boardView.SUBJECT}" style="width:90%">
-		
+		<div class="line01"><h3>제목 :</h3>
+		<input type="text" id="subject" 		name="subject" 			size="40" value="${boardView.SUBJECT}">
+		</div>
+		</br>
 		<textarea id="editor" name="editor" style="height: 300px; width: 90%" rows="10" cols="30">${boardView.CONTENT}</textarea>
 	</form>
 	

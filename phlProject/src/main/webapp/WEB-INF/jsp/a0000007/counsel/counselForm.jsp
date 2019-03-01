@@ -28,8 +28,8 @@
 
 	<input type="hidden" id="newYn" name="newYn" value="${item.newYn}"><!-- 신규등록여부 ( 신규 : Y / 수정 : N ) -->
 	
-		<h3 id="default_title">상담 등록</h3>
-		<hr width="920px" color="#efefef">
+		<div id="default_title"><h3>상담 등록</h3></div>
+	<hr width="920px" color="#959CAC">
 	
 	<!-- Editor_Form -->
 	<form id="default_editor_Form" name="default_editor_Form">
@@ -41,7 +41,7 @@
 		<div class="line_top">
 			<div class="line01">
 				<h3>작성자 : </h3> 
-				<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}" style="color:#000;background:#fff;">
+				<input type="text" 		id="regNm" 		name="regNm" 		size="86" value="${boardView.REG_NM}" style="color:#000;background:#fff;padding:0px;">
 			</div>
 			<div class="line01">
 				<h3>비밀번호 : </h3> 
@@ -59,7 +59,7 @@
 				<h3>제목 : </h3>
 				<input type="text" 		id="subject" 	name="subject" 		size="86" value="${boardView.SUBJECT}">
 			</div>
-			</div>
+		</div>
 			<textarea id="editor" name="editor" style="HEIGHT: 300px; WIDTH: 90%" rows="10" cols="30">${boardView.CONTENT}</textarea>
 		
 	</form>
