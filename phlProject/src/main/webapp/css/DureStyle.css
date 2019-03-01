@@ -397,7 +397,7 @@ a.button1:hover:before,a.button1:hover:after{
 .mod,.del,.reply { background:#E2A5A5; color:#222; border:3px solid #E2A5A5; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
 .mod:hover,.del:hover,.reply:hover { background:#D67C7C; color:#fff; border:3px solid #D67C7C; padding:5px 15px; font-size:14px; font-weight:500; margin-left:10px;}
 .reply{float: right;}
-
+.cont{border-bottom: 2px solid #A58663;}
 
 .book-view02 { margin-top:20px; font-size:23px; font-weight:500; padding:20px 20px; background-color:#f5f5f5; border-top:2px solid #e2d318; border-bottom:1px solid #e2d318; margin-bottom: 20px; } 
 .bookView02 { margin-top:30px; border-top:2px solid #e9e6e4; text-align:center;}

@@ -69,9 +69,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="2" class="cont">
 							<c:if test="${row.RE_LEVEL ne 1}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if> 
-							${row.CONTENT}
+							: ${row.CONTENT}
 						</td>
 					</tr>
 				</c:forEach>
