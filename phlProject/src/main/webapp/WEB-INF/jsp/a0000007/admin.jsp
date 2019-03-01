@@ -11,7 +11,7 @@ function fn_loginVal(){
 		return;
 	}
 	
-	if($("#memPw").val() == ""){
+	if($("#memPw").val() == ""){ 
 		alert(" * 비밀번호를 입력해주세요. ");
 		$("#memPw").focus();
 		return;
