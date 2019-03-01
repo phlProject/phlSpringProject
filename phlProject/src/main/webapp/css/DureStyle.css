@@ -689,7 +689,7 @@ a.button1:hover:before,a.button1:hover:after{
 #calendar table {border-collapse: collapse;}
 #calendar table thead td {height: 30px; text-align: center;	background: #EAEAEA;} /* 요일 */   
 #calendar table td {border: solid 1px #999; padding:5px;}
-#calendar table td.date-cell {height: 70px; text-align: left; vertical-align: top; color:#333; }
+#calendar table td.date-cell {height: 70px; text-align: left; vertical-align: top; color:#333; min-width:100px; max-width:100px;}
 #calendar table td.this-month {}
 #calendar table td.holiday {color:#333; font-weight:bold;}
 #calendar table td.sun {color: #CC3333 	}	/* 일요일 */
