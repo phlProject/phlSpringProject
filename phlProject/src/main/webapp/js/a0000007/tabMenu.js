@@ -19,7 +19,7 @@ $(document).ready(function(){
                 $(this).addClass("on");  
                 // 탭버튼를 쭉 돌면서 on 클래스가 있는 버튼만 on 이미지로 바꾸고
                 // 나머지 버튼들은 off 이미지로 바꾼다.
-                tabBtn.each(function(){
+               /* tabBtn.each(function(){
                     var src;
                     var img = $(this).children("img");
                     if( $(this).hasClass("on") ){
@@ -29,7 +29,7 @@ $(document).ready(function(){
                         src = img.attr("src").replace("-on.", "-off.");
                     }
                     img.attr("src", src);
-                });
+                });*/
             });
             // 맨첫번째 탭버튼 클릭처리
             tabBtn.eq(0).click();

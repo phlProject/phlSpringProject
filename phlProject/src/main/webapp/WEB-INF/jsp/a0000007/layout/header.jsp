@@ -38,13 +38,13 @@
     <script>    
     
     var pathName = location.pathname;
-    if(pathName.includes('/a0000007/intro/')){
+    if(pathName.indexOf('/a0000007/intro/') != -1){
     	$(".intro").addClass("selected");
-    }else if(pathName.includes('/a0000007/program/')){
+    }else if(pathName.indexOf('/a0000007/program/') != -1){
     	$(".program").addClass("selected");
-    }else if(pathName.includes('/a0000007/schedule/')){
+    }else if(pathName.indexOf('/a0000007/schedule/') != -1){
     	$(".schedule").addClass("selected");
-    }else if(pathName.includes('/a0000007/counsel/')){
+    }else if(pathName.indexOf('/a0000007/counsel/') != -1){
     	$(".counsel").addClass("selected");
     }
     
