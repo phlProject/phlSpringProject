@@ -22,7 +22,7 @@
 			<nav>
 				<ul>
 					<c:if test="${not empty sessionScope.loginInfo}">
-					<li><a href="">${sessionScope.loginInfo.MEM_NM} 님</a></li>
+					<li><a href="/phl/comm/logoutAction.do">${sessionScope.loginInfo.MEM_NM} 님</a></li>
 					</c:if>
 					<li class="intro" ><a href="/a0000007/intro/introduce.do">소개</a></li>
 					<li class="program" ><a href="/a0000007/program/programList.do">활동프로그램</a></li>
