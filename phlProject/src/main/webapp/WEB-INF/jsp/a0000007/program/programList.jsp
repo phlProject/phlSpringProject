@@ -66,8 +66,8 @@
 					<c:if test="${endPageNum eq 0}">
 						<a>1</a>
 					</c:if>		
-					<c:forEach var="requestPageNumber" begin="${beginPageNum}" end="${endPageNum}">
-						<a href="<c:out value="/a0000007/program/programList.do?requestPageNumber=${requestPageNumber}"/>">${requestPageNumber}</a>
+					<c:forEach var="pageNumber" begin="${beginPageNum}" end="${endPageNum}">
+						<a <c:if test='${pageNumber eq requestPageNumber }'>class="on"</c:if> href="<c:out value="/a0000007/program/programList.do?requestPageNumber=${pageNumber}"/>">${pageNumber}</a>
 					</c:forEach>
 								
 					<c:if test="${endPageNum < totalPageCount}">

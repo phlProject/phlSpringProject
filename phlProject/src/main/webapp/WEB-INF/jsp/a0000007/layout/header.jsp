@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/DureStyle.css" />
 
   </head>
+  
 
 	<!-- 헤더 -->
 	<div class="Dure_hd">
@@ -23,15 +24,31 @@
 					<c:if test="${not empty sessionScope.loginInfo}">
 					<li><a href="">${sessionScope.loginInfo.MEM_NM} 님</a></li>
 					</c:if>
-					<li><a href="/a0000007/intro/introduce.do">소개</a></li>
-					<li><a href="/a0000007/program/programList.do">활동프로그램</a></li>
-					<li><a href="/a0000007/schedule/scheduleList.do">일정</a></li>
-					<li><a href="/a0000007/counsel/counselList.do">상담신청</a></li>
+					<li class="intro" ><a href="/a0000007/intro/introduce.do">소개</a></li>
+					<li class="program" ><a href="/a0000007/program/programList.do">활동프로그램</a></li>
+					<li class="schedule" ><a href="/a0000007/schedule/scheduleList.do">일정</a></li>
+					<li class="counsel" ><a href="/a0000007/counsel/counselList.do">상담신청</a></li>
+					
 				</ul>
 			</nav>
 		</div>
 		</div>
-	</div>
     <!-- Navigation -->
     
-     
+    <script>    
+    
+    var pathName = location.pathname;
+    if(pathName.includes('/a0000007/intro/')){
+    	$(".intro").addClass("selected");
+    }else if(pathName.includes('/a0000007/program/')){
+    	$(".program").addClass("selected");
+    }else if(pathName.includes('/a0000007/schedule/')){
+    	$(".schedule").addClass("selected");
+    }else if(pathName.includes('/a0000007/counsel/')){
+    	$(".counsel").addClass("selected");
+    }
+    
+    //$("li a[href='"+location.pathname+"']").parent().addClass("selected");
+    </script>
+    
+    

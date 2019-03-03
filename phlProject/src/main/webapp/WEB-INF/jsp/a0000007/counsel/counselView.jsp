@@ -89,7 +89,7 @@
 				</tr>
 				<tr>
 					<td>
-						<textarea rows="7" cols="93.5" id="contents" name="contents" style="border:1px solid #ddd;"></textarea>
+						<textarea rows="7" cols="93.5" id="contents" name="contents" style="width:100%;border:1px solid #ddd;"></textarea>
 						<input type="hidden" id="boardReSn" 	name="boardReSn" 	value="">
 						<input type="hidden" id="boardReType"	name="boardReType" 	value="insert">
 					</td>

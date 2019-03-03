@@ -14,11 +14,11 @@ table { border-collapse: collapse; }
 	src:url(/font/NanumPenScript-Regular.ttf) format('truetype');
 	src:url(/font/NanumPen.woff) format('woff');
 }
-/* @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css); */
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 
 

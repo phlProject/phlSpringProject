@@ -30,8 +30,8 @@ nav ul li:hover ul { display: block; }
 .Du_menu nav ul li{float:left; font-size:15px; font-weight:bold; padding: 0 20px; }
 .Du_menu nav ul li a { color: #fff; display: block; padding: 20px 5px; font-size: 15px; }
 .Du_menu nav ul li a:hover {color: #fff; font-weight: bold;}
-.Du_menu nav ul li:hover {background: #D77509;}
- 
+.selected{background:#D77509}
+/* .Du_menu nav ul li:hover {background: #D77509;} */
  
  
  /* content 및  main*/
