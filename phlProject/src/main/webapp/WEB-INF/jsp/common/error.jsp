@@ -10,7 +10,6 @@
 	${msg}<br>
 	관리자에게 문의해주시기 바랍니다.
 	<br>
-	<a href="http://127.0.0.1:8080/a0000006/mainIndex.do">로컬 에러 이동</a>
-	<a href="http://pkhl2.nanuminet.co.kr">메인화면으로 이동</a>
+	<a href="http://pkhlEdu.nanuminet.co.kr">메인화면으로 이동</a>
 </body>
 </html>

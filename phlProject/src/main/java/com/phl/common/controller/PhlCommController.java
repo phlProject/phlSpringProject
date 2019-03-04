@@ -78,4 +78,17 @@ public class PhlCommController {
 		
 		CmmnUtilFile.downloadFile(commandMap, request, response);
 	}
+	
+	
+	/* 로그아웃 */
+	@RequestMapping(value="/phl/comm/logoutAction.do")
+	public ModelAndView logoutAction(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/a0000007/mainIndex.do");
+        
+        /* 로그인정보만 세션제거 */
+        session.removeAttribute("loginInfo");
+        session.removeAttribute("sessionId");
+        
+        return mv;
+    }
 }

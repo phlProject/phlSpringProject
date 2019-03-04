@@ -7,7 +7,7 @@
 <div class="footer">
  	<footer class="main_footer">
  		<div class="footer-1">
- 			<a href="/a0000007/mainIndex.do"><img src="/img/A0000007/footer_logo.png"></a>
+ 			<a href="/a0000007/mainIndex.do"><img src="/img/a0000007/footer_logo.png"></a>
  		</div>
  		<div class="footer-2">
  			<a href="/a0000007/intro/introduce.do" >두레꿈 소개 </a>&nbsp; | &nbsp;  
