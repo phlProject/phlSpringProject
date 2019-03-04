@@ -45,6 +45,8 @@
 
 #default_image5_list_form { width:920px; margin-top:50px; }
 .default_image5_list { color:#333; }
+.default_image5_list h4{ padding:50px 0;}
+
 
 .default_image5_list_left { position:relative; border:1px solid #e9e6e4; width:200px; height:200px; margin-right:20px; display:inline-block; float:left;}
 .default_image5_list_left > .default_image5_list_like { position: absolute; float: left; top:250px; width:200px;  }
