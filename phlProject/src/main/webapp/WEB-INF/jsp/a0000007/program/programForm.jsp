@@ -37,8 +37,8 @@
 	<form name="upload_Form" id="upload_Form" method="post" enctype="multipart/form-data">
 		<div class="book-Form">
 			<div class="imgBox">
-				<img src="/img/a0000007/basic.jpg" name="mainImage" id="mainImage">
-				<%-- <img src="${boardView.FL_PATH}/${boardView.FL_NM}" name="mainImage" id="mainImage"> --%>
+				<!-- <img src="/img/a0000007/basic.jpg" name="mainImage" id="mainImage"> -->
+				<img src="${boardView.FL_PATH}/${boardView.FL_NM}" name="mainImage" id="mainImage">
 			</div>
 			<input type="file" 		id="uploadFile" name="uploadFile" 	onchange="javascript:gfn_uploadFile();"> 
 			<input type="hidden" 	id="sPath" 		name="sPath" 		value="/program/">
