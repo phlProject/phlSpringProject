@@ -45,14 +45,14 @@
 						<div class="default_image5_list">
 							<div class="default_image5_list_left">
 								<div class="imgBox">
-									<img src="${row.FL_PATH}/${row.FL_NM}">
+									<a href="javascript:fn_programView('${row.BOARD_SN}');"><img src="${row.FL_PATH}/${row.FL_NM}"></a>
 								</div>
 							</div>
 							<div class="default_image5_list_right">
 								<a href="javascript:fn_programView('${row.BOARD_SN}');">${row.SUBJECT} </a>
 								<hr width="700" color="#e2d318" size="0.3">	
 								<p class="default_image5_detail"></p>				
-								<p>${row.CONTENT}</p>
+								<p><a href="javascript:fn_programView('${row.BOARD_SN}');">${row.CONTENT}</a></p>
 							</div>
 						</div>
 					</c:forEach>
