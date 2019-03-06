@@ -12,9 +12,8 @@
 	                <div class="tab-cont">
 		                <div class="tab-cont3">
 							<h3 class="cont1-1"></h3><br/>
-							두레꿈소개 :(내용없음)<br/>
-							
-							첨부파일 :  <br/>
+							<div class="introduce"><img src="/img/a0000007/introduce.jpg"></div><br/><br/>
+							<h3>첨부파일 :</h3>  
 							<c:forEach items="${fileList}" var="row" varStatus="status">
 								<span style="position: relative; float: left; margin: 10px;">
 									<a href="javascript:fn_downloadFile('${row.BSNS_CODE}','${row.FL_SN}');" class="button1">${row.ORIGIN_FL_NM}</a>
@@ -127,10 +126,12 @@
 </div>
 <script>
 	$('.tab2 a h2').click(function(){
+		$('.tab1').css('height','700');
 		$('.tab2 a h2').css('color','#fff').css('background','#959CAC').css('border-radius','4px 4px 0 0');
 		$('.tab1 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
 	});
 	$('.tab1 a h2').click(function(){
+		$('.tab1').css('height','1900');
 		$('.tab1 a h2').css('color','#fff').css('background','#959CAC').css('border-radius','4px 4px 0 0');
 		$('.tab2 a h2').css('color','#101010').css('background','#fff').css('border-radius','4px 4px 0 0');
 	});
