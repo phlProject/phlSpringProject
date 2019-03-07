@@ -129,6 +129,14 @@ public class PhlBoardDAO extends AbstractDAO {
 	    insert("phl/board.insertBoardNonMemDetail", map);
 	}
 	
+	/**
+	 *  updateBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 수정  ) 
+	 *	2018.12.31 LJG  
+	 */
+	public void updateBoardNonMemDetail(Map<String, Object> map) throws Exception{
+	    update("phl/board.updateBoardNonMemDetail", map);
+	}
+	
 	
 	/**
 	 *  atchBoardList ( 공통 - 첨부 게시판 조회  ) 

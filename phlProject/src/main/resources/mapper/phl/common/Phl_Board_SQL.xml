@@ -347,7 +347,7 @@
 	</select>	
 	
 	
-	<!-- insertBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 등록록  ) 2018.12.31 LJG -->
+	<!-- insertBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 등록  ) 2018.12.31 LJG -->
     <insert id="insertBoardNonMemDetail" parameterType="hashmap">
 			INSERT INTO BSNS_BOARD_NONMEMBER(
 				 BSNS_CODE
@@ -365,6 +365,17 @@
 				,'Y'
 			)
 	</insert>
+	
+	<!-- updateBoardNonMemDetail ( 공통 - 비회원 게시판 상세정보 수정  ) 2018.12.31 LJG -->
+	<update id="updateBoardNonMemDetail"  parameterType="hashmap">
+		UPDATE BSNS_BOARD_NONMEMBER AA
+		   SET AA.REG_NM 		= #{regNm}
+		      ,AA.EMAIL 		= #{email}
+		      ,AA.PHONE 		= #{phone}
+		 WHERE 1=1
+		   AND AA.BSNS_CODE = #{bsnsCode}
+		   AND AA.BOARD_SN  = #{boardSn}
+	</update>
 	
 	
 	<!-- atchBoardList ( 공통 - 첨부 게시판 조회  ) 2018.12.31 LJG -->

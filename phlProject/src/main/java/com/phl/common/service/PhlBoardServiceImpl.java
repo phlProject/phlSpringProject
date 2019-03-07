@@ -102,6 +102,7 @@ Logger log = Logger.getLogger(this.getClass());
 		try 
 		{
 			phlBoardDAO.updateBoard(map);
+			phlBoardDAO.updateBoardNonMemDetail(map);
 			return "success";
 		}
 		catch (Exception e) 
