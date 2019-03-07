@@ -24,6 +24,8 @@
 </form>
 
 <div id="content">
+	<div id="default_title"><h3>활동 프로그램 상세</h3></div>
+	<hr width="920px" color="#959CAC">
 <div id="default_detail_Form">
 	<div style="height:40px;">
 		<div class="default_detail_Form_div1">

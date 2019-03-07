@@ -19,9 +19,8 @@
 .default_list th { height:40px; background:#f5f8f9; text-align: center; font-size: 13px; font-weight: normal; padding:2px 10px; border:1px solid #ddd;}
 .default_list td { height:35px; text-align: center; font-size: 12px; padding:2px 10px; border:1px solid #ddd; }
 .default_list a { color:#938373; }
-.default_list a:hover { background:#938373; color:#fff; border:2px solid #938373; }
+/* .default_list a:hover { background:#938373; color:#fff; border:2px solid #938373; } */
 .default_list .button{ color:#888; font-weight:500; font-size:12px; padding:2px 5px;  text-align:center; border:2px solid #ddd;}
-
 #default_view #default_Select { width:160px; height: 30px; border:1px solid #ddd; vertical-align: middle; font-size: 16px; margin:10px 0px;}
 
 .default_regbtn a { width:100px; background-color:#d3cbc3; color:#776f67; font-weight:500; font-size:14px; padding:10px 5px; float:right; margin-top:10px; text-align:center; cursor: pointer; }

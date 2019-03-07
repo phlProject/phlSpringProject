@@ -23,7 +23,8 @@
 	<input type="hidden" id="boardSn" 		name="boardSn" 			value="${boardView.BOARD_SN}">		<!-- 게시판 번호 -->
 	<input type="hidden" id="sessionId" 	name="sessionId"		value="${sessionScope.sessionId}">	<!-- 세션_아이디(등록자/수정자) -->
 </form>
-
+	<div id="default_title"><h3>상담 신청 상세</h3></div>
+	<hr width="920px" color="#959CAC">
 
 <div id="default_detail_Form">
 	<div style="height:73px;">
