@@ -5,9 +5,8 @@
 
 <link rel="stylesheet" type="text/css" href="/css/pkhl.css" />
 <link rel="stylesheet" type="text/css" href="/css/mainIndex.css" />
-<!-- <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <form id="topMenu_Form" name="topMenu_Form">
 	<input type="hidden" id="bsnsCode" name="bsnsCode"
