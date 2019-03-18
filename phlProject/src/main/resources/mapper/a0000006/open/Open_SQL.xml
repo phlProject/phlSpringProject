@@ -21,7 +21,7 @@
 	            , REG_ID
 	            , MOD_DT
 	            , MOD_ID
-            
+
       	FROM	BSNS_SCHEDULE
       	WHERE   1=1
 				AND BSNS_CODE  = #{bsnsCode}
