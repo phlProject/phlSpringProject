@@ -22,6 +22,7 @@
           AND USE_YN = 'Y'
           AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
           AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
+          AND BSNS_CODE  = #{bsnsCode}
 	</select>
 	
 	<!-- scheduleView ( 일정 상세조회  ) 2018.12.31 LJG -->
@@ -39,6 +40,7 @@
 				, MOD_ID
 		FROM	BSNS_SCHEDULE
 		WHERE	1=1
+				AND BSNS_CODE  = #{bsnsCode}
 				AND SCHEDULE_SN = #{scheduleSn}
 	</select>
 	
@@ -79,7 +81,8 @@
 				, CONTENT 	= #{content}
 				, MOD_DT	= now()
 				, MOD_ID 	= #{sessionId}
-		WHERE	SCHEDULE_SN = #{scheduleSn}	
+		WHERE	BSNS_CODE  = #{bsnsCode}
+				AND SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
 	<!-- deleteSchedule ( 일정 삭제  ) 2018.12.31 LJG -->
@@ -88,7 +91,8 @@
 		SET		USE_YN		= 'N'
 				, MOD_DT	= now()
 				, MOD_ID 	= #{sessionId}
-		WHERE	SCHEDULE_SN = #{scheduleSn}	
+		WHERE	BSNS_CODE  = #{bsnsCode}
+				AND SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
 </mapper>
