@@ -45,7 +45,7 @@
 	
 	<!-- no decorator -->
 	<decorator name="indexLayoutEmpty" page="/WEB-INF/jsp/a0000006/layout/basicDecoEmpty.jsp">
-		<pattern>*/a0000006/iframe*</pattern>
+		<pattern>*/a0000006/*/iframe*</pattern>
 	</decorator>
 	
 	<!-- TopDefault -->
