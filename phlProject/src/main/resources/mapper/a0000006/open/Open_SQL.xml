@@ -22,11 +22,12 @@
 	            , MOD_DT
 	            , MOD_ID
             
-      	FROM   BSNS_SCHEDULE
+      	FROM	BSNS_SCHEDULE
       	WHERE   1=1
-          AND USE_YN = 'Y'
-          AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
-          AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
+				AND BSNS_CODE  = #{bsnsCode}
+				AND USE_YN = 'Y'
+				AND SUBSTR(SCHEDULE_DT,1,4) = #{toYear}
+				AND SUBSTR(SCHEDULE_DT,6,2) = #{toMonth}
 	</select>
 
    	<!-- 일정 - 등록 -->
@@ -71,6 +72,7 @@
 				, MOD_ID
 		FROM	BSNS_SCHEDULE
 		WHERE	1=1
+				AND BSNS_CODE  = #{bsnsCode}
 				AND SCHEDULE_SN = #{scheduleSn}
    
 	</select>
@@ -85,14 +87,16 @@
 				, CONTENT 	= #{content}
 				, MOD_DT	= now()
 				, MOD_ID 	= #{sessionId}
-		WHERE	SCHEDULE_SN = #{scheduleSn}	
+		WHERE	BSNS_CODE  = #{bsnsCode}
+				AND SCHEDULE_SN = #{scheduleSn}	
 	</update>
 	
 	<!-- 일정 - 삭제 -->
 	<delete id="deleteSchedule" parameterType="hashmap">
 		DELETE	
 		FROM	BSNS_SCHEDULE
-		WHERE	SCHEDULE_SN = #{scheduleSn}
+		WHERE	BSNS_CODE  = #{bsnsCode}
+				AND SCHEDULE_SN = #{scheduleSn}
 	</delete>
 	
 	
