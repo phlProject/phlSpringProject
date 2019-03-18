@@ -39,7 +39,7 @@ function fn_deleteJoin(){
 
 /* 참여게시판  > 댓글 등록/수정/삭제 */
 function fn_saveJoinRe(){
-	if($("#contents").val() == null || $("#contents").val() == ""){
+	if(($("#contents").val() == null || $("#contents").val() == "") && $("#boardReType").val() != "delete") {
 		alert("댓글 내용을 입력해주세요.");
 		$("#contents").focus();
 		return;
