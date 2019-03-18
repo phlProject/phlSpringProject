@@ -6,7 +6,7 @@
 	수정/삭제 - 선생님 이상, 세션ID = 등록ID
  -->
 <c:set var="authYn" value="N"/>
-<c:if test="${loginInfo.MEM_GBN_CD ge 'G01030' && loginInfo.MEM_ID eq bookView.REG_ID}">
+<c:if test="${loginInfo.MEM_GBN_CD ge 'G01030' && loginInfo.MEM_ID eq networkBoardView.REG_ID}">
 	<c:set var="authYn" value="Y"/>
 </c:if>
 
