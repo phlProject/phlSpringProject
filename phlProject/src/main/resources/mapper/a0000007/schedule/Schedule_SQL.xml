@@ -6,7 +6,7 @@
 	<!-- scheduleList ( 일정 조회  ) 2018.12.31 LJG -->
 	<select id="scheduleList" parameterType="hashmap" resultType="hashmap">
 		SELECT   BSNS_CODE
-            	, SCHEDULE_SN
+            	, SCHEDULE_SN 
             	, SCHEDULE_DT
             	, ST_HOUR
 	            , END_HOUR
