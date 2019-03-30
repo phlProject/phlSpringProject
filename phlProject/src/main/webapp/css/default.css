@@ -14,7 +14,7 @@
 .default_list { width:100%; }
 .default_list table { width: 100%;}
 .default_list th { height:40px; background:#f5f8f9; text-align: center; font-size: 13px; font-weight: normal; padding:2px 10px; border:1px solid #ddd;}
-.default_list td { height:35px; text-align: center; font-size: 12px; padding:2px 10px; border:1px solid #ddd; }
+.default_list td { height:35px; text-align: center; font-size: 12px; padding:2px 5px; border:1px solid #ddd; }
 .default_list a { color:#938373; }
 .default_list a:hover { color:#660F57; }
 .default_list .button{ color:#888; font-weight:500; font-size:12px; padding:2px 5px;  text-align:center; border:2px solid #ddd;}

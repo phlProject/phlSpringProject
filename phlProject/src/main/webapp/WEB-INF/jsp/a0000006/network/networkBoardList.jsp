@@ -38,11 +38,11 @@
 			<div class="default_list">
 				<table>
 					<tr>
-						<th width="35px">번호</th>
-						<th width="*">제목</th>
-						<th width="80px">글쓴이</th>
-						<th width="80px">날짜</th>
-						<th width="50px">조회수</th>
+						<th width="7%">번호</th>
+						<th width="55%">제목</th>
+						<th width="15%">글쓴이</th>
+						<th width="14%">날짜</th>
+						<th width="9%">조회수</th>
 					</tr>
 					<c:if test="${empty networkBoardList}">
 						<tr>
