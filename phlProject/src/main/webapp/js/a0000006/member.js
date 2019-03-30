@@ -41,24 +41,29 @@ function memValidChk(param){
 		if(data.value == ""){
 			$("#memIdDupText").text("아이디를 입력해주세요.");
 			$("#memIdSuitYn").val("N");
+			$("#memId").focus();
 			return false;
 		}
-		if(!chkText(/^[a-z][a-z\d]{3,11}$/, data, "영문 소문자로 시작하고 숫자가 포함 된  4~12자여야합니다.", param)){
+		if(!chkText(/^[a-z][a-z\d]{3,11}$/, data, "영문 소문자로 시작하고 숫자가 포함 된  4~12자여야 합니다.", param)){
 			$("#memIdSuitYn").val("N");
+			$("#memId").focus();
 	    	return false;
 	    }
 	    if(!chkText(/[0-9]/, data, "반드시 숫자가 하나 이상 포함되어야 합니다.", param)){
 	    	$("#memIdSuitYn").val("N");
+	    	$("#memId").focus();
 	    	return false;
 	    }
 	}else if(param == "memEmail"){ // 이메일 형식 (***@***.***)
 		if(data.value == ""){
 			$("#memEmailDupText").text("이메일을 입력해주세요.");
 			$("#memEmailSuitYn").val("N");
+			$("#memEmail").focus();
 			return false;
 		}
 		if(!chkText(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/, data, "이메일 형식이 올바르지 않습니다. 다시 작성해주세요.", param)){
 			$("#memIdSuitYn").val("N");
+			$("#memEmail").focus();
 	    	return false;
 	    }
 	}
@@ -143,7 +148,7 @@ function fn_validation(){
 	
 	// 아이디 적합성 여부
 	if( ($.trim(memIdSuitYn.val()) == "N") || !memIdExt.test(memId.val())){
-		alert(" * 아이디가 적합하지 않습니다. \n 영문 소문자로 시작하고 숫자가 포함 된 4~12자여야합니다.");
+		alert(" * 아이디가 적합하지 않습니다. \n 영문 소문자로 시작하고 숫자가 포함 된 4~12자여야 합니다.");
 		return false;
 	}
 	
@@ -213,17 +218,28 @@ function fn_validation(){
 
 
 // 비밀번호 확인 체크
-function confirmPw(){
+function confirmPw(param){
 	var memPw 		= $("#memPw").val();
 	var confMemPw 	= $("#confMemPw").val();
+	var memPwExt	= /^[a-zA-Z0-9]{8,12}$/;
+	
+	if(!memPwExt.test(memPw)){
+		$("#pwText").text("비밀번호는 영문 , 숫자로 이루어진 8~12자리입니다. ");
+		memPw.focus();
+		return false;
+	}
+	
 	if(confMemPw != "" && memPw != confMemPw){
+		$("#pwText").text("");
 		$("#confPwText").text("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		$("#confMemPw").val("");
 		$("#confMemPw").focus();
 		return false;
 	}else{
+		$("#pwText").text("비밀번호가 일치합니다.");
 		$("#confPwText").text("");
 	}
+	
 	return true;
 }
 

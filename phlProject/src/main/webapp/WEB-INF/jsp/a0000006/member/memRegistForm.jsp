@@ -22,7 +22,10 @@
 					</tr>
 				    <tr>
 						<th>비밀번호</th>
-						<td><input type="password" id="memPw" name="memPw" class="pl5"	placeholder="비밀번호" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/></td>
+						<td>
+						<input type="password" id="memPw" name="memPw" class="pl5"	placeholder="비밀번호" onchange="javascript:confirmPw();" onkeydown="engNumber(this)"/>
+						<span id="pwText" style="color:red; font-size:12px; padding:20px;"></span>
+						</td>
 					</tr>
 					<tr>
 					    <th>비밀번호 확인</th>
