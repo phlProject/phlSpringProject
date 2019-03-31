@@ -36,7 +36,7 @@
 						
 					</c:when>
 					<c:otherwise>
-						<li><a href="javascript:TopMenuMove('/a0000006/member/memLoginForm.do');" id="memLoginForm">로그인</a></li>
+						<li style="background-color: #fff;"><a href="javascript:TopMenuMove('/a0000006/member/memLoginForm.do');" id="memLoginForm" style="color:#000000;">로그인</a></li>
 						<li><a href="javascript:TopMenuMove('/a0000006/member/memRegistForm.do');" id="memRegistForm">회원가입</a></li>
 					</c:otherwise>
 				</c:choose>

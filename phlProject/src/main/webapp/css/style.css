@@ -14,7 +14,7 @@ table { border-collapse: collapse; }
 /*헤더*/
 #header { position:relative; margin:0 auto; background:#a6bf38; /*z-index:10; padding:20px; margin-bottom:20px; border-bottom:2px solid #5e7b38; border:1px solid #bcbcbc; */ }
 /*로고*/
-.site-header { position:relative; top: 0; height: 62px; width: 1100px; margin:0 auto; z-index:20;background:#a6bf38;} 
+.site-header { position:relative; top: 0; height: 61px; width: 1100px; margin:0 auto; z-index:20;background:#a6bf38;} 
 .site-header > #logo { width: 420px; float: left; font: bold 20px Dotum;  vertical-align: middle; position: absolute; z-index: 80;}
 .site-header > #logo a{ color: #000000;}
 
@@ -103,7 +103,7 @@ line-height: 1.2em; height: 4.1em; }
 #left_sidebar h5:hover { background:#d6e0e2; }
 #left_sidebar ul ul { display:none; } 
 /* #left_sidebar li.active ul { display:block; }  */
-#left_sidebar li:hover, #left_sidebar li:hover a, #left_sidebar li:hover h3 { background-color: #faf7f3; color:#4f591a; font-weight:700;}
+#left_sidebar li:hover, #left_sidebar li:hover a, #left_sidebar li:hover h3 { background-color: #F2EADF; color:#4f591a; font-weight:700;}
 #left_sidebar li.active h3 a {color:#a6bf38;}
 #left_sidebar li.active ul li:FIRST-CHILD a{ color:#a6bf38; }
 /* left CSS 끝 */
