@@ -21,12 +21,12 @@
         <!-- 주석치며 사용 -->
         
         <!-- 운영 서버 -->
-        <!-- <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
-        <property name="username" value="pkhl2"/> -->
+        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhl2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
+        <property name="username" value="pkhl2"/>
         
         <!-- 테스트 서버 -->
-        <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhledu?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
-        <property name="username" value="pkhledu"/>
+        <!-- <property name="url" value="jdbc:mysql://211.233.62.126:3306/pkhledu?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true"/>
+        <property name="username" value="pkhledu"/> -->
         
         <property name="password" value="kosta88!"/>
         <property name="defaultAutoCommit" value="true" />
