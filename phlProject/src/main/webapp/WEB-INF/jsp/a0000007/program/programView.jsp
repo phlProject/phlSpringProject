@@ -32,7 +32,6 @@
 			<span class="default_detail_subject">
 				${boardView.SUBJECT}
 			</span> 
-			<span class="default_detail_boardGbn"> |</span>
 		</div>
 		<div class="default_detail_Form_div2">
 			<span class="default_detail_regDt">${boardView.REG_DT}</span>
